@@ -1,0 +1,4 @@
+company-site
+============
+
+Company homepage
