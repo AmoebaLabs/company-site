@@ -6,6 +6,9 @@
 # First: gem install susy --pre
 # require 'susy'
 
+# Normalize.css for better default cross-browser business
+require 'compass-normalize'
+
 # Change Compass configuration
 # compass_config do |config|
 #   config.output_style = :compact
