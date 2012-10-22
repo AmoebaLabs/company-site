@@ -1,11 +1,15 @@
 //=require normalize
 //=require font-awesome
-
 @import "fonts";
 
+// Configure Compass:
+$experimental-support-for-svg: true;
+
+// Amoeba Vars:
 $amoebaGreen: #BDD407;
 $amoebaGreenDark: #314C00;
 $amoebaGreenMedium: #799A1E;
+$pageWidth: 845px;
 
 body {
 	// consider filter-gradient for old IE

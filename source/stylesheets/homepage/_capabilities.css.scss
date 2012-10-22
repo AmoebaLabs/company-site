@@ -1,3 +1,75 @@
+@import "compass/css3";
+@import "compass/layout/stretching";
+@import "compass/utilities/general/clearfix";
+
 .capabilities {
+	@include clearfix;
+	position: relative;
+	margin-top: 68px;
+	width: $pageWidth;
+	text-align: center;
+
+	.capability-background {
+		z-index: -1;
+		@include stretch;
+		@include opacity(0.5);
+		background-color: $amoebaGreen;
+		@include border-radius(6px);
+		border: 1px solid $amoebaGreenDark;
+	}
 	
+	.capability-box {
+		@include inline-block;
+		@include box-sizing(border-box);
+		width: 33%;
+		height: 100%;
+		padding-right: 10px;
+
+		// Border
+		margin: 5px 0px 5px 0px;
+		border-right: 1px solid $amoebaGreenMedium;
+		&:last-child {
+			border-right: none;
+		}
+
+		// Typography
+		text-align: left;
+		h2 {
+			@extend %amoebaFontMedium;
+			//line-height: 18px;
+			font-size: 18px;
+			margin: 30px 0 0 120px;
+			color: $amoebaGreenDark;
+		}
+		p {
+			font-size: 14px;
+			margin: 3px 0 30px 120px;
+		}
+
+		// Images
+		img {
+			position: absolute;
+			top: 50%;
+		}
+		.img-web {
+			width: 101px;
+			height: 82px;
+			margin-top: -41px; // -Half height
+			margin-left: 10px; // Aprox (120-img.width)/2
+		}
+
+		.img-mobile {
+			width: 53px;
+			height: 100px;
+			margin-top: -50px;
+			margin-left: 33px;
+		}
+
+		.img-gap {
+			width: 83;
+			height: 90;
+			margin-top: -45px;
+			margin-left: 18px;
+		}
+	}
 }

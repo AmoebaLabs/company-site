@@ -1,0 +1,14 @@
+#footer {
+	width: $pageWidth;
+	margin-top: 100px;
+
+	// Typography
+	text-align: right;
+	font-size: 12px;
+
+	i {
+		font-size: 30px;
+		padding-right: 15px;
+		color: $amoebaGreen;
+	}
+}

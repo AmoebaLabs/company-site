@@ -1,46 +1,60 @@
-.homepage {
-	@import "homepage/nav";
-	@import "homepage/capabilities";
+@import "compass/utilities/general/clearfix";
 
-	$pageWidth: 845px;
-
-	position: absolute;
+#homepage {
+	// Center DIV
 	width: $pageWidth;
-	top: 100px;
-
-	// Center the DIV:
 	left: 50%;
 	margin-left: -$pageWidth/2;
 
+	position: absolute;
+	top: 100px;
+
 	// Font styles that apply all the way down:
-	text-align: right;
 	@extend %amoebaFontRegular;
+	color: $amoebaGreenDark;
 
-	// For testing purposes:
-	//border: 1px solid;
+	#header {
+		@include clearfix;
 
-	i.amoeba-character {
-		content: image-url("mascot.svg");
-		width: 357px;
-		height: 339px;
-		position: absolute;
-		left: 0px;
-		z-index: 10;
+		text-align: right;
+
+		i.amoeba-character {
+			content: image-url("mascot.svg");
+			width: 357px;
+			height: 339px;
+			position: absolute;
+			left: 0px;
+			z-index: 10;
+		}
+
+		img {
+			width: 357px;
+			height: 339px;
+			position: absolute;
+			left: 9px;
+			z-index: 10;
+		}
+
+		h1 {
+			@extend %amoebaFontSemiBold;
+			font-size: 153px;
+			line-height: 130px;
+			padding: 69px 0px 5px 0px;
+			margin: 0 -7px 0 0;
+			color: $amoebaGreen;
+		}
+
+		h2 {
+			@extend %amoebaFontMedium;
+			line-height: 26px;
+			font-size: 26px;
+			margin: 0;
+			color: $amoebaGreenDark;
+		}
+
+		@import "homepage/nav";
 	}
 
-	h1 {
-		@extend %amoebaFontSemiBold;
-		font-size: 153px;
-		line-height: 130px;
-		padding: 69px 0px 5px 0px;
-		margin: 0 -7px 0 0;
-		color: $amoebaGreen;
-	}
-	h2 {
-		@extend %amoebaFontMedium;
-		line-height: 26px;
-		font-size: 26px;
-		margin: 0;
-		color: $amoebaGreenDark;
-	}
+	@import "homepage/capabilities";
+	@import "homepage/footer";
 }

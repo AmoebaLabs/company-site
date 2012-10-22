@@ -1,3 +1,6 @@
+@import "compass/utilities/general/float";
+@import "compass/css3";
+
 nav {
 	background-color: $amoebaGreen;
 	margin-top: 32px;
@@ -6,7 +9,7 @@ nav {
 
 	// Align it right under our subheading
 	display:block;
-	float: right;
+	@include float-right;
 
 	ul {
 		margin: 0;
@@ -15,7 +18,7 @@ nav {
 		li {
 			display: block;
 			position: relative;
-			float: right;
+			@include float-right;
 			height: 30px;
 
 			// Setup the borders between the navigation elements:
@@ -46,6 +49,7 @@ nav {
 				font-size: 21px;
 				line-height: 42px; //Center in the middle of the bar, 42px high
 				text-align:center;
+				@include text-shadow(lighten($amoebaGreenDark, 50%) 0px 0px 5px );
 
 				&:hover {
 					background: $amoebaGreenMedium;
