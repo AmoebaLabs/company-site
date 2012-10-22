@@ -1,5 +1,6 @@
-@import "../../vendor/stylesheets/normalize";    // Unfortunately sprockets can't be configured to search this easily
-@import "../../vendor/stylesheets/font-awesome"; // while config.rb can set js_assets_paths, there is no stylesheet path.
+//=require normalize
+//=require font-awesome
+
 @import "fonts";
 
 $amoebaGreen: #BDD407;
@@ -15,101 +16,4 @@ body {
 	height:581px;
 }
 
-$pageWidth: 845px;
-.main-container {
-	position: absolute;
-	width: $pageWidth;
-	top: 100px;
-
-	// Center the DIV:
-	left: 50%;
-	margin-left: -$pageWidth/2;
-
-	// Font styles that apply all the way down:
-	text-align: right;
-	@extend %amoebaFontRegular;
-
-	// For testing purposes:
-	//border: 1px solid;
-
-	i.amoeba-character {
-		content: image-url("mascot.svg");
-		width: 357px;
-		height: 339px;
-		position: absolute;
-		left: 0px;
-		z-index: 10;
-	}
-
-	h1 {
-		@extend %amoebaFontSemiBold;
-		font-size: 153px;
-		line-height: 130px;
-		padding: 69px 0px 5px 0px;
-		margin: 0 -7px 0 0;
-		color: $amoebaGreen;
-	}
-	h2 {
-		@extend %amoebaFontMedium;
-		line-height: 26px;
-		font-size: 26px;
-		margin: 0;
-		color: $amoebaGreenDark;
-	}
-	nav {
-		background-color: $amoebaGreen;
-		margin-top: 32px;
-		height: 42px;
-		width: 530px;
-
-		// Align it right under our subheading
-		display:block;
-		float: right;
-
-		ul {
-			margin: 0;
-			padding: 0;
-			list-style: none;
-			li {
-				display: block;
-				position: relative;
-				float: right;
-				height: 30px;
-
-				// Setup the borders between the navigation elements:
-				border-left: 1px solid $amoebaGreenMedium;
-				margin-top: 6px;
-				margin-bottom: 6px;
-
-				// Last menu item doesn't need a border
-				&:last-child {
-					border-left: none;
-				}
-
-				// Style the links in the menu
-				a {
-					display: block;
-					text-decoration: none;
-					height: 42px; // Height is full size of nav bar so hover fills it
-					padding: 0px 15px 0px 15px; //15px spacing between elements
-					white-space: nowrap;
-
-					// Compensate for the border between elements
-					margin: -6px -1px -6px -1px;
-
-					// Typography settings:
-					@extend %amoebaFontRegular;
-					color: $amoebaGreenDark;
-					font-weight: bold;
-					font-size: 21px;
-					line-height: 42px; //Center in the middle of the bar, 42px high
-					text-align:center;
-
-					&:hover {
-						background: $amoebaGreenMedium;
-					}
-				}
-			}
-		}
-	}
-}
+@import "homepage";
