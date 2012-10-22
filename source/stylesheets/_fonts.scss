@@ -33,7 +33,7 @@ $amoebaFontMedium: "geogtq-md-webfont";
 //
 // Geogrotesque Regular (import with %amoebaFontRegular)
 //
-$amoebaFontRegular: "geogtq-sb-webfont";
+$amoebaFontRegular: "geogtq-rg-webfont";
 @include font-face($amoebaFontRegular, 
 	font-files(
 		"#{$amoebaFontRegular}.woff", woff, 
