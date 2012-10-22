@@ -1,7 +1,10 @@
-@import "vendor/normalize";
-@import "compass/css3";
-@import "vendor/font-awesome";
-@import "amoeba/fonts";
+@import "../../vendor/stylesheets/normalize";    // Unfortunately sprockets can't be configured to search this easily
+@import "../../vendor/stylesheets/font-awesome"; // while config.rb can set js_assets_paths, there is no stylesheet path.
+@import "fonts";
+
+$amoebaGreen: #BDD407;
+$amoebaGreenDark: #314C00;
+$amoebaGreenMedium: #799A1E;
 
 body {
 	// consider filter-gradient for old IE
@@ -24,10 +27,10 @@ $pageWidth: 845px;
 
 	// Font styles that apply all the way down:
 	text-align: right;
-	@extend %amoebaFontSemiBold;
-	
+	@extend %amoebaFontRegular;
+
 	// For testing purposes:
-	border: 1px solid;
+	//border: 1px solid;
 
 	i.amoeba-character {
 		content: image-url("mascot.svg");
@@ -35,17 +38,62 @@ $pageWidth: 845px;
 		height: 339px;
 		position: absolute;
 		left: 0px;
+		z-index: 10;
 	}
 
 	h1 {
+		@extend %amoebaFontSemiBold;
 		font-size: 153px;
 		line-height: 130px;
-		padding: 69px 0px 20px 0px;
-		margin: 0;
-		color: #bdd407;
+		padding: 69px 0px 5px 0px;
+		margin: 0 -7px 0 0;
+		color: $amoebaGreen;
 	}
 	h2 {
-		color: #314C00;
+		@extend %amoebaFontMedium;
+		line-height: 26px;
+		font-size: 26px;
+		margin: 0;
+		color: $amoebaGreenDark;
+	}
+	nav {
+		background-color: $amoebaGreen;
+		margin-top: 32px;
+		height: 42px;
+		width: 530px;
+
+		// Align it right under our subheading
+		display:block;
+		float: right;
+
+		ul {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+			li {
+				display: block;
+				position: relative;
+				float: right;
+
+				a {
+					display: block;
+					text-decoration: none;
+					height: 30px;
+					width: 140px;
+
+					padding: 7px 15px 3px 15px;
+					color: $amoebaGreenDark;
+					margin-left: 1px;
+					white-space: nowrap;
+					text-align:center;
+					:hover {
+						background: $amoebaGreenMedium;
+					}
+				}
+			}
+		}
+		
+		// Line will be $amoebaGreenDark
 
 	}
 }

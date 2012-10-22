@@ -12,6 +12,7 @@ $amoebaFontSemiBold: "geogtq-sb-webfont";
 		"#{$amoebaFontSemiBold}.eot");
 %amoebaFontSemiBold {
 	font-family: $amoebaFontSemiBold;
+	font-weight: normal;
 }
 
 //
@@ -26,6 +27,7 @@ $amoebaFontMedium: "geogtq-md-webfont";
 		"#{$amoebaFontMedium}.eot");
 %amoebaFontMedium {
 	font-family: $amoebaFontMedium;
+	font-weight: normal;
 }
 
 //
@@ -40,4 +42,5 @@ $amoebaFontRegular: "geogtq-sb-webfont";
 		"#{$amoebaFontRegular}.eot");
 %amoebaFontRegular {
 	font-family: $amoebaFontRegular;
+	font-weight: normal;
 }
