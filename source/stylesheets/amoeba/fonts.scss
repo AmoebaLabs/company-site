@@ -1,0 +1,43 @@
+@import "compass/css3";
+
+//
+// Geogrotesque Semi-Bold (import with %amoebaFontSemiBold)
+//
+$amoebaFontSemiBold: "geogtq-sb-webfont";
+@include font-face($amoebaFontSemiBold, 
+	font-files(
+		"#{$amoebaFontSemiBold}.woff", woff, 
+		"#{$amoebaFontSemiBold}.ttf", truetype, 
+		"#{$amoebaFontSemiBold}.svg", svg), 
+		"#{$amoebaFontSemiBold}.eot");
+%amoebaFontSemiBold {
+	font-family: $amoebaFontSemiBold;
+}
+
+//
+// Geogrotesque Medium (import with %amoebaFontMedium)
+//
+$amoebaFontMedium: "geogtq-md-webfont";
+@include font-face($amoebaFontMedium, 
+	font-files(
+		"#{$amoebaFontMedium}.woff", woff, 
+		"#{$amoebaFontMedium}.ttf", truetype, 
+		"#{$amoebaFontMedium}.svg", svg), 
+		"#{$amoebaFontMedium}.eot");
+%amoebaFontMedium {
+	font-family: $amoebaFontMedium;
+}
+
+//
+// Geogrotesque Regular (import with %amoebaFontRegular)
+//
+$amoebaFontRegular: "geogtq-sb-webfont";
+@include font-face($amoebaFontRegular, 
+	font-files(
+		"#{$amoebaFontRegular}.woff", woff, 
+		"#{$amoebaFontRegular}.ttf", truetype, 
+		"#{$amoebaFontRegular}.svg", svg), 
+		"#{$amoebaFontRegular}.eot");
+%amoebaFontRegular {
+	font-family: $amoebaFontRegular;
+}

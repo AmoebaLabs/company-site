@@ -1,17 +1,7 @@
 @import "vendor/normalize";
 @import "compass/css3";
 @import "vendor/font-awesome";
-
-@include font-face("geo_semibold", 
-	font-files(
-		"geogtq-sb-webfont.woff", woff, 
-		"geogtq-sb-webfont.ttf", truetype, 
-		"geogtq-sb-webfont.svg", svg), 
-		"geogtq-sb-webfont.eot");
-
-%amoebaFont {
-	font-family: 'geo_semibold';
-}
+@import "amoeba/fonts";
 
 body {
 	// consider filter-gradient for old IE
@@ -22,6 +12,40 @@ body {
 	height:581px;
 }
 
-body {
-	@extend %amoebaFont;
+$pageWidth: 845px;
+.main-container {
+	position: absolute;
+	width: $pageWidth;
+	top: 100px;
+
+	// Center the DIV:
+	left: 50%;
+	margin-left: -$pageWidth/2;
+
+	// Font styles that apply all the way down:
+	text-align: right;
+	@extend %amoebaFontSemiBold;
+	
+	// For testing purposes:
+	border: 1px solid;
+
+	i.amoeba-character {
+		content: image-url("mascot.svg");
+		width: 357px;
+		height: 339px;
+		position: absolute;
+		left: 0px;
+	}
+
+	h1 {
+		font-size: 153px;
+		line-height: 130px;
+		padding: 69px 0px 20px 0px;
+		margin: 0;
+		color: #bdd407;
+	}
+	h2 {
+		color: #314C00;
+
+	}
 }
