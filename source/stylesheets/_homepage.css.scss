@@ -7,24 +7,24 @@
 	margin-left: -$pageWidth/2;
 
 	position: absolute;
-	top: 100px;
+	top: 50px;
 
 	// Font styles that apply all the way down:
 	@extend %amoebaFontRegular;
 	color: $amoebaGreenDark;
 
+	#mascot {
+		width: 357px;
+		height: 339px;
+		position: absolute;
+		left: 9px;
+		z-index: 10;
+	}
+
 	#header {
 		@include clearfix;
 
 		text-align: right;
-
-		img {
-			width: 357px;
-			height: 339px;
-			position: absolute;
-			left: 9px;
-			z-index: 10;
-		}
 
 		h1 {
 			@extend %amoebaFontSemiBold;
@@ -46,6 +46,7 @@
 		@import "homepage/nav";
 	}
 
+	@import "homepage/contactus";
 	@import "homepage/capabilities";
 	@import "homepage/footer";
 }

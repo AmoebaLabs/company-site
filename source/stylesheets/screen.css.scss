@@ -6,14 +6,15 @@
 $experimental-support-for-svg: true;
 
 // Amoeba Vars:
-$amoebaGreen: #BDD407;
-$amoebaGreenDark: #314C00;
-$amoebaGreenMedium: #799A1E;
+$amoebaGreen: #B5CE2F;
+$amoebaGreenMedium: #8BA400;
+$amoebaGreenDark: #374F0E;
+$greyLight: #BEC0C6;
 $pageWidth: 845px;
 
 body {
 	// consider filter-gradient for old IE
-	@include background-image(linear-gradient(-90deg,rgb(190,192,198) 0%,rgb(255,255,255) 50%,rgb(255,255,255) 100%));
+	@include background-image(linear-gradient(color-stops($greyLight 0%, white 50%)));
 	background-repeat: repeat-x;
 	background-attachment:fixed;
 	width:30px;
