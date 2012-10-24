@@ -3,7 +3,7 @@ title: Welcome to Amoeba
 ---
 
 <div id="homepage">
-	<img src="images/mascot.svg" alt="Amoeba Character" id="mascot" />
+	<%= image_tag 'mascot.svg', :alt => "Amoeba Character", :id => "mascot" %>
 	<div id="header">
 		<h1>Amoeba</h1>
 		<h2>Remarkable Development and Design</h2>
@@ -18,17 +18,17 @@ title: Welcome to Amoeba
 	<div class="capabilities">
 		<div class="capability-background"></div>
 		<div class="capability-box">
-			<img src="images/web.svg" alt="Web Device" class="img-web" />
+			<%= image_tag 'web.svg', :alt => "Web Device", :class => "img-web" %>
 			<h2>Web Development</h2>
 			<p>Now that we know who you are, I know who I am. I’m not a mistake! It all makes sense!</p>
 		</div>
 		<div class="capability-box">
-			<img src="images/mobile.svg" alt="Mobile Device" class="img-mobile" />
+			<%= image_tag 'mobile.svg', :alt => "Mobile Device", :class => "img-mobile" %>
 			<h2>Mobile Applications</h2>
 			<p>Now that we know who you are, I know who I am. I’m not a mistake! It all makes sense!</p>
 		</div>
 		<div class="capability-box">
-			<img src="images/gap.svg" alt="Person" class="img-gap" />
+			<%= image_tag 'gap.svg', :alt => "Person", :class => "img-gap" %>
 			<h2>Filling The Gap</h2>
 			<p>Now that we know who you are, I know who I am. I’m not a mistake! It all makes sense!</p>
 		</div>
@@ -41,7 +41,25 @@ title: Welcome to Amoeba
 		</div>
 	</div>
 	<div id="contactus" class="hidden">
-
+		<form id="contact-form">
+			<div class="contact-form-group">
+				<label for="contact-name">Name</label>
+				<input type="text" id="contact-name" />
+			</div>
+			<div class="contact-form-group">
+				<label for="contact-company">Company</label>
+				<input type="text" id="contact-company" />
+			</div>
+			<div class="contact-form-group">
+				<label for="contact-email">Email</label>
+				<input type="text" id="contact-email" />
+			</div>
+			<div class="contact-form-group">
+				<textarea id="contact-message" rows=6></textarea>
+				<p>Most inquiries are answered within 48 hours</p>
+				<input type="submit" value="Submit" />
+			</div>
+		</form>
 	</div>
 	<div id="footer">
 		<i class="icon-facebook-sign"></i>

@@ -1,8 +1,5 @@
 @import "compass/css3";
-
-#mascot {
-	
-}
+@import "compass/layout/stretching";
 
 #mascot.contactus {
 	@include transition(all 1s ease-in-out);
@@ -50,7 +47,68 @@
 	width: 441px;
 	height: 460px;
 	
-	background-color: $greyShadow;
 	@include border-radius(3%);
 	@include box-shadow(rgba(0,0,0,0.21) 5px 5px 4px);
+
+	background-color: $greyShadow;
+
+	form {
+		@include stretch;
+		padding: 110px 15px 10px 15px;
+
+		.contact-form-group {
+			margin: 10px 50px 10px 50px;
+		}
+
+		label {
+			@include box-sizing(border-box);
+			display: block;
+			float: left;
+			width: 101px;
+			height: 24px;
+			padding: 3px 2px 2px 13px;
+			background: $amoebaGreen;
+			font-size: 16px;
+			line-height: 16px;
+		}
+
+		input:not([type=submit]):not([type=file]) {
+			width: 175px;
+			height: 24px;
+			background-color: white;
+			border: none;
+			color: $amoebaGreenDark;
+			padding: 0 5px 0 5px;
+		}
+
+		textarea {
+			margin-top: 20px;
+			width: 100%;
+			border: none;
+			background-color: white;
+			color: $amoebaGreenDark;
+		}
+
+		p {
+			font-size: 12px;
+		}
+
+		input[type=submit] {
+			float: right;
+		}
+	}
+
+	// This create a psudo-element before our DIV in the DOM in order to have the 
+	// ribbon at the top extend to the left 11px to give it a 3d appearance.
+	//
+	&:before {
+		content: " ";
+		position: absolute;
+		left: -11px;
+		top: 0;
+		width: 308px;
+		height: 84px;
+		background-image: image-url("contact_ribbon.svg");
+		background-repeat: no-repeat;
+	}
 }
