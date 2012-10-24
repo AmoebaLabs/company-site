@@ -4,5 +4,47 @@
 	@include transition-property(all);
 	@include transition-duration(1s);
 	width: 233px;
-	height: 322px;
+	height: 224px;
+	top: 142px;
+	left: 57px;
+}
+
+#sayhi {
+	position: absolute;
+	top: 365px;
+	width: 350px;
+	text-align: center;
+
+	h1 {
+		@extend %amoebaFontSemiBold;
+		font-size: 103px;
+		color: $amoebaGreen;
+		margin: -10px 0 0 0;
+		line-height: 103px;
+	}
+
+	h2 {
+		@extend %amoebaFontMedium;
+		font-size: 17px;
+		margin: 0 0 0 0;
+	}
+
+	.gradient-box {
+		font-size: 20px;
+		padding: 10px;
+		margin-top: 8px;
+		@include border-radius(3px);
+	}
+}
+
+#contactus {
+	position: absolute;
+	top: 115px;
+	right: 0;
+	width: 441px;
+	height: 460px;
+	
+	background-color: $greyShadow;
+	@include border-radius(3%);
+	@include box-shadow(rgba(0,0,0,0.21) 5px 5px 4px);
 }

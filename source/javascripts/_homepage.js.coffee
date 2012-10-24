@@ -3,13 +3,15 @@ jQuery ($) ->
 
 	$("#contactus-button").on 'click', (e) ->
 		# Must hide the unnecessary elements
-		$.each(["#header", "#footer", ".capabilities"], (index, klass) ->
+		$.each ["#header", ".capabilities"], (index, klass) ->
 			$(klass).fadeOut(animationTime)
-		)
 
 		# .contactus is used to position/ animate the mascot for the contactus form
 		$("#mascot").addClass "contactus"
-		#$("#mascot").animate({'width': 233, 'height': 322}, 1000)
+
+		# Show the sayhi & contactus divs
+		$.each ["#sayhi", "#contactus"], (index, klass) ->
+			$(klass).fadeIn(animationTime)
 
 		# Stop event propagation
 		return false

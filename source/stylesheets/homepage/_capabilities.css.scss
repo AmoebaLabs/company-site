@@ -14,7 +14,7 @@
 		@include stretch;
 		@include opacity(0.5);
 		background-color: $amoebaGreen;
-		@include border-radius(6px);
+		@include border-radius(5px);
 		border: 1px solid $amoebaGreenDark;
 	}
 	

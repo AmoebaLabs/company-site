@@ -1,6 +1,7 @@
 #footer {
 	width: $pageWidth;
-	margin-top: 50px;
+	position: absolute;
+	top: 588px;
 
 	// Typography
 	text-align: right;
@@ -8,6 +9,7 @@
 
 	i {
 		font-size: 30px;
+		line-height: 30px;
 		padding-right: 15px;
 		color: $amoebaGreen;
 	}

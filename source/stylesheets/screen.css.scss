@@ -7,18 +7,17 @@ $experimental-support-for-svg: true;
 
 // Amoeba Vars:
 $amoebaGreen: #B5CE2F;
-$amoebaGreenMedium: #8BA400;
+$amoebaGreenMedium: #A6CB3D;
 $amoebaGreenDark: #374F0E;
 $greyLight: #BEC0C6;
+$greyShadow: #EAEBED;
 $pageWidth: 845px;
 
 body {
 	// consider filter-gradient for old IE
 	@include background-image(linear-gradient(color-stops($greyLight 0%, white 50%)));
-	background-repeat: repeat-x;
 	background-attachment:fixed;
-	width:30px;
-	height:581px;
 }
 
 @import "homepage";
+@import "util";
