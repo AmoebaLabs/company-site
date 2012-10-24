@@ -13,6 +13,11 @@ jQuery ($) ->
 		$("#sayhi").fadeIn(animationTime)
 		$("#contactus").removeClass("hidden")
 
+		# Slide in Nav bar
+		$("#navigation").slideDown();
+
+		# Consider scrolling to top of the page
+
 		# Stop event propagation
 		return false
 
