@@ -7,11 +7,11 @@ jQuery ($) ->
 			$(klass).fadeOut(animationTime)
 
 		# .contactus is used to position/ animate the mascot for the contactus form
-		$("#mascot").addClass "contactus"
+		$("#mascot").addClass("contactus")
 
 		# Show the sayhi & contactus divs
-		$.each ["#sayhi", "#contactus"], (index, klass) ->
-			$(klass).fadeIn(animationTime)
+		$("#sayhi").fadeIn(animationTime)
+		$("#contactus").removeClass("hidden")
 
 		# Stop event propagation
 		return false

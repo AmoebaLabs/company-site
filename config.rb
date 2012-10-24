@@ -6,6 +6,9 @@
 # First: gem install susy --pre
 # require 'susy'
 
+# Other modules we'd like to include:
+require 'animation'
+
 # Change Compass configuration
 # compass_config do |config|
 #   config.output_style = :compact

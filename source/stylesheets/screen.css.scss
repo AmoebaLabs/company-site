@@ -1,6 +1,7 @@
 //=require normalize
 //=require font-awesome
 @import "fonts";
+@import "animations";
 
 // Configure Compass:
 $experimental-support-for-svg: true;
@@ -21,3 +22,4 @@ body {
 
 @import "homepage";
 @import "util";
+

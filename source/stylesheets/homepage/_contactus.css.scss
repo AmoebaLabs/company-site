@@ -1,8 +1,12 @@
 @import "compass/css3";
 
+#mascot {
+	
+}
+
 #mascot.contactus {
-	@include transition-property(all);
-	@include transition-duration(1s);
+	@include transition(all 1s ease-in-out);
+
 	width: 233px;
 	height: 224px;
 	top: 142px;
@@ -38,6 +42,8 @@
 }
 
 #contactus {
+	@include animation(contactus-in 2s);
+
 	position: absolute;
 	top: 115px;
 	right: 0;
