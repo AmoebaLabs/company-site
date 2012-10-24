@@ -1,3 +1,6 @@
+// Util.css - random utility classes and mixins that don't belong elsewhere
+
+//-------- Classes ----------- 
 .hidden {
 	display: none;
 }
@@ -8,4 +11,11 @@
 
 .geo-medium {
 	@extend %amoebaFontMedium;
+}
+
+//-------- Mixins ----------- 
+@mixin center($elmWidth: $pageWidth) {
+	width: $elmWidth;
+	left: 50%;
+	margin-left: -$elmWidth/2;
 }

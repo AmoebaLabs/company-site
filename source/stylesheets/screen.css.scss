@@ -1,7 +1,5 @@
 //=require normalize
 //=require font-awesome
-@import "fonts";
-@import "animations";
 
 // Configure Compass:
 $experimental-support-for-svg: true;
@@ -14,12 +12,19 @@ $greyLight: #BEC0C6;
 $greyShadow: #EAEBED;
 $pageWidth: 845px;
 
+// Imports:
+@import "fonts";
+@import "util";
+@import "animations";
+@import "navigation";
+@import "homepage";
+
 body {
 	// consider filter-gradient for old IE
 	@include background-image(linear-gradient(color-stops($greyLight 0%, white 50%)));
 	background-attachment:fixed;
+
+	// Font styles that apply all the way down:
+	@extend %amoebaFontRegular;
+	color: $amoebaGreenDark;
 }
-
-@import "homepage";
-@import "util";
-

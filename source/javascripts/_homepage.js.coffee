@@ -1,7 +1,7 @@
 jQuery ($) ->
 	animationTime = 1000
 
-	$("#contactus-button").on 'click', (e) ->
+	$(".contactus-button").on 'click', (e) ->
 		# Must hide the unnecessary elements
 		$.each ["#header", ".capabilities"], (index, klass) ->
 			$(klass).fadeOut(animationTime)

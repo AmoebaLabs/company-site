@@ -1,17 +1,9 @@
 @import "compass/utilities/general/clearfix";
 
 #homepage {
-	// Center DIV
-	width: $pageWidth;
-	left: 50%;
-	margin-left: -$pageWidth/2;
-
+	@include center;
 	position: absolute;
 	top: 50px;
-
-	// Font styles that apply all the way down:
-	@extend %amoebaFontRegular;
-	color: $amoebaGreenDark;
 
 	#mascot {
 		width: 357px;
