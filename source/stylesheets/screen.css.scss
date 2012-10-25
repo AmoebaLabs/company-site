@@ -1,18 +1,8 @@
 //=require normalize
 //=require font-awesome
 
-// Configure Compass:
-$experimental-support-for-svg: true;
-
-// Amoeba Vars:
-$amoebaGreen: #B5CE2F;
-$amoebaGreenMedium: #A6CB3D;
-$amoebaGreenDark: #374F0E;
-$greyLight: #BEC0C6;
-$greyShadow: #EAEBED;
-$pageWidth: 845px;
-
 // Imports:
+@import "variables";
 @import "fonts";
 @import "util";
 @import "animations";

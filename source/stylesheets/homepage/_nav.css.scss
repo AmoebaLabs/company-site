@@ -2,7 +2,7 @@
 @import "compass/css3";
 
 nav {
-	background-color: $amoebaGreenMedium;
+	background-color: $amoebaGreen;
 	margin-top: 32px;
 	height: 42px;
 	width: 530px;
@@ -22,7 +22,7 @@ nav {
 			height: 30px;
 
 			// Setup the borders between the navigation elements:
-			border-left: 1px solid darken($amoebaGreenMedium, 10%);
+			border-left: 1px solid $amoebaGreenMedium;
 			margin-top: 6px;
 			margin-bottom: 6px;
 
@@ -52,7 +52,7 @@ nav {
 				//@include text-shadow(lighten($amoebaGreenDark, 50%) 0px 0px 5px );
 
 				&:hover {
-					background: darken($amoebaGreenMedium, 10%);
+					background: $amoebaGreenMedium;
 				}
 			}
 		}

@@ -39,7 +39,7 @@
 }
 
 #contactus {
-	@include animation(contactus-in 2s);
+	@include animation(contactus-in 1s ease-in);
 
 	position: absolute;
 	top: 115px;
@@ -104,7 +104,7 @@
 	&:before {
 		content: " ";
 		position: absolute;
-		left: -11px;
+		left: -10px;
 		top: 0;
 		width: 308px;
 		height: 84px;
