@@ -43,13 +43,11 @@ nav {
 				margin: -6px -1px -6px -1px;
 
 				// Typography settings:
-				@extend %amoebaFontRegular;
+				@extend %amoebaFontMedium;
 				color: $amoebaGreenDark;
-				font-weight: bold;
 				font-size: 21px;
 				line-height: 42px; //Center in the middle of the bar, 42px high
 				text-align:center;
-				//@include text-shadow(lighten($amoebaGreenDark, 50%) 0px 0px 5px );
 
 				&:hover {
 					background: $amoebaGreenMedium;

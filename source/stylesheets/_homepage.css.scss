@@ -15,7 +15,7 @@
 		top: 0px;
 	}
 
-	#header {
+	#logo {
 		@include clearfix;
 
 		text-align: right;
@@ -32,8 +32,8 @@
 
 		h2 {
 			@extend %amoebaFontMedium;
-			line-height: 26px;
-			font-size: 26px;
+			line-height: 28px;
+			font-size: 28px;
 			margin: 0;
 			color: $amoebaGreenDark;
 		}

@@ -3,7 +3,7 @@ jQuery ($) ->
 
 	$(".contactus-button").on 'click', (e) ->
 		# Must hide the unnecessary elements
-		$.each ["#header", ".capabilities"], (index, klass) ->
+		$.each ["#logo", ".capabilities"], (index, klass) ->
 			$(klass).fadeOut(animationTime)
 
 		# .contactus is used to position/ animate the mascot for the contactus form
@@ -14,7 +14,7 @@ jQuery ($) ->
 		$("#contactus").removeClass("hidden")
 
 		# Slide in Nav bar
-		$("#navigation").slideDown();
+		$("#header").slideDown();
 
 		# Consider scrolling to top of the page
 
