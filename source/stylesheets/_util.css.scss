@@ -9,6 +9,14 @@
 	@extend %amoebaFontMedium;
 }
 
+.float-left {
+	float: left;
+}
+
+.float-right {
+	float: right;
+}
+
 //-------- Mixins ----------- 
 @mixin center($elmWidth: $pageWidth) {
 	width: $elmWidth;

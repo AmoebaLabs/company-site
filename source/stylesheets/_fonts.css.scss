@@ -44,3 +44,18 @@ $amoebaFontRegular: "geogtq-rg-webfont";
 	font-family: $amoebaFontRegular;
 	font-weight: normal;
 }
+
+//
+// Geogrotesque Thin (import with %amoebaFontThin)
+//
+$amoebaFontThin: "geogtq-th-webfont";
+@include font-face($amoebaFontThin, 
+	font-files(
+		"#{$amoebaFontThin}.woff", woff, 
+		"#{$amoebaFontThin}.ttf", truetype, 
+		"#{$amoebaFontThin}.svg", svg), 
+		"#{$amoebaFontThin}.eot");
+%amoebaFontThin {
+	font-family: $amoebaFontThin;
+	font-weight: normal;
+}

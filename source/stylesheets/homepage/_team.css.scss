@@ -1,0 +1,65 @@
+#team {
+	h1,h2 {
+		text-align: center;
+	}
+	h1 {
+		@extend %amoebaFontSemiBold;
+		font-size: 80px;
+		margin-bottom: 0;
+	}
+	h2 {
+		@extend %amoebaFontThin;
+		font-size: 28px;
+		margin-top: 5px;
+	}
+	.team-member {
+		@include clearfix;
+		margin-top: 60px;
+
+		h1, h2 {
+			text-align: left;
+		}
+
+		h1 {
+			font-size: 55px;
+			margin: 30px 0 0 0;
+		}
+		
+		h2 {
+			margin-top: -10px;
+			font-size: 36px;
+		}
+
+		i {
+			font-size: 36px;
+			line-height: 36px;
+			padding-right: 15px;
+		}
+
+		p {
+			@extend %amoebaFontMedium;
+			font-size: 14px;
+		}
+
+		.team-member-image {
+			width: 382px;
+			height: 390px;
+			background-color: $amoebaGreen;
+			
+			&.right {
+				float: right;
+				margin-left: 50px;
+			}
+
+			&.left {
+				float: left;
+				margin-right: 50px;
+			}
+		}
+	}
+}
+
+#footer.team {
+	position: relative;
+	top: 50px;
+}

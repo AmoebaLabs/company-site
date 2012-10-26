@@ -21,5 +21,13 @@ jQuery ($) ->
 		# Stop event propagation
 		return false
 
+	$(".team-button").on 'click', (e) ->
+		# Move footer
+		footer = $("#footer")
+		footer.fadeOut animationTime, ->
+			footer.addClass("team")
+			footer.show()
+
+		$("#team").fadeIn(animationTime)
 
 
