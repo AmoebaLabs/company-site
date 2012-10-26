@@ -13,7 +13,7 @@ jQuery ($) ->
 		$("#contact-questions").fadeIn(animationTime)
 		$("#contactus").removeClass("hidden")
 
-		# Slide in Nav bar
+		# Slide in Header
 		$("#header").slideDown();
 
 		# Consider scrolling to top of the page
@@ -28,6 +28,18 @@ jQuery ($) ->
 			footer.addClass("team")
 			footer.show()
 
-		$("#team").fadeIn(animationTime)
+		# Show team
+		team = $("#team")
+		team.fadeIn animationTime
+		
+		# Scroll to the top of the #team div
+		teamOffset = team.offset().top-150
+		$('body,html').animate({scrollTop: '+=' + teamOffset + 'px'}, animationTime)
 
-
+	# Slide in Header in times
+	header = $("#header")
+	logoNav = $("#logo nav")
+	$(document).on 'scroll.header', ->
+		if $(this).scrollTop() < logoNav.offset().top
+			header.slideUp()
+		else header.slideDown()
