@@ -16,12 +16,12 @@
 	h1 {
 		position: absolute;
 		left: 0;
+		margin: 0;
+		padding: 10px 0 0 15px;
+		
 		@extend %amoebaFontSemiBold;
 		font-size: 124px;
 		line-height: 124px;
-		padding-top: 10px;
-		padding-left: 15px;
-		margin: 0;
 		color: white;
 	}
 	

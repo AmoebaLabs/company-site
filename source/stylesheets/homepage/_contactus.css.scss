@@ -103,13 +103,17 @@
 	// ribbon at the top extend to the left 11px to give it a 3d appearance.
 	//
 	&:before {
-		content: " ";
 		position: absolute;
 		left: -10px;
 		top: 0;
-		width: 308px;
-		height: 84px;
+		width: 307px;
+		height: 82px;
 		background-image: image-url("contact_ribbon.svg");
 		background-repeat: no-repeat;
+
+		content: "How Can We Help?";
+		padding: 15px 0 0 37px;
+		@extend %amoebaFontMedium;
+		font-size: 28px;
 	}
 }
