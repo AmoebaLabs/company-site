@@ -1,25 +1,25 @@
 jQuery ($) ->
-	animationTime = 1000
+  $(".contactus-button").on 'click', (e) ->
+    PSM.contactevt()
 
-	$(".contactus-button").on 'click', (e) ->
-		# Must hide the unnecessary elements
-		$.each ["#logo", ".capabilities"], (index, klass) ->
-			$(klass).fadeOut(animationTime)
+    # Stop event propagation
+    return false
 
-		# .contactus is used to position/ animate the mascot for the contactus form
-		$("#mascot").addClass("contactus")
+window.showContact = () ->
+  animationTime = 1000
 
-		# Show the sayhi & contactus divs
-		$("#contact-questions").fadeIn(animationTime)
-		$("#contactus").removeClass("hidden")
+  # Must hide the unnecessary elements
+  $.each ["#logo", ".capabilities"], (index, klass) ->
+    $(klass).fadeOut(animationTime)
 
-		# Slide in Nav bar
-		$("#header").slideDown();
+  # .contactus is used to position/ animate the mascot for the contactus form
+  $("#mascot").addClass("contactus")
 
-		# Consider scrolling to top of the page
+  # Show the sayhi & contactus divs
+  $("#contact-questions").fadeIn(animationTime)
+  $("#contactus").removeClass("hidden")
 
-		# Stop event propagation
-		return false
+  # Slide in Nav bar
+  $("#header").slideDown();
 
-
-
+  # Consider scrolling to top of the page

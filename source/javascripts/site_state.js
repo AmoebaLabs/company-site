@@ -15,10 +15,15 @@
         onbeforecontactevt: function(event, from, to) { console.log("STARTING UP"); },
         oncontactevt:       function(event, from, to) { console.log("READY");       },
   
-        onleavecontact:  function(event, from, to) { console.log("LEAVE   STATE: contact");  },
+        onleavecontact:  function(event, from, to) { console.log("LEAVE   STATE: contact"); },
         onleavehome: function(event, from, to) { console.log("LEAVE   STATE: home"); },
         
-        oncontact:       function(event, from, to) { console.log("ENTER   STATE: contact");  },
+        oncontact:       function(event, from, to) { 
+          console.log("ENTER   STATE: contact");  
+
+          showContact();
+
+        },
         onhome:      function(event, from, to) { console.log("ENTER   STATE: home"); },
        
         onchangestate: function(event, from, to) { console.log("CHANGED STATE: " + from + " to " + to); }
