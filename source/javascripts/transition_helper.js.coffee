@@ -7,14 +7,26 @@ jQuery ($) ->
       name: "contactevt"
       from: "home"
       to: "contact"
+    ,
+      name: "homeevt"
+      from: "contact"
+      to: "home"
     ]
     callbacks:
+      # Events
       onbeforecontactevt: (event, from, to) ->
         console.log "STARTING UP"
 
       oncontactevt: (event, from, to) ->
         console.log "READY"
 
+      onbeforehomeevt: (event, from, to) ->
+        console.log "STARTING UP"
+
+      onhomeevt: (event, from, to) ->
+        console.log "READY"
+
+      # State changes
       onleavecontact: (event, from, to) ->
         console.log "LEAVE   STATE: contact"
 
@@ -27,10 +39,14 @@ jQuery ($) ->
 
       onhome: (event, from, to) ->
         console.log "ENTER   STATE: home"
+        #showHome()
 
       onchangestate: (event, from, to) ->
         console.log "CHANGED STATE: " + from + " to " + to
     )
+
+  showHome = () ->
+    alert "cs sucks"
 
   showContact = () ->
     animationTime = 1000
@@ -50,3 +66,4 @@ jQuery ($) ->
     $("#header").slideDown();
 
     # Consider scrolling to top of the page
+
