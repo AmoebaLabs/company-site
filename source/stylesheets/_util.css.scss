@@ -5,10 +5,6 @@
 	display: none;
 }
 
-.gradient-box {
-	@include background-image(linear-gradient(color-stops($amoebaGreenMedium, $amoebaGreen)));
-}
-
 .geo-medium {
 	@extend %amoebaFontMedium;
 }

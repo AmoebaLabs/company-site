@@ -10,7 +10,7 @@
 	left: 57px;
 }
 
-#sayhi {
+#contact-questions {
 	position: absolute;
 	top: 365px;
 	width: 350px;
@@ -30,11 +30,12 @@
 		margin: 0 0 0 0;
 	}
 
-	.gradient-box {
+	#sayhi {
 		font-size: 20px;
 		padding: 10px;
 		margin-top: 8px;
 		@include border-radius(3px);
+		background-color: $amoebaGreen;
 	}
 }
 

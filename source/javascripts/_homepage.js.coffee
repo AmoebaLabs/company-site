@@ -10,7 +10,7 @@ jQuery ($) ->
 		$("#mascot").addClass("contactus")
 
 		# Show the sayhi & contactus divs
-		$("#sayhi").fadeIn(animationTime)
+		$("#contact-questions").fadeIn(animationTime)
 		$("#contactus").removeClass("hidden")
 
 		# Slide in Nav bar
