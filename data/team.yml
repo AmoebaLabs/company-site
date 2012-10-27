@@ -16,7 +16,7 @@
 #
 
 daniel:
-  name: Daniel Jabbour
+  name: Daniel Sucks
   title: The Mastermind
   facebook: djabbour
   linkedin: djabbour
@@ -31,7 +31,7 @@ daniel:
 
 steve:
   name: Steve Gehrman
-  title: The Mastermind
+  title: Title Here
   facebook: sgehrman
   linked_in: stevegehrman
   twitter: sgehrman
@@ -42,3 +42,60 @@ steve:
       show that show to the people who make shows, and on the strength of that one show they decide
       if they're going to make more shows. Some pilots get picked and become television programs.
       Some don’t, become nothing. She starred in one of the ones that became nothing."
+
+chrisc:
+  name: Chris Chilies
+  title: Title Here
+  facebook: #
+  linked_in: #
+  twitter: #
+  github: #
+  bio:
+    - "This is the first paragraph of my biography. If you want to read the rest, you'll have to eat me."
+    - "Well, the way they make shows is, they make one show. That show’s called a pilot. Then they
+      show that show to the people who make shows, and on the strength of that one show they decide
+      if they're going to make more shows. Some pilots get picked and become television programs.
+      Some don’t, become nothing. She starred in one of the ones that became nothing."
+
+richard:
+  name: Richard Enlow
+  title: Title Here
+  facebook: #
+  linked_in: #
+  twitter: #
+  github: startexploding
+  bio:
+    - "This is the first paragraph of my biography. If you want to read the rest, you'll have to eat me."
+    - "Well, the way they make shows is, they make one show. That show’s called a pilot. Then they
+      show that show to the people who make shows, and on the strength of that one show they decide
+      if they're going to make more shows. Some pilots get picked and become television programs.
+      Some don’t, become nothing. She starred in one of the ones that became nothing."
+
+chrisb:
+  name: Chris Barton
+  title: Title Here
+  facebook: #
+  linked_in: #
+  twitter: #
+  github: #
+  bio:
+    - "This is the first paragraph of my biography. If you want to read the rest, you'll have to eat me."
+    - "Well, the way they make shows is, they make one show. That show’s called a pilot. Then they
+      show that show to the people who make shows, and on the strength of that one show they decide
+      if they're going to make more shows. Some pilots get picked and become television programs.
+      Some don’t, become nothing. She starred in one of the ones that became nothing."
+
+ohia:
+  name: Ohia
+  title: The Dog
+  facebook: #
+  linked_in: #
+  twitter: #
+  github: #
+  bio:
+    - "This is the first paragraph of my biography. If you want to read the rest, you'll have to eat me."
+    - "Well, the way they make shows is, they make one show. That show’s called a pilot. Then they
+      show that show to the people who make shows, and on the strength of that one show they decide
+      if they're going to make more shows. Some pilots get picked and become television programs.
+      Some don’t, become nothing. She starred in one of the ones that became nothing."
+
