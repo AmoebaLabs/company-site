@@ -20,19 +20,19 @@
 			<% end %>
 
 			<% if person.facebook.present? %>
-				<a href="http://facebook.com/<%= person.facebook %>"><i class="icon-facebook-sign"></i></a>
+				<a href="http://facebook.com/<%= person.facebook %>" target="_blank"><i class="icon-facebook-sign"></i></a>
 			<% end %>
 
 			<% if person.twitter.present? %>
-				<a href="http://twitter.com/<%= person.twitter %>"><i class="icon-twitter-sign"></i></a>
+				<a href="http://twitter.com/<%= person.twitter %>" target="_blank"><i class="icon-twitter-sign"></i></a>
 			<% end %>
 
 			<% if person.linkedin.present? %>
-				<a href="http://linkedin.com/in/<%= person.linkedin %>"><i class="icon-linkedin-sign"></i></a>
+				<a href="http://linkedin.com/in/<%= person.linkedin %>" target="_blank"><i class="icon-linkedin-sign"></i></a>
 			<% end %>
 
 			<% if person.github.present? %>
-				<a href="http://github.com/<%= person.github %>"><i class="icon-github-sign"></i></a>
+				<a href="http://github.com/<%= person.github %>" target="_blank"><i class="icon-github-sign"></i></a>
 			<% end %>
 		</div>
 	<% end %>
