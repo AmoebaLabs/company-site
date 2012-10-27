@@ -42,10 +42,12 @@
 		}
 
 		.team-member-image {
-			width: 382px;
-			height: 390px;
+			width: 375px;
+			height: 375px;
 			background-color: $amoebaGreen;
 			
+			margin-bottom: 10px;
+
 			&.right {
 				float: right;
 				margin-left: 50px;

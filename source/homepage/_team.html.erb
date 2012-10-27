@@ -9,7 +9,7 @@
 		<div class="team-member">
 			<div class="team-member-image <%= cycle("right", "left") %>">
 				<% if image_exists?("team/#{short_name}") %>
-					<%= image_tag "team/#{short_name}", :alt => "#{short_name.capitalize}'s picture" %>
+					<%= image_tag "team/#{short_name}.png", :alt => "#{short_name.capitalize}'s picture" %>
 				<% end %>
 			</div>
 			<h1><%= person.name %></h1>
