@@ -1,4 +1,14 @@
 jQuery ($) ->
+
+
+# SNG
+  $(".contactus-button").on 'click', (e) ->
+    STH.contactevt()
+
+    # Stop event propagation
+    return false
+
+
 	animationTime = 1000
 
 	$(".contactus-button").on 'click', (e) ->
@@ -43,4 +53,3 @@ jQuery ($) ->
 		if $(this).scrollTop() < logoNav.offset().top
 			header.slideUp()
 		else header.slideDown()
-		
