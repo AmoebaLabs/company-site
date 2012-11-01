@@ -1,9 +1,10 @@
 jQuery ($) ->
 
-  showHome = () ->
-    alert "cs sucks"
+  homeTransition = () ->
+    # Slide away Nav bar
+    $("#header").slideUp();
 
-  showContact = () ->
+  contactUsTransition = () ->
     animationTime = 1000
 
     # Must hide the unnecessary elements

@@ -1,7 +1,7 @@
 //= require state-machine
 
 jQuery ($) ->
-  window.PSM = StateMachine.create(
+  window.STH = StateMachine.create(
     initial: "home"
     events: [
       name: "contactevt"

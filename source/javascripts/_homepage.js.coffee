@@ -1,6 +1,6 @@
 jQuery ($) ->
   $(".contactus-button").on 'click', (e) ->
-    PSM.contactevt()
+    STH.contactevt()
 
     # Stop event propagation
     return false
