@@ -1,0 +1,101 @@
+# team.yml:
+#
+#  Use this file to define the members of the Amoeba team. You should copy the format of an
+#  existing entry to add a team member. Please follow the following guidelines:
+#
+#  * Each team member starts with a short name at the top, followed by a :
+#
+#  * The short name should be identical to the image asset for the team member, located in 
+#    source/images/team/<short name>.png.
+#
+#  * For the bio, include one or more paragraphs, each beginning with a - symbol. The quotes
+#    around the paragraph's text are optional, but are encouraged as to avoid problems with
+#    special characters (since as '). Line breaks in this file are ignored, but ensure that
+#    subsequent lines of the same paragraph are properly indented so they start directly under
+#    the original line.
+#
+
+daniel:
+  name: Daniel Jabbour
+  title: The Mastermind
+  facebook: djabbour
+  linkedin: djabbour
+  twitter: bitgangsta
+  github: bitgangsta
+  bio:
+    - "This is the first paragraph of my biography. If you want to read the rest, you'll have to eat me."
+    - "Well, the way they make shows is, they make one show. That show’s called a pilot. Then they
+      show that show to the people who make shows, and on the strength of that one show they decide
+      if they’re going to make more shows. Some pilots get picked and become television programs.
+      Some don’t, become nothing. She starred in one of the ones that became nothing."
+
+steve:
+  name: Steve Gehrman
+  title: Title Here
+  facebook: sgehrman
+  linked_in: stevegehrman
+  twitter: sgehrman
+  github: sgehrman
+  bio:
+    - "This is the first paragraph of my biography. If you want to read the rest, you'll have to eat me."
+    - "Well, the way they make shows is, they make one show. That show’s called a pilot. Then they
+      show that show to the people who make shows, and on the strength of that one show they decide
+      if they're going to make more shows. Some pilots get picked and become television programs.
+      Some don’t, become nothing. She starred in one of the ones that became nothing."
+
+chrisc:
+  name: Chris Chilies
+  title: Title Here
+  facebook: #
+  linked_in: #
+  twitter: #
+  github: #
+  bio:
+    - "This is the first paragraph of my biography. If you want to read the rest, you'll have to eat me."
+    - "Well, the way they make shows is, they make one show. That show’s called a pilot. Then they
+      show that show to the people who make shows, and on the strength of that one show they decide
+      if they're going to make more shows. Some pilots get picked and become television programs.
+      Some don’t, become nothing. She starred in one of the ones that became nothing."
+
+richard:
+  name: Richard Enlow
+  title: Title Here
+  facebook: #
+  linked_in: #
+  twitter: #
+  github: startexploding
+  bio:
+    - "This is the first paragraph of my biography. If you want to read the rest, you'll have to eat me."
+    - "Well, the way they make shows is, they make one show. That show’s called a pilot. Then they
+      show that show to the people who make shows, and on the strength of that one show they decide
+      if they're going to make more shows. Some pilots get picked and become television programs.
+      Some don’t, become nothing. She starred in one of the ones that became nothing."
+
+chrisb:
+  name: Chris Barton
+  title: Title Here
+  facebook: #
+  linked_in: #
+  twitter: #
+  github: #
+  bio:
+    - "This is the first paragraph of my biography. If you want to read the rest, you'll have to eat me."
+    - "Well, the way they make shows is, they make one show. That show’s called a pilot. Then they
+      show that show to the people who make shows, and on the strength of that one show they decide
+      if they're going to make more shows. Some pilots get picked and become television programs.
+      Some don’t, become nothing. She starred in one of the ones that became nothing."
+
+ohia:
+  name: Ohia
+  title: The Dog
+  facebook: #
+  linked_in: #
+  twitter: #
+  github: #
+  bio:
+    - "This is the first paragraph of my biography. If you want to read the rest, you'll have to eat me."
+    - "Well, the way they make shows is, they make one show. That show’s called a pilot. Then they
+      show that show to the people who make shows, and on the strength of that one show they decide
+      if they're going to make more shows. Some pilots get picked and become television programs.
+      Some don’t, become nothing. She starred in one of the ones that became nothing."
+
