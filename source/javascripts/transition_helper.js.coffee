@@ -1,5 +1,3 @@
-//= require state-machine
-
 jQuery ($) ->
 
   class StateTransitionHelper 
