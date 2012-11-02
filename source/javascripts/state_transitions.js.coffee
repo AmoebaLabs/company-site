@@ -54,11 +54,11 @@ jQuery ($) ->
         $('body,html').animate({scrollTop: '+=' + teamOffset + 'px'}, @animationTime)
 
       undoTeamTransition: ->
-        # Move footer
+         # Move footer
         footer = $("#footer")
-        footer.fadeIn @animationTime, ->
+        footer.fadeOut @animationTime, ->
             footer.removeClass("team")
-            footer.hide()
+            footer.show()
 
         # Show team
         team = $("#team")
