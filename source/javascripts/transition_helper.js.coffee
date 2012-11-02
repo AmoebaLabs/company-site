@@ -30,6 +30,14 @@ jQuery ($) ->
 
           onteam: (event, from, to) =>
             @stateTransitions.teamTransition()
+
+          # if leaving contact, put it back to home state
+          onleavecontact: (event, from, to) =>
+              @stateTransitions.undoContactUsTransition();
+
+          # if leaving contact, put it back to home state
+          onleaveteam: (event, from, to) =>
+              @stateTransitions.undoTeamTransition();
         )
 
     showContact: -> @stateMachine.contactevt()

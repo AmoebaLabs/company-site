@@ -5,9 +5,7 @@ jQuery ($) ->
         @animationTime = 1000
 
       homeTransition: ->
-        # Slide away Nav bar
-        $("#header").slideUp();
-
+       
       contactUsTransition: ->
         # Must hide the unnecessary elements
         $.each ["#logo", ".capabilities"], (index, klass) ->
@@ -25,6 +23,21 @@ jQuery ($) ->
 
         # Consider scrolling to top of the page
 
+      undoContactUsTransition: ->
+         # Must hide the unnecessary elements
+        $.each ["#logo", ".capabilities"], (index, klass) ->
+          $(klass).fadeIn(@animationTime)
+
+        # .contactus is used to position/ animate the mascot for the contactus form
+        $("#mascot").removeClass("contactus")
+
+        # Show the sayhi & contactus divs
+        $("#contact-questions").fadeOut(@animationTime)
+        $("#contactus").addClass("hidden")
+
+        # Slide in Nav bar
+        $("#header").slideUp();
+
       teamTransition: ->
         # Move footer
         footer = $("#footer")
@@ -39,3 +52,15 @@ jQuery ($) ->
         # Scroll to the top of the #team div
         teamOffset = team.offset().top-150
         $('body,html').animate({scrollTop: '+=' + teamOffset + 'px'}, @animationTime)
+
+      undoTeamTransition: ->
+        # Move footer
+        footer = $("#footer")
+        footer.fadeIn @animationTime, ->
+            footer.removeClass("team")
+            footer.hide()
+
+        # Show team
+        team = $("#team")
+        team.fadeOut @animationTime
+        
