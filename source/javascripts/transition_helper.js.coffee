@@ -2,6 +2,8 @@ jQuery ($) ->
 
   class StateTransitionHelper 
     constructor: -> 
+      @stateTransitions = new StateTransitions()
+
       @stateMachine = StateMachine.create(
         initial: "home"
 
@@ -20,14 +22,14 @@ jQuery ($) ->
         ]
 
         callbacks:
-          oncontact: (event, from, to) ->
-             stateTransitions.contactUsTransition()
+          oncontact: (event, from, to) =>
+             @stateTransitions.contactUsTransition()
 
-          onhome: (event, from, to) ->
-            stateTransitions.homeTransition()
+          onhome: (event, from, to) =>
+            @stateTransitions.homeTransition()
 
-          onteam: (event, from, to) ->
-            stateTransitions.teamTransition()
+          onteam: (event, from, to) =>
+            @stateTransitions.teamTransition()
         )
 
     showContact: -> @stateMachine.contactevt()
