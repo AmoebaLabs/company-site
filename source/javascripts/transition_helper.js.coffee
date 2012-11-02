@@ -23,13 +23,13 @@ jQuery ($) ->
 
         callbacks:
           oncontact: (event, from, to) ->
-             transitions.contactUsTransition()
+             stateTransitions.contactUsTransition()
 
           onhome: (event, from, to) ->
-            transitions.homeTransition()
+            stateTransitions.homeTransition()
 
           onteam: (event, from, to) ->
-            transitions.teamTransition()
+            stateTransitions.teamTransition()
         )
 
     showContact: -> @stateMachine.contactevt()

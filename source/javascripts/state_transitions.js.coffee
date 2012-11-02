@@ -1,6 +1,6 @@
 jQuery ($) ->
 
-    class Transitions
+    class StateTransitions
       constructor: ->
         @animationTime = 1000
 
@@ -40,4 +40,4 @@ jQuery ($) ->
         teamOffset = team.offset().top-150
         $('body,html').animate({scrollTop: '+=' + teamOffset + 'px'}, @animationTime)
 
-    window.transitions = new Transitions();
+    window.stateTransitions = new StateTransitions();
