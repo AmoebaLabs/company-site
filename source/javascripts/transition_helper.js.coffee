@@ -1,70 +1,39 @@
 //= require state-machine
 
 jQuery ($) ->
-  window.STH = StateMachine.create(
-    initial: "home"
-    events: [
-      name: "contactevt"
-      from: "home"
-      to: "contact"
-    ,
-      name: "homeevt"
-      from: "contact"
-      to: "home"
-    ]
 
-    callbacks:
-      # Events
-      onbeforecontactevt: (event, from, to) ->
-        console.log "STARTING UP"
+  class StateTransitionHelper 
+    constructor: -> 
+      @stateMachine = StateMachine.create(
+        initial: "home"
 
-      oncontactevt: (event, from, to) ->
-        console.log "READY"
+        events: [
+          name: "contactevt"
+          from: "*"
+          to: "contact"
+        ,
+          name: "homeevt"
+          from: "*"
+          to: "home"
+        ,
+          name: "teamevt"
+          from: "*"
+          to: "team"
+        ]
 
-      onbeforehomeevt: (event, from, to) ->
-        console.log "STARTING UP"
+        callbacks:
+          oncontact: (event, from, to) ->
+             transitions.contactUsTransition()
 
-      onhomeevt: (event, from, to) ->
-        console.log "READY"
+          onhome: (event, from, to) ->
+            transitions.homeTransition()
 
-      # State changes
-      onleavecontact: (event, from, to) ->
-        console.log "LEAVE   STATE: contact"
+          onteam: (event, from, to) ->
+            transitions.teamTransition()
+        )
 
-      onleavehome: (event, from, to) ->
-        console.log "LEAVE   STATE: home"
+    showContact: -> @stateMachine.contactevt()
+    showTeam: -> @stateMachine.teamevt()
+    showHome: -> @stateMachine.homeevt()
 
-      oncontact: (event, from, to) ->
-        console.log "ENTER   STATE: contact"
-        showContact()
-
-      onhome: (event, from, to) ->
-        console.log "ENTER   STATE: home"
-        #showHome()
-
-      onchangestate: (event, from, to) ->
-        console.log "CHANGED STATE: " + from + " to " + to
-    )
-
-  showHome = () ->
-    transitions.contactUsTransition();
-
-  showContact = () ->
-    animationTime = 1000
-
-    # Must hide the unnecessary elements
-    $.each ["#logo", ".capabilities"], (index, klass) ->
-      $(klass).fadeOut(animationTime)
-
-    # .contactus is used to position/ animate the mascot for the contactus form
-    $("#mascot").addClass("contactus")
-
-    # Show the sayhi & contactus divs
-    $("#contact-questions").fadeIn(animationTime)
-    $("#contactus").removeClass("hidden")
-
-    # Slide in Nav bar
-    $("#header").slideDown();
-
-    # Consider scrolling to top of the page
-
+  window.STH = new StateTransitionHelper()
