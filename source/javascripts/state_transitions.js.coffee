@@ -1,24 +1,28 @@
 jQuery ($) ->
 
-  homeTransition = () ->
-    # Slide away Nav bar
-    $("#header").slideUp();
+    class Transitions
 
-  contactUsTransition = () ->
-    animationTime = 1000
+      homeTransition: ->
+        # Slide away Nav bar
+        $("#header").slideUp();
 
-    # Must hide the unnecessary elements
-    $.each ["#logo", ".capabilities"], (index, klass) ->
-      $(klass).fadeOut(animationTime)
+      contactUsTransition: ->
+        animationTime = 1000
 
-    # .contactus is used to position/ animate the mascot for the contactus form
-    $("#mascot").addClass("contactus")
+        # Must hide the unnecessary elements
+        $.each ["#logo", ".capabilities"], (index, klass) ->
+          $(klass).fadeOut(animationTime)
 
-    # Show the sayhi & contactus divs
-    $("#contact-questions").fadeIn(animationTime)
-    $("#contactus").removeClass("hidden")
+        # .contactus is used to position/ animate the mascot for the contactus form
+        $("#mascot").addClass("contactus")
 
-    # Slide in Nav bar
-    $("#header").slideDown();
+        # Show the sayhi & contactus divs
+        $("#contact-questions").fadeIn(animationTime)
+        $("#contactus").removeClass("hidden")
 
-    # Consider scrolling to top of the page
+        # Slide in Nav bar
+        $("#header").slideDown();
+
+        # Consider scrolling to top of the page
+
+    transitions = new Transitions();

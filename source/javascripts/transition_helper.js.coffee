@@ -12,6 +12,7 @@ jQuery ($) ->
       from: "contact"
       to: "home"
     ]
+
     callbacks:
       # Events
       onbeforecontactevt: (event, from, to) ->
@@ -46,7 +47,7 @@ jQuery ($) ->
     )
 
   showHome = () ->
-    alert "cs sucks"
+    transitions.contactUsTransition();
 
   showContact = () ->
     animationTime = 1000
