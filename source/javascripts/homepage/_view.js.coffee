@@ -1,6 +1,8 @@
 window.Amoeba ?= {}
 
 class Amoeba.HomepageView
+  stateTransitions: new Amoeba.StateTransitions
+
   constructor: ->
     this.cacheElements()
     this.initStateMachine()
@@ -27,8 +29,6 @@ class Amoeba.HomepageView
       else @$header.slideDown()
 
   initStateMachine: ->
-    @stateTransitions = new Amoeba.StateTransitions
-
     @stateMachine = StateMachine.create(
       initial: "home"
 
