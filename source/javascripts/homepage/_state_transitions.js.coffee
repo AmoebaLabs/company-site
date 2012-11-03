@@ -1,66 +1,66 @@
-jQuery ($) ->
+window.Amoeba ?= {}
 
-    class window.StateTransitions
-      constructor: ->
-        @animationTime = 1000
+class Amoeba.StateTransitions
+  constructor: ->
+    @animationTime = 1000
 
-      homeTransition: ->
-       
-      contactUsTransition: ->
-        # Must hide the unnecessary elements
-        $.each ["#logo", ".capabilities"], (index, klass) ->
-          $(klass).fadeOut(@animationTime)
+  homeTransition: ->
+   
+  contactUsTransition: ->
+    # Must hide the unnecessary elements
+    $.each ["#logo", ".capabilities"], (index, klass) ->
+      $(klass).fadeOut(@animationTime)
 
-        # .contactus is used to position/ animate the mascot for the contactus form
-        $("#mascot").addClass("contactus")
+    # .contactus is used to position/ animate the mascot for the contactus form
+    $("#mascot").addClass("contactus")
 
-        # Show the sayhi & contactus divs
-        $("#contact-questions").fadeIn(@animationTime)
-        $("#contactus").removeClass("hidden")
+    # Show the sayhi & contactus divs
+    $("#contact-questions").fadeIn(@animationTime)
+    $("#contactus").removeClass("hidden")
 
-        # Slide in Nav bar
-        $("#header").slideDown();
+    # Slide in Nav bar
+    $("#header").slideDown();
 
-        # Consider scrolling to top of the page
+    # Consider scrolling to top of the page
 
-      undoContactUsTransition: ->
-         # Must hide the unnecessary elements
-        $.each ["#logo", ".capabilities"], (index, klass) ->
-          $(klass).fadeIn(@animationTime)
+  undoContactUsTransition: ->
+     # Must hide the unnecessary elements
+    $.each ["#logo", ".capabilities"], (index, klass) ->
+      $(klass).fadeIn(@animationTime)
 
-        # .contactus is used to position/ animate the mascot for the contactus form
-        $("#mascot").removeClass("contactus")
+    # .contactus is used to position/ animate the mascot for the contactus form
+    $("#mascot").removeClass("contactus")
 
-        # Show the sayhi & contactus divs
-        $("#contact-questions").fadeOut(@animationTime)
-        $("#contactus").addClass("hidden")
+    # Show the sayhi & contactus divs
+    $("#contact-questions").fadeOut(@animationTime)
+    $("#contactus").addClass("hidden")
 
-        # Slide in Nav bar
-        $("#header").slideUp();
+    # Slide in Nav bar
+    $("#header").slideUp();
 
-      teamTransition: ->
-        # Move footer
-        footer = $("#footer")
-        footer.fadeOut @animationTime, ->
-            footer.addClass("team")
-            footer.show()
+  teamTransition: ->
+    # Move footer
+    footer = $("#footer")
+    footer.fadeOut @animationTime, ->
+        footer.addClass("team")
+        footer.show()
 
-        # Show team
-        team = $("#team")
-        team.fadeIn @animationTime
-        
-        # Scroll to the top of the #team div
-        teamOffset = team.offset().top-150
-        $('body,html').animate({scrollTop: '+=' + teamOffset + 'px'}, @animationTime)
+    # Show team
+    team = $("#team")
+    team.fadeIn @animationTime
+    
+    # Scroll to the top of the #team div
+    teamOffset = team.offset().top-150
+    $('body,html').animate({scrollTop: '+=' + teamOffset + 'px'}, @animationTime)
 
-      undoTeamTransition: ->
-         # Move footer
-        footer = $("#footer")
-        footer.fadeOut @animationTime, ->
-            footer.removeClass("team")
-            footer.show()
+  undoTeamTransition: ->
+     # Move footer
+    footer = $("#footer")
+    footer.fadeOut @animationTime, ->
+        footer.removeClass("team")
+        footer.show()
 
-        # Show team
-        team = $("#team")
-        team.fadeOut @animationTime
+    # Show team
+    team = $("#team")
+    team.fadeOut @animationTime
         

@@ -3,6 +3,7 @@ window.Amoeba ?= {}
 class Amoeba.HomepageView
   constructor: ->
     this.cacheElements()
+    this.initStateMachine()
     this.bindEvents()
 
   cacheElements: ->
@@ -11,12 +12,12 @@ class Amoeba.HomepageView
     @$document = $(document)
 
   bindEvents: ->
-    $(".contactus-button").on 'click', ->
-      STH.showContact()
+    $(".contactus-button").on 'click', =>
+      this.showContact()
       return false
 
-    $(".team-button").on 'click', ->
-      STH.showTeam()
+    $(".team-button").on 'click', =>
+      this.showTeam()
       return false
 
     # Slide in Header when scrolled down far enough
@@ -24,3 +25,44 @@ class Amoeba.HomepageView
       if @$document.scrollTop() < @$logoNav.offset().top
         @$header.slideUp()
       else @$header.slideDown()
+
+  initStateMachine: ->
+    @stateTransitions = new Amoeba.StateTransitions
+
+    @stateMachine = StateMachine.create(
+      initial: "home"
+
+      events: [
+        name: "contactevt"
+        from: "*"
+        to: "contact"
+      ,
+        name: "homeevt"
+        from: "*"
+        to: "home"
+      ,
+        name: "teamevt"
+        from: "*"
+        to: "team"
+      ]
+
+      callbacks:
+        oncontact: (event, from, to) =>
+          @stateTransitions.contactUsTransition()
+
+        onhome: (event, from, to) =>
+          @stateTransitions.homeTransition()
+
+        onteam: (event, from, to) =>
+          @stateTransitions.teamTransition()
+
+        onleavecontact: (event, from, to) =>
+          @stateTransitions.undoContactUsTransition();
+
+        onleaveteam: (event, from, to) =>
+          @stateTransitions.undoTeamTransition();
+    )
+    
+  showContact: -> @stateMachine.contactevt()
+  showTeam: -> @stateMachine.teamevt()
+  showHome: -> @stateMachine.homeevt()
