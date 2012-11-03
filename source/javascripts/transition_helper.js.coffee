@@ -23,7 +23,7 @@ jQuery ($) ->
 
         callbacks:
           oncontact: (event, from, to) =>
-             @stateTransitions.contactUsTransition()
+            @stateTransitions.contactUsTransition()
 
           onhome: (event, from, to) =>
             @stateTransitions.homeTransition()
@@ -31,13 +31,11 @@ jQuery ($) ->
           onteam: (event, from, to) =>
             @stateTransitions.teamTransition()
 
-          # if leaving contact, put it back to home state
           onleavecontact: (event, from, to) =>
-              @stateTransitions.undoContactUsTransition();
+            @stateTransitions.undoContactUsTransition();
 
-          # if leaving contact, put it back to home state
           onleaveteam: (event, from, to) =>
-              @stateTransitions.undoTeamTransition();
+            @stateTransitions.undoTeamTransition();
         )
 
     showContact: -> @stateMachine.contactevt()
