@@ -1,5 +1,3 @@
-window.Amoeba ?= {}
-
 class Amoeba.StateTransitions
   constructor: ->
     @animationTime = 1000

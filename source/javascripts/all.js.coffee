@@ -6,4 +6,4 @@
 window.Amoeba ?= {}
 
 jQuery ($) ->
-  new Amoeba.HomepageView
+  Amoeba.homepageView = new Amoeba.HomepageView

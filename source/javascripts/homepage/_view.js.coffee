@@ -1,5 +1,3 @@
-window.Amoeba ?= {}
-
 class Amoeba.HomepageView
   stateTransitions: new Amoeba.StateTransitions
 
