@@ -3,7 +3,7 @@ class Amoeba.StateTransitions
     @animationTime = 1000
 
   homeTransition: ->
-   
+
   contactUsTransition: ->
     # Must hide the unnecessary elements
     $.each ["#logo", ".capabilities"], (index, klass) ->
@@ -17,12 +17,12 @@ class Amoeba.StateTransitions
     $("#contactus").removeClass("hidden")
 
     # Slide in Nav bar
-    $("#header").slideDown();
+    $("#header").slideDown()
 
-    # Consider scrolling to top of the page
+  # Consider scrolling to top of the page
 
   undoContactUsTransition: ->
-     # Must hide the unnecessary elements
+    # Must hide the unnecessary elements
     $.each ["#logo", ".capabilities"], (index, klass) ->
       $(klass).fadeIn(@animationTime)
 
@@ -34,29 +34,29 @@ class Amoeba.StateTransitions
     $("#contactus").addClass("hidden")
 
     # Slide in Nav bar
-    $("#header").slideUp();
+    $("#header").slideUp()
 
   teamTransition: ->
     # Move footer
     footer = $("#footer")
     footer.fadeOut @animationTime, ->
-        footer.addClass("team")
-        footer.show()
+      footer.addClass("team")
+      footer.show()
 
     # Show team
     team = $("#team")
     team.fadeIn @animationTime
-    
+
     # Scroll to the top of the #team div
     teamOffset = team.offset().top-150
     $('body,html').animate({scrollTop: '+=' + teamOffset + 'px'}, @animationTime)
 
   undoTeamTransition: ->
-     # Move footer
+    # Move footer
     footer = $("#footer")
     footer.fadeOut @animationTime, ->
-        footer.removeClass("team")
-        footer.show()
+      footer.removeClass("team")
+      footer.show()
 
     # Show team
     team = $("#team")

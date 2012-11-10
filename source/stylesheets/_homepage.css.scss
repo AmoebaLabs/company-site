@@ -2,47 +2,47 @@
 @import "compass/css3";
 
 #homepage {
-	@include center;
-	position: absolute;
-	top: 50px;
+  @include center;
+  position: absolute;
+  top: 50px;
 
-	#mascot {
-		width: 357px;
-		height: 339px;
-		position: absolute;
-		left: 9px;
-		z-index: 10;
-		top: 0px;
-	}
+  #mascot {
+    width: 357px;
+    height: 339px;
+    position: absolute;
+    left: 9px;
+    z-index: 10;
+    top: 0px;
+  }
 
-	#logo {
-		@include clearfix;
+  #logo {
+    @include clearfix;
 
-		text-align: right;
+    text-align: right;
 
-		h1 {
-			@extend %amoebaFontSemiBold;
-			font-size: 153px;
-			line-height: 130px;
-			padding: 69px 0px 5px 0px;
-			margin: 0 -7px 0 0;
-			color: $amoebaGreen;
-			@include text-shadow($greyShadow 0px 0px 8px)
-		}
+    h1 {
+      @extend %amoebaFontSemiBold;
+      font-size: 153px;
+      line-height: 130px;
+      padding: 69px 0px 5px 0px;
+      margin: 0 -7px 0 0;
+      color: $amoebaGreen;
+      @include text-shadow($greyShadow 0px 0px 8px);
+    }
 
-		h2 {
-			@extend %amoebaFontMedium;
-			line-height: 28px;
-			font-size: 28px;
-			margin: 0;
-			color: $amoebaGreenDark;
-		}
+    h2 {
+      @extend %amoebaFontMedium;
+      line-height: 28px;
+      font-size: 28px;
+      margin: 0;
+      color: $amoebaGreenDark;
+    }
 
-		@import "homepage/nav";
-	}
+    @import "homepage/nav";
+  }
 
-	@import "homepage/contactus";
-	@import "homepage/capabilities";
-	@import "homepage/team";
-	@import "homepage/footer";
+  @import "homepage/contactus";
+  @import "homepage/capabilities";
+  @import "homepage/team";
+  @import "homepage/footer";
 }

@@ -10,19 +10,19 @@
 @import "homepage";
 
 body {
-	// consider filter-gradient for old IE
-	@include background-image(linear-gradient(color-stops($greyLight 0%, white 50%)));
-	height: 573px;
-	background-repeat: repeat-x;
+  // consider filter-gradient for old IE
+  @include background-image(linear-gradient(color-stops($greyLight 0%, white 50%)));
+  height: 573px;
+  background-repeat: repeat-x;
 
-	// Font styles that apply all the way down:
-	@extend %amoebaFontRegular;
-	color: $amoebaGreenDark;
+  // Font styles that apply all the way down:
+  @extend %amoebaFontRegular;
+  color: $amoebaGreenDark;
 
-	// Some more sensible defaults for our icon links
-	a [class^="icon-"],
-	a [class*=" icon-"] {
-		color: $amoebaGreen;
-		text-decoration: none;
-	}
+  // Some more sensible defaults for our icon links
+  a [class^="icon-"],
+  a [class*=" icon-"] {
+    color: $amoebaGreen;
+    text-decoration: none;
+  }
 }

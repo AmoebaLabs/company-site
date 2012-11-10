@@ -5,14 +5,14 @@
 //
 $amoebaFontSemiBold: "geogtq-sb-webfont";
 @include font-face($amoebaFontSemiBold, 
-	font-files(
-		"#{$amoebaFontSemiBold}.woff", woff, 
-		"#{$amoebaFontSemiBold}.ttf", truetype, 
-		"#{$amoebaFontSemiBold}.svg", svg), 
-		"#{$amoebaFontSemiBold}.eot");
+  font-files(
+    "#{$amoebaFontSemiBold}.woff", woff, 
+    "#{$amoebaFontSemiBold}.ttf", truetype, 
+    "#{$amoebaFontSemiBold}.svg", svg), 
+    "#{$amoebaFontSemiBold}.eot");
 %amoebaFontSemiBold {
-	font-family: $amoebaFontSemiBold;
-	font-weight: normal;
+  font-family: $amoebaFontSemiBold;
+  font-weight: normal;
 }
 
 //
@@ -20,14 +20,14 @@ $amoebaFontSemiBold: "geogtq-sb-webfont";
 //
 $amoebaFontMedium: "geogtq-md-webfont";
 @include font-face($amoebaFontMedium, 
-	font-files(
-		"#{$amoebaFontMedium}.woff", woff, 
-		"#{$amoebaFontMedium}.ttf", truetype, 
-		"#{$amoebaFontMedium}.svg", svg), 
-		"#{$amoebaFontMedium}.eot");
+  font-files(
+    "#{$amoebaFontMedium}.woff", woff, 
+    "#{$amoebaFontMedium}.ttf", truetype, 
+    "#{$amoebaFontMedium}.svg", svg), 
+    "#{$amoebaFontMedium}.eot");
 %amoebaFontMedium {
-	font-family: $amoebaFontMedium;
-	font-weight: normal;
+  font-family: $amoebaFontMedium;
+  font-weight: normal;
 }
 
 //
@@ -35,14 +35,14 @@ $amoebaFontMedium: "geogtq-md-webfont";
 //
 $amoebaFontRegular: "geogtq-rg-webfont";
 @include font-face($amoebaFontRegular, 
-	font-files(
-		"#{$amoebaFontRegular}.woff", woff, 
-		"#{$amoebaFontRegular}.ttf", truetype, 
-		"#{$amoebaFontRegular}.svg", svg), 
-		"#{$amoebaFontRegular}.eot");
+  font-files(
+    "#{$amoebaFontRegular}.woff", woff, 
+    "#{$amoebaFontRegular}.ttf", truetype, 
+    "#{$amoebaFontRegular}.svg", svg), 
+    "#{$amoebaFontRegular}.eot");
 %amoebaFontRegular {
-	font-family: $amoebaFontRegular;
-	font-weight: normal;
+  font-family: $amoebaFontRegular;
+  font-weight: normal;
 }
 
 //
@@ -50,12 +50,12 @@ $amoebaFontRegular: "geogtq-rg-webfont";
 //
 $amoebaFontThin: "geogtq-th-webfont";
 @include font-face($amoebaFontThin, 
-	font-files(
-		"#{$amoebaFontThin}.woff", woff, 
-		"#{$amoebaFontThin}.ttf", truetype, 
-		"#{$amoebaFontThin}.svg", svg), 
-		"#{$amoebaFontThin}.eot");
+  font-files(
+    "#{$amoebaFontThin}.woff", woff, 
+    "#{$amoebaFontThin}.ttf", truetype, 
+    "#{$amoebaFontThin}.svg", svg), 
+    "#{$amoebaFontThin}.eot");
 %amoebaFontThin {
-	font-family: $amoebaFontThin;
-	font-weight: normal;
+  font-family: $amoebaFontThin;
+  font-weight: normal;
 }

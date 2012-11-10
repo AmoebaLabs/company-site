@@ -55,12 +55,12 @@ class Amoeba.HomepageView
           @stateTransitions.teamTransition()
 
         onleavecontact: (event, from, to) =>
-          @stateTransitions.undoContactUsTransition();
+          @stateTransitions.undoContactUsTransition()
 
         onleaveteam: (event, from, to) =>
-          @stateTransitions.undoTeamTransition();
+          @stateTransitions.undoTeamTransition()
     )
-    
+
   showContact: -> @stateMachine.contactevt()
   showTeam: -> @stateMachine.teamevt()
   showHome: -> @stateMachine.homeevt()

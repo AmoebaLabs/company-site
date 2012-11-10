@@ -2,77 +2,78 @@
 @import "compass/css3";
 
 #header {
-	@include center(910px);
-	position: fixed;
-	z-index: 1000;
-	top: 0;
-	height: 133px;
-	background-color: $amoebaGreen;
-	@include opacity(0.93);
+  @include center(910px);
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  height: 133px;
+  background-color: $amoebaGreen;
+  @include opacity(0.93);
 
-	@include border-radius(0 0 5px 5px);
-	@include box-shadow(rgba(0,0,0,0.19) 5px 5px 4px);
+  @include border-radius(0 0 5px 5px);
+  @include box-shadow(rgba(0, 0, 0, 0.19) 5px 5px 4px);
 
-	h1 {
-		position: absolute;
-		left: 0;
-		margin: 0;
-		padding: 10px 0 0 15px;
-		
-		@extend %amoebaFontSemiBold;
-		font-size: 124px;
-		line-height: 124px;
-		color: white;
-	}
-	
-	.header-right {
-		position: absolute;
-		right: 0;
-		width: 425px;
-		margin: 53px 15px 0 15px;
-		text-align: center;
-	}
+  h1 {
+    position: absolute;
+    left: 0;
+    margin: 0;
+    padding: 10px 0 0 15px;
 
-	h2 {
-		@extend %amoebaFontMedium;
-		line-height: 26px;
-		font-size: 26px;
-		margin: 0;
-		color: white;
-	}
+    @extend %amoebaFontSemiBold;
+    font-size: 124px;
+    line-height: 124px;
+    color: white;
+  }
 
-	nav {
-		height: 30px;
-		width: 425px;
-		margin: 8px 0 0 0;
+  .header-right {
+    position: absolute;
+    right: 0;
+    width: 425px;
+    margin: 53px 15px 0 15px;
+    text-align: center;
+  }
 
-		// Setup the borders between the navigation elements:
-		border-top: 1px solid $amoebaGreenDark;
+  h2 {
+    @extend %amoebaFontMedium;
+    line-height: 26px;
+    font-size: 26px;
+    margin: 0;
+    color: white;
+  }
 
-		ul {
-			margin: 2px 0 0 0;
-			padding: 0;
-			list-style: none;
-			li {
-				display: inline;
-				margin-left: auto;
-				margin-right: auto;
-				
-				a {
-					padding: 0px 10px 0px 10px; //10px spacing between elements
+  nav {
+    height: 30px;
+    width: 425px;
+    margin: 8px 0 0 0;
 
-					// Typography settings:
-					text-decoration: none;
-					@extend %amoebaFontMedium;
-					color: $amoebaGreenDark;
-					font-size: 21px;
-					white-space: nowrap;
+    // Setup the borders between the navigation elements:
+    border-top: 1px solid $amoebaGreenDark;
 
-					&:hover {
-						color: white;
-					}
-				}
-			}
-		}
-	}
+    ul {
+      margin: 2px 0 0 0;
+      padding: 0;
+      list-style: none;
+      li {
+        display: inline;
+        margin-left: auto;
+        margin-right: auto;
+
+        a {
+          padding: 0px 10px 0px 10px;
+          //10px spacing between elements
+
+          // Typography settings:
+          text-decoration: none;
+          @extend %amoebaFontMedium;
+          color: $amoebaGreenDark;
+          font-size: 21px;
+          white-space: nowrap;
+
+          &:hover {
+            color: white;
+          }
+        }
+      }
+    }
+  }
 }

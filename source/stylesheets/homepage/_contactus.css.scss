@@ -2,118 +2,118 @@
 @import "compass/layout/stretching";
 
 #mascot.contactus {
-	@include transition(all 1s ease-in-out);
+  @include transition(all 1s ease-in-out);
 
-	width: 233px;
-	height: 224px;
-	top: 142px;
-	left: 57px;
+  width: 233px;
+  height: 224px;
+  top: 142px;
+  left: 57px;
 }
 
 #contact-questions {
-	position: absolute;
-	top: 365px;
-	width: 350px;
-	text-align: center;
+  position: absolute;
+  top: 365px;
+  width: 350px;
+  text-align: center;
 
-	h1 {
-		@extend %amoebaFontSemiBold;
-		font-size: 103px;
-		color: $amoebaGreen;
-		margin: -10px 0 0 0;
-		line-height: 103px;
-	}
+  h1 {
+    @extend %amoebaFontSemiBold;
+    font-size: 103px;
+    color: $amoebaGreen;
+    margin: -10px 0 0 0;
+    line-height: 103px;
+  }
 
-	h2 {
-		@extend %amoebaFontMedium;
-		font-size: 17px;
-		margin: 0 0 0 0;
-	}
+  h2 {
+    @extend %amoebaFontMedium;
+    font-size: 17px;
+    margin: 0 0 0 0;
+  }
 
-	#sayhi {
-		font-size: 20px;
-		padding: 10px;
-		margin-top: 8px;
-		@include border-radius(3px);
-		background-color: $amoebaGreen;
-	}
+  #sayhi {
+    font-size: 20px;
+    padding: 10px;
+    margin-top: 8px;
+    @include border-radius(3px);
+    background-color: $amoebaGreen;
+  }
 }
 
 #contactus {
-	@include animation(contactus-in 1s ease-in);
+  @include animation(contactus-in 1s ease-in);
 
-	position: absolute;
-	top: 115px;
-	right: 0;
-	width: 441px;
-	height: 460px;
-	
-	@include border-radius(3%);
-	@include box-shadow(rgba(0,0,0,0.21) 5px 5px 4px);
+  position: absolute;
+  top: 115px;
+  right: 0;
+  width: 441px;
+  height: 460px;
 
-	background-color: $greyShadow;
+  @include border-radius(3%);
+  @include box-shadow(rgba(0, 0, 0, 0.21) 5px 5px 4px);
 
-	form {
-		@include stretch;
-		padding: 110px 15px 10px 15px;
+  background-color: $greyShadow;
 
-		.contact-form-group {
-			margin: 10px 50px 10px 50px;
-		}
+  form {
+    @include stretch;
+    padding: 110px 15px 10px 15px;
 
-		label {
-			@include box-sizing(border-box);
-			display: block;
-			float: left;
-			width: 101px;
-			height: 24px;
-			padding: 3px 2px 2px 13px;
-			background: $amoebaGreen;
-			font-size: 16px;
-			line-height: 16px;
-		}
+    .contact-form-group {
+      margin: 10px 50px 10px 50px;
+    }
 
-		input:not([type=submit]):not([type=file]) {
-			width: 175px;
-			height: 24px;
-			background-color: white;
-			border: none;
-			color: $amoebaGreenDark;
-			padding: 0 5px 0 5px;
-		}
+    label {
+      @include box-sizing(border-box);
+      display: block;
+      float: left;
+      width: 101px;
+      height: 24px;
+      padding: 3px 2px 2px 13px;
+      background: $amoebaGreen;
+      font-size: 16px;
+      line-height: 16px;
+    }
 
-		textarea {
-			margin-top: 20px;
-			width: 100%;
-			border: none;
-			background-color: white;
-			color: $amoebaGreenDark;
-		}
+    input:not([type=submit]):not([type=file]) {
+      width: 175px;
+      height: 24px;
+      background-color: white;
+      border: none;
+      color: $amoebaGreenDark;
+      padding: 0 5px 0 5px;
+    }
 
-		p {
-			font-size: 12px;
-		}
+    textarea {
+      margin-top: 20px;
+      width: 100%;
+      border: none;
+      background-color: white;
+      color: $amoebaGreenDark;
+    }
 
-		input[type=submit] {
-			float: right;
-		}
-	}
+    p {
+      font-size: 12px;
+    }
 
-	// This create a psudo-element before our DIV in the DOM in order to have the 
-	// ribbon at the top extend to the left 11px to give it a 3d appearance.
-	//
-	&:before {
-		position: absolute;
-		left: -10px;
-		top: 0;
-		width: 307px;
-		height: 82px;
-		background-image: image-url("contact_ribbon.svg");
-		background-repeat: no-repeat;
+    input[type=submit] {
+      float: right;
+    }
+  }
 
-		content: "How Can We Help?";
-		padding: 15px 0 0 37px;
-		@extend %amoebaFontMedium;
-		font-size: 28px;
-	}
+  // This create a psudo-element before our DIV in the DOM in order to have the
+  // ribbon at the top extend to the left 11px to give it a 3d appearance.
+  //
+  &:before {
+    position: absolute;
+    left: -10px;
+    top: 0;
+    width: 307px;
+    height: 82px;
+    background-image: image-url("contact_ribbon.svg");
+    background-repeat: no-repeat;
+
+    content: "How Can We Help?";
+    padding: 15px 0 0 37px;
+    @extend %amoebaFontMedium;
+    font-size: 28px;
+  }
 }
