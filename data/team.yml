@@ -23,16 +23,20 @@ daniel:
   twitter: bitgangsta
   github: bitgangsta
   bio:
-    - "Daniel Jabbour has been writing code as long as most kids have been doing multiplication.
+    - "Daniel has been writing code as long as most kids have been doing multiplication.
      He is one of Amoeba’s cofounders, and has a passion for bringing new ideas to life as well 
-     as building awesome teams and improving developer process. Daniel also has significant 
-     scaling and big-data experience."
+     as building awesome teams and improving development process. Daniel also has significant
+     web, scaling, and big-data experience, and has consulted for startups and Fortune 500s in
+     the New York and San francisco areas for over a decade."
+    - "When he isn't building software, Daniel works on several non-profit projects including
+     <a href='http://hackthefuture.org' target='blank'>Hack the Future</a>, a quarterly Hackathon
+     that teaches and inspires kids to code, solder, and build things."
 
 steve:
   name: Steve Gehrman
   title: Title Here
   facebook: sgehrman
-  linked_in: stevegehrman
+  linkedin: stevegehrman
   twitter: sgehrman
   github: sgehrman
   bio:
@@ -44,25 +48,28 @@ steve:
 
 chrisc:
   name: Chris Chilies
-  title: Title Here
+  title: The Suit
   facebook: #
-  linked_in: #
+  linkedin: christopherchiles
   twitter: #
   github: #
   bio:
-    - "Chris Barton is one of those rare engineers that knows every line of code of the 
-    frameworks he works with by heart. He’s our web framework expert and is an active 
-    contributor to Rails, Errbit, and several popular Ruby gems."
-    - "When he isn’t hacking on code, Chris enjoys listening to whompy electronic music, 
-    and playing Words With Friends. You might want to watch out though, rumor has it he 
-    hacked his client to allow him to play any word (so much for server-side validation). 
-    Chris studied both Computer Science and Electrical Engineering at the University of Iowa."
+    - "Chris Chiles serves as the director of sales and business development, bringing experience
+     from previously-owned companies focused on client consultation and cutting-edge market
+     commerce. His past work in social/political advocacy is how he developed much of his skill
+     sets in public relations and communications; Chris has worked for multiple Non-Profit
+     organizations, and uses this background as a foundation for consultative business services."
+    - "Chris completed his studies at the University of Michigan with a degree in Chemistry. Though
+     his current industry is not too directly chemistry-related, his work is very often
+     science-based in approach. In his time outside work, Chris is an avid music fan (Jazz and
+     Electronica in particular), informal musician (Classical Bass and Piano), dog-lover, and
+     distance runner."
 
 richard:
   name: Richard Enlow
   title: Title Here
   facebook: #
-  linked_in: richardenlow
+  linkedin: richardenlow
   twitter: #
   github: startexploding
   bio:
@@ -79,7 +86,7 @@ chrisb:
   name: Chris Barton
   title: Title Here
   facebook: #
-  linked_in: #
+  linkedin: #
   twitter: #
   github: #
   bio:
@@ -95,7 +102,7 @@ ohia:
   name: Ohia
   title: The Dog
   facebook: ohiathedog
-  linked_in: #
+  linkedin: #
   twitter: #
   github: #
   bio:
