@@ -3,83 +3,91 @@ title: Welcome to Amoeba
 ---
 
 <div id="header" class="hidden">
-	<h1>Amoeba</h1>
-	<div class="header-right">
-		<h2>Remarkable Development and Design</h2>
-		<nav>
-			<ul>
-				<li><a href="#" class="presentation-button">How We Can Help</a></li>
-				<li><a href="#" class="team-button">Our Team</a></li>
-				<li><a href="#" class="contactus-button">Get In Touch</a></li>
-			</ul>
-		</nav>
-	</div>
+  <h1>Amoeba</h1>
+
+  <div class="header-right">
+    <h2>Remarkable Development and Design</h2>
+    <nav>
+      <ul>
+        <li><a href="#" class="presentation-button">How We Can Help</a></li>
+        <li><a href="#" class="team-button">Our Team</a></li>
+        <li><a href="#" class="contactus-button">Get In Touch</a></li>
+      </ul>
+    </nav>
+  </div>
 </div>
 
 <div id="homepage">
-	<%= image_tag 'mascot.svg', :alt => "Amoeba Character", :id => "mascot" %>
-	<div id="logo">
-		<h1>Amoeba</h1>
-		<h2>Remarkable Development and Design</h2>
-		<nav>
-			<ul>
-				<li><a href="#" class="contactus-button">Get In Touch</a></li>
-				<li><a href="#" class="team-button">Our Team</a></li>
-				<li><a href="#" class="presentation-button">How We Can Help</a></li>
-			</ul>
-		</nav>
-	</div>
-	<div class="capabilities">
-		<div class="capability-box">
-			<%= image_tag 'web.svg', :alt => "Web Device", :class => "img-web" %>
-			<h2>Web Development</h2>
-			<p>Now that we know who you are, I know who I am. I’m not a mistake! It all makes sense!</p>
-		</div>
-		<div class="capability-box">
-			<%= image_tag 'mobile.svg', :alt => "Mobile Device", :class => "img-mobile" %>
-			<h2>Mobile Applications</h2>
-			<p>Now that we know who you are, I know who I am. I’m not a mistake! It all makes sense!</p>
-		</div>
-		<div class="capability-box">
-			<%= image_tag 'gap.svg', :alt => "Person", :class => "img-gap" %>
-			<h2>Filling The Gap</h2>
-			<p>Now that we know who you are, I know who I am. I’m not a mistake! It all makes sense!</p>
-		</div>
-	</div>
-	<div id="contact-questions" class="hidden">
-		<h1>Amoeba</h1>
-		<h2>Interesting Projects? Suggestions? Questions?</h2>
-		<div id="sayhi">
-			<span class="geo-medium">Let us know &ndash;</span> sayhi@amoe.ba
-		</div>
-	</div>
-	<div id="contactus" class="hidden">
-		<form id="contact-form">
-			<div class="contact-form-group">
-				<label for="contact-name">Name</label>
-				<input type="text" id="contact-name" />
-			</div>
-			<div class="contact-form-group">
-				<label for="contact-company">Company</label>
-				<input type="text" id="contact-company" />
-			</div>
-			<div class="contact-form-group">
-				<label for="contact-email">Email</label>
-				<input type="text" id="contact-email" />
-			</div>
-			<div class="contact-form-group">
-				<textarea id="contact-message" rows=6></textarea>
-				<p>Most inquiries are answered within 48 hours</p>
-				<input type="submit" value="Submit" />
-			</div>
-		</form>
-	</div>
-	<%= partial "homepage/team" %>
-	<div id="footer">
-		<i class="icon-facebook-sign"></i>
-		<i class="icon-twitter-sign"></i>
-		<i class="icon-linkedin-sign"></i>
-		<i class="icon-github-sign"></i>
-		&copy; Amoeba Consulting LLC, 2012
-	</div>
+  <%= image_tag 'mascot.svg', :alt => "Amoeba Character", :id => "mascot" %>
+  <div id="logo">
+    <h1>Amoeba</h1>
+
+    <h2>Remarkable Development and Design</h2>
+    <nav>
+      <ul>
+        <li><a href="#" class="contactus-button">Get In Touch</a></li>
+        <li><a href="#" class="team-button">Our Team</a></li>
+        <li><a href="#" class="presentation-button">How We Can Help</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="capabilities">
+    <div class="capability-box">
+      <%= image_tag 'web.svg', :alt => "Web Device", :class => "img-web" %>
+      <h2>Web Development</h2>
+
+      <p>Now that we know who you are, I know who I am. I'm not a mistake! It all makes sense!</p>
+    </div>
+    <div class="capability-box">
+      <%= image_tag 'mobile.svg', :alt => "Mobile Device", :class => "img-mobile" %>
+      <h2>Mobile Applications</h2>
+
+      <p>Now that we know who you are, I know who I am. I'm not a mistake! It all makes sense!</p>
+    </div>
+    <div class="capability-box">
+      <%= image_tag 'gap.svg', :alt => "Person", :class => "img-gap" %>
+      <h2>Filling The Gap</h2>
+
+      <p>Now that we know who you are, I know who I am. I'm not a mistake! It all makes sense!</p>
+    </div>
+  </div>
+  <div id="contact-questions" class="hidden">
+    <h1>Amoeba</h1>
+
+    <h2>Interesting Projects? Suggestions? Questions?</h2>
+
+    <div id="sayhi">
+      <span class="geo-medium">Let us know &ndash;</span> sayhi@amoe.ba
+    </div>
+  </div>
+  <div id="contactus" class="hidden">
+    <form id="contact-form">
+      <div class="contact-form-group">
+        <label for="contact-name">Name</label>
+        <input type="text" id="contact-name"/>
+      </div>
+      <div class="contact-form-group">
+        <label for="contact-company">Company</label>
+        <input type="text" id="contact-company"/>
+      </div>
+      <div class="contact-form-group">
+        <label for="contact-email">Email</label>
+        <input type="text" id="contact-email"/>
+      </div>
+      <div class="contact-form-group">
+        <textarea id="contact-message" rows=6></textarea>
+
+        <p>Most inquiries are answered within 48 hours</p>
+        <input type="submit" value="Submit"/>
+      </div>
+    </form>
+  </div>
+  <%= partial "homepage/team" %>
+  <div id="footer">
+    <i class="icon-facebook-sign"></i>
+    <i class="icon-twitter-sign"></i>
+    <i class="icon-linkedin-sign"></i>
+    <i class="icon-github-sign"></i>
+    &copy; Amoeba Consulting LLC, 2012
+  </div>
 </div>

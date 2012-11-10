@@ -2,24 +2,24 @@
 
 //-------- Classes ----------- 
 .hidden {
-	display: none;
+  display: none;
 }
 
 .geo-medium {
-	@extend %amoebaFontMedium;
+  @extend %amoebaFontMedium;
 }
 
 .float-left {
-	float: left;
+  float: left;
 }
 
 .float-right {
-	float: right;
+  float: right;
 }
 
 //-------- Mixins ----------- 
 @mixin center($elmWidth: $pageWidth) {
-	width: $elmWidth;
-	left: 50%;
-	margin-left: -$elmWidth/2;
+  width: $elmWidth;
+  left: 50%;
+  margin-left: -$elmWidth/2;
 }
