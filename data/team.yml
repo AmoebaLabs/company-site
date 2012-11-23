@@ -22,6 +22,7 @@ daniel:
   linkedin: djabbour
   twitter: bitgangsta
   github: bitgangsta
+  extra_image_style: "margin-top: 10px;"
   bio:
     - "Daniel has been writing code as long as most kids have been doing multiplication.
      He is one of Amoeba’s cofounders, and has a passion for bringing new ideas to life as well 
@@ -39,6 +40,7 @@ steve:
   linkedin: stevegehrman
   twitter: sgehrman
   github: sgehrman
+  extra_image_style: "margin-top: 10px;"
   bio:
     - "This is the first paragraph of my biography. If you want to read the rest, you'll have to eat me."
     - "Well, the way they make shows is, they make one show. That show's called a pilot. Then they
@@ -53,6 +55,7 @@ chrisc:
   linkedin: christopherchiles
   twitter: #
   github: #
+  extra_image_style: "margin-top: 55px;"
   bio:
     - "Chris Chiles serves as the director of sales and business development, bringing experience
      from previously-owned companies focused on client consultation and cutting-edge market
@@ -72,6 +75,7 @@ richard:
   linkedin: richardenlow
   twitter: #
   github: startexploding
+  extra_image_style: "margin-top: 45px;"
   bio:
     - "Richard specializes in Visual Design and User Experience Design. He possesses a 
     particularly broad skill set and specializes in design direction, creative concepting, 
@@ -86,9 +90,10 @@ chrisb:
   name: Chris Barton
   title: Title Here
   facebook: #
-  linkedin: #
+  linkedin: bartonchris
   twitter: #
   github: #
+  extra_image_style: "margin-top: 10px;"
   bio:
     - "Chris Barton is one of those rare engineers that knows every line of code of the 
     frameworks he works with by heart. He’s our web framework expert and is an active 

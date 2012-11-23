@@ -17,6 +17,23 @@
   float: right;
 }
 
+.vertical-center {
+  @include inline-block;
+  height: inherit;
+  &:before {
+    content: "";
+    @include inline-block;
+    height: 100%;
+    vertical-align: middle;
+  }
+  &:after {
+    content: "";
+    @include inline-block;
+    height: 100%;
+    vertical-align: middle;
+  }
+}
+
 //-------- Mixins ----------- 
 @mixin center($elmWidth: $pageWidth) {
   width: $elmWidth;

@@ -8,7 +8,12 @@
   </h2>
   <% data.team.each do |short_name, person| %>
       <div class="team-member">
-        <div class="team-member-image <%= cycle("right", "left") %>">
+        <div
+          class="team-member-image <%= cycle("right", "left") %>"
+          <% if person.extra_image_style.present? %>
+            style="<%= person.extra_image_style %>"
+          <% end %>
+          >
           <% if image_exists?("team/#{short_name}") %>
               <%= image_tag "team/#{short_name}.png", :alt => "#{short_name.capitalize}'s picture" %>
           <% end %>
