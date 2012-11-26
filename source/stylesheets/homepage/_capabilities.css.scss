@@ -7,7 +7,7 @@
   position: relative;
   margin-top: 68px;
   width: $pageWidth;
-  height: 160px;
+  height: 200px;
   text-align: center;
 
   background-color: $greyShadow;
@@ -18,7 +18,7 @@
     @include inline-block;
     @include box-sizing(border-box);
     width: 33%;
-    height: 110px;
+    height: 150px; //50px less than .capabilities:height
     padding-right: 10px;
 
     // Border
@@ -32,14 +32,13 @@
     text-align: left;
     h2 {
       @extend %amoebaFontMedium;
-      //line-height: 18px;
       font-size: 18px;
-      margin: 10px 0 0 120px;
+      margin: 10px 0 0 123px;
       color: $amoebaGreenDark;
     }
     p {
       font-size: 14px;
-      margin: 3px 0 30px 120px;
+      margin: 3px 0 30px 123px;
     }
 
     // Images
