@@ -12,14 +12,6 @@ class Amoeba.HomepageView
     @$document = $(document)
 
   bindEvents: ->
-    $(".contactus-button").on 'click', =>
-      this.showContact()
-      return false
-
-    $(".team-button").on 'click', =>
-      this.showTeam()
-      return false
-
     # Slide in Header when scrolled down far enough
     @$document.on 'scroll.header', =>
       if @$document.scrollTop() < @$logoNav.offset().top
@@ -28,7 +20,6 @@ class Amoeba.HomepageView
 
   initStateMachine: ->
     @stateMachine = StateMachine.create(
-      initial: "home"
 
       events: [
         name: "contactevt"
@@ -46,6 +37,7 @@ class Amoeba.HomepageView
 
       callbacks:
         oncontact: (event, from, to) =>
+          console.log("On Contact!")
           @stateTransitions.contactUsTransition()
 
         onhome: (event, from, to) =>

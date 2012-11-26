@@ -36,8 +36,9 @@ require 'animation'
 #   @which_fake_page = "Rendering a fake page with a variable"
 # end
 
-
 page "/index.html"
+page "/contactus", :proxy => "/index.html"
+page "/team", :proxy => "/index.html"
 
 ###
 # Helpers
