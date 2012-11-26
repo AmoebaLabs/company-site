@@ -3,10 +3,10 @@ class Amoeba.StateTransitions
     @animationTime = 1000
 
   homeTransition: ->
-    $("#homepage").removeClass("hidden")
+    # Stub
 
   undoHomeTransition: ->
-    $("#homepage").addClass("hidden")
+    # Stub
 
   contactUsTransition: ->
     # Must hide the unnecessary elements
