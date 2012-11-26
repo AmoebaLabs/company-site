@@ -10,3 +10,6 @@ gem "middleman-favicon-maker", "~> 3.0.0"
 
 # compass-animation is basically a package of animate.css
 gem "animation", :github => "ericam/compass-animation"
+
+# Steering gem for Handlebars compilation
+gem "steering", "~> 1.2.0"

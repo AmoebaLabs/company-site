@@ -61,6 +61,14 @@ set :images_dir, 'images'
 
 set :js_assets_paths, %w(vendor)
 
+###
+# Other modules
+###
+
+# Handlebars
+require './lib/handlebars'
+activate :handlebars
+
 # Build-specific configuration
 configure :build do
   # For example, change the Compass output style for deployment
