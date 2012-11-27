@@ -74,7 +74,7 @@ chrisc:
 
 richard:
   name: Richard Enlow
-  title: Title Here
+  title: The Creative
   facebook: #
   linkedin: richardenlow
   twitter: #
@@ -92,12 +92,12 @@ richard:
 
 chrisb:
   name: Chris Barton
-  title: Title Here
+  title: The Web Wizard
   facebook: #
   linkedin: bartonchris
   twitter: #
   github: #
-  extra_image_style: "margin-top: 10px;"
+  extra_image_style: "margin-top: 20px;"
   bio:
     - "Chris Barton is one of those rare engineers that knows every line of code of the 
     frameworks he works with by heart. He’s our web framework expert and is an active 
