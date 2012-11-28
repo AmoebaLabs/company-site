@@ -37,6 +37,10 @@
     margin-top: 8px;
     @include border-radius(3px);
     background-color: $amoebaGreen;
+
+    a {
+      text-decoration: none;
+    }
   }
 }
 
