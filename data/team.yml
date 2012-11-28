@@ -77,8 +77,8 @@ richard:
   title: The Creative
   facebook: #
   linkedin: richardenlow
-  twitter: #
-  github: startexploding
+  twitter: startexploding
+  github: #
   extra_image_style: "margin-top: 45px;"
   bio:
     - "Richard specializes in Visual Design and User Experience Design. He possesses a 
@@ -92,7 +92,7 @@ richard:
 
 chrisb:
   name: Chris Barton
-  title: The Web Wizard
+  title: The Wizard of Web
   facebook: #
   linkedin: bartonchris
   twitter: #
@@ -115,6 +115,6 @@ ohia:
   twitter: #
   github: #
   bio:
-    - "Ohia is Amoeba’s official office dog. Before her current postition she served as the office dog for a number of Fortune 500 companies."
-    - "Ohia just celebrated her 5 year birthday and working on a bucket list which includes...."
+    - "Ohia is Amoeba’s official office dog. Before her current postition she served as the office dog for a number of Fortune 500 companies. She loves people and seems to have a deep need to be petted."
+    - "Ohia just celebrated her 5th birthday and is now working on a bucket list which includes learning how to skateboard and learning how to \"sit\" in multiple languages. "
 
