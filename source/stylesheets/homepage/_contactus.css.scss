@@ -28,6 +28,7 @@
     @extend %amoebaFontMedium;
     font-size: 17px;
     margin: 0 0 0 0;
+    color: $amoebaGreenDark;
   }
 
   #sayhi {
@@ -51,7 +52,7 @@
   @include border-radius(3%);
   @include box-shadow(rgba(0, 0, 0, 0.21) 5px 5px 4px);
 
-  background-color: $greyShadow;
+  background-color: $amoebaGrey;
 
   form {
     @include stretch;

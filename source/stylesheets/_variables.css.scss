@@ -1,11 +1,18 @@
 // Configure Compass:
 $experimental-support-for-svg: true;
 
+//////////////
 // Amoeba Vars:
+
+// Logo Colors
 $amoebaGreen: #A6CC2F;
 $amoebaGreenMedium: #8BA400;
-$amoebaGreenDark: #374F0E;
-$greyLight: #BEC0C6;
-$greyShadow: #EAEBED;
+$amoebaGreenDark: #384F0E;
+$amoebaGrey: #EAEBED;
 
+// Other Colors
+$greenUltraDark: #002C1F;
+$greyLight: #BEC0C6;
+
+// More vars
 $pageWidth: 845px;

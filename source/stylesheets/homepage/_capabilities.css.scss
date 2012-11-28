@@ -10,7 +10,7 @@
   height: 200px;
   text-align: center;
 
-  background-color: $greyShadow;
+  background-color: $amoebaGrey;
   @include border-radius(6px);
   @include box-shadow(rgba(0, 0, 0, 0.21) 5px 5px 4px);
 

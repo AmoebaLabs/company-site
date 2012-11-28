@@ -19,6 +19,14 @@ body {
   @extend %amoebaFontRegular;
   color: $amoebaGreenDark;
 
+  h1,h2,h3,h4 {
+    color: $greenUltraDark;
+  }
+
+  a {
+    color: $greenUltraDark;
+  }
+
   // Some more sensible defaults for our icon links
   a [class^="icon-"],
   a [class*=" icon-"] {
