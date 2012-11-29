@@ -11,7 +11,7 @@
   @include opacity(0.93);
 
   @include border-radius(0 0 5px 5px);
-  @include box-shadow(rgba(0, 0, 0, 0.19) 5px 5px 4px);
+  @include box-shadow(rgba(0, 0, 0, 0.19) 1px 1px 1px);
 
   h1 {
     position: absolute;

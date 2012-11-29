@@ -12,7 +12,7 @@
 
   background-color: $amoebaGrey;
   @include border-radius(6px);
-  @include box-shadow(rgba(0, 0, 0, 0.21) 5px 5px 4px);
+  @include box-shadow(rgba(0, 0, 0, 0.21) 1px 1px 1px);
 
   .capability-box {
     @include inline-block;
@@ -23,7 +23,7 @@
 
     // Border
     margin: 25px 0px 25px 0px;
-    border-right: 1px solid $amoebaGreen;
+    border-right: 1px solid $amoebaGreenMedium;
     &:last-child {
       border-right: none;
     }
@@ -33,38 +33,52 @@
     h2 {
       @extend %amoebaFontMedium;
       font-size: 18px;
-      margin: 0 0 10px 123px;
-      color: $amoebaGreenDark;
+      text-align: center;
+      margin: 90px 0 0 0;
+      color: $greenUltraDark;
     }
+
     p {
-      font-size: 14px;
-      margin: 3px 0 30px 123px;
+      font-size: 12px;
+      line-height: 13px;
+      text-align: center;
+      margin: 0 0 5px 15px;
     }
 
     // Images
     img {
       position: absolute;
       top: 50%;
+      height: 100px;
+      margin-top: -90px;
     }
+
     .img-web {
-      width: 101px;
-      height: 82px;
-      margin-top: -41px; // -Half height
-      margin-left: 10px; // Aprox (120-img.width)/2
+      margin-left: 52px;
+      @include rollover;
     }
 
     .img-mobile {
-      width: 53px;
-      height: 100px;
-      margin-top: -50px;
-      margin-left: 33px;
+      margin-left: 80px;
+      @include rollover;
     }
 
     .img-gap {
-      width: 83;
-      height: 90;
-      margin-top: -45px;
-      margin-left: 18px;
+      margin-left: 60px;
+      @include rollover;
+    }
+
+    .image-web-ignore {
+      margin-left: 52px;
+    }
+
+    .image-mobile-ignore {
+      margin-left: 80px;
+    }
+    
+    .image-gap-ignore {
+      margin-left: 60px;
     }
   }
 }
+

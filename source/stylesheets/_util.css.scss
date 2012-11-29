@@ -1,5 +1,7 @@
 // Util.css - random utility classes and mixins that don't belong elsewhere
 
+@import "compass/css3";
+
 //-------- Classes ----------- 
 .hidden {
   display: none;
@@ -39,4 +41,11 @@
   width: $elmWidth;
   left: 50%;
   margin-left: -$elmWidth/2;
+}
+
+@mixin rollover {
+  @include transition(all 1s ease);
+  &:hover {
+    opacity: 0.0;
+  }
 }

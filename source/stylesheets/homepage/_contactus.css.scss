@@ -54,7 +54,7 @@
   height: 460px;
 
   @include border-radius(3%);
-  @include box-shadow(rgba(0, 0, 0, 0.21) 5px 5px 4px);
+  @include box-shadow(rgba(0, 0, 0, 0.21) 1px 1px 1px);
 
   background-color: $amoebaGrey;
 
