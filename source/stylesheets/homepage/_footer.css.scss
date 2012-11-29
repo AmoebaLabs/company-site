@@ -8,9 +8,12 @@
   font-size: 12px;
 
   i {
+    @include socialHover; 
     color: $amoebaGreen;
     font-size: 30px;
     line-height: 30px;
     padding-right: 15px;
+    text-decoration: none;
+
   }
 }
