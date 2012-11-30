@@ -9,9 +9,7 @@ class Amoeba.StateTransitions
     # Stub
 
   contactUsTransition: ->
-    # Must hide the unnecessary elements
-    $.each ["#logo", ".capabilities"], (index, klass) ->
-      $(klass).fadeOut(@animationTime)
+    this._showCapabilities(false)
 
     # .contactus is used to position/ animate the mascot for the contactus form
     $("#mascot").addClass("contactus")
@@ -23,12 +21,11 @@ class Amoeba.StateTransitions
     # Slide in Nav bar
     $("#header").slideDown()
 
-  # Consider scrolling to top of the page
+    # scroll to top of page
+    # $("body").scrollTop(0)
 
   undoContactUsTransition: ->
-    # Must hide the unnecessary elements
-    $.each ["#logo", ".capabilities"], (index, klass) ->
-      $(klass).fadeIn(@animationTime)
+    this._showCapabilities(true)
 
     # .contactus is used to position/ animate the mascot for the contactus form
     $("#mascot").removeClass("contactus")
@@ -66,3 +63,9 @@ class Amoeba.StateTransitions
     team = $("#team")
     team.fadeOut @animationTime
         
+  _showCapabilities: (show) ->    
+    $.each ["#logo", ".capabilities"], (index, klass) ->
+      if show
+        $(klass).fadeIn(@animationTime)
+      else
+        $(klass).fadeOut(@animationTime)
