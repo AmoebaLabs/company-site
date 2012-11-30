@@ -1,16 +1,25 @@
 class Amoeba.HomepageView
   constructor: ->
+    @animationTime = 1000
     this._cacheElements()
     this._initStateMachine()
     this._bindEvents()
 
   _cacheElements: ->
     @$document = $(document)
+    @$capabilityBox = $('.capability-box')
 
   _bindEvents: ->
     # Slide in Header when scrolled down far enough
     @$document.on 'scroll.header', =>
       @stateTransitions.updateOnScrollEvent(@stateMachine)
+
+    # Capabilities hovers
+    @$capabilityBox.hover (e) ->
+        $(this).find('.rollover').fadeOut(@animationTime)
+      ,(e) ->
+        $(this).find('.rollover').fadeIn(@animationTime)
+
 
   _initStateMachine: ->
     @stateMachine = StateMachine.create(
