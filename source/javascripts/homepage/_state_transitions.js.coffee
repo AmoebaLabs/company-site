@@ -13,6 +13,7 @@ class Amoeba.StateTransitions
   homeTransition: ->
     # coming from contacts, get rid of header
     $("#header").slideUp()
+    this.animatedScrollToOffset(0)
 
   undoHomeTransition: ->
     # Stub
