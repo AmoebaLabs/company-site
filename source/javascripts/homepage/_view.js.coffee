@@ -40,7 +40,6 @@ class Amoeba.HomepageView
 
       callbacks:
         oncontact: (event, from, to) =>
-          console.log("On Contact!")
           @stateTransitions.contactUsTransition()
 
         onhome: (event, from, to) =>
