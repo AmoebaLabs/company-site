@@ -93,7 +93,7 @@ class Amoeba.StateTransitions
   _scrollToOffset: (offset, animate = false) ->
     if animate
       @scrollingCount += 1;
-      $('body').animate({scrollTop: "#{offset}px"}, @animationTime, 'linear', =>
+      $('body').animate({scrollTop: "#{offset}px"}, @animationTime, 'swing', =>
         @scrollingCount -= 1
 
         # update after done to make sure it's in the right state
