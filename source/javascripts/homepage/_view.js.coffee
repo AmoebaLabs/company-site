@@ -63,7 +63,7 @@ class Amoeba.HomepageView
   showTeam: -> 
     # we are already team, but user clicks again on team button, scroll to right place to avoid doing nothing
     if (@stateMachine.is('team'))
-      @stateTransitions.scrollToTeamOffset();
+      @stateTransitions.scrollToTeamOffset(true);
 
     @stateMachine.teamevt()
 
