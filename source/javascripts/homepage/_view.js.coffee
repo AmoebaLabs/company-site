@@ -40,19 +40,19 @@ class Amoeba.HomepageView
 
       callbacks:
         oncontact: (event, from, to) =>
-          @stateTransitions.contactUsTransition()
+          @stateTransitions.contactUsTransition(from)
 
         onhome: (event, from, to) =>
-          @stateTransitions.homeTransition()
+          @stateTransitions.homeTransition(from)
 
         onteam: (event, from, to) =>
-          @stateTransitions.teamTransition()
+          @stateTransitions.teamTransition(from)
 
         onleavecontact: (event, from, to) =>
-          @stateTransitions.undoContactUsTransition()
+          @stateTransitions.undoContactUsTransition(from)
 
         onleaveteam: (event, from, to) =>
-          @stateTransitions.undoTeamTransition()
+          @stateTransitions.undoTeamTransition(from)
     )
 
     @stateTransitions = new Amoeba.StateTransitions(@stateMachine)
