@@ -32,6 +32,8 @@
     }
 
     i {
+      @include socialHover;
+
       font-size: 36px;
       line-height: 36px;
       padding-right: 15px;
