@@ -98,12 +98,12 @@ class Amoeba.StateTransitions
 
         # update after done to make sure it's in the right state
         if (not this._isScrolling())
-          this.updateOnScrollEvent()
+          this.updateOnScrollEvent(animate)
         )
     else
       $('body').scrollTop(offset)
 
-  updateOnScrollEvent: =>
+  updateOnScrollEvent: (animate = false) =>
     # bail out if we are doing an animated scroll, we will update things at the end
     if this._isScrolling()
       return
@@ -115,9 +115,9 @@ class Amoeba.StateTransitions
         # don't slide up the header if on the contact page
         if not @stateMachine.is('contact')
           if @$document.scrollTop() < @$logoNav.offset().top
-            this._showNavBar(false, true)
+            this._showNavBar(false, animate)
           else 
-            this._showNavBar(true, true)
+            this._showNavBar(true, animate)
 
         @updatingOnScrollEvent = false;
 

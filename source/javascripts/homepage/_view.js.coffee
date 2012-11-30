@@ -12,7 +12,7 @@ class Amoeba.HomepageView
   _bindEvents: ->
     # Slide in Header when scrolled down far enough
     @$document.on 'scroll.header', =>
-      @stateTransitions.updateOnScrollEvent(@stateMachine)
+      @stateTransitions.updateOnScrollEvent(true)
 
     # Capabilities hovers
     @$capabilityBox.hover (e) ->
