@@ -7,6 +7,11 @@ class Amoeba.StateTransitions
 
   _cacheElements: ->
     @$header = $("#header")
+    @$footer = $("#footer")
+    @$team = $("#team")
+    @$mascot = $("#mascot")
+    @$contactus = $("#contactus")
+    @$contactQuestions = $("#contact-questions")
     @$logoNav = $("#logo nav")
     @$document = $(document)
 
@@ -28,11 +33,11 @@ class Amoeba.StateTransitions
     this._showCapabilities(false, animate)
 
     # .contactus is used to position/ animate the mascot for the contactus form
-    $("#mascot").addClass("contactus")
+    @$mascot.addClass("contactus")
 
     # Show the sayhi & contactus divs
-    $("#contact-questions").fadeIn(@animationTime)
-    $("#contactus").removeClass("hidden")
+    @$contactQuestions.fadeIn(@animationTime)
+    @$contactus.removeClass("hidden")
 
     # Slide in Nav bar
     this._showNavBar(true, animate)
@@ -43,11 +48,11 @@ class Amoeba.StateTransitions
     this._showCapabilities(true, animate)
 
     # .contactus is used to position/ animate the mascot for the contactus form
-    $("#mascot").removeClass("contactus")
+    @$mascot.removeClass("contactus")
 
     # Show the sayhi & contactus divs
-    $("#contact-questions").fadeOut(@animationTime)
-    $("#contactus").addClass("hidden")
+    @$contactQuestions.fadeOut(@animationTime)
+    @$contactus.addClass("hidden")
 
   teamTransition: (from) ->
     animate = not (from is 'none')
@@ -56,14 +61,16 @@ class Amoeba.StateTransitions
     this._showNavBar(true, animate)
 
     # Move footer
-    footer = $("#footer")
-    footer.fadeOut @animationTime, ->
-      footer.addClass("team")
-      footer.show()
+    if animate
+      @$footer.fadeOut @animationTime, ->
+        @$footer.addClass("team")
+        @$footer.show()
+    else
+      @$footer.addClass("team")
+      @$footer.show
 
     # Show team
-    team = $("#team")
-    team.fadeIn @animationTime
+    @$team.fadeIn @animationTime
 
     this.scrollToTeamOffset(animate)
 
@@ -71,21 +78,17 @@ class Amoeba.StateTransitions
     animate = not (from is 'none')
 
     # Move footer
-    footer = $("#footer")
-    footer.fadeOut @animationTime, ->
-      footer.removeClass("team")
-      footer.show()
+    @$footer.hide()
+    @$footer.removeClass("team")
+    @$footer.fadeIn(@animationTime)
 
-    # Show team
-    team = $("#team")
-    team.fadeOut @animationTime
+    # Hide team
+    @$team.fadeOut(@animationTime)
 
   # also called when already in team state, but user clicks team button.  Now scrolls when button clicked
   scrollToTeamOffset: (animate = false) ->
-    team = $("#team")
-
     # Scroll to the top of the #team div
-    this._scrollToOffset(team.offset().top-150, animate)
+    this._scrollToOffset(@$team.offset().top-150, animate)
 
   _isScrolling: ->
     return @scrollingCount > 0
@@ -124,7 +127,8 @@ class Amoeba.StateTransitions
       # performance benefits from limiting this with a timer? (dan?)
       setTimeout(callback, 100)
 
-  _showCapabilities: (show, animate = false) ->    
+  _showCapabilities: (show, animate = false) ->
+    console.log "Show capabilities called with show: ", show, "and animate =", animate
     $.each ["#logo", ".capabilities"], (index, klass) ->
       if show
         if animate
