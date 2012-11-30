@@ -101,9 +101,6 @@ class Amoeba.StateTransitions
       $('body').scrollTop(offset)
 
   updateOnScrollEvent: (animate = false) =>
-
-    console.log("cunt - #{animate}");
-
     # bail out if we are doing an animated scroll, we will update things at the end
     if this._isScrolling()
       return
