@@ -14,24 +14,27 @@ class Amoeba.HomepageView
   bindEvents: ->
     # Slide in Header when scrolled down far enough
     @$document.on 'scroll.header', =>
-      if @$document.scrollTop() < @$logoNav.offset().top
-        @$header.slideUp()
-      else @$header.slideDown()
+      # don't slide up the header if on the contact page
+      if not @stateMachine.is('contact')
+        if @$document.scrollTop() < @$logoNav.offset().top
+          @$header.slideUp()
+        else 
+          @$header.slideDown()
 
   initStateMachine: ->
     @stateMachine = StateMachine.create(
 
       events: [
         name: "contactevt"
-        from: "*"
+        from: StateMachine.WILDCARD
         to: "contact"
       ,
         name: "homeevt"
-        from: "*"
+        from: StateMachine.WILDCARD
         to: "home"
       ,
         name: "teamevt"
-        from: "*"
+        from: StateMachine.WILDCARD
         to: "team"
       ]
 

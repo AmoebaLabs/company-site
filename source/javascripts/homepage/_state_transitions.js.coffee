@@ -22,7 +22,7 @@ class Amoeba.StateTransitions
     $("#header").slideDown()
 
     # scroll to top of page
-    # $("body").scrollTop(0)
+    $("body").scrollTop(0)
 
   undoContactUsTransition: ->
     this._showCapabilities(true)
