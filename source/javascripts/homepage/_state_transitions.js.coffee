@@ -51,7 +51,10 @@ class Amoeba.StateTransitions
 
   teamTransition: (from) ->
     animate = not (from is 'none')
-    
+
+    # Slide in Nav bar
+    this._showNavBar(true, animate)
+
     # Move footer
     footer = $("#footer")
     footer.fadeOut @animationTime, ->
