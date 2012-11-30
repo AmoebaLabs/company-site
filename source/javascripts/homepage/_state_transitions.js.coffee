@@ -119,7 +119,7 @@ class Amoeba.StateTransitions
         @updatingOnScrollEvent = false;
 
       # performance benefits from limiting this with a timer? (dan?)
-      setTimeout(callback, 200)
+      setTimeout(callback, 100)
 
   _showCapabilities: (show, animate = false) ->    
     $.each ["#logo", ".capabilities"], (index, klass) ->
