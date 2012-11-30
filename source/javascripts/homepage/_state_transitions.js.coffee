@@ -3,12 +3,15 @@ class Amoeba.StateTransitions
     @animationTime = 1000
 
   homeTransition: ->
-    # Stub
+    # coming from contacts, get rid of header
+    $("#header").slideUp()
 
   undoHomeTransition: ->
     # Stub
 
   contactUsTransition: ->
+    $('body,html').animate({scrollTop: '0px'}, @animationTime)
+
     this._showCapabilities(false)
 
     # .contactus is used to position/ animate the mascot for the contactus form
@@ -21,9 +24,6 @@ class Amoeba.StateTransitions
     # Slide in Nav bar
     $("#header").slideDown()
 
-    # scroll to top of page
-    $("body").scrollTop(0)
-
   undoContactUsTransition: ->
     this._showCapabilities(true)
 
@@ -33,9 +33,6 @@ class Amoeba.StateTransitions
     # Show the sayhi & contactus divs
     $("#contact-questions").fadeOut(@animationTime)
     $("#contactus").addClass("hidden")
-
-    # Slide in Nav bar
-    $("#header").slideUp()
 
   teamTransition: ->
     # Move footer

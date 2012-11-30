@@ -14,12 +14,7 @@ class Amoeba.HomepageView
   bindEvents: ->
     # Slide in Header when scrolled down far enough
     @$document.on 'scroll.header', =>
-      # don't slide up the header if on the contact page
-      if not @stateMachine.is('contact')
-        if @$document.scrollTop() < @$logoNav.offset().top
-          @$header.slideUp()
-        else 
-          @$header.slideDown()
+      this._updateOnScrollEvent()
 
   initStateMachine: ->
     @stateMachine = StateMachine.create(
@@ -58,3 +53,23 @@ class Amoeba.HomepageView
   showContact: -> @stateMachine.contactevt()
   showTeam: -> @stateMachine.teamevt()
   showHome: -> @stateMachine.homeevt()
+
+  _updateOnScrollEvent: ->
+    if (not @updatingOnScrollEvent)
+      @updatingOnScrollEvent = true;
+
+      callback = =>   
+        # don't slide up the header if on the contact page
+        if not @stateMachine.is('contact')
+          if @$document.scrollTop() < @$logoNav.offset().top
+            @$header.slideUp()
+          else 
+            @$header.slideDown()
+
+        @updatingOnScrollEvent = false;
+
+      # performance benefits from limiting this with a timer? (dan?)
+      setTimeout(callback, 200)
+
+      
+   
