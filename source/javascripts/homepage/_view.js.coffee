@@ -1,22 +1,18 @@
 class Amoeba.HomepageView
-  stateTransitions: new Amoeba.StateTransitions
-
   constructor: ->
-    this.cacheElements()
-    this.initStateMachine()
-    this.bindEvents()
+    this._cacheElements()
+    this._initStateMachine()
+    this._bindEvents()
 
-  cacheElements: ->
-    @$header = $("#header")
-    @$logoNav = $("#logo nav")
+  _cacheElements: ->
     @$document = $(document)
 
-  bindEvents: ->
+  _bindEvents: ->
     # Slide in Header when scrolled down far enough
     @$document.on 'scroll.header', =>
-      this._updateOnScrollEvent()
+      @stateTransitions.updateOnScrollEvent(@stateMachine)
 
-  initStateMachine: ->
+  _initStateMachine: ->
     @stateMachine = StateMachine.create(
 
       events: [
@@ -50,6 +46,8 @@ class Amoeba.HomepageView
           @stateTransitions.undoTeamTransition()
     )
 
+    @stateTransitions = new Amoeba.StateTransitions(@stateMachine)
+
   showContact: -> 
     @stateMachine.contactevt()
   
@@ -57,28 +55,9 @@ class Amoeba.HomepageView
     # we are already team, but user clicks again on team button, scroll to right place to avoid doing nothing
     if (@stateMachine.is('team'))
       @stateTransitions.scrollToTeamOffset();
-      
+
     @stateMachine.teamevt()
 
   showHome: -> 
     @stateMachine.homeevt()
 
-  _updateOnScrollEvent: ->
-    if (not @updatingOnScrollEvent)
-      @updatingOnScrollEvent = true;
-
-      callback = =>   
-        # don't slide up the header if on the contact page
-        if not @stateMachine.is('contact')
-          if @$document.scrollTop() < @$logoNav.offset().top
-            @$header.slideUp()
-          else 
-            @$header.slideDown()
-
-        @updatingOnScrollEvent = false;
-
-      # performance benefits from limiting this with a timer? (dan?)
-      setTimeout(callback, 200)
-
-      
-   
