@@ -144,7 +144,6 @@ class Amoeba.StateTransitions
       if animate
         @$header.slideUp()
       else
-        console.log("hidden");
         @$header.hide()
 
    
