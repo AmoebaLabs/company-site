@@ -45,9 +45,7 @@ class Amoeba.StateTransitions
     team = $("#team")
     team.fadeIn @animationTime
 
-    # Scroll to the top of the #team div
-    teamOffset = team.offset().top-150
-    $('body,html').animate({scrollTop: '+=' + teamOffset + 'px'}, @animationTime)
+    this.scrollToTeamOffset()
 
   undoTeamTransition: ->
     # Move footer
@@ -59,7 +57,15 @@ class Amoeba.StateTransitions
     # Show team
     team = $("#team")
     team.fadeOut @animationTime
-        
+
+  #called when already in team state, but user clicks team button.  Now scrolls when button clicked
+  scrollToTeamOffset: ->
+    team = $("#team")
+
+    # Scroll to the top of the #team div
+    teamOffset = team.offset().top-150
+    $('body,html').animate({scrollTop: "#{teamOffset}px"}, @animationTime)
+
   _showCapabilities: (show) ->    
     $.each ["#logo", ".capabilities"], (index, klass) ->
       if show

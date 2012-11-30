@@ -50,9 +50,18 @@ class Amoeba.HomepageView
           @stateTransitions.undoTeamTransition()
     )
 
-  showContact: -> @stateMachine.contactevt()
-  showTeam: -> @stateMachine.teamevt()
-  showHome: -> @stateMachine.homeevt()
+  showContact: -> 
+    @stateMachine.contactevt()
+  
+  showTeam: -> 
+    # we are already team, but user clicks again on team button, scroll to right place to avoid doing nothing
+    if (@stateMachine.is('team'))
+      @stateTransitions.scrollToTeamOffset();
+      
+    @stateMachine.teamevt()
+
+  showHome: -> 
+    @stateMachine.homeevt()
 
   _updateOnScrollEvent: ->
     if (not @updatingOnScrollEvent)
