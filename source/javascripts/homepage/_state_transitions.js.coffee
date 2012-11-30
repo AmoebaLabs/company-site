@@ -62,7 +62,7 @@ class Amoeba.StateTransitions
 
     # Move footer
     if animate
-      @$footer.fadeOut @animationTime, ->
+      @$footer.fadeOut @animationTime, =>
         @$footer.addClass("team")
         @$footer.show()
     else
@@ -128,7 +128,6 @@ class Amoeba.StateTransitions
       setTimeout(callback, 100)
 
   _showCapabilities: (show, animate = false) ->
-    console.log "Show capabilities called with show: ", show, "and animate =", animate
     $.each ["#logo", ".capabilities"], (index, klass) ->
       if show
         if animate
