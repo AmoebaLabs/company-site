@@ -1,6 +1,6 @@
 <?php
 $email_to = "sayhi@amoe.ba";
-$email_subject = "[ContactUs Submission] Web request from  {$_POST['name']}";
+$email_subject = "[ContactUs Submission] Web request from {$_POST['name']}";
 
 $email_from = "noreply@amoe.ba";
 
@@ -26,17 +26,16 @@ $contact_message = $_POST['message']; // required
 $error_message = "";
 $email_exp = '/^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/';
 if(!preg_match($email_exp,$contact_email)) {
-    $error_message .= 'The Email Address you entered does not appear to be valid.<br />';
+    $error_message .= 'The email address you entered does not appear to be valid.<br />';
 }
 
-$string_exp = "/^[A-Za-z .'-]+$/";
-if(!preg_match($string_exp,$contact_name)) {
-    $error_message .= 'The Name you entered does not appear to be valid.<br />';
+if (strlen($contact_name) < 2) {
+    $error_message .= 'The name you entered does not appear to be valid.<br />';
 }
-if(strlen($contact_message) < 2) {
+if (strlen($contact_message) < 2) {
     $error_message .= 'The message you entered does not appear to be valid.<br />';
 }
-if(strlen($error_message) > 0) {
+if (strlen($error_message) > 0) {
     died($error_message);
 }
 

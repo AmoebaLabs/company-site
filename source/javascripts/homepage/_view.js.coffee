@@ -77,6 +77,8 @@ class Amoeba.HomepageView
     $message = $("textarea#contact-message")
     $error = $('.error-message')
 
+    $error.addClass("invisible")
+
     if ($name.val() == "")
       $name.focus()
       $error.html("You must enter a valid name.")
