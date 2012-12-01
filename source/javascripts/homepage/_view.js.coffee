@@ -49,10 +49,10 @@ class Amoeba.HomepageView
           @stateTransitions.teamTransition(from)
 
         onleavecontact: (event, from, to) =>
-          @stateTransitions.undoContactUsTransition(from)
+          @stateTransitions.undoContactUsTransition(to)
 
         onleaveteam: (event, from, to) =>
-          @stateTransitions.undoTeamTransition(from)
+          @stateTransitions.undoTeamTransition(to)
     )
 
     @stateTransitions = new Amoeba.StateTransitions(@stateMachine)

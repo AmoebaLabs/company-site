@@ -22,7 +22,7 @@ class Amoeba.StateTransitions
     this._showNavBar(false, animate)
     this._scrollToOffset(0, animate)
 
-  undoHomeTransition: (from) ->
+  undoHomeTransition: (to) ->
     # Stub
 
   contactUsTransition: (from) ->
@@ -42,10 +42,8 @@ class Amoeba.StateTransitions
     # Slide in Nav bar
     this._showNavBar(true, animate)
 
-  undoContactUsTransition: (from) ->
-    animate = not (from is 'none')
-
-    this._showCapabilities(true, animate)
+  undoContactUsTransition: (to) ->
+    this._showCapabilities(true, true)
 
     # .contactus is used to position/ animate the mascot for the contactus form
     @$mascot.removeClass("contactus")
@@ -74,9 +72,7 @@ class Amoeba.StateTransitions
 
     this.scrollToTeamOffset(animate)
 
-  undoTeamTransition: (from) ->
-    animate = not (from is 'none')
-
+  undoTeamTransition: (to) ->
     # Move footer
     @$footer.hide()
     @$footer.removeClass("team")
@@ -124,11 +120,11 @@ class Amoeba.StateTransitions
 
         @updatingOnScrollEvent = false;
 
-      # performance benefits from limiting this with a timer? (dan?)
+      # Set a timer for performance / anti-glitchey reasons
       setTimeout(callback, 100)
 
   _showCapabilities: (show, animate = false) ->
-    $.each ["#logo", ".capabilities"], (index, klass) ->
+    $.each ["#logo", ".capabilities"], (index, klass) =>
       if show
         if animate
           $(klass).fadeIn(@animationTime)
