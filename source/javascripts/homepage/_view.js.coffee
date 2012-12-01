@@ -123,4 +123,7 @@ class Amoeba.HomepageView
           $email.val("")
           $message.val("")
         , 2000
+      error: =>
+        $error.html("Error: Invalid response. Please try again.")
+        $error.removeClass("invisible")
 
