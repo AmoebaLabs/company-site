@@ -11,35 +11,33 @@ div#iesucks {
   border-radius: 15px;
   
   h1{
-   color: white;
-   padding: 25px 50px;
-   text-align: center;
-   font-size: 99px;
-   text-color: white;
-     strong {
-        color: red;
-        font-style: bold;
-     }
+    color: white;
+    padding: 25px 50px;
+    text-align: center;
+    font-size: 99px;
+    text-color: white;
+    strong {
+      color: red;
+      font-style: bold;
+    }
   }
 
   img {
-  margin-top: -80px;
-  margin-left: 650px;
+    margin-top: -80px;
+    margin-left: 650px;
   }
 
-  p
-  {
-   color: white;
-   margin-top: -170px;
-   padding-left: 75px;
-   font-size: 36px;
-   text-color: white;
-   text-align: left;
-   a {
-   color: $amoebaGreen;
-   font-weight: bold;
-   }
-
+  p {
+    color: white;
+    margin-top: -170px;
+    padding-left: 75px;
+    font-size: 36px;
+    text-color: white;
+    text-align: left;
+    a {
+      color: $amoebaGreen;
+      font-weight: bold;
+    }
   }
 }
 
