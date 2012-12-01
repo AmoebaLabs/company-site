@@ -18,5 +18,7 @@ jQuery ($) ->
       Amoeba.homepageView.showTeam()
     this.get '/contactus', (req) ->
       Amoeba.homepageView.showContact()
+    this.post '/contactus/submit', (req) ->
+      Amoeba.homepageView.submitForm(req)
 
   Amoeba.App.start()

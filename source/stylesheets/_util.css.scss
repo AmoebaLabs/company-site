@@ -7,6 +7,10 @@
   display: none;
 }
 
+.invisible {
+  visibility: hidden;
+}
+
 .geo-medium {
   @extend %amoebaFontMedium;
 }

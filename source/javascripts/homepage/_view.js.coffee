@@ -70,3 +70,53 @@ class Amoeba.HomepageView
   showHome: -> 
     @stateMachine.homeevt()
 
+  submitForm: (req) ->
+    $name = $("input#contact-name")
+    $company = $("input#contact-company")
+    $email = $("input#contact-email")
+    $message = $("textarea#contact-message")
+    $error = $('.error-message')
+
+    if ($name.val() == "")
+      $name.focus()
+      $error.html("You must enter a valid name.")
+      $error.removeClass("invisible")
+      return false
+
+    if ($company.val() == "")
+      $company.focus()
+      $error.html("You must enter a company.")
+      $error.removeClass("invisible")
+      return false
+
+    if ($email.val() == "")
+      $email.focus()
+      $error.html("You must enter a valid email.")
+      $error.removeClass("invisible")
+      return false
+
+    if ($message.val() == "")
+      $message.focus()
+      $message.html("You must enter a message.")
+      $message.removeClass("invisible")
+      return false
+
+    dataString = "name=#{$name.val()}&email=#{$email.val()}&company=#{$company.val()}&message=#{$message.val()}"
+    $.ajax
+      type: "POST"
+      url: "submit_contact.php"
+      data: dataString
+      success: =>
+        $error.addClass("success")
+        $error.html("Success!")
+        $error.removeClass("invisible")
+        setTimeout =>
+          req.redirect "/"
+          $error.removeClass("success")
+          $error.addClass("invisible")
+          $name.val("")
+          $company.val("")
+          $email.val("")
+          $message.val("")
+        , 2000
+

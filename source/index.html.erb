@@ -3,7 +3,7 @@ title: Welcome to Amoeba
 ---
 
 <div id="header" class="hidden">
-  <h1><a href="/">Amoeba</a></h1>
+  <h1><a href="/">Amoeba</a><sup>SM</sup></h1>
 
   <div class="header-right">
     <h2>Remarkable Development and Design</h2>
@@ -22,7 +22,7 @@ title: Welcome to Amoeba
     <%= image_tag 'mascot.svg', :alt => "Amoeba Character", :id => "mascot" %>
   </a>
   <div id="logo">
-    <h1><a href="/">Amoeba</a></h1>
+    <h1><a href="/">Amoeba</a><sup>SM</sup></h1>
 
     <h2>Remarkable Development and Design</h2>
     <nav>
@@ -62,7 +62,7 @@ title: Welcome to Amoeba
     </div>
   </div>
   <div id="contact-questions" class="hidden">
-    <h1>Amoeba</h1>
+    <h1>Amoeba<sup>SM</sup></h1>
 
     <h2>Interesting Projects? Suggestions? Questions?</h2>
 
@@ -72,7 +72,7 @@ title: Welcome to Amoeba
     </div>
   </div>
   <div id="contactus" class="hidden">
-    <form id="contact-form">
+    <form id="contact-form" action="/contactus/submit" method="post">
       <div class="contact-form-group">
         <label for="contact-name">Name</label>
         <input type="text" id="contact-name"/>
@@ -89,6 +89,7 @@ title: Welcome to Amoeba
         <textarea id="contact-message" rows=6></textarea>
 
         <p>Most inquiries are answered within 48 hours</p>
+        <p class="error-message invisible">Error</p>
         <input type="submit" value="Submit"/>
       </div>
     </form>
