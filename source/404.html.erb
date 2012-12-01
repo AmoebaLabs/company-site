@@ -1,21 +1,61 @@
----
-title: Welcome to Amoeba
----
-<div class="center404">
-<div class="info404">
-	<h1>404</h1> 
-	<h2>NOT FOUND</h2>
+<!doctype html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
 
+  <title>Page Not Found</title>
+
+  <!-- Standby old school ico favicon, works in every browser -->
+  <%= favicon_tag "/favicon.ico" %>
+  <!-- Supported since iOS 1 (and some Android devices), this icon will be rounded, dropshadowed, and reflective shined -->
+  <%= favicon_tag "/apple-touch-icon.png", :rel => "apple-touch-icon", :type => "image/png" %>
+  <!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+  <%= favicon_tag "/apple-touch-icon-precomposed.png", :rel => "apple-touch-icon-precomposed", :type => "image/png" %>
+  <!-- For non-Retina iPhone and iPod Touch: -->
+  <%= favicon_tag "/apple-touch-icon-57x57-precomposed.png", :rel => "apple-touch-icon-precomposed", :sizes => "57x57", :type => "image/png" %>
+  <!-- For first- and second-generation iPad: -->
+  <%= favicon_tag "/apple-touch-icon-72x72-precomposed.png", :rel => "apple-touch-icon-precomposed", :sizes => "72x72", :type => "image/png" %>
+  <!-- For iPhone with high-resolution Retina display: -->
+  <%= favicon_tag "/apple-touch-icon-114x114-precomposed.png", :rel => "apple-touch-icon-precomposed", :sizes => "114x114", :type => "image/png" %>
+  <!-- 144x144 missing For iPad 3+ (with Retina Display) -->
+
+  <%= stylesheet_link_tag "screen", :media => "screen" %>
+  <%= stylesheet_link_tag "print", :media => "print" %>
+
+  <!--[if IE]>
+    <%= stylesheet_link_tag "ie", :media => "screen, projection" %>
+  <![endif]-->
+
+
+</head>
+<body>
+
+<div class="center404">
+  <div class="info404">
+    <h1>404</h1>
+    <h2>NOT FOUND</h2>
+
+  </div>
+  <div id="home404">
+    <nav>
+      <a class="home" href="index.html">Click to Go Back Home</a>
+      <h2>Want to do something else?</h2>
+      <ul>
+        <li><a href="/team">See Our Team</a></li>
+        <li><a href="/contactus">Get In Touch</a></li>
+        <li><a href="/blog">Read Our Blog</a></li>
+      </ul>
+    </nav>
+  </div>
 </div>
-	<div id="home404">
-		<nav>
-		<a class="home" href="index.html">Click to Go Back Home</a>
-		<h2>Want to do something else?</h2>
-	      <ul>  
-	        <li><a href="/team">See Our Team</a></li>
-	        <li><a href="/contactus">Get In Touch</a></li>
-	        <li><a href="/blog">Read Our Blog</a></li>
-	      </ul>
-	    </nav>	
-	</div>
-</div>
+
+<!-- Google Analytics -->
+<script>
+    var _gaq=[['_setAccount','UA-36359342-2'],['_trackPageview']];
+    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+        g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+        s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+</body>
+</html>

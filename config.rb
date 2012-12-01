@@ -36,9 +36,13 @@ require 'animation'
 #   @which_fake_page = "Rendering a fake page with a variable"
 # end
 
+# Homepage related routes (single page multi-view site)
 page "/index.html"
 page "/contactus/index.html", :proxy => "/index.html"
 page "/team/index.html", :proxy => "/index.html"
+
+# 404 page, has no layout to avoid the JS router and such
+page "/404.html", :layout => false
 
 ###
 # Helpers
