@@ -2,8 +2,6 @@
 @import "compass/layout/stretching";
 
 #mascot.contactus {
-  @include transition(all 1s ease-in-out);
-
   width: 233px;
   height: 224px;
   top: 142px;
