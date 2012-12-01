@@ -37,8 +37,8 @@ require 'animation'
 # end
 
 page "/index.html"
-page "/contactus", :proxy => "/index.html"
-page "/team", :proxy => "/index.html"
+page "/contactus/index.html", :proxy => "/index.html"
+page "/team/index.html", :proxy => "/index.html"
 
 ###
 # Helpers
