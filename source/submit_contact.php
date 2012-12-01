@@ -1,7 +1,7 @@
 <?php
 if(isset($_POST['email'])) {
     $email_to = "sayhi@amoe.ba";
-    $email_subject = "[ContactUs Submission] Web request from  $_POST['contact-name']";
+    $email_subject = "[ContactUs Submission] Web request from  " + $_POST['contact-name'];
 
     $email_from = "noreply@amoe.ba";
 
