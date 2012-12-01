@@ -1,1 +1,8 @@
 Header set X-UA-Compatible "IE=edge,chrome=1"
+
+AddType image/svg+xml svg svgz
+AddEncoding gzip svgz
+
+<Files htusers>
+deny from all
+</Files>
