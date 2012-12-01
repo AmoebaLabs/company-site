@@ -89,7 +89,9 @@ class Amoeba.HomepageView
       $error.removeClass("invisible")
       return false
 
-    if ($email.val() == "")
+    emailRE = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+
+    if ($email.val() == "" || !emailRE.test($email.val()))
       $email.focus()
       $error.html("You must enter a valid email.")
       $error.removeClass("invisible")
