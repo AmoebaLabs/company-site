@@ -1,3 +1,5 @@
+// https://github.com/jakesgordon/javascript-state-machine
+
 (function (window) {
 
   var StateMachine = {
