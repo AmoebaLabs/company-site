@@ -108,7 +108,7 @@ class Amoeba.HomepageView
     dataString = "name=#{$name.val()}&email=#{$email.val()}&company=#{$company.val()}&message=#{$message.val()}"
     $.ajax
       type: "POST"
-      url: "submit_contact.php"
+      url: "/submit_contact.php"
       data: dataString
       success: =>
         $error.addClass("success")
