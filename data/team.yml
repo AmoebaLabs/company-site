@@ -90,23 +90,6 @@ richard:
     - "In his spare time, Richard goes to shows (he’s a huge music fan), chaperones his dog 
     (she's a party animal), and explores an ever-growing collection of interests."
 
-# chrisb:
-#   name: Chris Barton
-#   title: The Wizard of Web
-#   facebook: #
-#   linkedin: bartonchris
-#   twitter: #
-#   github: #
-#   extra_image_style: "margin-top: 20px;"
-#   bio:
-#     - "Chris Barton is one of those rare engineers that knows every line of code of the 
-#     frameworks he works with by heart. He’s our web framework expert and is an active 
-#     contributor to Rails, Errbit, and several popular Ruby gems."
-#     - "When he isn’t hacking on code, Chris enjoys listening to whompy electronic music, 
-#     and playing Words With Friends. You might want to watch out though, rumor has it he 
-#     hacked his client to allow him to play any word (so much for server-side validation). 
-#     Chris studied both Computer Science and Electrical Engineering at the University of Iowa."
-
 ohia:
   name: Ohia
   title: The Dog
