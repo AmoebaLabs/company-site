@@ -1,6 +1,48 @@
 @import "compass/utilities/general/clearfix";
 @import "compass/css3";
 
+
+div#iesucks {
+  display: none;
+  height:500px;
+  background-color: black;
+  z-index: 99;
+  margin: 75px 190px;
+  border-radius: 15px;
+  
+  h1{
+   color: white;
+   padding: 25px 50px;
+   text-align: center;
+   font-size: 99px;
+   text-color: white;
+     strong {
+        color: red;
+        font-style: bold;
+     }
+  }
+
+  img {
+  margin-top: -80px;
+  margin-left: 650px;
+  }
+
+  p
+  {
+   color: white;
+   margin-top: -170px;
+   padding-left: 75px;
+   font-size: 36px;
+   text-color: white;
+   text-align: left;
+   a {
+   color: $amoebaGreen;
+   font-weight: bold;
+   }
+
+  }
+}
+
 #homepage {
   @include center;
   position: absolute;
