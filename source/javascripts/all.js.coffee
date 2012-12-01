@@ -14,9 +14,9 @@ jQuery ($) ->
       this.generateRequestOnPageLoad = true
     this.get '/', (req) ->
       Amoeba.homepageView.showHome()
-    this.get '/team', (req) ->
+    this.get '/team*splat', (req) ->
       Amoeba.homepageView.showTeam()
-    this.get '/contactus', (req) ->
+    this.get '/contactus*splat', (req) ->
       Amoeba.homepageView.showContact()
     this.post '/contactus/submit', (req) ->
       Amoeba.homepageView.submitForm(req)
