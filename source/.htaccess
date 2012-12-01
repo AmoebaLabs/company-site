@@ -3,6 +3,8 @@ Header set X-UA-Compatible "IE=edge,chrome=1"
 AddType image/svg+xml svg svgz
 AddEncoding gzip svgz
 
+ErrorDocument 404 /404.html
+
 <Files htusers>
 deny from all
 </Files>
