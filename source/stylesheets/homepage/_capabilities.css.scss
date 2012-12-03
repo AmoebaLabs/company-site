@@ -7,7 +7,7 @@
   position: relative;
   margin-top: 68px;
   width: $pageWidth;
-  height: 200px;
+  height: 210px;
   text-align: center;
 
   background-color: $amoebaGrey;
@@ -18,7 +18,7 @@
     @include inline-block;
     @include box-sizing(border-box);
     width: 33%;
-    height: 150px; //50px less than .capabilities:height
+    height: 160px; //50px less than .capabilities:height
     padding-right: 10px;
 
     // Border
@@ -50,7 +50,7 @@
       position: absolute;
       top: 50%;
       height: 100px;
-      margin-top: -90px;
+      margin-top: -95px;
     }
 
     .img-web {
