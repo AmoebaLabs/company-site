@@ -5,14 +5,23 @@
   h1 {
     @extend %amoebaFontSemiBold;
     font-size: 80px;
-    margin-bottom: -10px;
+    margin-bottom: 40px;
   }
+
+  hr{
+    margin-bottom: -40px;
+  }
+
+
   h2 {
     @extend %amoebaFontRegular;
     color: $amoebaGreenDark;
     font-size: 24px;
-    margin-top: 0;
+    margin-top: -50px;
     margin-bottom: 25px;
+      hr{
+    margin-bottom: 10px;
+  }
   }
   .team-member {
     @include clearfix;
