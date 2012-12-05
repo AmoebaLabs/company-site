@@ -112,7 +112,7 @@ class Amoeba.StateTransitions
 
       callback = =>   
         # don't slide up the header if on the contact page
-        if not @stateMachine.is('contact')
+        if @stateMachine.is('team')
           if @$document.scrollTop() < @$logoNav.offset().top
             this._showNavBar(false, animate)
           else 

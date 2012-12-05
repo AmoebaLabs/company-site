@@ -32,9 +32,9 @@
   <%= stylesheet_link_tag "screen", :media => "screen" %>
   <%= stylesheet_link_tag "print", :media => "print" %>
 
+  <!-- For now we only handle IE 10+. 9 is possible if we stop requiring pushstate -->
   <!--[if lt IE 10]>
-    <!-- One day we'll handle IE users, but not right now -->
-    <!-- <%= stylesheet_link_tag "ie", :media => "screen, projection" %> -->
+    <%= stylesheet_link_tag "ie", :media => "screen, projection" %>
   <![endif]-->
 
   <%= javascript_include_tag "all" %>
