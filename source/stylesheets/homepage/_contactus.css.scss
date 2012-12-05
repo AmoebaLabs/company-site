@@ -49,8 +49,6 @@
 }
 
 #contactus {
-  @include animation(contactus-in 1s ease-in);
-
   position: absolute;
   top: 115px;
   right: 0;
@@ -61,6 +59,10 @@
   @include box-shadow(rgba(0, 0, 0, 0.21) 1px 1px 1px);
 
   background-color: $amoebaGrey;
+
+  &.animate {
+    @include animation(contactus-in 1s ease-in);
+  }
 
   form {
     @include stretch;

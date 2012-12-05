@@ -37,7 +37,7 @@ class Amoeba.StateTransitions
 
     # Show the sayhi & contactus divs
     @$contactQuestions.fadeIn(@animationTime)
-    @$contactus.removeClass("hidden")
+    @$contactus.addClass("animate").removeClass("hidden")
 
     # Slide in Nav bar
     this._showNavBar(true, animate)
@@ -50,7 +50,7 @@ class Amoeba.StateTransitions
 
     # Show the sayhi & contactus divs
     @$contactQuestions.fadeOut(@animationTime)
-    @$contactus.addClass("hidden")
+    @$contactus.addClass("hidden").removeClass("animate")
 
   teamTransition: (from) ->
     animate = not (from is 'none')
