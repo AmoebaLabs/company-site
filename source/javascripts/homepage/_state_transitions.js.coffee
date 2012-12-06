@@ -37,7 +37,7 @@ class Amoeba.StateTransitions
 
     # Show the sayhi & contactus divs
     @$contactQuestions.fadeIn(@animationTime)
-    @$contactus.removeClass("hidden")
+    @$contactus.addClass("animate").removeClass("hidden")
 
     # Slide in Nav bar
     this._showNavBar(true, animate)
@@ -50,7 +50,7 @@ class Amoeba.StateTransitions
 
     # Show the sayhi & contactus divs
     @$contactQuestions.fadeOut(@animationTime)
-    @$contactus.addClass("hidden")
+    @$contactus.addClass("hidden").removeClass("animate")
 
   teamTransition: (from) ->
     animate = not (from is 'none')
@@ -112,7 +112,7 @@ class Amoeba.StateTransitions
 
       callback = =>   
         # don't slide up the header if on the contact page
-        if not @stateMachine.is('contact')
+        if @stateMachine.is('team')
           if @$document.scrollTop() < @$logoNav.offset().top
             this._showNavBar(false, animate)
           else 

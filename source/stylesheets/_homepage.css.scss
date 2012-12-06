@@ -4,18 +4,17 @@
 
 div#iesucks {
   display: none;
-  height:500px;
   background-color: black;
-  z-index: 99;
-  margin: 75px 190px;
-  border-radius: 15px;
+  margin: 50px auto;
+  width: 850px;
   
   h1{
     color: white;
     padding: 25px 50px;
     text-align: center;
-    font-size: 99px;
+    font-size: 90px;
     text-color: white;
+
     strong {
       color: red;
       font-style: bold;
@@ -23,13 +22,11 @@ div#iesucks {
   }
 
   img {
-    margin-top: -80px;
-    margin-left: 650px;
+    float: right;
   }
 
   p {
     color: white;
-    margin-top: -170px;
     padding-left: 75px;
     font-size: 36px;
     text-color: white;

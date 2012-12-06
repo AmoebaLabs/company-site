@@ -1,6 +1,7 @@
 // Util.css - random utility classes and mixins that don't belong elsewhere
 
 @import "compass/css3";
+@import "compass/utilities/general/clearfix";
 
 //-------- Classes ----------- 
 .hidden {
@@ -38,6 +39,10 @@
     height: 100%;
     vertical-align: middle;
   }
+}
+
+.clearfix {
+  @include clearfix;
 }
 
 //-------- Mixins ----------- 
