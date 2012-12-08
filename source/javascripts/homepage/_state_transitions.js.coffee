@@ -92,7 +92,7 @@ class Amoeba.StateTransitions
   _scrollToOffset: (offset, animate = false) ->
     if animate
       @scrollingCount += 1;
-      $('body').animate({scrollTop: "#{offset}px"}, @animationTime, 'swing', =>
+      $('body, html').animate({scrollTop: "#{offset}px"}, @animationTime, 'swing', =>
         @scrollingCount -= 1
 
         # update after done to make sure it's in the right state
@@ -100,7 +100,7 @@ class Amoeba.StateTransitions
           this.updateOnScrollEvent(animate)
         )
     else
-      $('body').scrollTop(offset)
+      $('body, html').scrollTop(offset)
 
   updateOnScrollEvent: (animate = false) =>
     # bail out if we are doing an animated scroll, we will update things at the end
