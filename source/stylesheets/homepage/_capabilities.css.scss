@@ -4,6 +4,21 @@
 
 .capabilities {
   @include clearfix;
+  @include breakpoint(tablet) { 
+    width: 95%;
+    height: 600px;
+    left: 20px;
+  }
+  @include breakpoint(mobile) { 
+    width: 100%;
+    height: 375px;
+    margin: 0px;
+    padding: 0px;
+    left: 0;
+    top: 10px;
+  }
+
+
   position: relative;
   margin-top: 68px;
   width: $pageWidth;
@@ -20,16 +35,38 @@
     width: 33%;
     height: 160px; //50px less than .capabilities:height
     padding-right: 10px;
+    @include breakpoint(mobile) { 
+      height: 345px;
+    }
 
+    
     // Border
     margin: 25px 0px 25px 0px;
     border-right: 1px solid $amoebaGreenMedium;
+        @include breakpoint(tablet) { 
+        border-bottom: 1px solid $amoebaGreenMedium;
+        border-right: none;
+            &:last-child {
+            border-bottom: none;
+            }
+
+        }
+        @include breakpoint(mobile) { 
+          border-bottom: 1px solid $amoebaGreenMedium;
+          margin: 0;
+          border-right: none;
+            &:last-child {
+            border-bottom: none;
+            }
+
+        }
     &:last-child {
       border-right: none;
     }
 
     // Typography
     text-align: left;
+    float: left;
     h2 {
       @extend %amoebaFontMedium;
       font-size: 18px;
@@ -47,34 +84,243 @@
 
     // Images
     img {
+      @include breakpoint(tablet) { 
+        height: 135px;
+      }
+      @include breakpoint(mobile) { 
+        height: 70px;
+        top: 100%;
+        left: -15px;
+      }
+      
       position: absolute;
       top: 50%;
       height: 100px;
-      margin-top: -95px;
+      margin-top: -90px;
+
     }
+
+// Removed overlay images from devices other than desktops
 
     .img-web {
       margin-left: 52px;
+      @include breakpoint(tablet) { 
+      display: none;
+      }
+      @include breakpoint(mobile) { 
+      display: none;
+      }
     }
 
     .img-mobile {
       margin-left: 80px;
+      @include breakpoint(tablet) { 
+        display: none;
+      }
+      @include breakpoint(mobile) { 
+        display: none;
+      }
     }
+
 
     .img-gap {
       margin-left: 60px;
+      @include breakpoint(tablet) { 
+        display: none;
+      }
+      @include breakpoint(mobile) { 
+        display: none;
+      }
     }
+  
+
 
     .image-web-ignore {
       margin-left: 52px;
+      @include breakpoint(tablet) { 
+        margin-left: 40px;
+        margin-top: -90px;
+      }
+      @include breakpoint(mobile) { 
+        margin-left: 25px;
+        margin-top: -100px;
+      }
     }
 
     .image-mobile-ignore {
       margin-left: 80px;
+      @include breakpoint(tablet) { 
+        margin-left: 100px;
+        margin-top: -90px;
+      }
+      @include breakpoint(mobile) { 
+        margin-left: 60px;
+        margin-top: -100px;
+      }
     }
+
+
     
     .image-gap-ignore {
       margin-left: 60px;
+      @include breakpoint(tablet) { 
+        margin-left: 75px;
+        margin-top: -85px;
+      }
+      @include breakpoint(mobile) { 
+        margin-left: 40px;
+        margin-top: -100px;
+      }
+    }
+  
+  }
+
+  .cb1 {
+    @include breakpoint(tablet) { 
+      width: 100%;
+      float: left;
+      position: relative;
+      top: 25px;
+      left: 0px;
+
+        h2 {
+          font-size: 32px;
+          margin-top: 0px;
+          margin-left: 350px;
+          float: left;
+        }
+
+        p {
+          font-size: 18px;
+          line-height: 20px;
+          margin-left: 350px;
+          margin-right: 50px;
+          float: right;
+          text-align: left;
+        }
+    }
+    @include breakpoint(mobile) { 
+      width: 100%;
+      height: 115px;
+      float: left;
+      position: relative;
+      top: 0px;
+      left: 0px;
+      padding-top: 4px;
+
+        h2 {
+          font-size: 18px;
+          margin-top: 5px;
+          margin-left: 155px;
+          float: left;
+        }
+
+        p {
+          font-size: 12px;
+          line-height: 14px;
+          margin: 2px 5px 0 155px;
+          float: right;
+          text-align: left;
+        }
+    }
+  }
+
+  .cb2 {
+    @include breakpoint(tablet) { 
+      width: 100%;
+      float: left;
+      position: relative;
+      top: 25px;
+      left: 0px;
+
+        h2 {
+          font-size: 32px;
+          margin-top: 0px;
+          margin-left: 350px;
+          float: left;
+        }
+
+        p {
+          font-size: 18px;
+          line-height: 20px;
+          margin-left: 350px;
+          margin-right: 20px;
+          float: right;
+          text-align: left;
+        }
+    }
+    @include breakpoint(mobile) { 
+      width: 100%;
+      height: 115px;
+      float: left;
+      position: absolute;
+      top: 34%;
+      left: 0px;
+
+        h2 {
+          font-size: 18px;
+          margin-top: 5px;
+          margin-left: 155px;
+          float: left;
+        }
+
+        p {
+          font-size: 12px;
+          line-height: 14px;
+          margin: 2px 5px 0 155px;
+          float: right;
+          text-align: left;
+        }
+    }
+  }
+
+  .cb3 {
+  @include breakpoint(tablet) { 
+    width: 100%;
+    float: left;
+    position: absolute;
+    top: 425px;
+    left: 0px;
+
+      h2 {
+        font-size: 32px;
+        margin-top: 0px;
+        margin-left: 350px;
+        float: left;
+      }
+
+      p {
+        font-size: 18px;
+        line-height: 20px;
+        margin-left: 350px;
+        margin-right: 50px;
+        float: right;
+        text-align: left;
+      }
+    }
+    @include breakpoint(mobile) { 
+      width: 100%;
+      height: 115px;
+      float: left;
+      position: absolute;
+      top: 66%;
+      left: 0px;
+      padding-bottom: 20px;
+
+        h2 {
+          font-size: 18px;
+          margin-top: 5px;
+          margin-left: 155px;
+          float: left;
+        }
+
+        p {
+          font-size: 12px;
+          line-height: 14px;
+          margin: 2px 5px 0 155px;
+          float: right;
+          text-align: left;
+      }
     }
   }
 }

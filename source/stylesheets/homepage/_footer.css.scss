@@ -1,4 +1,15 @@
 #footer {
+  @include breakpoint(tablet) { 
+    width: 95%;
+    top: 100%;
+    padding: 10px 0;
+  }
+  @include breakpoint(mobile) { 
+    width: 95%;
+    top: 100%;
+    margin-top: 10px;
+  }
+
   width: $pageWidth;
   position: absolute;
   top: 600px;
@@ -14,6 +25,12 @@
     line-height: 30px;
     padding-right: 15px;
     text-decoration: none;
+
+    @include breakpoint(mobile) { 
+    padding-right: 3px;
+    font-size: 27px;
+    }
+
 
   }
 }

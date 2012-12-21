@@ -13,6 +13,17 @@
   @include border-radius(0 0 5px 5px);
   @include box-shadow(rgba(0, 0, 0, 0.19) 1px 1px 1px);
 
+
+      @include breakpoint(tablet) { 
+      @include center(800px);
+      height: 130px;
+      }
+
+      @include breakpoint(mobile) { 
+      @include center(350px);
+      height: 50px;
+      }
+
   h1 {
     position: absolute;
     left: 0;
@@ -24,6 +35,17 @@
     line-height: 124px;
     color: white;
 
+      @include breakpoint(tablet) {
+      font-size: 110px;
+      margin-top: -15px;
+      margin-left: 20px;
+      }
+      @include breakpoint(mobile) { 
+      font-size: 50px;
+      margin-top: -47px;
+      margin-left: 20px;
+      }
+
     a {
       text-decoration: none;
       color: white;
@@ -34,6 +56,17 @@
       position: relative;
       top: -60px;
       left: -4px;
+      @include breakpoint(tablet) { 
+      font-size: 11px;
+      left: -7px;
+      top: -55px;
+      }
+      @include breakpoint(mobile) { 
+      font-size: 8px;
+      position: relative;
+      top: -25px;
+      left: -3px;
+      }
     }
   }
 
@@ -43,6 +76,25 @@
     width: 425px;
     margin: 53px 15px 0 15px;
     text-align: center;
+    @include breakpoint(tablet) { 
+    width: 335px;
+    margin: 20px 5px;
+    text-align: left;
+    left: 53%;
+    top: 17px;
+    }
+    i {
+      display: none;
+      @include box-shadow(rgba(0, 0, 0, 0.21) 0.75px 0.75px 0.5px);
+      @include breakpoint(mobile) { 
+      display: inline;
+      position: relative;
+      right: -110px;
+      top: -27px;
+      font-size: 24px;
+      }
+    }
+
   }
 
   h2 {
@@ -51,12 +103,29 @@
     font-size: 26px;
     margin: 0;
     color: white;
+      @include breakpoint(tablet) { 
+        font-size: 21px;
+        margin: 5px 0px 0px 5px;
+        line-height: 21px;
+      }
+      @include breakpoint(mobile) { 
+        display: none;
+        font-size: 18px;
+        margin-top: 20px;
+        margin-left: 0px;
+      }
   }
 
   nav {
     height: 30px;
     width: 425px;
     margin: 8px 0 0 0;
+
+      @include breakpoint(tablet) { 
+      }
+      @include breakpoint(mobile) {   
+        display: none;
+      }
 
     // Setup the borders between the navigation elements:
     border-top: 1px solid $amoebaGreenDark;
@@ -73,6 +142,10 @@
         a {
           padding: 0px 10px 0px 10px;
           //10px spacing between elements
+
+          @include breakpoint(tablet) { 
+            padding: 0px 20px 0px 15px;
+          }
 
           // Typography settings:
           text-decoration: none;

@@ -65,3 +65,15 @@
     color: $amoebaGreenMedium;
   }
 }
+
+@mixin breakpoint($point) {
+  @if $point == desktop {
+    @media (max-width: 1600px) { @content; }
+  }
+  @else if $point == tablet {
+    @media (max-width: 800px) { @content; }
+  }
+  @else if $point == mobile {
+    @media (max-width: 650px)  { @content; }
+  }
+}

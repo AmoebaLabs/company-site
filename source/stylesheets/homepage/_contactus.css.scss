@@ -6,6 +6,9 @@
   height: 224px;
   top: 142px;
   left: 57px;
+  @include breakpoint(mobile) {
+    display: none;
+  }
 }
 
 #contact-questions {
@@ -14,13 +17,41 @@
   width: 350px;
   text-align: center;
 
+  @include breakpoint(tablet) { 
+    width: 300px;
+    left: 25px;
+  }
+  @include breakpoint(mobile) {
+    display: none;
+  }
+
+
   h1 {
     @extend %amoebaFontSemiBold;
     font-size: 103px;
     color: $amoebaGreen;
     margin: -10px 0 0 0;
     line-height: 103px;
+
+    @include breakpoint(tablet) { 
+      font-size: 87px;
+    }
+    @include breakpoint(mobile) { 
+      top: 0;
+      display: none;
+    }
+
     sup {
+    @include breakpoint(tablet) { 
+      top: -40px;
+      left: -3px;
+      font-size: 10px;
+    }
+    @include breakpoint(mobile) {
+    display: none; 
+    }
+
+
       position: relative;
       top: -50px;
       left: -3px;
@@ -33,6 +64,15 @@
     font-size: 17px;
     margin: 0 0 0 0;
     color: $amoebaGreenDark;
+
+    @include breakpoint(tablet) { 
+      font-size: 15px;
+      margin-top: -15px;
+    }
+    @include breakpoint(mobile) { 
+      font-size: 14px;
+      display: hidden;
+    }
   }
 
   #sayhi {
@@ -41,6 +81,17 @@
     margin-top: 8px;
     @include border-radius(3px);
     background-color: $amoebaGreen;
+
+    @include breakpoint(mobile) { 
+    @include border-radius(0);
+    left: 0;
+    right: 0;
+
+      @include breakpoint(mobile) {
+        display: none;
+      }
+    }
+
 
     a {
       text-decoration: none;
@@ -55,6 +106,21 @@
   width: 441px;
   height: 460px;
 
+  @include breakpoint(tablet) { 
+    margin-right: 20px;
+    width: 400px;
+  }
+  @include breakpoint(mobile) {
+    @include border-radius(0);
+    margin: 0;
+    width: 100%;
+    padding: 10px;
+    top: 25px;
+    position: relative;
+    margin-bottom: 15px;
+    height: 420px;
+  }
+
   @include border-radius(3%);
   @include box-shadow(rgba(0, 0, 0, 0.21) 1px 1px 1px);
 
@@ -65,11 +131,23 @@
   }
 
   form {
+    @include breakpoint(tablet) { 
+      padding: 90px 0px 10px 0px;
+    }
+    @include breakpoint(mobile) { 
+      padding: 90px 20px 0 0;;
+    }
+
     @include stretch;
     padding: 110px 15px 10px 15px;
 
     .contact-form-group {
       margin: 10px 50px 10px 50px;
+
+      @include breakpoint(mobile) { 
+        margin: 10px 15px 10px 15px;
+    }
+
     }
 
     label {
@@ -85,6 +163,7 @@
     }
 
     input:not([type=submit]):not([type=file]) {
+
       width: 175px;
       height: 24px;
       background-color: white;

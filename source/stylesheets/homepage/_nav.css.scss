@@ -1,7 +1,11 @@
 @import "compass/utilities/general/float";
 @import "compass/css3";
 
-nav {
+nav#standard {
+  @include breakpoint(mobile) { 
+  display: none;
+  }
+
   background-color: $amoebaGreen;
   margin-top: 32px;
   height: 42px;
@@ -15,12 +19,13 @@ nav {
     margin: 0;
     padding: 0;
     list-style: none;
+    
     li {
       display: block;
       position: relative;
       @include float-right;
       height: 30px;
-
+      
       // Setup the borders between the navigation elements:
       border-left: 1px solid $amoebaGreenMedium;
       margin-top: 6px;

@@ -32,6 +32,7 @@
   <%= stylesheet_link_tag "screen", :media => "screen" %>
   <%= stylesheet_link_tag "print", :media => "print" %>
 
+
   <!-- For now we only handle IE 10+. 9 is possible if we stop requiring pushstate -->
   <!--[if lt IE 10]>
     <%= stylesheet_link_tag "ie", :media => "screen, projection" %>
@@ -53,6 +54,10 @@
   <meta property='og:site_name' content='Amoeba Consulting'/>
   <meta property='og:type' content='article'/>
   <meta property='og:image' content='http://amoe.ba/images/external/mascot-square-200px.png'/>
+
+<!--Setting Alternate Device Viewing Settings-->
+
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
 </head>
 <body>
