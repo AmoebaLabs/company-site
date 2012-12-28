@@ -37,11 +37,13 @@
 
   #sayhi {
     font-size: 20px;
-    padding: 10px;
+    padding: 10px 10px;
     margin-top: 8px;
     @include border-radius(3px);
     background-color: $amoebaGreen;
-
+    #know {
+      font-size: 36px;
+    }
     a {
       text-decoration: none;
     }
