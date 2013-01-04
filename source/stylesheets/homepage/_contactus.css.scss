@@ -77,21 +77,25 @@
 
   #sayhi {
     font-size: 20px;
-    padding: 10px;
+    padding: 10px 10px;
     margin-top: 8px;
     @include border-radius(3px);
     background-color: $amoebaGreen;
 
     @include breakpoint(mobile) { 
-    @include border-radius(0);
-    left: 0;
-    right: 0;
+      @include border-radius(0);
+      left: 0;
+      right: 0;
 
+      // TODO: Why breakpoint this twice?
       @include breakpoint(mobile) {
         display: none;
       }
     }
 
+    #know {
+      font-size: 36px;
+    }
 
     a {
       text-decoration: none;
