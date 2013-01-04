@@ -1,12 +1,13 @@
 @import "compass/utilities/general/clearfix";
 @import "compass/css3";
 
-div.center404 {
+.center404 {
   width: 960px ;
   margin-left: auto;
   margin-right: auto;
+}
 
-div.info404 {
+.info404 {
   @include inline-block;
   @include box-sizing(border-box);
   width: 100%;
@@ -15,73 +16,74 @@ div.info404 {
   background-image: url('/images/404dish.svg');
   background-repeat: no-repeat;
 
-    h1 {
-      @extend %amoebaFontSemiBold;
-      font-size: 103px;
-      padding: 69px 0px 5px 0px;
-      margin-left: 100px;
-      margin-top: 20px;
-      color: white;
-    }
+  h1 {
+    @extend %amoebaFontSemiBold;
+    font-size: 103px;
+    padding: 69px 0px 5px 0px;
+    margin-left: 100px;
+    margin-top: 20px;
+    color: white;
+  }
 
-    h2 {
-      @extend %amoebaFontMedium;
-      line-height: 28px;
-      font-size: 28px;
-      margin-left: 275px;
-      margin-top: -150px;
-      color: $amoebaGreenDark;
-    }
+  h2 {
+    @extend %amoebaFontMedium;
+    line-height: 28px;
+    font-size: 28px;
+    margin-left: 275px;
+    margin-top: -150px;
+    color: $amoebaGreenDark;
+  }
 }
 
-div#home404 {
+#home404 {
   position: absolute;
   margin-left: 510px;
   margin-top: -230px;
   width: 350px;
-  text-align: center; 
+  text-align: center;
 
-    nav {
+  nav {
+    @extend %amoebaFontMedium;
+    line-height: 28px;
+    font-size: 21px;
+    margin: 100px, 50px;
+    color: $amoebaGreenDark;
+    text-align: left;
+
+     a.home {
+      font-size: 24px;
+      padding: 10px 45px;
+      margin-top: 50px;
+      @include border-radius(3px);
+      background-color: $amoebaGreen;
+      text-decoration: none;
+
+      &:hover {
+        @include transition(all 0.5s ease);
+        background-color: $amoebaGreenMedium;
+      }
+     }
+
+    h2 {
       @extend %amoebaFontMedium;
       line-height: 28px;
-      font-size: 21px;
-      margin: 100px, 50px;
+      font-size: 24px;
+      margin-left: 17px;
+      margin-top: 25px;
       color: $amoebaGreenDark;
-      text-align: left;
-    
-       a.home {
-        font-size: 24px;
-        padding: 10px 45px;
-        margin-top: 50px;
-        @include border-radius(3px);
-        background-color: $amoebaGreen;
-        text-decoration: none;
-                &:hover {
-                @include transition(all 0.5s ease);
-                background-color: $amoebaGreenMedium;
-                }
-       }
-
-      h2 {
-        @extend %amoebaFontMedium;
-        line-height: 28px;
-        font-size: 24px;
-        margin-left: 17px;
-        margin-top: 25px;
-        color: $amoebaGreenDark;
-      }
     }
+  }
 
-    ul {
-      list-style: none;
-      margin-top: -10px;
-      a{
+  ul {
+    list-style: none;
+    margin-top: -10px;
+    a{
       text-decoration: none;
-          &:hover {
-            @include socialHover; 
-            color: $amoebaGreenMedium;
-          }
+
+      &:hover {
+        @include socialHover;
+        color: $amoebaGreenMedium;
       }
     }
- }
+  }
 }

@@ -7,23 +7,14 @@
     font-size: 80px;
     margin-bottom: -12px;
 
-      @include breakpoint(tablet) { 
+    @include breakpoint(tablet) {
       font-size: 65px;
-      }
-      @include breakpoint(mobile) { 
+    }
+    @include breakpoint(mobile) {
       font-size: 42px;
       margin-bottom: 50px;
-      }
-
-  }
-
-  hr{
-    margin-bottom: -40px;
-    &:last-child {
-      @include breakpoint(mobile) {
-        margin-bottom: 0px;
-      }
     }
+
   }
 
   hr#topOfPage {
@@ -32,6 +23,10 @@
 
   hr#bottomOfPage {
     margin-bottom: -40px;
+
+    @include breakpoint(mobile) {
+      margin-bottom: 0px;
+    }
   }
 
   h2 {
@@ -40,21 +35,22 @@
     font-size: 24px;
     margin-bottom: 25px;
 
-      @include breakpoint(tablet) { 
+    @include breakpoint(tablet) {
       padding: 0 20px;
       font-size: 18px;
       margin-bottom: 0px
-      }
-      @include breakpoint(mobile) { 
+    }
+    @include breakpoint(mobile) {
       padding: 0 7px;
       font-size: 16px;
-      }
+    }
 
     hr {
       margin-bottom: 10px;
     }
 
   }
+
   .team-member {
     @include clearfix;
     margin-top: 40px;
@@ -68,11 +64,11 @@
       margin: 30px 0 0 0;
 
       @include breakpoint(tablet) { 
-      padding: 0 20px;
-      font-size: 42px;
+        padding: 0 20px;
+        font-size: 42px;
       }
       @include breakpoint(mobile) { 
-      text-align: center;
+        text-align: center;
       }
     }
 
@@ -82,11 +78,11 @@
       color: $amoebaGreenDark;
 
       @include breakpoint(tablet) { 
-      padding: 0 20px;
-      font-size: 36px;
+        padding: 0 20px;
+        font-size: 36px;
       }
       @include breakpoint(mobile) {
-      text-align: center;
+        text-align: center;
       }
 
     }
@@ -97,24 +93,22 @@
       font-size: 36px;
       line-height: 36px;
       padding-right: 15px;
-      @include breakpoint(mobile) { 
-      text-align: center;
-      }
 
-      @include breakpoint(tablet) { 
-      font-size: 32px;
-      padding-right: 0px;
-      &:first-child {
-        padding-left: 25px;
-      }
-      }
       @include breakpoint(mobile) { 
-      text-align: center;
+        text-align: center;
+      }
+      @include breakpoint(tablet) { 
+        font-size: 32px;
+        padding-right: 0px;
+        &:first-child {
+          padding-left: 25px;
+        }
       }
     }
+
     a {
       @include breakpoint(mobile) { 
-      text-align: center;
+        text-align: center;
       }
     }
 
@@ -123,11 +117,11 @@
       font-size: 14px;
 
       @include breakpoint(tablet) { 
-      padding: 0 25px;
-      font-size: 14px;
+        padding: 0 25px;
+        font-size: 14px;
       }
       @include breakpoint(mobile) { 
-      text-align: center;
+        text-align: center;
       }
     }
 
@@ -136,57 +130,52 @@
       height: 375px;
       background-color: $amoebaGreen;
       box-shadow: 1px 2px 5px;
-
       margin-bottom: 10px;
 
       @include breakpoint(mobile) { 
-      background-color: #FFF;
-      width: 300px;
-      height: 250px;
-      padding-bottom: 50px;
+        background-color: #FFF;
+        width: 300px;
+        height: 250px;
+        padding-bottom: 50px;
       }
 
 
       &.right {
         float: right;
         margin-left: 50px;
-      @include breakpoint(tablet) { 
-      margin-left: 10px;
-      margin-right: 15px;
-      }
-      @include breakpoint(mobile) { 
-      float: none;
-      margin-left: auto;
-      margin-right: auto;
-      }
+
+        @include breakpoint(tablet) {
+          margin-left: 10px;
+          margin-right: 15px;
+        }
+        @include breakpoint(mobile) {
+          float: none;
+          margin-left: auto;
+          margin-right: auto;
+        }
       }
 
       &.left {
         float: left;
         margin-right: 50px;
+
         @include breakpoint(tablet) { 
-        margin-right: 10px;
-        margin-left: 15px;
+          margin-right: 10px;
+          margin-left: 15px;
         }
         @include breakpoint(mobile) { 
-        float: none;
-        margin-left: auto;
-        margin-right: auto;
+          float: none;
+          margin-left: auto;
+          margin-right: auto;
         }
       }
-    img {
 
-      @include breakpoint(mobile) { 
-        width: 300px;
-        height: 300px;
+      img {
+        @include breakpoint(mobile) {
+          width: 300px;
+          height: 300px; //TODO: Why does the <img> have a height of 300 while the container is 250?
+        }
       }
-    }
     }
   }
 }
-
-// #footer.team {
-//   position: relative;
-//   top: 50px;
-//   margin-bottom: 15px;
-// }

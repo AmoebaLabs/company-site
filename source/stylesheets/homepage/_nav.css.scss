@@ -3,7 +3,7 @@
 
 nav#standard {
   @include breakpoint(mobile) { 
-  display: none;
+    display: none;
   }
 
   background-color: $amoebaGreen;
@@ -56,6 +56,70 @@ nav#standard {
 
         &:hover {
           background: $amoebaGreenMedium;
+        }
+      }
+    }
+  }
+}
+
+//TODO: Why is this at the bottom of #homepage?
+//TODO: Couldn't we remove this DIV and just use the NAV?
+#mobile-nav {
+  display: none;
+
+  @include breakpoint(tablet) {
+    display: none;
+  }
+  @include breakpoint(mobile) {
+    display: block;
+    width: 320px;
+    height: 300px;
+    top: 0px;
+    margin-top: -200px;
+    z-index: 999;
+    position: absolute;
+  }
+
+  nav{
+    background-color: $amoebaGreen;
+    margin-top: 200px;
+    margin-bottom: 15px;
+    width: 100%;
+    top: 0;
+
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+
+      li {
+        display: block;
+        position: relative;
+
+        // Setup the borders between the navigation elements:
+        border-bottom: 1px solid $amoebaGreenMedium;
+        margin-top: 6px;
+        margin-bottom: 6px;
+
+        // Style the links in the menu
+        a {
+          display: block;
+          text-decoration: none;
+          padding: 0px 100px 0px 100px;
+          white-space: nowrap;
+          margin: 5px;
+          padding: 5px;
+
+          // Typography settings:
+          @extend %amoebaFontMedium;
+          color: $amoebaGreenDark;
+          font-size: 36px;
+          line-height: 42px; //Center in the middle of the bar, 42px high
+          text-align: center;
+
+          &:active {
+            background: $amoebaGreenMedium;
+          }
         }
       }
     }

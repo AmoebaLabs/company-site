@@ -6,6 +6,7 @@
   height: 224px;
   top: 142px;
   left: 57px;
+
   @include breakpoint(mobile) {
     display: none;
   }
@@ -42,20 +43,19 @@
     }
 
     sup {
-    @include breakpoint(tablet) { 
-      top: -40px;
-      left: -3px;
-      font-size: 10px;
-    }
-    @include breakpoint(mobile) {
-    display: none; 
-    }
-
-
       position: relative;
       top: -50px;
       left: -3px;
       font-size: 12px;
+
+      @include breakpoint(tablet) {
+        top: -40px;
+        left: -3px;
+        font-size: 10px;
+      }
+      @include breakpoint(mobile) {
+        display: none;
+      }
     }
   }
 
@@ -87,7 +87,7 @@
       left: 0;
       right: 0;
 
-      // TODO: Why breakpoint this twice?
+      // TODO: Why breakpoint this inside itself?
       @include breakpoint(mobile) {
         display: none;
       }
@@ -135,23 +135,22 @@
   }
 
   form {
-    @include breakpoint(tablet) { 
-      padding: 90px 0px 10px 0px;
-    }
-    @include breakpoint(mobile) { 
-      padding: 90px 20px 0 0;;
-    }
-
     @include stretch;
     padding: 110px 15px 10px 15px;
+
+    @include breakpoint(tablet) {
+      padding: 90px 0px 10px 0px;
+    }
+    @include breakpoint(mobile) {
+      padding: 90px 20px 0 0;;
+    }
 
     .contact-form-group {
       margin: 10px 50px 10px 50px;
 
       @include breakpoint(mobile) { 
         margin: 10px 15px 10px 15px;
-    }
-
+      }
     }
 
     label {
