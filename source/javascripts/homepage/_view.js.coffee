@@ -8,6 +8,7 @@ class Amoeba.HomepageView
   _cacheElements: ->
     @$document = $(document)
     @$capabilityBox = $('.capability-box')
+    @$mascot = $('#mascot')
 
   _bindEvents: ->
     # Slide in Header when scrolled down far enough
@@ -20,6 +21,9 @@ class Amoeba.HomepageView
       ,(e) ->
         $(this).find('.rollover').fadeIn(@animationTime)
 
+    # Remove the animate-1s class after it animates
+    @$mascot.on 'transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd', =>
+      @$mascot.removeClass('animate-1s')
 
   _initStateMachine: ->
     @stateMachine = StateMachine.create(

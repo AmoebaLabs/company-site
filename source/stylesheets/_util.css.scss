@@ -3,6 +3,43 @@
 @import "compass/css3";
 @import "compass/utilities/general/clearfix";
 
+//-------- Mixins -----------
+@mixin center($elmWidth: $pageWidth) {
+  width: $elmWidth;
+  left: 50%;
+  margin-left: -$elmWidth/2;
+}
+
+@mixin rollover {
+  @include transition(all 1s ease);
+  &:hover {
+    opacity: 0.0;
+  }
+}
+
+@mixin socialHover {
+  @include transition(all 0.5s ease);
+  &:hover {
+    color: $amoebaGreenMedium;
+  }
+}
+
+@mixin breakpoint($point) {
+  @if $point == desktop {
+    @media (max-width: 1600px) { @content; }
+  }
+  @else if $point == tablet {
+    @media (max-width: 800px) { @content; }
+  }
+  @else if $point == mobile {
+    @media (max-width: 650px)  { @content; }
+  }
+}
+
+@mixin animate-all($duration: 1s) {
+  @include transition(all $duration ease-in-out);
+}
+
 //-------- Classes ----------- 
 .hidden {
   display: none;
@@ -45,35 +82,7 @@
   @include clearfix;
 }
 
-//-------- Mixins ----------- 
-@mixin center($elmWidth: $pageWidth) {
-  width: $elmWidth;
-  left: 50%;
-  margin-left: -$elmWidth/2;
+.animate-1s {
+  @include animate-all(1s);
 }
 
-@mixin rollover {
-  @include transition(all 1s ease);
-  &:hover {
-    opacity: 0.0;
-  }
-}
-
-@mixin socialHover {
-  @include transition(all 0.5s ease);
-  &:hover {
-    color: $amoebaGreenMedium;
-  }
-}
-
-@mixin breakpoint($point) {
-  @if $point == desktop {
-    @media (max-width: 1600px) { @content; }
-  }
-  @else if $point == tablet {
-    @media (max-width: 800px) { @content; }
-  }
-  @else if $point == mobile {
-    @media (max-width: 650px)  { @content; }
-  }
-}

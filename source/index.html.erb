@@ -26,14 +26,27 @@ title: Welcome to Amoeba
   </div>
 </div>
 
+<div id="mobile-button">
+  <i class="icon-reorder"></i>
+</div>
+
+<!-- Hidden on desktop browsers, but used on mobile devices for nav -->
+<div id="mobile-nav">
+  <nav>
+    <ul>
+      <li><a href="/team">Our Team</a></li>
+      <li><a href="/blog">Blog</a></li>
+      <li><a href="/contactus">Get In Touch</a></li>
+    </ul>
+  </nav>
+</div>
+
 <div id="homepage">
-  <div id="mobile-button">
-    <i class="icon-reorder"></i>
-  </div>
 
   <a href="/">
     <%= image_tag 'mascot.svg', :alt => "Amoeba Character", :id => "mascot" %>
   </a>
+
   <div id="logo">
     <h1><a href="/">Amoeba</a><sup>SM</sup></h1>
 
@@ -110,17 +123,6 @@ title: Welcome to Amoeba
   </div>
 
   <%= partial "homepage/team" %>
-
-  <!-- Hidden on desktop browsers, but used on mobile devices for nav -->
-  <div id="mobile-nav">
-    <nav>
-      <ul>
-        <li><a href="/team">Our Team</a></li>
-        <li><a href="/blog">Blog</a></li>
-        <li><a href="/contactus">Get In Touch</a></li>
-      </ul>
-    </nav>
-  </div>
 
   <div id="footer">
     <a href="http://facebook.com/AmoebaConsulting" target="_blank"><i class="icon-facebook-sign"></i></a>

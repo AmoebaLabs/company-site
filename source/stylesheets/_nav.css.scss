@@ -62,7 +62,21 @@ nav#standard {
   }
 }
 
-//TODO: Why is this at the bottom of #homepage?
+#mobile-button {
+  display: none;
+
+  @include breakpoint(mobile) {
+    top: 5px;
+    right: 10px;
+    display: block;
+    position: absolute;
+    background-color: $amoebaGreen;
+    padding: 6px;
+    @include border-radius(5px);
+    @include box-shadow(rgba(0, 0, 0, 0.21) 1px 1px 1px);
+  }
+}
+
 //TODO: Couldn't we remove this DIV and just use the NAV?
 #mobile-nav {
   display: none;
@@ -72,17 +86,12 @@ nav#standard {
   }
   @include breakpoint(mobile) {
     display: block;
-    width: 320px;
-    height: 300px;
-    top: 0px;
-    margin-top: -200px;
+    width: 100%;
     z-index: 999;
-    position: absolute;
   }
 
   nav{
     background-color: $amoebaGreen;
-    margin-top: 200px;
     margin-bottom: 15px;
     width: 100%;
     top: 0;

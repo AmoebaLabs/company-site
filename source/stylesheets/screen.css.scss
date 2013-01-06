@@ -7,6 +7,7 @@
 @import "util";
 @import "animations";
 @import "header";
+@import "nav";
 @import "homepage";
 @import "404";
 
@@ -15,6 +16,8 @@ body {
   @include background-image(linear-gradient(color-stops($greyLight 0%, white 50%)));
   height: 573px;
   background-repeat: repeat-x;
+
+  margin-top: 50px;
 
   // Font styles that apply all the way down:
   @extend %amoebaFontRegular;

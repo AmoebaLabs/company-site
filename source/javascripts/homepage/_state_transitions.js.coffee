@@ -32,6 +32,7 @@ class Amoeba.StateTransitions
 
     this._showCapabilities(false, animate)
 
+    @$mascot.addClass("animate-1s")
     # .contactus is used to position/ animate the mascot for the contactus form
     @$mascot.addClass("contactus")
 
@@ -45,6 +46,7 @@ class Amoeba.StateTransitions
   undoContactUsTransition: (to) ->
     this._showCapabilities(true, true)
 
+    @$mascot.addClass("animate-1s")
     # .contactus is used to position/ animate the mascot for the contactus form
     @$mascot.removeClass("contactus")
 

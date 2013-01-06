@@ -3,6 +3,9 @@
 
 #homepage {
   @include center;
+
+  position: relative;
+
   @include breakpoint(tablet) { 
     width: 100%;
     left: 0;
@@ -16,128 +19,95 @@
     margin-top: 0px;
   }
 
-  position: absolute;
-  top: 50px;
-
-  #mascot {
-    @include transition(all 1s ease-in-out);
-
-    @include breakpoint(tablet) { 
-      width: 300px;
-      height: auto; 
-    }
-    @include breakpoint(mobile) { 
-      width: 200px; 
-      height: auto; 
-      display: block;
-      margin-left: 18%;
-      margin-top: -35px;
-    }
-
-    width: 357px;
-    height: 339px;
-    position: absolute;
-    left: 9px;
-    z-index: 10;
-    top: 0px;
-  }
-
-  #mobile-button {
-    display: none;
-
-    @include breakpoint(tablet) {
-      display: none; //TODO: Is this necessary?
-    }
-    @include breakpoint(mobile) {
-      top: -40px;
-      right: 10px;
-      display: block;
-      position: absolute;
-      background-color: $amoebaGreen;
-      padding: 6px;
-      @include border-radius(5px);
-      @include box-shadow(rgba(0, 0, 0, 0.21) 1px 1px 1px);
-    }
-  }
-
-  #logo {
-    @include clearfix;
-
-    text-align: right;
-
-    h1 {
-      @include text-shadow($amoebaGrey 0px 0px 8px);
-
-      @extend %amoebaFontSemiBold;
-      font-size: 153px;
-      line-height: 130px;
-      padding: 69px 0px 5px 0px;
-      margin: 0 -7px 0 0;
-      color: $amoebaGreen;
-
-      @include breakpoint(tablet) {
-        font-size: 145px;
-        padding: 0px 20px 0px 0px;
-        margin-top: 20px;
-      }
-      @include breakpoint(mobile) {
-        font-size: 85px;
-        padding: 0px 0px 0px 0px;
-        margin-top: 125px;
-        text-align: center;
-      }
-
-      a {
-        text-decoration: none;
-        color: $amoebaGreen;
-        font-weight: normal;
-      }
-
-      sup {
-        font-size: 14px;
-        position: absolute;
-        top: 110px;
-
-        @include breakpoint(tablet){
-          font-size: 12px;
-          position: absolute;
-          top: 55px;
-          left: 740px;
-        }
-        @include breakpoint(mobile){
-          font-size: 11px;
-          position: absolute;
-          top: 170px;
-          left: 305px;
-        }
-      }
-    }
-
-    h2 {
-      @extend %amoebaFontMedium;
-      line-height: 28px;
-      font-size: 28px;
-      margin: 0;
-      color: $amoebaGreenDark;
-
-      @include breakpoint(tablet) {
-        line-height: 28px;
-        font-size: 30px;
-        margin-top: -10px;
-        padding: 0px 20px 0px 0px;
-      }
-      @include breakpoint(mobile) {
-        font-size: 18px;
-        margin-top: -35px;
-        padding: 0px 0px 0px 0px;
-        text-align: center;
-      }
-    }
-  }
-
-  @import "homepage/nav";
-  @import "homepage/contactus";
   @import "homepage/capabilities";
   @import "homepage/team";
   @import "homepage/footer";
 }
+
+#logo {
+  @include pie-clearfix;
+
+  text-align: right;
+  position: relative;
+
+  h1 {
+    @include text-shadow($amoebaGrey 0px 0px 8px);
+
+    @extend %amoebaFontSemiBold;
+    font-size: 153px;
+    line-height: 130px;
+    padding: 69px 0px 5px 0px;
+    margin: 0 -7px 0 0;
+    color: $amoebaGreen;
+
+    @include breakpoint(tablet) {
+      font-size: 145px;
+      padding: 0px 20px 0px 0px;
+      margin-top: 20px;
+    }
+    @include breakpoint(mobile) {
+      font-size: 85px;
+      padding: 0px 0px 0px 0px;
+      text-align: center;
+    }
+
+    a {
+      text-decoration: none;
+      color: $amoebaGreen;
+      font-weight: normal;
+    }
+
+    sup {
+      font-size: 14px;
+      position: absolute;
+      top: 110px;
+
+      @include breakpoint(tablet){
+        font-size: 12px;
+        position: relative;
+        top: -70px;
+        left: 0;
+      }
+      @include breakpoint(mobile){
+        font-size: 11px;
+        position: relative;
+        top: -40px;
+        left: 0;
+      }
+    }
+  }
+
+  h2 {
+    @extend %amoebaFontMedium;
+    line-height: 28px;
+    font-size: 28px;
+    margin: 0;
+    color: $amoebaGreenDark;
+  }
+}
+
+#mascot {
+  width: 357px;
+  height: 339px;
+  z-index: 10;
+
+  position: absolute;
+  top: 0px;
+  left: 9px;
+
+  @include breakpoint(tablet) {
+    width: 300px;
+    height: auto;
+  }
+
+  @include breakpoint(mobile) {
+    width: 200px;
+    height: auto;
+    //display: block;
+    position: relative;
+
+    @include center(200px);
+  }
+}
+
+@import "homepage/contactus";
