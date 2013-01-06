@@ -25,6 +25,10 @@ class Amoeba.HomepageView
     @$mascot.on 'transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd', =>
       @$mascot.removeClass('animate-1s')
 
+    # Mobile navigation
+    $("#mobile-button").on 'click', ->
+      $("#mobile-nav").slideToggle(@animationTime)
+
   _initStateMachine: ->
     @stateMachine = StateMachine.create(
 
