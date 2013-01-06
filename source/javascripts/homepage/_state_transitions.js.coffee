@@ -85,7 +85,7 @@ class Amoeba.StateTransitions
 
   # also called when already in team state, but user clicks team button.  Now scrolls when button clicked
   scrollToTeamOffset: (animate = false) ->
-    # Scroll to the top of the #team div
+    # Scroll to the top of the #team div (header.outerHeight plus a little bit is 150)
     this._scrollToOffset(@$team.offset().top-150, animate)
 
   _isScrolling: ->
