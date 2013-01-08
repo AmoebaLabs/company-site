@@ -29,12 +29,13 @@
     @media (max-width: 1600px) { @content; }
   }
   @else if $point == tablet {
-    @media (max-width: 800px) { @content; }
+    @media (max-width: 910px) { @content; }
   }
   @else if $point == mobile {
-    @media (max-width: 650px)  { @content; }
+    @media (max-width: 760px)  { @content; }
   }
 }
+
 
 @mixin animate-all($duration: 1s) {
   @include transition(all $duration ease-in-out);
