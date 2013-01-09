@@ -41,6 +41,15 @@
   @include transition(all $duration ease-in-out);
 }
 
+//-------- Extensions --------
+%mobileOnly {
+  display: none;
+
+  @include breakpoint(mobile) {
+    display: inline;
+  }
+}
+
 //-------- Classes ----------- 
 .hidden {
   display: none;
@@ -87,3 +96,7 @@
   @include animate-all(1s);
 }
 
+// Mobile-only styles
+.mobile {
+  @extend %mobileOnly;
+}

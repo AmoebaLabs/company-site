@@ -14,9 +14,12 @@ title: Welcome to Amoeba
   <h1><a href="/">Amoeba</a><sup>SM</sup></h1>
 
   <div class="header-right">
-    <i class="icon-reorder"></i>
+    <span id="mobile-button">
+      <span class="jump-to">Jump To</span>
+      <i class="icon-reorder"></i>
+    </span>
     <h2>Remarkable Development and Design</h2>
-    <nav>
+    <nav id="main">
       <ul>
         <li><a href="/team">Our Team</a></li>
         <li><a href="/contactus">Get In Touch</a></li>
@@ -26,20 +29,14 @@ title: Welcome to Amoeba
   </div>
 </div>
 
-<div id="mobile-button">
-  <i class="icon-reorder"></i>
-</div>
-
 <!-- Hidden on desktop browsers, but used on mobile devices for nav -->
-<div id="mobile-nav">
-  <nav>
-    <ul>
-      <li><a href="/team">Our Team</a></li>
-      <li><a href="/blog">Blog</a></li>
-      <li><a href="/contactus">Get In Touch</a></li>
-    </ul>
-  </nav>
-</div>
+<nav id="mobile-nav">
+  <ul>
+    <li><a href="/team">Our Team</a></li>
+    <li><a href="/blog">Blog</a></li>
+    <li><a href="/contactus">Get In Touch</a></li>
+  </ul>
+</nav>
 
 <div id="homepage">
 
@@ -51,7 +48,7 @@ title: Welcome to Amoeba
     <h1><a href="/">Amoeba</a><sup>SM</sup></h1>
 
     <h2>Remarkable Development and Design</h2>
-    <nav id="standard">
+    <nav>
       <ul>
         <li><a href="/blog">Blog</a></li>
         <li><a href="/contactus">Get In Touch</a></li>

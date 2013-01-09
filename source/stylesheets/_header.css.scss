@@ -18,8 +18,14 @@
     height: 130px;
   }
   @include breakpoint(mobile) {
-    @include center(350px);
+    position: relative;
+    width: 100%;
     height: 50px;
+    left: 0;
+    margin-left: 0;
+    margin-top: -50px; // Body padding
+    @include border-radius(0);
+    @include box-shadow(none);
   }
 
   h1 {
@@ -40,8 +46,9 @@
     }
     @include breakpoint(mobile) {
       font-size: 50px;
-      margin-top: -47px;
-      margin-left: 20px;
+      line-height: 50px;
+      margin: 0;
+      padding: 0 0 0 10px;
     }
 
     a {
@@ -69,35 +76,6 @@
     }
   }
 
-  .header-right {
-    position: absolute;
-    right: 0;
-    width: 425px;
-    margin: 53px 15px 0 15px;
-    text-align: center;
-
-    @include breakpoint(tablet) { 
-      width: 335px;
-      margin: 20px 5px;
-      text-align: left;
-      left: 53%;
-      top: 17px;
-    }
-
-    i {
-      display: none;
-      @include box-shadow(rgba(0, 0, 0, 0.21) 0.75px 0.75px 0.5px);
-
-      @include breakpoint(mobile) { 
-        display: inline;
-        position: relative;
-        right: -110px;
-        top: -27px;
-        font-size: 24px;
-      }
-    }
-  }
-
   h2 {
     @extend %amoebaFontMedium;
     line-height: 26px;
@@ -117,46 +95,145 @@
       margin-left: 0px;
     }
   }
+}
 
-  nav {
-    height: 30px;
-    width: 425px;
-    margin: 8px 0 0 0;
+.header-right {
+  position: absolute;
+  right: 0;
+  width: 425px;
+  margin: 53px 15px 0 15px;
+  text-align: center;
 
-    // Hide the default header#nav on mobile. We have our own
-    @include breakpoint(mobile) {
-      display: none;
+  @include breakpoint(tablet) {
+    width: 335px;
+    margin: 20px 5px;
+    text-align: left;
+    left: 53%;
+    top: 17px;
+  }
+  @include breakpoint(mobile) {
+    width: 200px;
+    margin: 0;
+    text-align: right;
+    vertical-align: middle;
+    right: 10px;
+    top: 10px;
+    left: auto;
+  }
+
+  // This span surrounds the next two elements
+  #mobile-button {
+    &:hover {
+      cursor: pointer;
     }
+  }
 
-    // Setup the borders between the navigation elements:
-    border-top: 1px solid $amoebaGreenDark;
+  // This is the "Jump To" text on mobile
+  .jump-to {
+    @extend %mobileOnly;
+    @extend %amoebaFontSemiBold;
+    font-size: 12px;
+    text-align: left;
+    margin-right: 5px;
+  }
 
-    ul {
-      margin: 2px 0 0 0;
-      padding: 0;
-      list-style: none;
-      li {
-        display: inline;
-        margin-left: auto;
-        margin-right: auto;
+// This is the mobile button icon
+  i {
+    display: none;
+    @include box-shadow(rgba(0, 0, 0, 0.21) 0.75px 0.75px 0.5px);
 
-        a {
-          padding: 0px 10px 0px 10px; //10px spacing between elements
+    @include breakpoint(mobile) {
+      display: inline;
+      font-size: 24px;
+      vertical-align: middle;
+    }
+  }
+}
 
-          @include breakpoint(tablet) { 
-            padding: 0px 20px 0px 15px;
-          }
+nav#main {
+  height: 30px;
+  width: 425px;
+  margin: 8px 0 0 0;
 
-          // Typography settings:
-          text-decoration: none;
-          @extend %amoebaFontMedium;
-          color: $amoebaGreenDark;
-          font-size: 21px;
-          white-space: nowrap;
+  // Setup the borders between the navigation elements:
+  border-top: 1px solid $amoebaGreenDark;
 
-          &:hover {
-            color: white;
-          }
+  @include breakpoint(mobile) {
+    display: none;
+  }
+
+  ul {
+    margin: 2px 0 0 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+      display: inline;
+      margin-left: auto;
+      margin-right: auto;
+
+      a {
+        padding: 0px 10px 0px 10px; //10px spacing between elements
+
+        // Typography settings:
+        text-decoration: none;
+        @extend %amoebaFontMedium;
+        color: $amoebaGreenDark;
+        font-size: 21px;
+        white-space: nowrap;
+
+        @include breakpoint(tablet) {
+          padding: 0px 20px 0px 15px;
+        }
+
+        &:hover {
+          color: white;
+        }
+      }
+    }
+  }
+}
+
+nav#mobile-nav {
+  display: none;
+
+  position: relative;
+  background-color: $amoebaGreen;
+  width: 100%;
+  top: 0px;
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+      display: block;
+      position: relative;
+
+      // Setup the borders between the navigation elements:
+      border-top: 1px solid $amoebaGreenMedium;
+
+      &:last-child {
+        border-bottom: 1px solid $amoebaGreenMedium;
+      }
+
+      // Style the links in the menu
+      a {
+        display: block;
+        text-decoration: none;
+        white-space: nowrap;
+        padding-bottom: 1px;
+
+        // Typography settings:
+        @extend %amoebaFontMedium;
+        color: $amoebaGreenDark;
+        font-size: 36px;
+        line-height: 50px; //Center in the middle of the bar, 42px high
+        text-align: center;
+
+        &:active {
+          background: $amoebaGreenMedium;
         }
       }
     }

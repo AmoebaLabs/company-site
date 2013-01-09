@@ -1,0 +1,66 @@
+@import "compass/utilities/general/float";
+@import "compass/css3";
+
+nav {
+  background-color: $amoebaGreen;
+  margin-top: 32px;
+  height: 42px;
+  width: 530px;
+
+  // Align it right under our subheading
+  display: block;
+  @include float-right;
+
+  @include breakpoint(tablet) {
+    width: 80%;
+  }
+  @include breakpoint(mobile) {
+    display: none;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    
+    li {
+      display: block;
+      position: relative;
+      @include float-right;
+      height: 30px;
+      
+      // Setup the borders between the navigation elements:
+      border-left: 1px solid $amoebaGreenMedium;
+      margin-top: 6px;
+      margin-bottom: 6px;
+
+      // Last menu item doesn't need a border
+      &:last-child {
+        border-left: none;
+      }
+
+      // Style the links in the menu
+      a {
+        display: block;
+        text-decoration: none;
+        height: 42px; // Height is full size of nav bar so hover fills it
+        padding: 0px 40px 0px 40px; //40px spacing between elements
+        white-space: nowrap;
+
+        // Compensate for the border between elements
+        margin: -6px -1px -6px -1px;
+
+        // Typography settings:
+        @extend %amoebaFontMedium;
+        color: $amoebaGreenDark;
+        font-size: 21px;
+        line-height: 42px; //Center in the middle of the bar, 42px high
+        text-align: center;
+
+        &:hover {
+          background: $amoebaGreenMedium;
+        }
+      }
+    }
+  }
+}
