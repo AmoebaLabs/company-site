@@ -19,13 +19,18 @@
 
   hr#topOfPage {
     margin-bottom: -10px;
+
+    @include breakpoint(mobile) {
+      margin-top: -50px;
+    }
   }
 
   hr#bottomOfPage {
     margin-bottom: -40px;
 
     @include breakpoint(mobile) {
-      margin-bottom: 0px;
+      margin-top: 15px;
+      margin-bottom: -60px;
     }
   }
 
