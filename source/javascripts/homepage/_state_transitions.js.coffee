@@ -32,13 +32,17 @@ class Amoeba.StateTransitions
 
     this._showCapabilities(false, animate)
 
-    @$mascot.addClass("animate-1s")
     # .contactus is used to position/ animate the mascot for the contactus form
-    @$mascot.addClass("contactus")
+    @$mascot.addClassWithTransition
+      className: "contactus",
+      duration: @animationTime
 
     # Show the sayhi & contactus divs
     @$contactQuestions.fadeIn(@animationTime)
-    @$contactus.addClass("animate").removeClass("hidden")
+    @$contactus.removeClass("hidden").playKeyframe
+        name: 'contactus-in'
+        duration: @animationTime
+        easing: 'ease-in'
 
     # Slide in Nav bar
     this._showNavBar(true, animate)
@@ -46,9 +50,10 @@ class Amoeba.StateTransitions
   undoContactUsTransition: (to) ->
     this._showCapabilities(true, true)
 
-    @$mascot.addClass("animate-1s")
     # .contactus is used to position/ animate the mascot for the contactus form
-    @$mascot.removeClass("contactus")
+    @$mascot.removeClassWithTransition
+      className: "contactus",
+      duration: @animationTime
 
     # Show the sayhi & contactus divs
     @$contactQuestions.fadeOut(@animationTime)

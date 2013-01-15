@@ -1,6 +1,7 @@
 class Amoeba.HomepageView
   constructor: ->
     @animationTime = 1000
+
     this._cacheElements()
     this._initStateMachine()
     this._bindEvents()
@@ -20,10 +21,6 @@ class Amoeba.HomepageView
         $(this).find('.rollover').fadeOut(@animationTime)
       ,(e) ->
         $(this).find('.rollover').fadeIn(@animationTime)
-
-    # Remove the animate-1s class after it animates
-    @$mascot.on 'transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd', =>
-      @$mascot.removeClass('animate-1s')
 
     # Mobile navigation
     $("#mobile-button").on 'click', ->

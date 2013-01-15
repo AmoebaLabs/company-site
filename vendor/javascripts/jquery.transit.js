@@ -746,7 +746,7 @@
 
     // Chainability.
     return this;
-  }
+  };
 
   // ### pauseKeyframe()
   // Pauses a currently running keyframe animation.
@@ -774,7 +774,7 @@
 
     // Chainability.
     return this;
-  }
+  };
 
   // ### resetKeyframe()
   // Stops and removes any keyframe animations from the specified element. This will also
@@ -788,7 +788,162 @@
     this.css({animationPlayState: 'running', animation: 'none'});
     this.data('keyframe', false);
     this.unbind(support.animationEnd);
+  };
+
+  // ### runTransition()
+  // Runs a given function against self, and applies the transition if it can. Note that this
+  // function assumes that all the input is correctly adjusted (i.e. ms after time values, etc).
+  //
+  function runTransition($el, callToMake, transition, callback) {
+    // Build the CSS line
+    var transitionValue = [transition.properties, transition.duration, transition.easing, transition.delay].join(' ');
+
+    // Compute delay until callback. If this becomes 0, don't bother setting the transition property.
+    var work = $.transit.enabled && support.transition;
+    var callbackDelay = work ? (parseInt(transition.duration, 10) + parseInt(transition.delay, 10)) : 0;
+
+    // If we aren't going to use CSS3 transitions, apply the changes immediately.
+    if (callbackDelay === 0) {
+      var fn = function(next) {
+        callToMake.apply($el);
+        if (callback) { callback.apply($el); }
+        if (next) { next(); }
+      };
+
+      callOrQueue($el, true, fn);
+      return $el;
+    }
+
+    // Save the old transitions of each element so we can restore it later.
+    var oldTransitions = {};
+
+    var run = function(nextCall) {
+      var bound = false;
+
+      // Prepare the callback.
+      var cb = function() {
+        if (bound) { $el.unbind(transitionEnd, cb); }
+
+        if (callbackDelay > 0) {
+          $el.each(function() {
+            this.style[support.transition] = (oldTransitions[this] || null);
+          });
+        }
+
+        if (typeof callback === 'function') { callback.apply($el); }
+        if (typeof nextCall === 'function') { nextCall(); }
+      };
+
+      if ((callbackDelay > 0) && (transitionEnd) && ($.transit.useTransitionEnd)) {
+        // Use the 'transitionend' event if it's available.
+        bound = true;
+        $el.bind(transitionEnd, cb);
+      } else {
+        // Fallback to timers if the 'transitionend' event isn't supported.
+        window.setTimeout(cb, callbackDelay);
+      }
+
+      // Apply transitions.
+      $el.each(function() {
+        if (callbackDelay > 0) {
+          this.style[support.transition] = transitionValue;
+        }
+        callToMake.apply($el);
+      });
+    };
+
+    // Defer running. This allows the browser to paint any pending CSS it hasn't
+    // painted yet before doing the transitions.
+    var deferredRun = function(next) {
+      this.offsetWidth; // force a repaint
+      run(next);
+    };
+
+    // Use jQuery's fx queue.
+    callOrQueue($el, true, deferredRun);
   }
+
+  // ### addClassWithTransition(className, transition, callback)
+  // Add the class specified and uses a CSS3 transition with the properties given. Only
+  // the class is mandatory, everything else will default to reasonable values.
+  //
+  // class = 'myClass'
+  // transition = {'properties', 'duration', 'easing'}
+  // callback = function() {...}
+  //
+  // Example:
+  //
+  //     $("#foo").addClassWithTransition('myClass',
+  //                                      {properties: 'all', duration: 1000, easing: 'ease-in'},
+  //                                      function() { ... } );
+  //
+  //     // Alternate syntax
+  //     $("...").addClassWithTransition({
+  //       className: 'myClass'
+  //       properties: 'all'
+  //       duration: 1000,
+  //       easing: 'ease-in',
+  //       complete: function() { /* ... */ }
+  //      });
+  //
+  $.fn.addClassWithTransition = function (className, transition, callback) {
+    this.addOrRemoveClassWithTransition(className,true,transition,callback);
+  };
+
+  // ### removeClassWithTransition(className, transition, callback)
+  // Removes the class specified and uses a CSS3 transition with the properties given. Only
+  // the class is mandatory, everything else will default to reasonable values.
+  //
+  $.fn.removeClassWithTransition = function(className, transition, callback) {
+    this.addOrRemoveClassWithTransition(className, false, transition, callback);
+  };
+
+  // ### addOrRemoveClassWithTransition(classname, addClass, transition, callback)
+  // Works like add/remove class functions, but has a boolean which allows specification of
+  // add (true), or remove (false) via the addClass variable.
+  //
+  $.fn.addOrRemoveClassWithTransition = function(className, addClass, transition, callback) {
+    var self  = this;
+
+    // Alternate syntax
+    if (typeof className == 'object') {
+      var arguments = className;
+      className = arguments.className;
+      transition = { properties: arguments.properties,
+                     duration: arguments.duration,
+                     easing: arguments.easing,
+                     delay: arguments.delay};
+
+      if (typeof arguments.complete !== 'undefined') {
+        callback = arguments.callback;
+      }
+    }
+
+    // Set some default transition arguments.
+    transition = $.extend({
+      properties: 'all',
+      duration: $.fx.speeds._default,
+      easing: $.cssEase._default,
+      delay: 0
+    }, transition || {});
+
+    transition.duration = toMS(transition.duration);
+    transition.delay = toMS(transition.delay);
+
+    var transformFunction;
+
+    if (addClass) {
+      transformFunction = function(){self.addClass(className);}
+    } else {
+      transformFunction = function(){self.removeClass(className);}
+    }
+
+    // Call the transition
+    runTransition(self, transformFunction, transition, callback);
+
+    // Chainability.
+    return this;
+  };
 
   function registerCssHook(prop, isPixels) {
     // For certain properties, the 'px' should not be implied.

@@ -130,10 +130,6 @@
 
   background-color: $amoebaGrey;
 
-  &.animate {
-    @include animation(contactus-in 1s ease-in);
-  }
-
   form {
     @include stretch;
     padding: 110px 15px 10px 15px;
