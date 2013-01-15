@@ -23,7 +23,10 @@
     left: 25px;
   }
   @include breakpoint(mobile) {
-    display: none;
+    top: 25px;
+    position: relative;
+    width: 100%;
+    left: 0;
   }
 
 
@@ -70,8 +73,7 @@
       margin-top: -15px;
     }
     @include breakpoint(mobile) { 
-      font-size: 14px;
-      display: hidden;
+      font-size: 18px;
     }
   }
 
@@ -82,15 +84,11 @@
     @include border-radius(3px);
     background-color: $amoebaGreen;
 
-    @include breakpoint(mobile) { 
+    @include breakpoint(mobile) {
       @include border-radius(0);
       left: 0;
       right: 0;
-
-      // TODO: Why breakpoint this inside itself?
-      @include breakpoint(mobile) {
-        display: none;
-      }
+      width: 100%;
     }
 
     #know {
@@ -119,10 +117,11 @@
     margin: 0;
     width: 100%;
     padding: 10px;
-    top: 25px;
+    top: -43px;
     position: relative;
-    margin-bottom: 15px;
+    margin-bottom: 0px;
     height: 400px;
+    z-index: -99;
   }
 
   @include border-radius(3%);
@@ -215,5 +214,9 @@
     padding: 15px 0 0 37px;
     @extend %amoebaFontMedium;
     font-size: 28px;
+
+    @include breakpoint(mobile) {
+      display: none;
+    }
   }
 }
