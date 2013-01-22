@@ -12,10 +12,6 @@ class Amoeba.HomepageView
     @$mascot = $('#mascot')
 
   _bindEvents: ->
-    # Slide in Header when scrolled down far enough
-    @$document.on 'scroll.header', =>
-      @stateTransitions.updateOnScrollEvent(true)
-
     # Capabilities hovers
     @$capabilityBox.hover (e) ->
         $(this).find('.rollover').fadeOut(@animationTime)
@@ -65,11 +61,10 @@ class Amoeba.HomepageView
   showContact: -> 
     @stateMachine.contactevt()
   
-  showTeam: -> 
-    # we are already team, but user clicks again on team button, scroll to right place to avoid doing nothing
-    if (@stateMachine.is('team'))
-      @stateTransitions.scrollToTeamOffset(true);
-
+  showTeam: ->
+    # Scroll to top to avoid doing nothing if we're already on team
+    @stateTransitions.scrollToTop() if @stateMachine.is('team')
+    # Fire transition event
     @stateMachine.teamevt()
 
   showHome: -> 

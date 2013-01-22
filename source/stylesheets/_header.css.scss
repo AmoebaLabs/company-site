@@ -87,7 +87,7 @@
 
     @include breakpoint(tablet) {
       font-size: 21px;
-      margin: 5px 0px 0px 5px;
+      margin: 5px 0px 0px 10px;
       line-height: 21px;
     }
     @include breakpoint(mobile) {
@@ -160,6 +160,9 @@ nav#main {
   // Setup the borders between the navigation elements:
   border-top: 1px solid $amoebaGreenDark;
 
+  @include breakpoint(tablet) {
+    width: 345px;
+  }
   @include breakpoint(mobile) {
     display: none;
   }

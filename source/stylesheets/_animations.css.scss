@@ -33,3 +33,14 @@
     @include opacity(1);
   }
 }
+
+// ---------------------------------------------------------------------------
+@include keyframes(team-in) {
+  0% {
+    @include opacity(0);
+    @include transform(translateY(60px));
+  } 100% {
+    @include opacity(1);
+    @include transform(translateY(0));
+  }
+}

@@ -27,15 +27,18 @@ class Amoeba.StateTransitions
 
   contactUsTransition: (from) ->
     animate = not (from is 'none')
+    animationTime = if animate then @animationTime else 0
 
     this._scrollToOffset(0, animate)
 
     this._showCapabilities(false, animate)
 
-    # .contactus is used to position/ animate the mascot for the contactus form
+    # .contactus is used to position the mascot for the contactus form
     @$mascot.addClassWithTransition
       className: "contactus",
       duration: @animationTime
+
+    @$mascot.show() if from is 'home'
 
     # Show the sayhi & contactus divs
     @$contactQuestions.fadeIn(@animationTime)
@@ -57,27 +60,30 @@ class Amoeba.StateTransitions
 
     # Show the sayhi & contactus divs
     @$contactQuestions.fadeOut(@animationTime)
-    @$contactus.addClass("hidden").removeClass("animate")
+    @$contactus.addClass("hidden")
 
   teamTransition: (from) ->
     animate = not (from is 'none')
+    animationTime = if animate then @animationTime else 0
+
+    # Scroll to top if we're animating (not an initial page load)
+    @scrollToTop() if animate
 
     # Slide in Nav bar
     this._showNavBar(true, animate)
 
+    # Hide homepage top elements
+    this._showCapabilities(false, animate)
+    @$mascot.fadeOut animationTime, =>
+      # Show team, after homepage elements are gone
+      @$team.removeClass("hidden").playKeyframe
+        name: 'team-in'
+        duration: @animationTime
+
     # Move footer
-    if animate
-      @$footer.fadeOut @animationTime, =>
-        @$footer.addClass("team")
-        @$footer.show()
-    else
+    @$footer.fadeOut animationTime, =>
       @$footer.addClass("team")
-      @$footer.show
-
-    # Show team
-    @$team.fadeIn @animationTime
-
-    this.scrollToTeamOffset(animate)
+      @$footer.show()
 
   undoTeamTransition: (to) ->
     # Move footer
@@ -86,12 +92,15 @@ class Amoeba.StateTransitions
     @$footer.fadeIn(@animationTime)
 
     # Hide team
-    @$team.fadeOut(@animationTime)
+    @$team.addClass("hidden")
 
-  # also called when already in team state, but user clicks team button.  Now scrolls when button clicked
-  scrollToTeamOffset: (animate = false) ->
-    # Scroll to the top of the #team div (header.outerHeight plus a little bit is 150)
-    this._scrollToOffset(@$team.offset().top-150, animate)
+    # Show homepage top elements
+    if to is 'home'
+      this._showCapabilities(true, true)
+      @$mascot.fadeIn(@animationTime)
+
+  scrollToTop: ->
+    this._scrollToOffset(0, true)
 
   _isScrolling: ->
     return @scrollingCount > 0
@@ -101,58 +110,23 @@ class Amoeba.StateTransitions
       @scrollingCount += 1;
       $('body, html').animate({scrollTop: "#{offset}px"}, @animationTime, 'swing', =>
         @scrollingCount -= 1
-
-        # update after done to make sure it's in the right state
-        if (not this._isScrolling())
-          this.updateOnScrollEvent(animate)
         )
     else
       $('body, html').scrollTop(offset)
 
-  updateOnScrollEvent: (animate = false) =>
-    # bail out if we are doing an animated scroll, we will update things at the end
-    if this._isScrolling()
-      return
-
-    if (not @updatingOnScrollEvent)
-      @updatingOnScrollEvent = true;
-
-      callback = =>   
-        # don't slide up the header if on the contact page
-        if @stateMachine.is('team')
-          if @$document.scrollTop() < @$logoNav.offset().top
-            this._showNavBar(false, animate)
-          else 
-            this._showNavBar(true, animate)
-
-        @updatingOnScrollEvent = false;
-
-      # Set a timer for performance / anti-glitchey reasons
-      setTimeout(callback, 100)
-
   _showCapabilities: (show, animate = false) ->
+    animationTime = if animate then @animationTime else 0
     $.each ["#logo", ".capabilities"], (index, klass) =>
       if show
-        if animate
-          $(klass).fadeIn(@animationTime)
-        else
-          $(klass).show()
+        $(klass).fadeIn(animationTime)
       else
-        if animate
-          $(klass).fadeOut(@animationTime)
-        else
-          $(klass).hide()
+        $(klass).fadeOut(animationTime)
 
   _showNavBar: (show, animate) ->
+    animationTime = if animate then 400 else 0
     if show
-      if animate
-        @$header.slideDown()
-      else
-        @$header.show()
+      @$header.slideDown(animationTime)
     else
-      if animate
-        @$header.slideUp()
-      else
-        @$header.hide()
+      @$header.slideUp(animationTime)
 
    

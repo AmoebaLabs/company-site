@@ -1,4 +1,11 @@
 #team {
+  position: relative;
+  top: 90px;
+
+  @include breakpoint(mobile) {
+    top: -20px;
+  }
+
   h1, h2 {
     text-align: center;
   }
@@ -26,11 +33,13 @@
   }
 
   hr#bottomOfPage {
-    margin-bottom: -40px;
+    margin-bottom: 50px;
 
+    @include breakpoint(tablet) {
+      margin-bottom: 40px;
+    }
     @include breakpoint(mobile) {
       margin-top: 15px;
-      margin-bottom: -60px;
     }
   }
 
