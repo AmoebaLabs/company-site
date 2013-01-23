@@ -47,24 +47,28 @@ class Amoeba.StateTransitions
 
     # Show the sayhi & contactus divs
     @$contactQuestions.fadeIn(@animationTime)
-    @$contactus.removeClass("hidden").playKeyframe
-        name: 'contactus-in'
-        duration: @animationTime
-        easing: 'ease-in'
+
+    @$contactus.removeClass("hidden")
+    @$contactus.css {perspective: '400px', opacity: 0, rotateY: '-90deg'}
+    @$contactus.transition {perspective: '400px', opacity: 1, rotateY: '0deg'}, @animationTime, 'ease-in'
 
     # Slide in Nav bar
     this._showNavBar(true, animate)
 
   undoContactUsTransition: (to) ->
-    # .contactus is used to position/ animate the mascot for the contactus form
-    @$mascot.hide() unless to is 'home' # hide to avoid seeing it resize after class removed
-    @$mascot.removeClassWithTransition
-      className: "contactus",
-      duration: if to is 'home' then @animationTime else 0
+    if to is 'home'
+      @$mascot.removeClassWithTransition
+        className: "contactus",
+        duration: @animationTime
+    else
+      @$mascot.fadeOut @animationTime, =>
+        @$mascot.removeClass("contactus")
 
     # Show the sayhi & contactus divs
     @$contactQuestions.fadeOut(@animationTime)
-    @$contactus.addClass("hidden")
+
+    @$contactus.transition {opacity: 0}, @animationTime, =>
+      @$contactus.addClass("hidden")
 
   teamTransition: (from) ->
     animate = not (from is 'none')
