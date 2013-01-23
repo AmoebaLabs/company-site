@@ -44,7 +44,7 @@ class Amoeba.StateTransitions
       className: "contactus",
       duration: @animationTime
 
-    @$mascot.show() if from is 'home'
+    @$mascot.show()
 
     # Show the sayhi & contactus divs
     @$contactQuestions.fadeIn(@animationTime)
@@ -57,12 +57,12 @@ class Amoeba.StateTransitions
     this._showNavBar(true, animate)
 
   undoContactUsTransition: (to) ->
-    this._showCapabilities(true, true)
+    @$mascot.hide() unless to is 'home'
 
     # .contactus is used to position/ animate the mascot for the contactus form
     @$mascot.removeClassWithTransition
       className: "contactus",
-      duration: @animationTime
+      duration: if to is 'home' then @animationTime else 0
 
     # Show the sayhi & contactus divs
     @$contactQuestions.fadeOut(@animationTime)
