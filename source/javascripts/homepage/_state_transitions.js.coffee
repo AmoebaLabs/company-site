@@ -24,7 +24,7 @@ class Amoeba.StateTransitions
 
     this._showCapabilities(true, animate)
     @$footer.show()
-    @$mascot.show()
+    this._divShow(@$mascot, if animate then @animationTime else 0)
     @$logo.show()
 
   undoHomeTransition: (to) ->
@@ -38,12 +38,14 @@ class Amoeba.StateTransitions
 
     this._showCapabilities(false, animate)
 
-    # .contactus is used to position the mascot for the contactus form
-    @$mascot.addClassWithTransition
-      className: "contactus",
-      duration: @animationTime
+    this._divShow(@$mascot, animationTime)
 
-    @$mascot.show()
+    if from is 'home'
+      @$mascot.addClassWithTransition
+        className: "contactus",
+        duration: @animationTime
+    else
+      @$mascot.addClass("contactus")  # coming from team is transitioning opacity:1 which interferes with this animation
 
     # Show the sayhi & contactus divs
     @$contactQuestions.fadeIn(@animationTime)
@@ -61,7 +63,7 @@ class Amoeba.StateTransitions
         className: "contactus",
         duration: @animationTime
     else
-      @$mascot.fadeOut @animationTime, =>
+      @$mascot.transition {opacity: 0}, @animationTime, =>
         @$mascot.removeClass("contactus")
 
     # Show the sayhi & contactus divs
@@ -82,7 +84,9 @@ class Amoeba.StateTransitions
 
     # Hide homepage top elements
     this._showCapabilities(false, animate)
-    @$mascot.fadeOut animationTime, =>
+
+
+    @$mascot.transition {opacity: 0}, animationTime, =>
       # Show team, after homepage elements are gone
       @$team.removeClass("hidden").playKeyframe
         name: 'team-in'
@@ -132,4 +136,18 @@ class Amoeba.StateTransitions
     else
       @$header.slideUp(animationTime)
 
-   
+  _divShow: (jqueryObj, duration) =>
+    jqueryObj.removeClass("hidden")
+
+    if jqueryObj.css('opacity') != "1"
+      console.log("fuck me")
+
+      jqueryObj.transition {opacity: 1}, duration
+    else
+      console.log(" anit doing shit")
+
+  _divHide: (jqueryObj, duration) =>
+    if jqueryObj.css('opacity') != "0"
+      jqueryObj.transition {opacity: 0}, duration, =>
+        jqueryObj.addClass("hidden")
+
