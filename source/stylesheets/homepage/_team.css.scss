@@ -1,6 +1,6 @@
 #team {
-  position: relative;
-  top: 90px;
+  position: absolute;
+  top: 60px;
 
   @include breakpoint(mobile) {
     top: -20px;
