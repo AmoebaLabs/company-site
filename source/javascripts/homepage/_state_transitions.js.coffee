@@ -102,7 +102,7 @@ class Amoeba.StateTransitions
     @$footer.fadeIn(@animationTime)
 
     # Hide team
-    @$team.addClass("hidden")
+    this._disolveOut(@$team, @animationTime)
 
   scrollToTop: ->
     this._scrollToOffset(0, true)
