@@ -18,7 +18,7 @@ class Amoeba.StateTransitions
   homeTransition: (from) ->
     animate = not (from is 'none')
 
-    # coming from contacts, get rid of header
+    # coming from contactus, get rid of header
     this._showNavBar(false, animate)
     this._scrollToOffset(0, animate)
 
@@ -50,8 +50,16 @@ class Amoeba.StateTransitions
     @$contactQuestions.fadeIn(@animationTime)
 
     @$contactus.removeClass("hidden")
-    @$contactus.css {perspective: '400px', opacity: 0, rotateY: '-90deg'}
-    @$contactus.transition {perspective: '400px', opacity: 1, rotateY: '0deg'}, @animationTime, 'ease-in'
+    @$contactus.css
+      perspective: '400px'
+      opacity: 0
+      rotateY: '-90deg'
+    @$contactus.transition
+      perspective: '400px'
+      opacity: 1
+      rotateY: '0deg'
+      duration: @animationTime
+      easing: 'ease-in'
 
     # Slide in Nav bar
     this._showNavBar(true, animate)
@@ -62,8 +70,11 @@ class Amoeba.StateTransitions
         className: "contactus",
         duration: @animationTime
     else
-      @$mascot.transition {opacity: 0}, @animationTime, =>
-        @$mascot.removeClass("contactus")
+      @$mascot.transition
+        opacity: 0
+        duration: @animationTime
+        complete: =>
+          @$mascot.removeClass("contactus")
 
     # Show the sayhi & contactus divs
     @$contactQuestions.fadeOut(@animationTime)
@@ -86,20 +97,24 @@ class Amoeba.StateTransitions
     this._disolveOut(@$mascot, animationTime)
 
     # Show team, after a delay
-    @$team.css {opacity: 0, y: '90px'}
+    @$team.css
+      opacity: 0
+      y: '90px'
     @$team.removeClass("hidden")
-    @$team.transition {opacity: 1, y: '0px', delay: animationTime}, animationTime, 'ease-in'
+    @$team.transition
+      opacity: 1
+      y: '0px'
+      delay: animationTime
+      duration: animationTime
+      easing: 'ease'
 
     # Move footer
     @$footer.fadeOut animationTime, =>
-      @$footer.addClass("team")
-      @$footer.show()
+      @$footer.addClass("team").appendTo("#team").show()
 
   undoTeamTransition: (to) ->
     # Move footer
-    @$footer.hide()
-    @$footer.removeClass("team")
-    @$footer.fadeIn(@animationTime)
+    @$footer.hide().removeClass("team").appendTo("#homepage").fadeIn(@animationTime)
 
     # Hide team
     this._disolveOut(@$team, @animationTime)
@@ -114,7 +129,7 @@ class Amoeba.StateTransitions
     if animate
       @scrollingCount += 1;
       $('body, html').animate({scrollTop: "#{offset}px"}, @animationTime, 'swing', =>
-        @scrollingCount -= 1
+          @scrollingCount -= 1
         )
     else
       $('body, html').scrollTop(offset)
@@ -137,10 +152,15 @@ class Amoeba.StateTransitions
   _disolveIn: (jqueryObj, duration) =>
     jqueryObj.removeClass("hidden")
     if jqueryObj.css('opacity') != "1"
-      jqueryObj.transition {opacity: 1}, duration
+      jqueryObj.transition
+        opacity: 1
+        duration: duration
 
   _disolveOut: (jqueryObj, duration) =>
     if jqueryObj.css('opacity') != "0"
-      jqueryObj.transition {opacity: 0}, duration, =>
-        jqueryObj.addClass("hidden")
+      jqueryObj.transition
+        opacity: 0
+        duration: duration
+        complete: =>
+          jqueryObj.addClass("hidden")
 

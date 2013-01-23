@@ -33,7 +33,7 @@
   }
 
   hr#bottomOfPage {
-    margin-bottom: 50px;
+    margin-bottom: 10px;
 
     @include breakpoint(tablet) {
       margin-bottom: 40px;
