@@ -2,7 +2,6 @@ class Amoeba.StateTransitions
   constructor: (@stateMachine) ->
     @animationTime = 1000
     @scrollingCount = 0
-    @updatingOnScrollEvent = false
     this._cacheElements()
 
   _cacheElements: ->
@@ -99,11 +98,6 @@ class Amoeba.StateTransitions
 
     # Hide team
     @$team.addClass("hidden")
-
-    # Show homepage top elements
-    if to is 'home'
-      this._showCapabilities(true, true)
-      @$mascot.fadeIn(@animationTime)
 
   scrollToTop: ->
     this._scrollToOffset(0, true)
