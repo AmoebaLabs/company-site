@@ -2,6 +2,9 @@ class Amoeba.HomepageView
   constructor: ->
     @animationTime = 1000
 
+    # hide message that javascript is needed if this code runs
+    $("#javascriptDiabled").hide();
+
     this._cacheElements()
     this._initStateMachine()
     this._bindEvents()

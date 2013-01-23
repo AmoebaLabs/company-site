@@ -13,6 +13,7 @@ class Amoeba.StateTransitions
     @$contactus = $("#contactus")
     @$contactQuestions = $("#contact-questions")
     @$logoNav = $("#logo nav")
+    @$logo = $("#logo")
     @$document = $(document)
 
   homeTransition: (from) ->
@@ -21,6 +22,11 @@ class Amoeba.StateTransitions
     # coming from contacts, get rid of header
     this._showNavBar(false, animate)
     this._scrollToOffset(0, animate)
+
+    this._showCapabilities(true, animate)
+    @$footer.show()
+    @$mascot.show()
+    @$logo.show()
 
   undoHomeTransition: (to) ->
     # Stub

@@ -1,6 +1,10 @@
 ---
 title: Welcome to Amoeba
 ---
+<div id="javascriptDiabled">
+    <h1 style="color: #0ed; text-align: center">You be need Javascript enabled, sucka.</h1>
+</div>
+
 <div id="iesucks" class="hidden">
   <h1>You are using an <strong>outdated</strong> browser.</h1>
   <img alt="dancing baby" src="images/baby.gif">
@@ -41,10 +45,10 @@ title: Welcome to Amoeba
 <div id="homepage">
 
   <a href="/">
-    <%= image_tag 'mascot.svg', :alt => "Amoeba Character", :id => "mascot" %>
+    <%= image_tag 'mascot.svg', :alt => "Amoeba Character", :id => "mascot", :class =>"hidden"%>
   </a>
 
-  <div id="logo">
+  <div id="logo" class="hidden">
     <h1><a href="/">Amoeba</a><sup>SM</sup></h1>
 
     <h2>Remarkable Development and Design</h2>
@@ -121,7 +125,7 @@ title: Welcome to Amoeba
 
   <%= partial "homepage/team" %>
 
-  <div id="footer">
+  <div id="footer" class="hidden">
     <a href="http://facebook.com/AmoebaConsulting" target="_blank"><i class="icon-facebook-sign"></i></a>
     <a href="http://plus.google.com/107440881665995164447/" target="_blank"><i class="icon-google-plus-sign"></i></a>
     <a href="http://twitter.com/AmoebaSoft" target="_blank"><i class="icon-twitter-sign"></i></a>
