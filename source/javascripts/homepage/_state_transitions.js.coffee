@@ -56,9 +56,8 @@ class Amoeba.StateTransitions
     this._showNavBar(true, animate)
 
   undoContactUsTransition: (to) ->
-    @$mascot.hide() unless to is 'home'
-
     # .contactus is used to position/ animate the mascot for the contactus form
+    @$mascot.hide() unless to is 'home' # hide to avoid seeing it resize after class removed
     @$mascot.removeClassWithTransition
       className: "contactus",
       duration: if to is 'home' then @animationTime else 0
