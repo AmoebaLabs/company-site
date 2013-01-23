@@ -47,19 +47,22 @@ class Amoeba.StateTransitions
       @$mascot.addClass("contactus")  # coming from team is transitioning opacity:1 which interferes with this animation
 
     # Show the sayhi & contactus divs
-    @$contactQuestions.fadeIn(@animationTime)
+    this._disolveIn(@$contactQuestions, @animationTime)
 
     @$contactus.removeClass("hidden")
-    @$contactus.css
-      perspective: '400px'
-      opacity: 0
-      rotateY: '-90deg'
-    @$contactus.transition
-      perspective: '400px'
-      opacity: 1
-      rotateY: '0deg'
-      duration: @animationTime
-      easing: 'ease-in'
+
+    # don't animate on refresh (causes mascot to disappear?)
+    if from != 'none'
+      @$contactus.css
+        perspective: '400px'
+        opacity: 0
+        rotateY: '-90deg'
+      @$contactus.transition
+        perspective: '400px'
+        opacity: 1
+        rotateY: '0deg'
+        duration: @animationTime
+        easing: 'ease-in'
 
     # Slide in Nav bar
     this._showNavBar(true, animate)
@@ -77,7 +80,7 @@ class Amoeba.StateTransitions
           @$mascot.removeClass("contactus")
 
     # Show the sayhi & contactus divs
-    @$contactQuestions.fadeOut(@animationTime)
+    this._disolveOut(@$contactQuestions, @animationTime)
 
     this._disolveOut(@$contactus, @animationTime)
 
@@ -163,4 +166,7 @@ class Amoeba.StateTransitions
         duration: duration
         complete: =>
           jqueryObj.addClass("hidden")
+    else
+      jqueryObj.addClass("hidden")
+
 
