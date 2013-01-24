@@ -51,18 +51,16 @@ class Amoeba.StateTransitions
 
     @$contactus.removeClass("hidden")
 
-    # don't animate on refresh (causes mascot to disappear?)
-    if from != 'none'
-      @$contactus.css
-        perspective: '400px'
-        opacity: 0
-        rotateY: '-90deg'
-      @$contactus.transition
-        perspective: '400px'
-        opacity: 1
-        rotateY: '0deg'
-        duration: @animationTime
-        easing: 'ease-in'
+    @$contactus.css
+      perspective: '400px'
+      opacity: 0
+      rotateY: '-90deg'
+    @$contactus.transition
+      perspective: '400px'
+      opacity: 1
+      rotateY: '0deg'
+      duration: @animationTime
+      easing: 'ease-in'
 
     # Slide in Nav bar
     this._showNavBar(true, animate)

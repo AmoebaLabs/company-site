@@ -102,10 +102,10 @@
 }
 
 #mascot {
+  display: block;
+  z-index: 10;
   width: 357px;
   height: 339px;
-  z-index: 10;
-
   position: absolute;
   top: 0px;
   left: 9px;
@@ -122,6 +122,11 @@
     margin-top: 25px;
 
     @include center(200px);
+  }
+
+  img {
+    width: inherit;
+    height: inherit;
   }
 }
 
