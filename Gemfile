@@ -13,3 +13,15 @@ gem "animation", :github => "ericam/compass-animation"
 
 # Steering gem for Handlebars compilation
 gem "steering", "~> 1.2.0"
+
+# Added to revert the alpha version included in compass-animation
+gem "sass", "~> 3.2.5"
+
+
+## AmoebaJS
+#
+# In development:
+gem "amoeba-js-rails", path: "~/workspace/amoeba-js"
+#
+# In production:
+#gem "amoeba-js-rails", :github => "AmoebaConsulting/amoeba-js"
