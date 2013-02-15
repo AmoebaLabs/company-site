@@ -5,19 +5,16 @@ class AmoebaSite.Views.Homepage.Contactus extends Amoeba.View
     'submit #contact-form': 'submitForm'
 
   transitionIn: (from) ->
-    animationTime = if from is 'none' then @parent.animationTime else 0
+    animationTime = if from is 'none' then 0 else @parent.animationTime
 
     @helpers.scrollToTop(animationTime)
-    @parent.trigger('hideCapabilities:home', animationTime)
     @parent.mascot.show(animationTime)
     @parent.mascot.shrink(if from is 'home' then @parent.animationTime else 0)
 
     # Show the #contact-questions (sayhi) div
-    $('#contactus-questions').disolveIn(@parent.animationTime)
+    $('#contact-questions').disolveIn(animationTime)
 
-    # Show the #contactus div
     @$el.removeClass("hidden")
-
     @$el.css
       perspective: '400px'
       opacity: 0
@@ -26,7 +23,7 @@ class AmoebaSite.Views.Homepage.Contactus extends Amoeba.View
       perspective: '400px'
       opacity: 1
       rotateY: '0deg'
-      duration: @animationTime
+      duration: animationTime
       easing: 'ease-in'
 
     # Slide in Header
@@ -41,7 +38,7 @@ class AmoebaSite.Views.Homepage.Contactus extends Amoeba.View
       @parent.mascot.hide(animationTime)
 
     # Hide the #contact-questions (sayhi) div
-    $('#contactus-questions').disolveOut(animationTime)
+    $('#contact-questions').disolveOut(animationTime)
 
     # Hide the #contactus div
     @$el.disolveOut(animationTime)
@@ -91,7 +88,7 @@ class AmoebaSite.Views.Homepage.Contactus extends Amoeba.View
         $error.html("Success!")
         $error.removeClass("invisible")
         setTimeout =>
-          Backbone.History.navigate("/", trigger: true)
+          Backbone.history.navigate("/", trigger: true)
           $error.removeClass("success")
           $error.addClass("invisible")
           $name.val("")

@@ -14,9 +14,6 @@ class AmoebaSite.Views.Homepage.Team extends Amoeba.View
     # Slide in the header (nav) bar
     @parent.showHeader(animationTime)
 
-    # Hide homepage top elements
-    @parent.trigger('hideCapabilities:home', animationTime)
-
     @parent.mascot.hide(animationTime)
 
     # Show team, after a delay

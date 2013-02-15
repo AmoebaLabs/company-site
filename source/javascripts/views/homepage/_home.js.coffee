@@ -3,9 +3,9 @@ class AmoebaSite.Views.Homepage.Home extends Amoeba.View
   el: '#homepage'
 
   initialize: ->
-    @$('.capability-box').hover (e) ->
+    @$('.capability-box').hover (e) =>
       $(this).find('.rollover').fadeOut(@parent.animationTime)
-    ,(e) ->
+    ,(e) =>
       $(this).find('.rollover').fadeIn(@parent.animationTime)
 
     @parent.on('hideCapabilities:home', @hideCapabilities)
@@ -18,22 +18,24 @@ class AmoebaSite.Views.Homepage.Home extends Amoeba.View
     @parent.hideHeader(animationTime) # Coming from contactus, get rid of header
     @helpers.scrollToTop(animationTime)
     @showCapabilities(animationTime)
-    @parent.showFooter()
+    @parent.showFooter(animationTime)
     @parent.mascot.show(animationTime)
-
-    @showLogo()
+    @showLogo(animationTime)
 
   transitionOut: (to) ->
-    # Stub
+    animationTime = @parent.animationTime
+
+    @hideCapabilities(animationTime)
+    @hideLogo(animationTime)
 
   showCapabilities: (animationTime = 0) ->
-    $.each ["#logo", ".capabilities"], (index, klass) =>
-      @$(klass).disolveIn(animationTime)
+    @$(".capabilities").disolveIn(animationTime)
 
   hideCapabilities: (animationTime = 0) ->
-    $.each ["#logo", ".capabilities"], (index, klass) =>
-      @$(klass).disolveOut(animationTime)
+    @$(".capabilities").disolveOut(animationTime)
 
   showLogo: (animationTime = 0) ->
     @$("#logo").disolveIn(animationTime)
 
+  hideLogo: (animationTime = 0) ->
+    @$("#logo").disolveOut(animationTime)

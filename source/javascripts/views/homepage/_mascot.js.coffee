@@ -6,7 +6,7 @@ class AmoebaSite.Views.Homepage.Mascot extends Amoeba.View
     @$el.disolveIn(animationTime)
 
   hide: (animationTime = 0) ->
-    @$el.disolveOut(animationTime, -> this.removeClass("contactus"))
+    @$el.disolveOut(animationTime, => @$el.removeClass("contactus"))
 
   shrink: (animationTime = 0) ->
     if (animationTime > 0)

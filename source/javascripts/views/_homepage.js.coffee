@@ -17,8 +17,11 @@ class AmoebaSite.Views.Homepage extends Amoeba.View
   transition: (to) ->
     return if @currentSubView and @currentSubView.name is to
 
-    from = if @currentSubView then @currentSubView.transitionOut(to).name else 'none'
-    @currentSubView = @subViews[to].transitionIn(from)
+    @currentSubView?.transitionOut?(to)
+
+    from = if @currentSubView then @currentSubView.name else 'none'
+    @currentSubView = @subViews[to]
+    @currentSubView.transitionIn?(from)
 
   toggleMobileNav: ->
     $("#mobile-nav").slideToggle(@animationTime)
