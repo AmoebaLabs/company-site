@@ -18,10 +18,5 @@ gem "steering", "~> 1.2.0"
 gem "sass", "~> 3.2.5"
 
 
-## AmoebaJS
-#
-# In development:
-gem "amoeba-js-rails", path: "~/workspace/amoeba-js"
-#
-# In production:
-#gem "amoeba-js-rails", :github => "AmoebaConsulting/amoeba-js"
+# AmoebaJS
+gem "amoeba-js-rails", :github => "AmoebaConsulting/amoeba-js"
