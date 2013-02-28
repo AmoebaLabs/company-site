@@ -1,16 +1,17 @@
 GIT
+  remote: git://github.com/AmoebaConsulting/amoeba-js.git
+  revision: f06bc9f2c32ef3f852332bc6c6d419df52f0115c
+  specs:
+    amoeba-js-rails (0.2.0)
+      rails-backbone (= 0.9.10)
+
+GIT
   remote: git://github.com/ericam/compass-animation.git
   revision: 314d7bfb732eb42cb759942d96431f386f3c40a5
   specs:
     animation (0.1.alpha.3)
       compass (>= 0.12.0)
       sass (>= 3.2.0.alpha.95)
-
-PATH
-  remote: ~/workspace/amoeba-js
-  specs:
-    amoeba-js-rails (0.2.0)
-      rails-backbone (= 0.9.0)
 
 GEM
   remote: http://rubygems.org/
@@ -117,11 +118,11 @@ GEM
       rack (>= 0.4)
     rack-protection (1.3.2)
       rack
-    rack-ssl (1.3.2)
+    rack-ssl (1.3.3)
       rack
     rack-test (0.6.2)
       rack (>= 1.0)
-    rails-backbone (0.9.0)
+    rails-backbone (0.9.10)
       coffee-script (~> 2.2.0)
       ejs (~> 1.1.1)
       jquery-rails (~> 2.1.3)
@@ -137,7 +138,7 @@ GEM
     rb-fsevent (0.9.3)
     rb-inotify (0.8.8)
       ffi (>= 0.5.0)
-    rdoc (3.12)
+    rdoc (3.12.2)
       json (~> 1.4)
     sass (3.2.5)
     sinatra (1.3.3)
