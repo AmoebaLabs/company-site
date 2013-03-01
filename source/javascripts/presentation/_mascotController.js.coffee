@@ -2,22 +2,9 @@ class Amoeba.MascotController
   constructor: () ->
 
     @mascotSize = 250
-    @$oldMascot = $("#mascot")
 
     @mascot = $("#presentationMascot")
     @mascot.css(this._defaultMascotCSS())
-
-  presentation: (inSet) =>
-    if inSet
-      @$oldMascot.addClass("presentation")
-    else
-      @$oldMascot.removeClass("presentation")
-
-  contactUs: (inSet) =>
-    if inSet
-      @$oldMascot.addClass("contactus")
-    else
-      @$oldMascot.removeClass("contactus")
 
   flyOut: () =>
     # assuming it's in the right place, just fly it out
