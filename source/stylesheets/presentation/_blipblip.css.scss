@@ -1,0 +1,41 @@
+
+// based on https://github.com/filipstefansson/jQuery-BlipBlip
+
+// overlay to add blips to
+div.blipDiv {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+// --------------------------------------------------------
+// animation mixins
+
+@mixin simpleAnimation($method, $changeValue, $startPaused) {
+  @include animation($method 1s ease-in-out);
+
+  @if $changeValue {
+    @include animation-fill-mode(both);
+  }
+
+  @if $startPaused {
+    @include animation-play-state(paused);
+  }
+}
+
+$blipSize: 10px;
+$blipBorderRadius: $blipSize / 2;
+
+.blipblip-dot {
+  position: absolute;
+  width: $blipSize;
+  height: $blipSize;
+  background-color: #8b0000;
+  z-index: 9999;
+
+  @include border-radius($blipBorderRadius);
+  @include simpleAnimation(bounceIn, true, false);
+
+  @include box-shadow(0 2px 6px rgba(0, 0, 0, .4));
+  @include background-image(linear-gradient(#ffaaaa, #aa0000));
+}

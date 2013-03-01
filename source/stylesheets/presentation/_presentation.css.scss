@@ -1,0 +1,172 @@
+
+// --------------------------------------------------------
+// --------------------------------------------------------
+// public
+
+#presentation {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+#presentationBackground {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+
+  width: 100%;
+  height: 100%;
+
+ // different backgrounds controled by setting classes
+  &.green {
+    @include background-image(radial-gradient(circle cover, $amoebaGreen 0%, $amoebaGreenDark 100%));
+  }
+  &.blue {
+    @include background-image(linear-gradient(bottom, rgb(69,132,180) 28%, rgb(31,71,120) 64%));
+  }
+  &.white {
+    @include background-image(radial-gradient(circle cover, rgb(235,235,235) 0%, rgb(255,255,255) 100%));
+  }
+  &.black {
+    @include background-image(radial-gradient(circle cover, rgb(100,100,100) 0%, rgb(0,0,0) 100%));
+  }
+}
+
+div#bakgrnd {
+  background: transparent url('/images/presentation/world.svg') no-repeat;
+  @include background-size(contain); // warning this must go after setting background:, background: resets the size
+  background-position:center;
+
+  height: 100%;
+  width: 100%;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  z-index: -9999;
+}
+
+// --------------------------------------------------------
+// --------------------------------------------------------
+// Business Card
+
+$cardHeight: 200px;
+
+.businessCard {
+  overflow: hidden;
+  position: absolute;
+  height: $cardHeight;
+  width: $cardHeight * 1.75;
+  background-color: $amoebaGreen;
+
+  border: 1px solid rgba(0, 0, 0, .1);
+  @include border-radius(10px);
+  @include box-shadow(0 2px 12px rgba(0, 0, 0, .4));
+}
+
+.businessCard img {
+  // border radius added for chrome, might not be needed in the future.  overflow hidden was not cropping the corners. safari was ok
+  @include border-left-radius(inherit);
+
+  position: absolute;
+
+  top: 0px;
+  left: 0px;
+  height: 100%;
+}
+
+.businessCard span {
+  font-size: 1em;
+
+  float: right;
+  top: 0px;
+  height: 100%;
+}
+
+.businessCard {
+  overflow: hidden;
+  position: absolute;
+  height: $cardHeight;
+  width: $cardHeight * 1.75;
+  background-color: $amoebaGreen;
+
+  font-size: .4em;
+
+  border: 1px solid rgba(0, 0, 0, .1);
+  @include border-radius(10px);
+  @include box-shadow(0 2px 12px rgba(0, 0, 0, .4));
+}
+
+// --------------------------------------------------------
+// --------------------------------------------------------
+// metal background
+
+@mixin metalBackground() {
+  @include background(radial-gradient(rgba(black, .5), rgba(black, .5) 14%, transparent 15%) 0 0,
+                      radial-gradient(rgba(black, .5), rgba(black, .5) 14%, transparent 15%) 7px 7px,
+                      radial-gradient(rgba(white, .1) 14%, transparent 16%) 0 1px,
+                      radial-gradient(rgba(white, .1) 14%, transparent 16%) 7px 8px);
+  background-color: #40454f;
+  background-size: 16px 16px;
+ }
+
+.amoebaText {
+  @extend %amoebaFontSemiBold;
+
+  top: 0px;
+  left: 0px;
+  width: 100%
+}
+
+@include keyframes(amoebaTitlePulse) {
+  0% {
+    @include transform(scale(1));
+    color: rgba(255,255,255,.4)
+  } 100% {
+    @include transform(scale(1.03));
+    color: rgba(255,255,255,.6);
+    @include text-shadow(0px 0px 40px white);
+  }
+}
+
+@include keyframes(amoebaTitlePulseDark) {
+  0% {
+    @include transform(scale(1));
+    color: rgba(0,0,0,.4)
+  } 100% {
+    @include transform(scale(1.03));
+    color: rgba(0,0,0,.6);
+    @include text-shadow(0px 0px 40px black);
+  }
+}
+
+@include keyframes(amoebaInfoPulse) {
+  0% {
+    @include text-shadow(0px 0px 40px white);
+  } 100% {
+  }
+}
+
+@include keyframes(amoebaInfoPulseDark) {
+  0% {
+    @include text-shadow(0px 0px 40px black);
+  } 100% {
+  }
+}
+
+@include keyframes(rocketShake) {
+  0% {
+    @include rotate(0deg);
+  } 25% {
+    @include rotate(0.8deg);
+  } 50% {
+    @include rotate(0deg);
+  } 100% {
+    @include rotate(-0.8deg);
+  }
+}

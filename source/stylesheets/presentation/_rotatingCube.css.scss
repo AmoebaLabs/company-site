@@ -1,0 +1,49 @@
+// --------------------------------------------------------
+// private mixins
+
+$cubeSize: 420px;
+$halfCubeSize: 210px;
+
+#threeDCubeStage {
+  position: absolute;
+
+  width: $cubeSize;
+  height: $cubeSize;
+
+  @include perspective( 1200px );
+}
+
+@mixin verticalCenter {
+  // found this online, change if this is weird
+  @include display-box;
+  @include box-orient(horizontal);
+  @include box-align(center);
+  @include box-pack(center);
+}
+
+#threeDCube {
+  @include transform-style(preserve-3d);
+  @include transform-origin($halfCubeSize $halfCubeSize 0);
+
+  div {
+    position: absolute;
+    width: $cubeSize;
+    height: $cubeSize;
+    border: 1px solid $amoebaGreen;
+    background: $amoebaGreenMedium;
+    @include box-shadow(inset 0 0 20px rgba(0,0,0,0.2));
+    text-align: center;
+    font-size: 40px;
+
+    @include verticalCenter;
+
+    @include border-radius(20px);
+
+    opacity: 1;
+
+    @include backface-visibility(visible); // use 'hidden' to turn off, but we need it to fill the corners
+
+    @include background-image(radial-gradient(center, circle farthest-corner, rgba(255,255,255,.6) 0%, $amoebaGreenMedium 100%));
+  }
+}
+

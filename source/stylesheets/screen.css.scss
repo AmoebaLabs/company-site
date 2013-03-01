@@ -1,5 +1,6 @@
 //=require normalize
 //=require font-awesome
+//=require storyboard
 
 // Imports:
 @import "variables";
@@ -9,6 +10,21 @@
 @import "header";
 @import "homepage";
 @import "404";
+
+// for presentation
+@import "compass/css3";
+@import "compass/layout/stretching";
+@import "compass/utilities/general/clearfix";
+@import "compass/utilities/general/float";
+
+// github/ericam/compass-animation gem imports
+@import "animation";
+@import "animation/animate";
+
+@import "presentation/presentation";
+@import "presentation/clouds";
+@import "presentation/rotatingCube";
+@import "presentation/blipblip";
 
 body {
   // consider filter-gradient for old IE

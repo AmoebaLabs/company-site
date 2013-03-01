@@ -11,6 +11,7 @@ class AmoebaSite.Views.Homepage extends Amoeba.View
       home: @_render 'Homepage.Home'
       contactus: @_render 'Homepage.Contactus'
       team: @_render 'Homepage.Team'
+      presentation: @_render 'Homepage.Presentation'
 
     @mascot = @_render 'Homepage.Mascot'
 

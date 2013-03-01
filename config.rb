@@ -9,6 +9,9 @@
 # Other modules we'd like to include:
 require 'animation'
 
+# hack for middleman, may be removed in the next version of middleman
+require 'erubis'
+
 # Change Compass configuration
 # compass_config do |config|
 #   config.output_style = :compact
@@ -40,6 +43,12 @@ require 'animation'
 page "/index.html"
 page "/contactus/index.html", :proxy => "/index.html"
 page "/team/index.html", :proxy => "/index.html"
+
+# presentation routing, not sure if this is the best way
+page "/presentation/index.html", :proxy => "/index.html"
+(0..15).each do |x|
+  page "/presentation/#{x}", :proxy => "/index.html"
+end
 
 # 404 page, has no layout to avoid the JS router and such
 page "/404.html", :layout => false
