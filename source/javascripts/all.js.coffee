@@ -6,7 +6,6 @@
 #= require_self
 #= require_tree ./lib
 #= require_tree ./helpers
-#= require_tree ./presentation
 #= require_tree ./routers
 #= require_tree ./views
 #= require _app
