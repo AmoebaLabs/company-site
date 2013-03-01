@@ -37,14 +37,6 @@ class AmoebaSite.Presentation.Controller
       AmoebaSite.app.homepageRouter.navigate("/presentation/#{theIndex}", {trigger: true});
     )
 
-    # KKK SNG
-  showPresentation: (hide=false) =>
-#    if hide
-#      $("#presentation").addClass("hidden")
-#    else
-#      $("#presentation").removeClass("hidden")
-#
-
   setBackground: (colorClass) =>
     if colorClass == 'default'
       colorClass = 'green'

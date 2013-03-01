@@ -8,15 +8,12 @@ class AmoebaSite.Views.Homepage.Presentation extends Amoeba.View
     # When from is 'none' this is an initial page load, so animate instantly
     animationTime = if from is 'none' then 0 else @parent.animationTime
 
-
+    @parent.mascot.hide(animationTime)
 
     if not AmoebaSite.presentation?
       AmoebaSite.presentation = new AmoebaSite.Presentation.Controller()
-    AmoebaSite.presentation.showPresentation()
 
-
-
-    # Show team, after a delay
+    # Show presentation, after a delay
     @$el.css
       opacity: 0
       y: '90px'
@@ -31,15 +28,10 @@ class AmoebaSite.Views.Homepage.Presentation extends Amoeba.View
   transitionOut: (to) ->
     animationTime = @parent.animationTime
 
-
-
     if AmoebaSite.presentation?
-      AmoebaSite.presentation.showPresentation(false)
       AmoebaSite.presentation = undefined
 
-
-
-    # Hide team
+    # Hide presentation, also sets hidden class
     @$el.disolveOut(animationTime)
 
 
