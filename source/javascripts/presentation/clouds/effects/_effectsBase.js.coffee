@@ -1,4 +1,4 @@
-class window.Amoeba.EffectsBase
+class AmoebaSite.EffectsBase
   constructor: (parentDiv, @fps, @callback) ->
     @stopped = false
     @numExpectedCallbacks = 0

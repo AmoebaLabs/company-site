@@ -1,19 +1,19 @@
-class window.Amoeba.CloudsController
+class AmoebaSite.CloudsController
   constructor:() ->
     @viewPort = $("#viewport")
     @fps = 24
 
-    Amoeba.textures = new Amoeba.Textures()
-    Amoeba.cloudWorld = new Amoeba.CloudWorld(@fps)
+    AmoebaSite.textures = new AmoebaSite.Textures()
+    AmoebaSite.cloudWorld = new AmoebaSite.CloudWorld(@fps)
 
-    Amoeba.cloudWorld.generate()
+    AmoebaSite.cloudWorld.generate()
 
     this._addEventHandlers()
     this._setupRAF()
     # this._setupEventListenersToMoveWorld()
 
     # rotate world slowly
-    Amoeba.cloudWorld.toggleRotateWorld()
+    AmoebaSite.cloudWorld.toggleRotateWorld()
 
     this.showFallingClouds()
     this.showRocketShip()
@@ -23,16 +23,13 @@ class window.Amoeba.CloudsController
       @fallingClouds.stop()
       @fallingClouds = undefined
 
-    @fallingClouds = new Amoeba.FallingClouds(@viewPort, @fps)
+    @fallingClouds = new AmoebaSite.FallingClouds(@viewPort, @fps)
 
   showRocketShip: () =>
-    rocketShip = new Amoeba.RocketShip(@viewPort, @fps, (animationStep) =>
-
-      console.log "wtf nigger lips?: #{animationStep}"
-
+    rocketShip = new AmoebaSite.RocketShip(@viewPort, @fps, (animationStep) =>
       switch (animationStep)
         when 1  # called on final rocket blast off, fly world out
-          Amoeba.cloudWorld.transitionDown()
+          AmoebaSite.cloudWorld.transitionDown()
 
         when 10  # done, tear it down
           # stop rocket
@@ -50,19 +47,19 @@ class window.Amoeba.CloudsController
       # keycodes are always the uppercase character's ascii code
       switch (e.keyCode)
         when 32
-          Amoeba.cloudWorld.generate()
+          AmoebaSite.cloudWorld.generate()
         when 68  # 'd' key
-          Amoeba.cloudWorld.hyperspace()
+          AmoebaSite.cloudWorld.hyperspace()
         when 69  # 'e' key
-          Amoeba.cloudWorld.zoomWorld()
+          AmoebaSite.cloudWorld.zoomWorld()
         when 70  # 'f' key
           this.showFallingClouds()
         when 71  # 'g' key
-          Amoeba.cloudWorld.reversehyperspace()
+          AmoebaSite.cloudWorld.reversehyperspace()
         when 72
           this.showRocketShip()
         when 73
-          Amoeba.cloudWorld.toggleRotateWorld()
+          AmoebaSite.cloudWorld.toggleRotateWorld()
 #        else
 #          console.log("keyCode: #{e.keyCode}")
 
@@ -95,7 +92,7 @@ class window.Amoeba.CloudsController
 
   _setupEventListenersToMoveWorld: () =>
     orientationhandler = (e) ->
-      [xAngle, yAngle, zTranslate] = Amoeba.cloudWorld.worldState()
+      [xAngle, yAngle, zTranslate] = AmoebaSite.cloudWorld.worldState()
 
       if not e.gamma and not e.beta
         e.gamma = -(e.x * (180 / Math.PI))
@@ -104,17 +101,17 @@ class window.Amoeba.CloudsController
       y = e.beta
       xAngle = y
       yAngle = x
-      Amoeba.cloudWorld.updateWorld(xAngle, yAngle, zTranslate)
+      AmoebaSite.cloudWorld.updateWorld(xAngle, yAngle, zTranslate)
 
     # window.addEventListener( 'deviceorientation', orientationhandler, false );
     # window.addEventListener( 'MozOrientation', orientationhandler, false );
 
     onContainerMouseWheel = (event) =>
-      [xAngle, yAngle, zTranslate] = Amoeba.cloudWorld.worldState()
+      [xAngle, yAngle, zTranslate] = AmoebaSite.cloudWorld.worldState()
 
       event = (if event then event else window.event)
       zTranslate = zTranslate - ((if event.detail then event.detail * -5 else event.wheelDelta / 8))
-      Amoeba.cloudWorld.updateWorld(xAngle, yAngle, zTranslate)
+      AmoebaSite.cloudWorld.updateWorld(xAngle, yAngle, zTranslate)
 
     window.addEventListener "mousewheel", onContainerMouseWheel
     window.addEventListener "DOMMouseScroll", onContainerMouseWheel
@@ -124,20 +121,20 @@ class window.Amoeba.CloudsController
       # xAngle = -(.1 * ( e.clientY - .5 * window.innerHeight ))
       # yAngle = .1 * ( e.clientX - .5 * window.innerWidth )
 
-      [xAngle, yAngle, zTranslate] = Amoeba.cloudWorld.worldState()
+      [xAngle, yAngle, zTranslate] = AmoebaSite.cloudWorld.worldState()
 
       yAngle = -(.5 - (e.clientX / window.innerWidth)) * 180
       xAngle = (.5 - (e.clientY / window.innerHeight)) * 180
 
-      Amoeba.cloudWorld.updateWorld(xAngle, yAngle, zTranslate)
+      AmoebaSite.cloudWorld.updateWorld(xAngle, yAngle, zTranslate)
 
     window.addEventListener "touchmove", (e) =>
-      [xAngle, yAngle, zTranslate] = Amoeba.cloudWorld.worldState()
+      [xAngle, yAngle, zTranslate] = AmoebaSite.cloudWorld.worldState()
 
       _.each(e.changedTouches, (touch, index) =>
         yAngle = -(.5 - (touch.pageX / window.innerWidth)) * 180
         xAngle = (.5 - (touch.pageY / window.innerHeight)) * 180
-        Amoeba.cloudWorld.updateWorld(xAngle, yAngle, zTranslate)
+        AmoebaSite.cloudWorld.updateWorld(xAngle, yAngle, zTranslate)
       )
 
       e.preventDefault()

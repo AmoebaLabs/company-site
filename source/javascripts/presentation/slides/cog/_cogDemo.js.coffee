@@ -1,10 +1,10 @@
 
-class Amoeba.Presentation.CogDemo
+class AmoebaSite.Presentation.CogDemo
   constructor: (divHolder, @size, @numSegments) ->
     @graphicsPaper = new AmoebaSB.GraphicsPaper(divHolder, {fill: "transparent", stroke: "transparent"})
     @animations = []
 
-    cog = new Amoeba.Presentation.Cog(@size, @numSegments, @graphicsPaper);
+    cog = new AmoebaSite.Presentation.Cog(@size, @numSegments, @graphicsPaper);
     @pathMap = {
       "cog": cog.path(true),
       "circleCog": cog.path(false),
@@ -16,9 +16,9 @@ class Amoeba.Presentation.CogDemo
     this.stop()
 
     # colors copied from the variables css file. didn't know a simple way of sharing these vars outside of sass
-    amoebaColors = ["90-#{Amoeba.Colors.amoebaGreen}-#{Amoeba.Colors.amoebaGreenDark}",
-      "90-#{Amoeba.Colors.amoebaGreen}-#{Amoeba.Colors.amoebaGreenMedium}",
-      "90-#{Amoeba.Colors.amoebaGreenMedium}-#{Amoeba.Colors.amoebaGreenDark}"]
+    amoebaColors = ["90-#{AmoebaSite.Colors.amoebaGreen}-#{AmoebaSite.Colors.amoebaGreenDark}",
+      "90-#{AmoebaSite.Colors.amoebaGreen}-#{AmoebaSite.Colors.amoebaGreenMedium}",
+      "90-#{AmoebaSite.Colors.amoebaGreenMedium}-#{AmoebaSite.Colors.amoebaGreenDark}"]
 
     _.each([0...3], (i) =>
       @animations.push(new CogAnimation(amoebaColors[i], i, @size, @graphicsPaper, @pathMap))

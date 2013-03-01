@@ -1,5 +1,5 @@
 
-class window.Amoeba.Textures
+class AmoebaSite.Textures
   constructor:() ->
     @currentWeights = this.preset('clouds')
 

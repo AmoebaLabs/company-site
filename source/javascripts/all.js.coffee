@@ -14,11 +14,8 @@
 window.AmoebaSite =
   Views: {}
   Helpers: {}
-
-# presentation global, should be merged with AmoebaSite
-window.Amoeba.Presentation = {}
-
-window.Amoeba.Colors =  # keep these synced with the identical css values in _variables.css.scss
+  Presentation: {}
+  Colors:  # keep these synced with the identical css values in _variables.css.scss
     amoebaGreen: "#A6CC2F"
     amoebaGreenMedium: "#8BA400"
     amoebaGreenDark: "#384F0E"

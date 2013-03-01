@@ -1,4 +1,4 @@
-class window.Amoeba.Cloud
+class AmoebaSite.Cloud
   constructor:(parentDiv, computedWeights, fps, fluffy=false) ->
     @fluffControl = if fluffy then 0.8 else 0.4
 

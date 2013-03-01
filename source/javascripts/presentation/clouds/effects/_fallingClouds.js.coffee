@@ -1,15 +1,15 @@
 
-class window.Amoeba.FallingClouds extends Amoeba.EffectsBase
+class AmoebaSite.FallingClouds extends AmoebaSite.EffectsBase
   # called from base classes constructor
   setup:() =>
     fragment = document.createDocumentFragment();
 
     @clouds = [
-      new Amoeba.Cloud(fragment, Amoeba.textures.weightedTextures('clouds'), @fps, true)
-      new Amoeba.Cloud(fragment, Amoeba.textures.weightedTextures('clouds'), @fps, true)
-      new Amoeba.Cloud(fragment, Amoeba.textures.weightedTextures('clouds'), @fps, true)
-      new Amoeba.Cloud(fragment, Amoeba.textures.weightedTextures('clouds'), @fps, true)
-      new Amoeba.Cloud(fragment, Amoeba.textures.weightedTextures('clouds'), @fps, true)
+      new AmoebaSite.Cloud(fragment, AmoebaSite.textures.weightedTextures('clouds'), @fps, true)
+      new AmoebaSite.Cloud(fragment, AmoebaSite.textures.weightedTextures('clouds'), @fps, true)
+      new AmoebaSite.Cloud(fragment, AmoebaSite.textures.weightedTextures('clouds'), @fps, true)
+      new AmoebaSite.Cloud(fragment, AmoebaSite.textures.weightedTextures('clouds'), @fps, true)
+      new AmoebaSite.Cloud(fragment, AmoebaSite.textures.weightedTextures('clouds'), @fps, true)
     ]
 
     @containerDiv[0].appendChild(fragment);

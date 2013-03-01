@@ -1,5 +1,5 @@
 
-class Amoeba.Presentation.Slide_Phone extends AmoebaSB.Slide_Base
+class AmoebaSite.Presentation.Slide_Phone extends AmoebaSB.Slide_Base
   setup: ->
     this._setupElement("phoneSlide")
     @transition = 'rotate'
@@ -39,8 +39,8 @@ class Amoeba.Presentation.Slide_Phone extends AmoebaSB.Slide_Base
         fontSize: "3em"
         position: "absolute"
         textAlign: "center"
-        textShadow: "#{Amoeba.Colors.amoebaGreenDark} 1px 0px 2px"
-        color: "#{Amoeba.Colors.amoebaGreenMedium}"
+        textShadow: "#{AmoebaSite.Colors.amoebaGreenDark} 1px 0px 2px"
+        color: "#{AmoebaSite.Colors.amoebaGreenMedium}"
         opacity: 0
       )
 
@@ -59,8 +59,8 @@ class Amoeba.Presentation.Slide_Phone extends AmoebaSB.Slide_Base
         fontSize: "7em"
         position: "absolute"
         textAlign: "center"
-        textShadow: "#{Amoeba.Colors.amoebaGreenDark} 1px 0px 2px"
-        color: "#{Amoeba.Colors.amoebaGreenMedium}"
+        textShadow: "#{AmoebaSite.Colors.amoebaGreenDark} 1px 0px 2px"
+        color: "#{AmoebaSite.Colors.amoebaGreenMedium}"
       )
     @message2 = $('<div/>')
       .text("Agile")
@@ -74,8 +74,8 @@ class Amoeba.Presentation.Slide_Phone extends AmoebaSB.Slide_Base
         textTransform: "uppercase"
         position: "absolute"
         textAlign: "center"
-        textShadow: "#{Amoeba.Colors.amoebaGreenMedium} 1px 0px 2px"
-        color: "#{Amoeba.Colors.amoebaGreen}"
+        textShadow: "#{AmoebaSite.Colors.amoebaGreenMedium} 1px 0px 2px"
+        color: "#{AmoebaSite.Colors.amoebaGreen}"
       )
 
     @finalMessage = $('<div/>')
@@ -90,8 +90,8 @@ class Amoeba.Presentation.Slide_Phone extends AmoebaSB.Slide_Base
         textTransform: "uppercase"
         position: "absolute"
         textAlign: "center"
-        textShadow: "#{Amoeba.Colors.amoebaGreenDark} 1px 0px 2px"
-        color: "#{Amoeba.Colors.amoebaGreenMedium}"
+        textShadow: "#{AmoebaSite.Colors.amoebaGreenDark} 1px 0px 2px"
+        color: "#{AmoebaSite.Colors.amoebaGreenMedium}"
       )
 
   _setNextAnimationTimer: =>

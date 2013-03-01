@@ -1,10 +1,10 @@
 
-class Amoeba.Presentation.Slide_Computer extends AmoebaSB.Slide_Base
+class AmoebaSite.Presentation.Slide_Computer extends AmoebaSB.Slide_Base
   setup: ->
     this._setupElement("computerSlide")
     @transition = 'zoom'
     this._createDivs()
-    @mascot = new Amoeba.MascotController
+    @mascot = new AmoebaSite.MascotController
 
   slideIn: (afterTransitionComplete) =>
     if afterTransitionComplete
@@ -62,8 +62,8 @@ class Amoeba.Presentation.Slide_Computer extends AmoebaSB.Slide_Base
         left: 0
         opacity: 0
         width: "100%"
-        textShadow: "#{Amoeba.Colors.amoebaGreenDark} 1px 0px 2px"
-        color: "#{Amoeba.Colors.amoebaGreenMedium}"
+        textShadow: "#{AmoebaSite.Colors.amoebaGreenDark} 1px 0px 2px"
+        color: "#{AmoebaSite.Colors.amoebaGreenMedium}"
       )
 
     @imgEl = $('<img/>')

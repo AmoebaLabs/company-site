@@ -1,5 +1,5 @@
 
-class Amoeba.Presentation.Slide_Cube extends AmoebaSB.Slide_Base
+class AmoebaSite.Presentation.Slide_Cube extends AmoebaSB.Slide_Base
   setup: ->
     this._setupElement("cubeSlide")
     this._initializeVariables()

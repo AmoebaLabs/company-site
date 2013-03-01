@@ -1,5 +1,5 @@
 
-class Amoeba.Presentation.Slide_Intro extends AmoebaSB.Slide_Base
+class AmoebaSite.Presentation.Slide_Intro extends AmoebaSB.Slide_Base
   setup: ->
     this._setupElement("introSlide")
     @transition = 'zoom'
@@ -41,7 +41,7 @@ class Amoeba.Presentation.Slide_Intro extends AmoebaSB.Slide_Base
         top: 480
         left: 0
         width: "100%"
-        color: Amoeba.Colors.amoebaGreenDark
+        color: AmoebaSite.Colors.amoebaGreenDark
         opacity: 0
       )
 

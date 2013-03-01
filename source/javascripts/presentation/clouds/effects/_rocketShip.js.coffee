@@ -1,5 +1,5 @@
 
-class window.Amoeba.RocketShip extends Amoeba.EffectsBase
+class AmoebaSite.RocketShip extends AmoebaSite.EffectsBase
   # called from base classes constructor
   setup:() =>
     # should make rocket go between some clouds
@@ -92,14 +92,14 @@ class window.Amoeba.RocketShip extends Amoeba.EffectsBase
 
   _addExhaustClouds: (parentDiv) =>
     @exhaustClouds = [
-      new Amoeba.Cloud(parentDiv, Amoeba.textures.weightedTextures('bay'), @fps)
-      new Amoeba.Cloud(parentDiv, Amoeba.textures.weightedTextures('fire'), @fps)
-      new Amoeba.Cloud(parentDiv, Amoeba.textures.weightedTextures('fire'), @fps)
-      new Amoeba.Cloud(parentDiv, Amoeba.textures.weightedTextures('bay'), @fps)
-      new Amoeba.Cloud(parentDiv, Amoeba.textures.weightedTextures('fire'), @fps)
-      new Amoeba.Cloud(parentDiv, Amoeba.textures.weightedTextures('fire'), @fps)
-      new Amoeba.Cloud(parentDiv, Amoeba.textures.weightedTextures('bay'), @fps)
-      new Amoeba.Cloud(parentDiv, Amoeba.textures.weightedTextures('bay'), @fps)
+      new AmoebaSite.Cloud(parentDiv, AmoebaSite.textures.weightedTextures('bay'), @fps)
+      new AmoebaSite.Cloud(parentDiv, AmoebaSite.textures.weightedTextures('fire'), @fps)
+      new AmoebaSite.Cloud(parentDiv, AmoebaSite.textures.weightedTextures('fire'), @fps)
+      new AmoebaSite.Cloud(parentDiv, AmoebaSite.textures.weightedTextures('bay'), @fps)
+      new AmoebaSite.Cloud(parentDiv, AmoebaSite.textures.weightedTextures('fire'), @fps)
+      new AmoebaSite.Cloud(parentDiv, AmoebaSite.textures.weightedTextures('fire'), @fps)
+      new AmoebaSite.Cloud(parentDiv, AmoebaSite.textures.weightedTextures('bay'), @fps)
+      new AmoebaSite.Cloud(parentDiv, AmoebaSite.textures.weightedTextures('bay'), @fps)
     ]
 
   # =======================================================================================

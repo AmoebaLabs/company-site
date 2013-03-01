@@ -1,4 +1,4 @@
-class Amoeba.MascotController
+class AmoebaSite.MascotController
   constructor: () ->
 
     @mascotSize = 250

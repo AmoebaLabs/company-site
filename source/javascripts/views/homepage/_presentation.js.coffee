@@ -10,9 +10,9 @@ class AmoebaSite.Views.Homepage.Presentation extends Amoeba.View
 
 
 
-    if not Amoeba.presentation?
-      Amoeba.presentation = new Amoeba.Presentation.Controller()
-    Amoeba.presentation.showPresentation()
+    if not AmoebaSite.presentation?
+      AmoebaSite.presentation = new AmoebaSite.Presentation.Controller()
+    AmoebaSite.presentation.showPresentation()
 
 
 
@@ -33,9 +33,9 @@ class AmoebaSite.Views.Homepage.Presentation extends Amoeba.View
 
 
 
-    if Amoeba.presentation?
-      Amoeba.presentation.showPresentation(false)
-      Amoeba.presentation = undefined
+    if AmoebaSite.presentation?
+      AmoebaSite.presentation.showPresentation(false)
+      AmoebaSite.presentation = undefined
 
 
 

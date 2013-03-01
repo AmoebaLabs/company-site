@@ -1,5 +1,5 @@
 
-class Amoeba.Presentation.Slide_Cog extends AmoebaSB.Slide_Base
+class AmoebaSite.Presentation.Slide_Cog extends AmoebaSB.Slide_Base
   setup: ->
     this._setupElement("cogSlide")
     @transition = 'rotate'
@@ -17,7 +17,7 @@ class Amoeba.Presentation.Slide_Cog extends AmoebaSB.Slide_Base
   slideIn: (afterTransitionComplete) =>
     if afterTransitionComplete
       if not @cogDemo?
-        @cogDemo = new Amoeba.Presentation.CogDemo("cogPaper", 320, 32)
+        @cogDemo = new AmoebaSite.Presentation.CogDemo("cogPaper", 320, 32)
 
       @cogDemo.start()
 

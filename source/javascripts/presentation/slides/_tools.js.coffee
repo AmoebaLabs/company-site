@@ -1,5 +1,5 @@
 
-class Amoeba.Presentation.Slide_Tools extends AmoebaSB.Slide_Base
+class AmoebaSite.Presentation.Slide_Tools extends AmoebaSB.Slide_Base
   setup: ->
     this._setupElement("toolsSlide")
     @transition = 'warp'
@@ -142,8 +142,8 @@ class Amoeba.Presentation.Slide_Tools extends AmoebaSB.Slide_Base
         fontSize: "4em"
         position: "absolute"
         textAlign: "right"
-        textShadow: "#{Amoeba.Colors.amoebaGreenDark} 1px 0px 2px"
-        color: "#{Amoeba.Colors.amoebaGreenMedium}"
+        textShadow: "#{AmoebaSite.Colors.amoebaGreenDark} 1px 0px 2px"
+        color: "#{AmoebaSite.Colors.amoebaGreenMedium}"
         top: 200
         left: 0
         opacity: 0
@@ -159,7 +159,7 @@ class Amoeba.Presentation.Slide_Tools extends AmoebaSB.Slide_Base
         fontSize: "1.4em"
         position: "absolute"
         textAlign: "left"
-        textShadow: "#{Amoeba.Colors.amoebaGreen} 1px 0px 2px"
+        textShadow: "#{AmoebaSite.Colors.amoebaGreen} 1px 0px 2px"
         color: "black"
         top: 300
         left: @width / 2

@@ -1,5 +1,5 @@
 
-class Amoeba.Presentation.Slide_Map extends AmoebaSB.Slide_Base
+class AmoebaSite.Presentation.Slide_Map extends AmoebaSB.Slide_Base
   setup: ->
     @blipSize = 10
     this._setupElement("mapSlide")
@@ -125,8 +125,8 @@ class Amoeba.Presentation.Slide_Map extends AmoebaSB.Slide_Base
         fontSize: "4.5em"
         position: "absolute"
         textAlign: "center"
-        textShadow: "#{Amoeba.Colors.amoebaGreenDark} 1px 0px 2px"
-        color: "#{Amoeba.Colors.amoebaGreenMedium}"
+        textShadow: "#{AmoebaSite.Colors.amoebaGreenDark} 1px 0px 2px"
+        color: "#{AmoebaSite.Colors.amoebaGreenMedium}"
         top: 500
         left: 0
         opacity: 0

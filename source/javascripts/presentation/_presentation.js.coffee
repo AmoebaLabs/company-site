@@ -1,6 +1,6 @@
 #= require_tree ./slides
 
-class Amoeba.Presentation.Controller
+class AmoebaSite.Presentation.Controller
   constructor: () ->
     AmoebaSB.layout ?= new AmoebaSB.SlideLayout($("#stage"), $('#stageHolder'))
 
@@ -8,15 +8,15 @@ class Amoeba.Presentation.Controller
     this._setupKeyHandler()
 
     @slides = [
-      new Amoeba.Presentation.Slide_Intro(),
-      new Amoeba.Presentation.Slide_Computer(),
-      new Amoeba.Presentation.Slide_Phone(),
-      new Amoeba.Presentation.Slide_Cards(),
-      new Amoeba.Presentation.Slide_Map(),
-      new Amoeba.Presentation.Slide_Tools(),
-      new Amoeba.Presentation.Slide_Clouds(),
-      new Amoeba.Presentation.Slide_Cog(),
-      new Amoeba.Presentation.Slide_Cube()
+      new AmoebaSite.Presentation.Slide_Intro(),
+      new AmoebaSite.Presentation.Slide_Computer(),
+      new AmoebaSite.Presentation.Slide_Phone(),
+      new AmoebaSite.Presentation.Slide_Cards(),
+      new AmoebaSite.Presentation.Slide_Map(),
+      new AmoebaSite.Presentation.Slide_Tools(),
+      new AmoebaSite.Presentation.Slide_Clouds(),
+      new AmoebaSite.Presentation.Slide_Cog(),
+      new AmoebaSite.Presentation.Slide_Cube()
       ]
 
     @transAPI = new AmoebaSB.SlideTransitions(@slides)
@@ -69,12 +69,12 @@ class Amoeba.Presentation.Controller
   _setupKeyHandler: =>
     document.addEventListener(AmoebaSB.eventHelper.prevKeyEventName, (event) =>
       # only send key events if presentation is current
-      # KKK SNG if Amoeba.homepageView.presentationIsCurrent()
+      # KKK SNG if AmoebaSite.homepageView.presentationIsCurrent()
       this._previous();
     )
 
     document.addEventListener(AmoebaSB.eventHelper.nextKeyEventName, (event) =>
       # only send key events if presentation is current
-      # KKK SNG if Amoeba.homepageView.presentationIsCurrent()
+      # KKK SNG if AmoebaSite.homepageView.presentationIsCurrent()
       this._next();
     )

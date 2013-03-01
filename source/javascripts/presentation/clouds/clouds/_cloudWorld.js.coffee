@@ -1,4 +1,4 @@
-class window.Amoeba.CloudWorld
+class AmoebaSite.CloudWorld
   constructor:(@fps, @numClusters=5, @preset='current') ->
     @world = $("#world")
     @viewPort = $("#viewport")
@@ -21,7 +21,7 @@ class window.Amoeba.CloudWorld
 
     @clouds = []
     for i in [0...@numClusters]
-      @clouds.push(new Amoeba.Cloud(@world, Amoeba.textures.weightedTextures(@preset), @fps))
+      @clouds.push(new AmoebaSite.Cloud(@world, AmoebaSite.textures.weightedTextures(@preset), @fps))
 
   worldState: () =>
     return [@worldXAngle, @worldYAngle, @translateZ]
@@ -86,7 +86,7 @@ class window.Amoeba.CloudWorld
       transform: t
       duration: 2600
       complete: =>
-        Amoeba.presentation.setBackground('white')
+        AmoebaSite.presentation.setBackground('white')
 
     )
 
@@ -101,7 +101,7 @@ class window.Amoeba.CloudWorld
       transform: t
       duration: 2600
       complete: =>
-        Amoeba.presentation.setBackground('blue')
+        AmoebaSite.presentation.setBackground('blue')
     )
 
   zoomWorld: () =>

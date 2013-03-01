@@ -1,5 +1,5 @@
 
-class Amoeba.Presentation.Slide_Cards extends AmoebaSB.Slide_Base
+class AmoebaSite.Presentation.Slide_Cards extends AmoebaSB.Slide_Base
   setup: ->
     this._setupElement("cardsSlide")
     @transition = 'up'

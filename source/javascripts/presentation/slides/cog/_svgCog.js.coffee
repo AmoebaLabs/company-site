@@ -1,6 +1,6 @@
 
 # ------------------------------------------------
-class Amoeba.Presentation.Cog
+class AmoebaSite.Presentation.Cog
   constructor: (@size, @numSegments, @graphicsPaper) ->
 
   path: (showTeeth) ->
