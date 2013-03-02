@@ -20,20 +20,20 @@
 
   width: 100%;
   height: 100%;
+}
 
- // different backgrounds controled by setting classes
-  &.green {
-    @include background-image(radial-gradient(circle cover, $amoebaGreen 0%, $amoebaGreenDark 100%));
-  }
-  &.blue {
-    @include background-image(linear-gradient(bottom, rgb(69,132,180) 28%, rgb(31,71,120) 64%));
-  }
-  &.white {
-    @include background-image(radial-gradient(circle cover, rgb(235,235,235) 0%, rgb(255,255,255) 100%));
-  }
-  &.black {
-    @include background-image(radial-gradient(circle cover, rgb(100,100,100) 0%, rgb(0,0,0) 100%));
-  }
+// different backgrounds controled by setting classes
+.green {
+  @include background-image(radial-gradient(circle cover, $amoebaGreen 0%, $amoebaGreenDark 100%));
+}
+.blue {
+  @include background-image(linear-gradient(bottom, rgb(69,132,180) 28%, rgb(31,71,120) 64%));
+}
+.white {
+  @include background-image(radial-gradient(circle cover, rgb(235,235,235) 0%, rgb(255,255,255) 100%));
+}
+.black {
+  @include background-image(radial-gradient(circle cover, rgb(100,100,100) 0%, rgb(0,0,0) 100%));
 }
 
 div#bakgrnd {

@@ -46,9 +46,28 @@ class AmoebaSite.Presentation.Controller
 
     background = $('#presentationBackground')
 
+    background.css(
+      opacity: 0
+    )
+
     if not background.hasClass(colorClass)
       background.removeClass('white black blue green')
       background.addClass(colorClass)
+
+    background.transition(
+      opacity: 1
+      duration: 2000
+      complete: =>
+        parent = $("#presentation")
+
+        if not parent.hasClass(colorClass)
+          parent.removeClass('white black blue green')
+          parent.addClass(colorClass)
+
+        background.css(
+          opacity: 0
+        )
+    )
 
   _next: =>
     success = this._currentSlide().next()

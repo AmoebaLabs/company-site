@@ -78,6 +78,8 @@ class AmoebaSite.CloudWorld
     @world.transition(
       transform: 'translateY(2000px)'
       duration: 600
+      complete: =>
+        AmoebaSite.presentation.setBackground('black')
     )
 
   hyperspace: () =>
