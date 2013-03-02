@@ -5,7 +5,7 @@ class AmoebaSite.Presentation.Controller
     AmoebaSB.layout ?= new AmoebaSB.SlideLayout($("#stage"), $('#stageHolder'))
 
     this.setBackground('default')
-    this._setupKeyHandler()
+    this._setupKeyHandlers(true)
 
     @slides = [
       new AmoebaSite.Presentation.Slide_Intro(),
@@ -37,6 +37,9 @@ class AmoebaSite.Presentation.Controller
       AmoebaSite.app.homepageRouter.navigate("/presentation/#{theIndex}", {trigger: true});
     )
 
+  tearDown: =>
+    this._setupKeyHandlers(false)
+
   setBackground: (colorClass) =>
     if colorClass == 'default'
       colorClass = 'green'
@@ -58,15 +61,21 @@ class AmoebaSite.Presentation.Controller
   _currentSlide: =>
     return @slides[@transAPI.activeStepIndex]
 
-  _setupKeyHandler: =>
-    document.addEventListener(AmoebaSB.eventHelper.prevKeyEventName, (event) =>
-      # only send key events if presentation is current
-      # KKK SNG if AmoebaSite.homepageView.presentationIsCurrent()
-      this._previous();
-    )
+  _setupKeyHandlers: (add) =>
+    if not @prevFunction?
+      @prevFunction = =>
+        this._previous()
 
-    document.addEventListener(AmoebaSB.eventHelper.nextKeyEventName, (event) =>
-      # only send key events if presentation is current
-      # KKK SNG if AmoebaSite.homepageView.presentationIsCurrent()
-      this._next();
-    )
+    if not @nextFunction?
+      @nextFunction = =>
+        this._next()
+
+    if add
+      document.addEventListener(AmoebaSB.eventHelper.prevKeyEventName, @prevFunction)
+      document.addEventListener(AmoebaSB.eventHelper.nextKeyEventName, @nextFunction)
+    else
+      document.removeEventListener(AmoebaSB.eventHelper.prevKeyEventName, @prevFunction)
+      document.removeEventListener(AmoebaSB.eventHelper.nextKeyEventName, @nextFunction)
+
+      @nextFunction = undefined
+      @prevFunction = undefined

@@ -15,6 +15,7 @@ class AmoebaSite.Views.Presentation extends Amoeba.View
 
   hideView: () ->
     if AmoebaSite.presentation?
+      AmoebaSite.presentation.tearDown()
       AmoebaSite.presentation = undefined
 
     # Hide presentation, also sets hidden class
