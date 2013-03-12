@@ -35,6 +35,9 @@
 .black {
   @include background-image(radial-gradient(circle cover, rgb(100,100,100) 0%, rgb(0,0,0) 100%));
 }
+.none {
+  @include background(transparent);
+}
 
 div#bakgrnd {
   background: transparent url('/images/presentation/world.svg') no-repeat;

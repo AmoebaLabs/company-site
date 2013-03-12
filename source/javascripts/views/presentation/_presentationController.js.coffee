@@ -42,8 +42,10 @@ class AmoebaSite.Presentation.Controller
     this._setupKeyHandlers(false)
 
   setBackground: (colorClass) =>
+    allClasses = 'white black blue green, none'
+
     if colorClass == 'default'
-      colorClass = 'green'
+      colorClass = 'none'
 
     background = $('#presentationBackground')
 
@@ -52,7 +54,7 @@ class AmoebaSite.Presentation.Controller
     )
 
     if not background.hasClass(colorClass)
-      background.removeClass('white black blue green')
+      background.removeClass(allClasses)
       background.addClass(colorClass)
 
     background.transition(
@@ -62,7 +64,7 @@ class AmoebaSite.Presentation.Controller
         parent = $("#presentation")
 
         if not parent.hasClass(colorClass)
-          parent.removeClass('white black blue green')
+          parent.removeClass(allClasses)
           parent.addClass(colorClass)
 
         background.css(

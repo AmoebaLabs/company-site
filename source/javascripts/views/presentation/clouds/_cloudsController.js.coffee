@@ -8,7 +8,7 @@ class AmoebaSite.CloudsController
 
     AmoebaSite.cloudWorld.generate()
 
-    this._addEventHandlers()
+    # this._addEventHandlers()
     this._setupRAF()
     # this._setupEventListenersToMoveWorld()
 
@@ -18,7 +18,6 @@ class AmoebaSite.CloudsController
     this.showFallingClouds()
     this.showRocketShip()
     this._createStarsAndPlanet()
-
 
   _createStarsAndPlanet: () =>
     @$planet = $("<img/>")
@@ -60,8 +59,6 @@ class AmoebaSite.CloudsController
       )
       .appendTo(@viewPort)
 
-
-
   showFallingClouds: () =>
     if @fallingClouds?
       @fallingClouds.stop()
@@ -74,6 +71,11 @@ class AmoebaSite.CloudsController
       switch (animationStep)
         when 1  # called on final rocket blast off, fly world out
           AmoebaSite.cloudWorld.transitionDown()
+
+          # stop falling clouds
+          if @fallingClouds?
+            @fallingClouds.stop()
+            @fallingClouds = undefined
 
           # slowly fade in the planet
           @$planet.transition(
@@ -96,11 +98,6 @@ class AmoebaSite.CloudsController
           # stop rocket
           rocketShip.stop()
           rocketShip = undefined
-
-          # stop clouds
-          if @fallingClouds?
-            @fallingClouds.stop()
-            @fallingClouds = undefined
     )
 
   _addEventHandlers: () =>
