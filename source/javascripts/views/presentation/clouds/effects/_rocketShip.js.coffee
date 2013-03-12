@@ -4,6 +4,8 @@ class AmoebaSite.RocketShip extends AmoebaSite.EffectsBase
   setup:() =>
 
     @duration = 4000
+    @shipWidth = 400
+    @shipHeight = 720
 
     # should make rocket go between some clouds
     @rocketZ = '1px'
@@ -65,8 +67,8 @@ class AmoebaSite.RocketShip extends AmoebaSite.EffectsBase
         position: 'absolute'
         top: 30
         left: (window.innerWidth / 2) - 30
-        width: 400
-        height: 720
+        width: @shipWidth
+        height: @shipHeight
       )
     @shipDiv = $('<div/>')
       .appendTo(@rocketShip)
@@ -119,7 +121,7 @@ class AmoebaSite.RocketShip extends AmoebaSite.EffectsBase
       @shipDiv.css(AmoebaSB.keyframeAnimationPlugin.animationProperty, '')
     )
 
-    steps = [this._rocketStep1, this._rocketStep2, this._rocketStep3, this._rocketStep4]
+    steps = [this._rocketStep1, this._rocketStep2, this._rocketStep3, this._rocketStep4, this._rocketStep5]
 
     this._runRocketAnimations(steps)
 
@@ -181,15 +183,34 @@ class AmoebaSite.RocketShip extends AmoebaSite.EffectsBase
     @rocketShip.css(
       transform: "rotate(0deg) translateZ(#{@rocketZ})"
       top: 1000
-      left: @containerDiv.width() / 2
+      left: (@containerDiv.width() - @shipWidth) / 2
       duration: @duration
       scale: 1.5
     )
     @rocketShip.transition(
       top: -1000
-      left: @containerDiv.width() / 2
+      left: (@containerDiv.width() - @shipWidth) / 2
       duration: @duration
       scale:.3
+      complete: =>
+        this._runRocketAnimations(steps)
+    )
+
+  _rocketStep5: (steps) =>
+    @rocketShip.css(
+      transform: "rotate(45deg) translateZ(#{@rocketZ})"
+      top: -100
+      left: -100
+      duration: @duration
+      scale: .1
+      opacity: .1
+    )
+    @rocketShip.transition(
+      top: 100
+      left: -250
+      duration: @duration * 2
+      opacity: 1
+      scale: 1.8
       complete: =>
         this._runRocketAnimations(steps)
     )
