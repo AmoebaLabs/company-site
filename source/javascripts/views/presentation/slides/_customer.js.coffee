@@ -49,6 +49,7 @@ class AmoebaSite.Presentation.Slide_Customer extends AmoebaSB.Slide_Base
 
   _sideIsDone: () =>
     console.log 'fuck it'
+    this._typewriterEffect()
 
   _step1: () =>
     @message1.css(
@@ -72,14 +73,7 @@ class AmoebaSite.Presentation.Slide_Customer extends AmoebaSB.Slide_Base
 
   _step2: () =>
     # hide previous divs
-    @message1.transition(
-      opacity: 0
-      duration: 300
-    )
-    @manImage1.transition(
-      opacity: 0
-      duration: 300
-    )
+    this._hideDivs([@message1, @manImage1])
 
     # show new divs
     @message2.css(
@@ -103,14 +97,7 @@ class AmoebaSite.Presentation.Slide_Customer extends AmoebaSB.Slide_Base
 
   _step3: () =>
     # hide previous divs
-    @message2.transition(
-      opacity: 0
-      duration: 300
-    )
-    @manImage2.transition(
-      opacity: 0
-      duration: 300
-    )
+    this._hideDivs([@message2, @manImage2])
 
     # show new divs
     @message3.css(
@@ -130,6 +117,14 @@ class AmoebaSite.Presentation.Slide_Customer extends AmoebaSB.Slide_Base
       scale: 1
       opacity: 1
       duration: 1000
+    )
+
+  _hideDivs: (divsArray) =>
+    _.each(divsArray, (element) =>
+      element.transition(
+        opacity: 0
+        duration: 300
+      )
     )
 
   _createDivs: () =>
@@ -225,5 +220,33 @@ class AmoebaSite.Presentation.Slide_Customer extends AmoebaSB.Slide_Base
         opacity: 0
       )
 
+  _typewriterEffect: () =>
+    container = $('<div/>')
+      .appendTo(@el)
+      .css(
+        position: "absolute"
+        bottom: 0
+        left: 0
+        width: 0
+        height: 200
+        overflow: 'hidden'
+      )
+    message = $('<div/>')
+      .text("Designed by Richard Enlow (aka Klaay Kumjore)")
+      .appendTo(container)
+      .attr(class: "amoebaText")
+      .css(
+        fontSize: "1em"
+        position: "absolute"
+        textAlign: "center"
+        top: 0
+        left: 0
+        width: @el.width()
+        textShadow: "pink 0px 0px 4px"
+        color: "#{AmoebaSite.Colors.amoebaGreenDark}"
+      )
 
-
+    container.transition(
+      width: '100%'
+      duration: 8000
+    )
