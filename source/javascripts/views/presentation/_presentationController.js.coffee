@@ -13,6 +13,7 @@ class AmoebaSite.Presentation.Controller
       new AmoebaSite.Presentation.Slide_Phone(),
       new AmoebaSite.Presentation.Slide_Cards(),
       new AmoebaSite.Presentation.Slide_Map(),
+      new AmoebaSite.Presentation.Slide_Customer(),
       new AmoebaSite.Presentation.Slide_Tools(),
       new AmoebaSite.Presentation.Slide_Clouds(),
       new AmoebaSite.Presentation.Slide_Cog(),

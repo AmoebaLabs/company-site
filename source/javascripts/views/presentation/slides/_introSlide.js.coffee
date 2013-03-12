@@ -13,7 +13,6 @@ class AmoebaSite.Presentation.Slide_Intro extends AmoebaSB.Slide_Base
       @amoebaTitleAnimation = 'amoebaTitlePulseDark'
       @titleColor = 'rgba(0,0,0,.4)'
       @amoebaInfoAnimation = 'amoebaInfoPulseDark'
-      @spaceToContinueMessage = 'Ugly Mode Activated (blame Richard)'
 
     @title = $('<div/>')
       .html('Amoeba<sup style="vertical-align: super; font-size: 0.2em;">\u2120</sup>')   # vertical-align: super is the magic that makes this work
