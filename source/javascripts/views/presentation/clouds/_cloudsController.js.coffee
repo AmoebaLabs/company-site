@@ -17,6 +17,50 @@ class AmoebaSite.CloudsController
 
     this.showFallingClouds()
     this.showRocketShip()
+    this._createStarsAndPlanet()
+
+
+  _createStarsAndPlanet: () =>
+    @$planet = $("<img/>")
+      .attr(src: "/images/presentation/planet.svg")
+      .css(
+        position: 'absolute'
+        height: 500
+        width: 500
+        top: 0
+        right: 0
+        opacity: 0
+        scale: 0.8
+      )
+      .appendTo(@viewPort)
+
+    @$bigStars = $("<div/>")
+      .css(
+        background: "url('/images/presentation/starsBig.png') repeat 5% 5%"
+        position: 'absolute'
+        height: '100%'
+        width: '100%'
+        top: 0
+        left: 0
+        zIndex: -1
+        opacity: 0
+      )
+      .appendTo(@viewPort)
+
+    @$smallStars = $("<div/>")
+      .css(
+        background: "url('/images/presentation/starsSmall.png') repeat 35% 35%"
+        position: 'absolute'
+        height: '100%'
+        width: '100%'
+        top: 0
+        left: 0
+        opacity: 0
+        zIndex: -1
+      )
+      .appendTo(@viewPort)
+
+
 
   showFallingClouds: () =>
     if @fallingClouds?
@@ -31,6 +75,23 @@ class AmoebaSite.CloudsController
         when 1  # called on final rocket blast off, fly world out
           AmoebaSite.cloudWorld.transitionDown()
 
+          # slowly fade in the planet
+          @$planet.transition(
+            opacity: 1
+            scale: 1
+            duration: 7000
+          )
+
+          # slowly fade in the stars
+          @$bigStars.transition(
+            opacity: 1
+            duration: 7000
+          )
+
+          @$smallStars.transition(
+            opacity: 1
+            duration: 7000
+          )
         when 10  # done, tear it down
           # stop rocket
           rocketShip.stop()

@@ -2,6 +2,9 @@
 class AmoebaSite.RocketShip extends AmoebaSite.EffectsBase
   # called from base classes constructor
   setup:() =>
+
+    @duration = 4000
+
     # should make rocket go between some clouds
     @rocketZ = '1px'
     @rocketZInFront = '200px'
@@ -143,7 +146,7 @@ class AmoebaSite.RocketShip extends AmoebaSite.EffectsBase
     @rocketShip.transition(
       top: 0
       left: @containerDiv.width() / 4
-      duration: 4000
+      duration: @duration
       scale:.5
 
       complete: =>
@@ -156,7 +159,7 @@ class AmoebaSite.RocketShip extends AmoebaSite.EffectsBase
       left: 0
       transform: "rotate(0deg) translateZ(#{@rocketZInFront})"
       scale: 1
-      duration: 4000
+      duration: @duration
 
       complete: =>
         this._runRocketAnimations(steps)
@@ -167,7 +170,7 @@ class AmoebaSite.RocketShip extends AmoebaSite.EffectsBase
       transform: "rotate(25deg) translateZ(#{@rocketZ})"
       top: @containerDiv.height()
       left: @containerDiv.width()
-      duration: 4000
+      duration: @duration
       scale:.3
 
       complete: =>
@@ -179,13 +182,13 @@ class AmoebaSite.RocketShip extends AmoebaSite.EffectsBase
       transform: "rotate(0deg) translateZ(#{@rocketZ})"
       top: 1000
       left: @containerDiv.width() / 2
-      duration: 4000
+      duration: @duration
       scale: 1.5
     )
     @rocketShip.transition(
       top: -1000
       left: @containerDiv.width() / 2
-      duration: 4000
+      duration: @duration
       scale:.3
       complete: =>
         this._runRocketAnimations(steps)
