@@ -9,9 +9,6 @@
 # Other modules we'd like to include:
 require 'animation'
 
-# hack for middleman, may be removed in the next version of middleman
-require 'erubis'
-
 # Change Compass configuration
 # compass_config do |config|
 #   config.output_style = :compact
