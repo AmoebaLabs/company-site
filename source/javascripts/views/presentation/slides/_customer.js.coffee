@@ -90,24 +90,10 @@ class AmoebaSite.Presentation.Slide_Customer extends AmoebaSB.Slide_Base
         duration: 1000
       )
     else
-      #walk out from side
       this._tripWalker()
 
   _tripWalker: () =>
-    x = (@el.width() - @imageSize) / 2
-    y = (@el.height() - @imageSize) / 2
-
-#    @tripWalker.walk(x, y, 12, 12, 12)
-#    @tripWalker.walk(x, y, -12, -12, -12)
-#    @tripWalker.walk(x, y, 12, -12, 12)
-#    @tripWalker.walk(x, y, -12, 12, -12)
-
-    offset = 200
-    @tripWalker.run(x, y, true)
-    @tripWalker.run(x-offset, y-offset)
-    @tripWalker.run(x+offset, y+offset)
-    @tripWalker.run(x-offset, y+offset)
-    @tripWalker.run(x+offset, y-offset)
+    @tripWalker.run()
 
   _step2: () =>
     return

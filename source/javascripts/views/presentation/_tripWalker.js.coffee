@@ -5,54 +5,18 @@ class AmoebaSite.TripWalker
       .addClass('slide3DContainer')
       .appendTo(@parentDiv)
 
-  walk: (xStart, yStart, xOffset, yOffset, zOffset) =>
-    numSteps = 50
+  run: () =>
+    x = (@container.width() - @$masterDiv.width()) / 2
+    y = (@container.height() - @$masterDiv.height()) / 2
 
-    x = xStart
-    y = yStart
+    offset = 200
+    this.zoomIn(x, y, true)
+    this.zoomIn(x-offset, y-offset)
+    this.zoomIn(x+offset, y+offset)
+    this.zoomIn(x-offset, y+offset)
+    this.zoomIn(x+offset, y-offset)
 
-    if zOffset < 0
-      z = 0
-    else
-      z = -1200
-
-    _.each([0..numSteps], (loopIndex) =>
-      clone = @$masterDiv.clone()
-      clone.appendTo(@container)
-
-      t = "translateX(#{x}px) translateY(#{y}px) translateZ(#{z}px)"
-
-      clone.css(
-        scale: 1
-        left: 0
-        top: 0
-        transform: t
-        opacity: 0
-      )
-
-      do (clone) ->
-
-        clone.transition(
-          opacity: 1
-          delay: loopIndex * 100
-          duration: 1
-          complete: =>
-            clone.transition(
-              opacity: 0
-              delay: 0
-              duration: 2800
-
-              complete: =>
-                clone.remove()    # remove ourselves
-            )
-        )
-
-      x += xOffset
-      y += yOffset
-      z += zOffset
-    )
-
-  run: (x, y, rotate=false) =>
+  zoomIn: (x, y, rotate=false) =>
     numSteps = 25
 
     r = 0
