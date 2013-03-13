@@ -228,7 +228,6 @@ class AmoebaSite.TripWalker
         )
     )
 
-
   _doBowDown: () =>
     @steps = 0
     @container.empty()
@@ -273,7 +272,6 @@ class AmoebaSite.TripWalker
             this._afterBowDownStep()
         )
     )
-
 
   _afterFlyInStep: () =>
     if --@steps == 0
