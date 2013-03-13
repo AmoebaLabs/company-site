@@ -166,11 +166,11 @@ $cardHeight: 200px;
   0% {
     @include rotate(0deg);
   } 25% {
-    @include rotate(0.8deg);
+    @include rotate(0.5deg);
   } 50% {
     @include rotate(0deg);
   } 100% {
-    @include rotate(-0.8deg);
+    @include rotate(-0.5deg);
   }
 }
 

@@ -88,18 +88,21 @@ class AmoebaSite.CloudsController
           @$bigStars.transition(
             opacity: 1
             duration: 7000
+
+            complete: =>
+              @$bigStars.keyframe('starFlicker', 300000, 'linear', 0, 'Infinite', 'alternate', () =>
+                @$bigStars.css(AmoebaSB.keyframeAnimationPlugin.animationProperty, '')
+              )
           )
 
           @$smallStars.transition(
             opacity: 1
             duration: 7000
-          )
 
-          @$bigStars.keyframe('starFlicker', 300000, 'linear', 0, 'Infinite', 'alternate', () =>
-            @$bigStars.css(AmoebaSB.keyframeAnimationPlugin.animationProperty, '')
-          )
-          @$smallStars.keyframe('starFlicker', 1000000, 'linear', 500, 'Infinite', 'alternate', () =>
-            @$smallStars.css(AmoebaSB.keyframeAnimationPlugin.animationProperty, '')
+            complete: =>
+              @$smallStars.keyframe('starFlicker', 1000000, 'linear', 500, 'Infinite', 'alternate', () =>
+                @$smallStars.css(AmoebaSB.keyframeAnimationPlugin.animationProperty, '')
+              )
           )
 
         when 10  # done, tear it down

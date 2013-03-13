@@ -201,11 +201,11 @@ class AmoebaSite.RocketShip extends AmoebaSite.EffectsBase
   _rocketStep5: (steps) =>
     @rocketShip.css(
       transform: "rotate(35deg) translateZ(#{@rocketZ})"
-      top: -500
-      left: -400
+      top: -400
+      left: -300
       duration: @duration
-      scale: .1
-      opacity: .1
+      scale: 0
+      opacity: 0.8
     )
     @rocketShip.transition(
       top: -80
