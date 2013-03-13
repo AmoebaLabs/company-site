@@ -36,7 +36,7 @@ class AmoebaSite.TripWalker
     y = (@container.height() - @imageSize) / 2
 
     offset = 200
-    this._zoomIn(masterDiv, x, y, true)
+    this._zoomIn(masterDiv, x, y)
     this._zoomIn(masterDiv, x-offset, y-offset)
     this._zoomIn(masterDiv, x+offset, y+offset)
     this._zoomIn(masterDiv, x-offset, y+offset)
@@ -53,6 +53,8 @@ class AmoebaSite.TripWalker
     zOffset = depth/@numSteps
 
     _.each([0..@numSteps], (loopIndex) =>
+      last = loopIndex == @numSteps
+
       clone = masterDiv.clone()
       clone.appendTo(@container)
 
@@ -71,13 +73,16 @@ class AmoebaSite.TripWalker
         delay: loopIndex * 30
         duration: 1
         complete: =>
-          clone.transition(
-            opacity: 0
-            delay: 0
-            duration: 800
-            complete: =>
-              clone.remove()    # remove ourselves
-          )
+          if !last
+            clone.transition(
+              opacity: 0
+              delay: 0
+              duration: 800
+              complete: =>
+                clone.remove()    # remove ourselves
+            )
+          else
+            console.log 'done'
       )
 
       z += zOffset
@@ -113,11 +118,11 @@ class AmoebaSite.TripWalker
     r = 0
 
     len = (x + @imageSize)
+    xOff = x - len
 
     if fromRight
+      len = @container.width() - x
       xOff = x + len
-    else
-      xOff = x - len
 
     xOffset = len/(@numSteps-1)
 
@@ -171,5 +176,3 @@ class AmoebaSite.TripWalker
   _nextStep: () =>
     if --@steps == 0
       this._doZoomIn()
-
-    console.log "#{@steps}"
