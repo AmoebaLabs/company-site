@@ -1,9 +1,18 @@
 
 class AmoebaSite.Typewriter
   constructor: (@parentDiv, @message, @callback) ->
+    @fontSize = 1
+
+  tearDown: () =>
+    if @container
+      @container.remove()
+      @container = undefined
 
   write: (bottom) =>
-    container = $('<div/>')
+    # remove any previous message if one exists
+    this.tearDown()
+
+    @container = $('<div/>')
       .appendTo(@parentDiv)
       .css(
         position: "absolute"
@@ -15,10 +24,10 @@ class AmoebaSite.Typewriter
       )
     message = $('<div/>')
       .text(@message)
-      .appendTo(container)
+      .appendTo(@container)
       .attr(class: "amoebaText")
       .css(
-        fontSize: "1em"
+        fontSize: "#{@fontSize}em"
         position: "absolute"
         textAlign: "center"
         top: 0
@@ -28,7 +37,7 @@ class AmoebaSite.Typewriter
         color: "#{AmoebaSite.Colors.amoebaGreenDark}"
       )
 
-    container.transition(
+    @container.transition(
       width: '100%'
       duration: 8000
     )

@@ -1,4 +1,8 @@
 
+# assets needed.
+# 1. better guy with a tie
+# 2.
+
 class AmoebaSite.TripWalker
   constructor: (@parentDiv, @imagePath) ->
     @numSteps = 25
@@ -11,6 +15,10 @@ class AmoebaSite.TripWalker
 
   run: () =>
     this._doFlyIn()
+
+  tearDown: () =>
+    @container.remove()
+    @container = undefined
 
   _createImageDiv: (path) =>
     result = $('<div/>')

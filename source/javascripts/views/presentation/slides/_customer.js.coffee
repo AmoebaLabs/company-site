@@ -4,20 +4,6 @@ class AmoebaSite.Presentation.Slide_Customer extends AmoebaSB.Slide_Base
     this._setupElement("customerSlide")
     @transition = 'zoom'
 
-    @button = $('<button/>')
-    .text('Again')
-    .appendTo(@el)
-    .css(
-      position: 'absolute'
-      bottom: 20
-      right: 20
-      width: 100
-      zIndex: 400
-    )
-    .click( (event) =>
-      this._tripWalker()
-    )
-
     @imageSize = 200
 
     this._createDivs()
@@ -64,39 +50,29 @@ class AmoebaSite.Presentation.Slide_Customer extends AmoebaSB.Slide_Base
     , 1500)
 
   _sideIsDone: () =>
-    this._typewriterEffect("This is fucking bullshit.", 0)
+    this._typewriterEffect("We are here to help.", 0)
 
   _step1: () =>
-    lame = false
+    @message1.css(
+      opacity: 1
+    )
+    @message1.keyframe('bounceInDown', 1000, 'ease-out', 0, 1, 'normal', () =>
+      @message1.css(AmoebaSB.keyframeAnimationPlugin.animationProperty, '')
+    )
 
-    if lame
-      @message1.css(
-        opacity: 1
-      )
-      @message1.keyframe('bounceInDown', 1000, 'ease-out', 0, 1, 'normal', () =>
-        @message1.css(AmoebaSB.keyframeAnimationPlugin.animationProperty, '')
-      )
+    # man image zoom in
+    @manImage1.css(
+      scale: 4
+    )
 
-      # man image zoom in
-      @manImage1.css(
-        scale: 4
-      )
-
-      # do the transition
-      @manImage1.transition(
-        scale: 1
-        opacity: 1
-        duration: 1000
-      )
-    else
-      this._tripWalker()
-
-  _tripWalker: () =>
-    @tripWalker.run()
+    # do the transition
+    @manImage1.transition(
+      scale: 1
+      opacity: 1
+      duration: 1000
+    )
 
   _step2: () =>
-    return
-
     # hide previous divs
     this._hideDivs([@message1, @manImage1])
 
@@ -121,8 +97,6 @@ class AmoebaSite.Presentation.Slide_Customer extends AmoebaSB.Slide_Base
     )
 
   _step3: () =>
-    return
-
     # hide previous divs
     this._hideDivs([@message2, @manImage2])
 

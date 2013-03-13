@@ -11,6 +11,7 @@ class AmoebaSite.Presentation.Controller
       new AmoebaSite.Presentation.Slide_Intro(),
       new AmoebaSite.Presentation.Slide_Computer(),
       new AmoebaSite.Presentation.Slide_Phone(),
+      new AmoebaSite.Presentation.Slide_Team(),
       new AmoebaSite.Presentation.Slide_Cards(),
       new AmoebaSite.Presentation.Slide_Map(),
       new AmoebaSite.Presentation.Slide_Customer(),
