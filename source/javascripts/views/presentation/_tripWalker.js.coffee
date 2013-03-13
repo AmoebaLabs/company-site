@@ -9,9 +9,7 @@ class AmoebaSite.TripWalker
       .appendTo(@parentDiv)
 
   run: () =>
-    @container.empty()
     this._doFlyIn()
-    # this._doZoomIn()
 
   _createImageDiv: (path) =>
     result = $('<div/>')
@@ -30,6 +28,8 @@ class AmoebaSite.TripWalker
       )
 
   _doZoomIn: () =>
+    @container.empty()
+
     masterDiv = this._createImageDiv(@imagePath)
 
     x = (@container.width() - @imageSize) / 2
@@ -52,7 +52,7 @@ class AmoebaSite.TripWalker
     z = -depth
     zOffset = depth/@numSteps
 
-    _.each([0...@numSteps], (loopIndex) =>
+    _.each([0..@numSteps], (loopIndex) =>
       clone = masterDiv.clone()
       clone.appendTo(@container)
 
@@ -86,6 +86,10 @@ class AmoebaSite.TripWalker
 
 
   _doFlyIn: () =>
+    # counter so we know when we are all done
+    @steps = 0
+    @container.empty()
+
     masterDiv = this._createImageDiv(@imagePath)
 
     x = (@container.width() - @imageSize) / 2
@@ -122,11 +126,10 @@ class AmoebaSite.TripWalker
 
     last = false
 
+    @steps += @numSteps
+
     _.each([0...@numSteps], (loopIndex) =>
       last = loopIndex == (@numSteps - 1)
-
-      if last
-        console.log "#{loopIndex}"
 
       clone = masterDiv.clone()
       clone.appendTo(@container)
@@ -154,11 +157,19 @@ class AmoebaSite.TripWalker
                 duration: 800
                 complete: =>
                   clone.remove()    # remove ourselves
+
+                  this._nextStep()
               )
             else
-              console.log 'last'
+              this._nextStep()
         )
 
       xOff += xOffset
       r += rOffset
     )
+
+  _nextStep: () =>
+    if --@steps == 0
+      this._doZoomIn()
+
+    console.log "#{@steps}"
