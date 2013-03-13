@@ -4,8 +4,10 @@ class AmoebaSite.RocketShip extends AmoebaSite.EffectsBase
   setup:() =>
 
     @duration = 4000
-    @shipWidth = 400
-    @shipHeight = 720
+
+    # making it large so we don't get pixels when scaling up from a smaller size
+    @shipWidth = 600
+    @shipHeight = 1200
 
     # should make rocket go between some clouds
     @rocketZ = '1px'
@@ -65,8 +67,8 @@ class AmoebaSite.RocketShip extends AmoebaSite.EffectsBase
       .appendTo(parentDiv)
       .css(
         position: 'absolute'
-        top: 30
-        left: (window.innerWidth / 2) - 30
+        top: 0
+        left: 0
         width: @shipWidth
         height: @shipHeight
       )
@@ -140,16 +142,16 @@ class AmoebaSite.RocketShip extends AmoebaSite.EffectsBase
 
   _rocketStep1: (steps) =>
     @rocketShip.css(
-      scale: 1
+      scale:.8
       left: @containerDiv.width()
       top: @containerDiv.height()
       transform: "rotate(-25deg) translateZ(#{@rocketZ})"
     )
     @rocketShip.transition(
-      top: 0
+      top: -300
       left: @containerDiv.width() / 4
       duration: @duration
-      scale:.5
+      scale:.4
 
       complete: =>
         this._runRocketAnimations(steps)
@@ -157,10 +159,10 @@ class AmoebaSite.RocketShip extends AmoebaSite.EffectsBase
 
   _rocketStep2: (steps) =>
     @rocketShip.transition(
-      top: 200
+      top: 0
       left: 0
       transform: "rotate(0deg) translateZ(#{@rocketZInFront})"
-      scale: 1
+      scale:.8
       duration: @duration
 
       complete: =>
@@ -173,7 +175,7 @@ class AmoebaSite.RocketShip extends AmoebaSite.EffectsBase
       top: @containerDiv.height()
       left: @containerDiv.width()
       duration: @duration
-      scale:.3
+      scale:.1
 
       complete: =>
         this._runRocketAnimations(steps, 1) # 1 signals to send a callback event with id = 1
@@ -185,32 +187,32 @@ class AmoebaSite.RocketShip extends AmoebaSite.EffectsBase
       top: 1000
       left: (@containerDiv.width() - @shipWidth) / 2
       duration: @duration
-      scale: 1.5
+      scale: 1
     )
     @rocketShip.transition(
       top: -1000
       left: (@containerDiv.width() - @shipWidth) / 2
       duration: @duration
-      scale:.3
+      scale:.2
       complete: =>
         this._runRocketAnimations(steps)
     )
 
   _rocketStep5: (steps) =>
     @rocketShip.css(
-      transform: "rotate(45deg) translateZ(#{@rocketZ})"
-      top: -100
-      left: -100
+      transform: "rotate(35deg) translateZ(#{@rocketZ})"
+      top: -500
+      left: -400
       duration: @duration
       scale: .1
       opacity: .1
     )
     @rocketShip.transition(
-      top: 100
-      left: -250
+      top: -80
+      left: -260
       duration: @duration * 2
       opacity: 1
-      scale: 1.8
+      scale: 1
       complete: =>
         this._runRocketAnimations(steps)
     )
