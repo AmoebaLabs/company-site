@@ -1,35 +1,57 @@
 
 class AmoebaSite.TripWalker
-  constructor: (@parentDiv, @$masterDiv) ->
+  constructor: (@parentDiv, @imagePath) ->
+    @numSteps = 25
+    @imageSize = 200
+
     @container = $('<div/>')
       .addClass('slide3DContainer')
       .appendTo(@parentDiv)
 
   run: () =>
-    x = (@container.width() - @$masterDiv.width()) / 2
-    y = (@container.height() - @$masterDiv.height()) / 2
+    this._doZoomIn()
+
+  _createImageDiv: (path) =>
+    result = $('<div/>')
+      .css(
+        backgroundImage: 'url("' + path + '")'
+        backgroundPosition: 'center center'
+        backgroundSize: 'contain'
+        backgroundRepeat: 'no-repeat'
+
+        top: (@container.height() - @imageSize) / 2
+        left: (@container.width() - @imageSize) / 2
+        position: "absolute"
+        width:@imageSize
+        height: @imageSize
+        opacity: 0
+      )
+
+  _doZoomIn: () =>
+    masterDiv = this._createImageDiv(@imagePath)
+
+    x = (@container.width() - @imageSize) / 2
+    y = (@container.height() - @imageSize) / 2
 
     offset = 200
-    this.zoomIn(x, y, true)
-    this.zoomIn(x-offset, y-offset)
-    this.zoomIn(x+offset, y+offset)
-    this.zoomIn(x-offset, y+offset)
-    this.zoomIn(x+offset, y-offset)
+    this._zoomIn(masterDiv, x, y, true)
+    this._zoomIn(masterDiv, x-offset, y-offset)
+    this._zoomIn(masterDiv, x+offset, y+offset)
+    this._zoomIn(masterDiv, x-offset, y+offset)
+    this._zoomIn(masterDiv, x+offset, y-offset)
 
-  zoomIn: (x, y, rotate=false) =>
-    numSteps = 25
-
+  _zoomIn: (masterDiv, x, y, rotate=false) =>
     r = 0
     rOffset = 0
     if rotate
-      rOffset = 360/numSteps
+      rOffset = 360/@numSteps
 
     depth = 4000
     z = -depth
-    zOffset = depth/numSteps
+    zOffset = depth/@numSteps
 
-    _.each([0..numSteps], (loopIndex) =>
-      clone = @$masterDiv.clone()
+    _.each([0..@numSteps], (loopIndex) =>
+      clone = masterDiv.clone()
       clone.appendTo(@container)
 
       t = "translateX(#{x}px) translateY(#{y}px) translateZ(#{z}px) rotate(#{r}deg)"

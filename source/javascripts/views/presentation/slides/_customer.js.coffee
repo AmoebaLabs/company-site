@@ -210,7 +210,7 @@ class AmoebaSite.Presentation.Slide_Customer extends AmoebaSB.Slide_Base
     @manImage2 = this._createImageDiv('/images/presentation/man_question.svg')
     @manImage3 = this._createImageDiv('/images/presentation/man_exclaim.svg')
 
-    @tripWalker = new AmoebaSite.TripWalker(@el, @manImage1)
+    @tripWalker = new AmoebaSite.TripWalker(@el, '/images/presentation/man.svg')
 
   _createImageDiv: (path) =>
     result = $('<div/>')

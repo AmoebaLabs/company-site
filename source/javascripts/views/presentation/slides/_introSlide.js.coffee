@@ -4,7 +4,7 @@ class AmoebaSite.Presentation.Slide_Intro extends AmoebaSB.Slide_Base
     this._setupElement("introSlide")
     @transition = 'zoom'
 
-    dark = false
+    dark = true
     @titleColor = 'rgba(255,255,255,.4)'
     @amoebaTitleAnimation = 'amoebaTitlePulse'
     @amoebaInfoAnimation = 'amoebaInfoPulse'
