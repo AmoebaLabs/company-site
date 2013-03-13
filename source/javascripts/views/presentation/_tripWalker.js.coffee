@@ -207,12 +207,71 @@ class AmoebaSite.TripWalker
       opacity: 1
     )
 
-    t = "translateX(#{x}px) translateY(#{y}px) translateZ(#{-@zoomDepth}px))"
+    t = "translateX(#{x}px) translateY(#{y}px) rotateY(45deg)"
     clone.transition(
       transform: t
+      delay: Math.random() * 500
       duration: 800
       complete: =>
-        this._afterBackInStep()
+        t = "translateX(#{x}px) translateY(#{y}px) rotateY(0deg)"
+        clone.transition(
+          transform: t
+          duration: 800
+          complete: =>
+            t = "translateX(#{x}px) translateY(#{y}px) translateZ(#{-@zoomDepth}px))"
+            clone.transition(
+              transform: t
+              duration: 800
+              complete: =>
+                this._afterBackInStep()
+            )
+        )
+    )
+
+
+  _doBowDown: () =>
+    @steps = 0
+    @container.empty()
+
+    masterDiv = this._createImageDiv(@imagePath)
+
+    x = (@container.width() - @imageSize) / 2
+    y = (@container.height() - @imageSize) / 2
+
+    offset = 200
+    this._bowDown(masterDiv, x, y)
+    this._bowDown(masterDiv, x-offset, y-offset)
+    this._bowDown(masterDiv, x+offset, y+offset)
+    this._bowDown(masterDiv, x-offset, y+offset)
+    this._bowDown(masterDiv, x+offset, y-offset)
+
+  _bowDown: (masterDiv, x, y) =>
+    clone = masterDiv.clone()
+    clone.appendTo(@container)
+
+    @steps++
+
+    clone.css(
+      x:x
+      y:y
+      left: 0
+      top: 0
+      opacity: 1
+    )
+
+    t = "translateX(#{x}px) translateY(#{y}px) rotateX(-45deg)"
+    clone.transition(
+      transform: t
+      delay: Math.random() * 500
+      duration: 800
+      complete: =>
+        t2 = "translateX(#{x}px) translateY(#{y}px) rotateX(0deg)"
+        clone.transition(
+          transform: t2
+          duration: 800
+          complete: =>
+            this._afterBowDownStep()
+        )
     )
 
 
@@ -225,6 +284,10 @@ class AmoebaSite.TripWalker
       this._doZoomIn()
 
   _afterZoomInStep: () =>
+    if --@steps == 0
+      this._doBowDown()
+
+  _afterBowDownStep: () =>
     if --@steps == 0
       console.log 'done'
 
