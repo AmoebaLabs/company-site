@@ -17,8 +17,9 @@ class AmoebaSite.TripWalker
     this._doFlyIn()
 
   tearDown: () =>
-    @container.remove()
-    @container = undefined
+    if @container
+      @container.remove()
+      @container = undefined
 
   _createImageDiv: (path) =>
     result = $('<div/>')
