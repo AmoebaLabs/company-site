@@ -64,7 +64,6 @@ class AmoebaSite.Presentation.Slide_Customer extends AmoebaSB.Slide_Base
     , 1500)
 
   _sideIsDone: () =>
-    console.log 'fuck it'
     this._typewriterEffect()
 
   _step1: () =>
@@ -232,32 +231,6 @@ class AmoebaSite.Presentation.Slide_Customer extends AmoebaSB.Slide_Base
     return result
 
   _typewriterEffect: () =>
-    container = $('<div/>')
-      .appendTo(@el)
-      .css(
-        position: "absolute"
-        bottom: 0
-        left: 0
-        width: 0
-        height: 200
-        overflow: 'hidden'
-      )
-    message = $('<div/>')
-      .text("Designed by Richard Enlow (aka Klaay Kumjore)")
-      .appendTo(container)
-      .attr(class: "amoebaText")
-      .css(
-        fontSize: "1em"
-        position: "absolute"
-        textAlign: "center"
-        top: 0
-        left: 0
-        width: @el.width()
-        textShadow: "pink 0px 0px 4px"
-        color: "#{AmoebaSite.Colors.amoebaGreenDark}"
-      )
+    typewriter = new AmoebaSite.Typewriter(@el, "This is fucking bullshit")
 
-    container.transition(
-      width: '100%'
-      duration: 8000
-    )
+    typewriter.write(0)
