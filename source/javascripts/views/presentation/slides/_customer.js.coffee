@@ -64,7 +64,7 @@ class AmoebaSite.Presentation.Slide_Customer extends AmoebaSB.Slide_Base
     , 1500)
 
   _sideIsDone: () =>
-    this._typewriterEffect()
+    this._typewriterEffect("This is fucking bullshit.", 0)
 
   _step1: () =>
     lame = false
@@ -230,7 +230,7 @@ class AmoebaSite.Presentation.Slide_Customer extends AmoebaSB.Slide_Base
 
     return result
 
-  _typewriterEffect: () =>
-    typewriter = new AmoebaSite.Typewriter(@el, "This is fucking bullshit")
+  _typewriterEffect: (message, bottom) =>
+    typewriter = new AmoebaSite.Typewriter(@el, message)
 
-    typewriter.write(0)
+    typewriter.write(bottom)
