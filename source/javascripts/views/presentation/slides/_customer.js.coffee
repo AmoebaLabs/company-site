@@ -3,8 +3,24 @@ class AmoebaSite.Presentation.Slide_Customer extends AmoebaSB.Slide_Base
   setup: ->
     this._setupElement("customerSlide")
     @transition = 'zoom'
+
+    @button = $('<button/>')
+    .text('Again')
+    .appendTo(@el)
+    .css(
+      position: 'absolute'
+      bottom: 20
+      right: 20
+      width: 100
+      zIndex: 400
+    )
+    .click( (event) =>
+      this._tripWalker()
+    )
+
+    @imageSize = 200
+
     this._createDivs()
-    @mascot = new AmoebaSite.MascotController
 
   slideIn: (afterTransitionComplete) =>
     if afterTransitionComplete
@@ -52,26 +68,50 @@ class AmoebaSite.Presentation.Slide_Customer extends AmoebaSB.Slide_Base
     this._typewriterEffect()
 
   _step1: () =>
-    @message1.css(
-      opacity: 1
-    )
-    @message1.keyframe('bounceInDown', 1000, 'ease-out', 0, 1, 'normal', () =>
-      @message1.css(AmoebaSB.keyframeAnimationPlugin.animationProperty, '')
-    )
+    lame = false
 
-    # man image zoom in
-    @manImage1.css(
-      scale: 4
-    )
+    if lame
+      @message1.css(
+        opacity: 1
+      )
+      @message1.keyframe('bounceInDown', 1000, 'ease-out', 0, 1, 'normal', () =>
+        @message1.css(AmoebaSB.keyframeAnimationPlugin.animationProperty, '')
+      )
 
-    # do the transition
-    @manImage1.transition(
-      scale: 1
-      opacity: 1
-      duration: 1000
-    )
+      # man image zoom in
+      @manImage1.css(
+        scale: 4
+      )
+
+      # do the transition
+      @manImage1.transition(
+        scale: 1
+        opacity: 1
+        duration: 1000
+      )
+    else
+      #walk out from side
+      this._tripWalker()
+
+  _tripWalker: () =>
+    x = (@el.width() - @imageSize) / 2
+    y = (@el.height() - @imageSize) / 2
+
+#    @tripWalker.walk(x, y, 12, 12, 12)
+#    @tripWalker.walk(x, y, -12, -12, -12)
+#    @tripWalker.walk(x, y, 12, -12, 12)
+#    @tripWalker.walk(x, y, -12, 12, -12)
+
+    offset = 200
+    @tripWalker.run(x, y, true)
+    @tripWalker.run(x-offset, y-offset)
+    @tripWalker.run(x+offset, y+offset)
+    @tripWalker.run(x-offset, y+offset)
+    @tripWalker.run(x+offset, y-offset)
 
   _step2: () =>
+    return
+
     # hide previous divs
     this._hideDivs([@message1, @manImage1])
 
@@ -96,6 +136,8 @@ class AmoebaSite.Presentation.Slide_Customer extends AmoebaSB.Slide_Base
     )
 
   _step3: () =>
+    return
+
     # hide previous divs
     this._hideDivs([@message2, @manImage2])
 
@@ -131,8 +173,6 @@ class AmoebaSite.Presentation.Slide_Customer extends AmoebaSB.Slide_Base
     messageString1 = 'Who are you?'
     messageString2 = 'Our ideal customer is funded, has a strong vision, but haven’t yet built out their app (or maybe only have a prototype).'
     messageString3 = 'We work with you to build on your idea until a viable product emerges through our lean, iterative approach.'
-
-    imageSize = 200
 
     @message1 = $('<div/>')
       .text(messageString1)
@@ -180,45 +220,30 @@ class AmoebaSite.Presentation.Slide_Customer extends AmoebaSB.Slide_Base
         color: "#{AmoebaSite.Colors.amoebaGreenMedium}"
       )
 
-    @manImage1 = $('<img/>')
+    @manImage1 = this._createImageDiv('/images/presentation/man.svg')
+    @manImage2 = this._createImageDiv('/images/presentation/man_question.svg')
+    @manImage3 = this._createImageDiv('/images/presentation/man_exclaim.svg')
+
+    @tripWalker = new AmoebaSite.TripWalker(@el, @manImage1)
+
+  _createImageDiv: (path) =>
+    result = $('<div/>')
       .appendTo(@el)
-      .attr(
-        src: '/images/presentation/man.svg'
-      )
       .css(
-        top: (@el.height() - imageSize) / 2
-        left: (@el.width() - imageSize) / 2
+        backgroundImage: 'url("' + path + '")'
+        backgroundPosition: 'center center'
+        backgroundSize: 'contain'
+        backgroundRepeat: 'no-repeat'
+
+        top: (@el.height() - @imageSize) / 2
+        left: (@el.width() - @imageSize) / 2
         position: "absolute"
-        width: imageSize
-        height: imageSize
+        width: @imageSize
+        height: @imageSize
         opacity: 0
       )
-    @manImage2 = $('<img/>')
-      .appendTo(@el)
-      .attr(
-        src: '/images/presentation/man_question.svg'
-      )
-      .css(
-        top: (@el.height() - imageSize) / 2
-        left: (@el.width() - imageSize) / 2
-        position: "absolute"
-        width: imageSize
-        height: imageSize
-        opacity: 0
-      )
-    @manImage3 = $('<img/>')
-      .appendTo(@el)
-      .attr(
-        src: '/images/presentation/man_exclaim.svg'
-      )
-      .css(
-        top: (@el.height() - imageSize) / 2
-        left: (@el.width() - imageSize) / 2
-        position: "absolute"
-        width: imageSize
-        height: imageSize
-        opacity: 0
-      )
+
+    return result
 
   _typewriterEffect: () =>
     container = $('<div/>')

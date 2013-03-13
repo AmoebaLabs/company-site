@@ -189,3 +189,19 @@ $cardHeight: 200px;
     opacity: 0.5
   }
 }
+
+.slide3DContainer {
+  @include transform-style(preserve-3d);
+  @include perspective(1200);
+
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
+
+  div {
+    @include transform-style(preserve-3d);
+  }
+}
