@@ -205,17 +205,21 @@ class AmoebaSite.TripWalker
       left: 0
       top: 0
       opacity: 1
+      transformOrigin: 'left 50% 0'
     )
 
     t = "translateX(#{x}px) translateY(#{y}px) rotateY(45deg)"
     clone.transition(
       transform: t
+      transformOrigin: 'left 50% 0'
+
       delay: Math.random() * 500
       duration: 800
       complete: =>
         t = "translateX(#{x}px) translateY(#{y}px) rotateY(0deg)"
         clone.transition(
           transform: t
+          transformOrigin: 'left 50% 0'
           duration: 800
           complete: =>
             t = "translateX(#{x}px) translateY(#{y}px) translateZ(#{-@zoomDepth}px))"
@@ -256,17 +260,20 @@ class AmoebaSite.TripWalker
       left: 0
       top: 0
       opacity: 1
+      transformOrigin: '50% bottom 0'
     )
 
     t = "translateX(#{x}px) translateY(#{y}px) rotateX(-45deg)"
     clone.transition(
       transform: t
+      transformOrigin: '50% bottom 0'
       delay: Math.random() * 500
       duration: 800
       complete: =>
         t2 = "translateX(#{x}px) translateY(#{y}px) rotateX(0deg)"
         clone.transition(
           transform: t2
+          transformOrigin: '50% bottom 0'
           duration: 800
           complete: =>
             this._afterBowDownStep()
