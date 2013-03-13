@@ -3,6 +3,7 @@ class AmoebaSite.TripWalker
   constructor: (@parentDiv, @imagePath) ->
     @numSteps = 25
     @imageSize = 200
+    @zoomDepth = 4000
 
     @container = $('<div/>')
       .addClass('slide3DContainer')
@@ -28,6 +29,7 @@ class AmoebaSite.TripWalker
       )
 
   _doZoomIn: () =>
+    @steps = 0
     @container.empty()
 
     masterDiv = this._createImageDiv(@imagePath)
@@ -48,9 +50,10 @@ class AmoebaSite.TripWalker
     if rotate
       rOffset = 360/@numSteps
 
-    depth = 4000
-    z = -depth
-    zOffset = depth/@numSteps
+    z = -@zoomDepth
+    zOffset = @zoomDepth/@numSteps
+
+    @steps += @numSteps+1
 
     _.each([0..@numSteps], (loopIndex) =>
       last = loopIndex == @numSteps
@@ -80,15 +83,16 @@ class AmoebaSite.TripWalker
               duration: 800
               complete: =>
                 clone.remove()    # remove ourselves
+
+                this._afterZoomInStep()
             )
           else
-            console.log 'done'
+            this._afterZoomInStep()
       )
 
       z += zOffset
       r += rOffset
     )
-
 
   _doFlyIn: () =>
     # counter so we know when we are all done
@@ -163,16 +167,64 @@ class AmoebaSite.TripWalker
                 complete: =>
                   clone.remove()    # remove ourselves
 
-                  this._nextStep()
+                  this._afterFlyInStep()
               )
             else
-              this._nextStep()
+              this._afterFlyInStep()
         )
 
       xOff += xOffset
       r += rOffset
     )
 
-  _nextStep: () =>
+  _doBackIn: () =>
+    @steps = 0
+    @container.empty()
+
+    masterDiv = this._createImageDiv(@imagePath)
+
+    x = (@container.width() - @imageSize) / 2
+    y = (@container.height() - @imageSize) / 2
+
+    offset = 200
+    this._backIn(masterDiv, x, y)
+    this._backIn(masterDiv, x-offset, y-offset)
+    this._backIn(masterDiv, x+offset, y+offset)
+    this._backIn(masterDiv, x-offset, y+offset)
+    this._backIn(masterDiv, x+offset, y-offset)
+
+  _backIn: (masterDiv, x, y) =>
+    clone = masterDiv.clone()
+    clone.appendTo(@container)
+
+    @steps++
+
+    clone.css(
+      x:x
+      y:y
+      left: 0
+      top: 0
+      opacity: 1
+    )
+
+    t = "translateX(#{x}px) translateY(#{y}px) translateZ(#{-@zoomDepth}px))"
+    clone.transition(
+      transform: t
+      duration: 800
+      complete: =>
+        this._afterBackInStep()
+    )
+
+
+  _afterFlyInStep: () =>
+    if --@steps == 0
+      this._doBackIn()
+
+  _afterBackInStep: () =>
     if --@steps == 0
       this._doZoomIn()
+
+  _afterZoomInStep: () =>
+    if --@steps == 0
+      console.log 'done'
+
