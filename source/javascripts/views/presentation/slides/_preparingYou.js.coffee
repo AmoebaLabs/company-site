@@ -22,12 +22,14 @@ class AmoebaSite.Presentation.Slide_PreparingYou extends AmoebaSB.Slide_Base
 
 class AmoebaSite.Cube
   constructor: (parentDiv, @callback) ->
-   @container = $('<div/>')
-    .appendTo(parentDiv)
+    @container = $('<div/>')
+      .appendTo(parentDiv)
+
+    @toggle = 1
 
     this._initializeVariables()
     this._setupCube()
-#    this._transformToCube()
+    this._transformToCube(@popCubeTransforms)
 
     @rotationSteps = [
       x:0
@@ -98,6 +100,59 @@ class AmoebaSite.Cube
       )
     )
 
+  _flatTransform: (index) =>
+    margin = 20
+    z = -2000
+    x = (@container.width() - @cubeSize) / 2
+    y = (@container.height() - @cubeSize) / 2
+
+    switch(index)
+      # when 0
+        # already in center
+      when 1
+        x += @cubeSize + margin
+      when 2
+        x -= @cubeSize + margin
+      when 3
+        x -= @cubeSize + margin
+        y -= @cubeSize + margin
+      when 4
+        x -= @cubeSize + margin
+        y += @cubeSize + margin
+      when 5
+        x -= (@cubeSize + margin) * 2
+        y += @cubeSize + margin
+
+    result =
+      transform: "translateY(#{y}px) translateX(#{x}px) translateZ(#{z}px)"
+
+    return result
+
+  _transformToCube: (transformArray) =>
+    theDelay = 400
+
+    # call back when the transform is done for all sizes
+    count = @cubeFaces.length
+    callback = () =>
+      count--
+      if count == 0
+        if (@toggle == 1)
+          @toggle = 2
+          this._transformToCube(@cubeTransforms)
+        else
+          @toggle = 1
+          this._transformToCube(@popCubeTransforms)
+
+    _.each(@cubeFaces, (face, index) =>
+      theCSS = _.extend({delay: index*theDelay}, transformArray[index])
+
+      # add callback
+      _.extend(theCSS, {complete: callback})
+
+      # transition
+      face.transition(theCSS)
+    )
+
   _cubeTransform: (x, y, z, pop=0, spin=0) =>
     x += spin
     y += spin
@@ -107,52 +162,6 @@ class AmoebaSite.Cube
       transform: "rotateY(#{y}deg) rotateX(#{x}deg) rotateZ(#{z}deg) translateZ(#{(@cubeSize / 2) + pop}px)"
 
     return result
-
-  _flatTransform: (index) =>
-    margin = 20
-    z = -2000
-    x = (@container.width() - @cubeSize) / 2
-    y = (@container.height() - @cubeSize) / 2
-
-    switch(index)
-#      when 0
-#        # already ok
-      when 1
-        # shift one to the right
-        x += @cubeSize + margin
-      when 2
-        # shift one to the left
-        x -= @cubeSize + margin
-      when 3
-        # shift one to the left
-        x -= @cubeSize + margin
-
-        # shift one up
-        y -= @cubeSize + margin
-      when 4
-        # shift two to the left
-        x -= @cubeSize + margin
-
-        # shift one down
-        y += @cubeSize + margin
-      when 5
-        # shift two to the left
-        x -= (@cubeSize + margin) * 2
-
-        # shift one down
-        y += @cubeSize + margin
-
-    result =
-      transform: "translateY(#{y}px) translateX(#{x}px) translateZ(#{z}px)"
-
-    return result
-
-  _transformToCube: () =>
-    theDelay = 200
-    _.each(@cubeFaces, (face, index) =>
-      face.transition({delay: 800})
-      face.transition(_.extend({delay: index*theDelay}, @cubeTransforms[index]))
-    )
 
   _initializeVariables: () =>
     @cubeSize = 420
@@ -167,8 +176,8 @@ class AmoebaSite.Cube
       this._cubeTransform(-90, 0, 0)
     ]
 
-    pop = 330
-    spin = 24
+    pop = 60
+    spin = 0
     @popCubeTransforms = [
       this._cubeTransform(0, 0, 0, pop, spin)
       this._cubeTransform(0, 90, 0, pop, spin)

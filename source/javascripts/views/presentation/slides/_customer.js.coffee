@@ -48,7 +48,7 @@ class Customer_StepOne
     @steps = 0
     @container.empty()
 
-    masterDiv = this._createImageDiv(@manPath, 'man', @imageSize)
+    masterDiv = AmoebaSite.utils.createImageDiv(@manPath, 'man', @imageSize)
 
     x = (@container.width() - @imageSize) / 2
     y = (@container.height() - @imageSize) / 2
@@ -121,57 +121,14 @@ class Customer_StepOne
       r += rOffset
     )
 
-  _createImageDiv: (path, divClass, imageSize) =>
-    result = $('<div/>')
-      .css(
-        backgroundImage: 'url("' + path + '")'
-        backgroundPosition: 'center center'
-        backgroundSize: 'contain'
-        backgroundRepeat: 'no-repeat'
-
-        top: (@container.height() - imageSize) / 2
-        left: (@container.width() - imageSize) / 2
-        position: "absolute"
-        width:imageSize
-        height: imageSize
-        opacity: 0
-      )
-
-    if divClass
-      result.addClass(divClass)
-
-    return result
-
-  _createTextDiv: (text, divClass, size=2, align='center') =>
-    result = $('<div/>')
-      .text(text)
-      .appendTo(@container)
-      .attr(class: "amoebaText")
-      .css(
-        fontSize: "#{size}em"
-        position: "absolute"
-        textAlign: align
-        top: 0
-        left: 0
-        opacity: 0
-        width: "100%"
-        textShadow: "#{AmoebaSite.Colors.amoebaGreenDark} 1px 0px 2px"
-        color: "#{AmoebaSite.Colors.amoebaGreenMedium}"
-      )
-
-    if divClass
-      result.addClass(divClass)
-
-    return result
-
   _afterFlyInStep: () =>
     if --@steps == 0
       this._whoAreYou()
 
   _whoAreYou: () =>
-    who = this._createTextDiv("Who", 'who', 8)
-    are = this._createTextDiv("Are", 'who', 8)
-    you = this._createTextDiv("You?", 'who', 8)
+    who = AmoebaSite.utils.createTextDiv("Who", 'who', 8, @container)
+    are = AmoebaSite.utils.createTextDiv("Are", 'who', 8, @container)
+    you = AmoebaSite.utils.createTextDiv("You?", 'who', 8, @container)
 
     height = 140
     width = 400
@@ -216,8 +173,7 @@ class Customer_StepOne
 
   _fadeInQuestionMan: (thePath) =>
     this._fadeOutDivs(['man', 'who', 'typewriter'], () =>
-      questionMan = this._createImageDiv(thePath, 'man', @imageSize*2)
-      questionMan.appendTo(@container)
+      questionMan = AmoebaSite.utils.createImageDiv(thePath, 'man', @imageSize*2, @container)
 
       questionMan.css(
         scale: .5
