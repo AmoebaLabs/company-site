@@ -27,6 +27,7 @@ class AmoebaSite.Typewriter
 
     @container = $('<div/>')
       .appendTo(@parentDiv)
+      .addClass('typewriter')  # so we can easily find and remove all typewriters on screen
       .css(theCSS)
 
     message = $('<div/>')

@@ -11,7 +11,8 @@ class AmoebaSite.Presentation.Slide_Customer extends AmoebaSB.Slide_Base
   slideOut: (afterTransitionComplete) =>
     if afterTransitionComplete
       # reset stuff back to invisible
-      console.log 'sdfk'
+      @customerStepOne.tearDown()
+      @customerStepOne = undefined
 
   _start: () =>
     @customerStepOne = new Customer_StepOne(@el, this._stepOneCallback)
@@ -213,9 +214,9 @@ class Customer_StepOne
           )
     )
 
-  _fadeInQuestionMan: () =>
-    this._fadeOutDivs(['man', 'who'], () =>
-      questionMan = this._createImageDiv(@questionPath, 'man', @imageSize*2)
+  _fadeInQuestionMan: (thePath) =>
+    this._fadeOutDivs(['man', 'who', 'typewriter'], () =>
+      questionMan = this._createImageDiv(thePath, 'man', @imageSize*2)
       questionMan.appendTo(@container)
 
       questionMan.css(
@@ -235,7 +236,7 @@ class Customer_StepOne
     count = divClasses.length
 
     _.each(divClasses, (divClass) =>
-      div = $(".#{divClass}")
+      div = @container.find(".#{divClass}")
 
       div.transition(
         opacity: 0
@@ -251,7 +252,7 @@ class Customer_StepOne
     )
 
   _typewriter: () =>
-
+    @typewriterMode = 1
     @messages = [
       'Our ideal customer is...'
       'funded with a strong vision'
@@ -261,6 +262,19 @@ class Customer_StepOne
       'or maybe only have a prototype.'
       'viable product emerges through our lean, iterative approach.'
 
+      'Other clients may have an application in the wild and have'
+      'started gaining traction, but can’t hire engineering talent'
+      'fast enough to build out new products.'
+      'Maybe you haven’t yet built a mobile version?'
+      'Or just need us to help fill the design/engineering gap.'
+    ]
+
+    @typewriterIndex = 0
+    this._nextTypewriter()
+
+  _typewriter2: () =>
+    @typewriterMode = 2
+    @messages = [
       'Other clients may have an application in the wild and have'
       'started gaining traction, but can’t hire engineering talent'
       'fast enough to build out new products.'
@@ -291,12 +305,19 @@ class Customer_StepOne
       this._typewriterDone()
 
   _typewriterDone: () =>
-    if @callback
-      @callback()
+    if @typewriterMode == 1
+      @fadeInManMode = 2
+      this._fadeInQuestionMan(@exclaimPath)
+    else
+      if @callback
+        @callback()
 
   _whoAreYouDone: () =>
-    this._fadeInQuestionMan()
+    @fadeInManMode = 1
+    this._fadeInQuestionMan(@questionPath)
 
   _fadeInQuestionManDone: () =>
-    this._typewriter()
-
+    if @fadeInManMode == 1
+      this._typewriter()
+    else
+      this._typewriter2()
