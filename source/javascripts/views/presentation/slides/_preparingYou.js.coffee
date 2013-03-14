@@ -29,33 +29,15 @@ class AmoebaSite.Cube
 
     this._initializeVariables()
     this._setupCube()
-    this._transformToCube(@popCubeTransforms)
 
-    @rotationSteps = [
-      x:0
-      y:0
-      z:0
-    ,
-      x:0
-      y:-90
-      z:0
-    ,
-      x:0
-      y:-90
-      z:90
-    ,
-      x:0
-      y:-180
-      z:90
-    ,
-      x:-90
-      y:-180
-      z:90
-    ,
-      x:-90
-      y:-180
-      z:180
-    ]
+    setTimeout( =>
+      this._transformToCube(@popCubeTransforms)
+
+      setTimeout( =>
+        this.rotateToIndex(3)
+      ,5000)
+
+    ,2000)
 
   tearDown: () =>
     if @container
@@ -69,7 +51,10 @@ class AmoebaSite.Cube
       rotateX: r.x
       rotateY: r.y
       rotate: r.z
-      duration: 400
+      duration: 2000
+      complete: =>
+        this.rotateToIndex(Math.floor(Math.random() * 5.99))
+
     )
 
   _setupCube: =>
@@ -96,7 +81,7 @@ class AmoebaSite.Cube
       @cubeFaces.push(
         $('<div/>')
           .appendTo(cube)
-          .css(@flatTransforms[index])
+          .transition(_.extend({duration: 1400}, @flatTransforms[index]))
       )
     )
 
@@ -167,24 +152,50 @@ class AmoebaSite.Cube
     @cubeSize = 420
     @cubeFaces = []
 
+    @rotationSteps = [
+      x:0
+      y:0
+      z:0
+    ,
+      x:0
+      y:-90
+      z:0
+    ,
+      x:0
+      y:-90
+      z:90
+    ,
+      x:0
+      y:-180
+      z:90
+    ,
+      x:-90
+      y:-180
+      z:90
+    ,
+      x:-90
+      y:-180
+      z:180
+    ]
+
     @cubeTransforms = [
-      this._cubeTransform(0, 0, 0)
       this._cubeTransform(0, 90, 0)
       this._cubeTransform(90, 90, 0)
       this._cubeTransform(0, 180, 90)
       this._cubeTransform(0, -90, 90)
       this._cubeTransform(-90, 0, 0)
+      this._cubeTransform(0, 0, 0)
     ]
 
     pop = 60
     spin = 0
     @popCubeTransforms = [
-      this._cubeTransform(0, 0, 0, pop, spin)
       this._cubeTransform(0, 90, 0, pop, spin)
       this._cubeTransform(90, 90, 0, pop, spin)
       this._cubeTransform(0, 180, 90, pop, spin)
       this._cubeTransform(0, -90, 90, pop, spin)
       this._cubeTransform(-90, 0, 0, pop, spin)
+      this._cubeTransform(0, 0, 0, pop, spin)
     ]
 
 
