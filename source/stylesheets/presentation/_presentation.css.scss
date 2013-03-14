@@ -226,7 +226,7 @@ $halfCubeSize: $cubeSize / 2;
   @include transform-style(preserve-3d);
   @include transform-origin($halfCubeSize $halfCubeSize 0);
 
-  div {
+  .threeDCubeSide {
     position: absolute;
     opacity: 1;
     width: $cubeSize;
@@ -236,7 +236,7 @@ $halfCubeSize: $cubeSize / 2;
     @include box-shadow(inset 0 0 20px rgba(0,0,0,0.2));
     @include border-radius(20px);
 
-    @include backface-visibility(visible); // use 'hidden' to turn off, but we need it to fill the corners
+    @include backface-visibility(visible); // use 'hidden'/'visible' to turn off, but we need it to fill the corners
 
     @include background-image(radial-gradient(center, circle farthest-corner, rgba(255,255,255,.6) 0%, $amoebaGreenMedium 100%));
   }

@@ -101,7 +101,10 @@ class AmoebaSite.Cube
 
       theDiv = $('<div/>')
         .appendTo(cube)
+        .addClass("threeDCubeSide")
         .css(_.extend({top: 1400, left: 3000}, @flatTransforms[index]))
+
+      this._addContentForCubeSide(index, theDiv)
 
       theDiv.transition(
         duration: 400
@@ -210,18 +213,6 @@ class AmoebaSite.Cube
       this._cubeTransform(0, 0, 0)
     ]
 
-    pop = 60
-    spin = 0
-    @popCubeTransforms = [
-      this._cubeTransform(0, 90, 0, pop, spin)
-      this._cubeTransform(90, 90, 0, pop, spin)
-      this._cubeTransform(0, 180, 90, pop, spin)
-      this._cubeTransform(0, -90, 90, pop, spin)
-      this._cubeTransform(-90, 0, 0, pop, spin)
-      this._cubeTransform(0, 0, 0, pop, spin)
-    ]
-
-
     @flatTransforms = []
     _.each([0..5], (element, index) =>
       @flatTransforms.push(this._flatTransform(index))
@@ -236,3 +227,45 @@ class AmoebaSite.Cube
     setTimeout( =>
       console.log 'duh'
     , 400)
+
+  _addContentForCubeSide: (theIndex, sideDiv) =>
+    result = null
+    switch (theIndex)
+      when 0
+        this._buildCubeSize0(sideDiv)
+      when 1
+        this._buildCubeSize1(sideDiv)
+      when 2
+        this._buildCubeSize2(sideDiv)
+      when 3
+        this._buildCubeSize3(sideDiv)
+      when 4
+        this._buildCubeSize4(sideDiv)
+      when 5
+        this._buildCubeSize5(sideDiv)
+      else
+        console.log 'bad index'
+
+    return result
+
+  _buildCubeSize0: (sideDiv) =>
+    eyes = AmoebaSite.utils.createImageDiv('/images/presentation/eyes.svg', 'cube', 300, sideDiv)
+    eyes.css(opacity: 1)
+
+  _buildCubeSize1: (sideDiv) =>
+    eyes = AmoebaSite.utils.createImageDiv('/images/presentation/eyes.svg', 'cube', 300, sideDiv)
+    eyes.css(opacity: 1)
+  _buildCubeSize2: (sideDiv) =>
+    eyes = AmoebaSite.utils.createImageDiv('/images/presentation/eyes.svg', 'cube', 300, sideDiv)
+    eyes.css(opacity: 1)
+  _buildCubeSize3: (sideDiv) =>
+    eyes = AmoebaSite.utils.createImageDiv('/images/presentation/eyes.svg', 'cube', 300, sideDiv)
+    eyes.css(opacity: 1)
+  _buildCubeSize4: (sideDiv) =>
+    eyes = AmoebaSite.utils.createImageDiv('/images/presentation/eyes.svg', 'cube', 300, sideDiv)
+    eyes.css(opacity: 1)
+  _buildCubeSize5: (sideDiv) =>
+    eyes = AmoebaSite.utils.createImageDiv('/images/presentation/eyes.svg', 'cube', 300, sideDiv)
+    eyes.css(opacity: 1)
+
+
