@@ -25,18 +25,11 @@ class AmoebaSite.Cube
     @container = $('<div/>')
       .appendTo(parentDiv)
 
-    @toggle = 1
-
     this._initializeVariables()
     this._setupCube()
 
     setTimeout( =>
-      this._transformToCube(@popCubeTransforms)
-
-      setTimeout( =>
-        this.rotateToIndex(3)
-      ,5000)
-
+      this._transformToCube(@cubeTransforms)
     ,2000)
 
   tearDown: () =>
@@ -53,8 +46,7 @@ class AmoebaSite.Cube
       rotate: r.z
       duration: 2000
       complete: =>
-        this.rotateToIndex(Math.floor(Math.random() * 5.99))
-
+        this._rotateDone()
     )
 
   _setupCube: =>
@@ -78,11 +70,19 @@ class AmoebaSite.Cube
       .attr("id", "threeDCube")
 
     _.each([0..5], (theNum, index) =>
-      @cubeFaces.push(
-        $('<div/>')
-          .appendTo(cube)
-          .transition(_.extend({duration: 1400}, @flatTransforms[index]))
+
+      theDiv = $('<div/>')
+        .appendTo(cube)
+        .css(_.extend({top: 1400, left: 3000}, @flatTransforms[index]))
+
+      theDiv.transition(
+        duration: 400
+        delay: Math.random() * 400
+        top:0
+        left: 0
       )
+
+      @cubeFaces.push(theDiv)
     )
 
   _flatTransform: (index) =>
@@ -121,12 +121,9 @@ class AmoebaSite.Cube
     callback = () =>
       count--
       if count == 0
-        if (@toggle == 1)
-          @toggle = 2
-          this._transformToCube(@cubeTransforms)
-        else
-          @toggle = 1
-          this._transformToCube(@popCubeTransforms)
+        setTimeout( =>
+          this.rotateToIndex(3)
+        , 400)
 
     _.each(@cubeFaces, (face, index) =>
       theCSS = _.extend({delay: index*theDelay}, transformArray[index])
@@ -204,4 +201,5 @@ class AmoebaSite.Cube
       @flatTransforms.push(this._flatTransform(index))
     )
 
-
+  _rotateDone:() =>
+    console.log 'duh'
