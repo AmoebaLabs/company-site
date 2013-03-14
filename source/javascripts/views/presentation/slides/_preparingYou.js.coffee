@@ -87,7 +87,7 @@ class AmoebaSite.Cube
 
   _flatTransform: (index) =>
     margin = 20
-    z = -2000
+    z = -3000
     x = (@container.width() - @cubeSize) / 2
     y = (@container.height() - @cubeSize) / 2
 
@@ -146,7 +146,7 @@ class AmoebaSite.Cube
     return result
 
   _initializeVariables: () =>
-    @cubeSize = 420
+    @cubeSize = 560
     @cubeFaces = []
 
     @rotationSteps = [
