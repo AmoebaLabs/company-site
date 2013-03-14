@@ -261,12 +261,6 @@ class Customer_StepOne
       'until you haven’t yet built out their app'
       'or maybe only have a prototype.'
       'viable product emerges through our lean, iterative approach.'
-
-      'Other clients may have an application in the wild and have'
-      'started gaining traction, but can’t hire engineering talent'
-      'fast enough to build out new products.'
-      'Maybe you haven’t yet built a mobile version?'
-      'Or just need us to help fill the design/engineering gap.'
     ]
 
     @typewriterIndex = 0
