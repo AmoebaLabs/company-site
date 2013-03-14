@@ -15,10 +15,38 @@ class AmoebaSite.Presentation.Slide_PreparingYou extends AmoebaSB.Slide_Base
       @cube = undefined
 
   _start: () =>
-    @cube = new AmoebaSite.Cube(@el, this._stepOneCallback)
+    sentence = "As the client hires developers, we include them on our team, at our offices. As integrated team members, our client's develop- ers are trained on the processes, tools and technologies they will need to continue development after version 1.0 and beyond."
+
+    title = AmoebaSite.utils.createTextDiv("Preparing You", 'who', 4, @el, 'left')
+    message = AmoebaSite.utils.createTextDiv(sentence, 'who', 1.3, @el, 'left')
+
+    title.css(
+      top:70
+      left: '50%'
+    )
+    title.transition(
+      opacity: 1
+      duration: 800
+    )
+
+    message.css(
+      top:450
+      left: '50%'
+      width: 450
+    )
+    message.transition(
+      opacity: 1
+      duration: 800
+      complete: =>
+        @cube = new AmoebaSite.Cube(@el, this._stepOneCallback)
+    )
 
   _stepOneCallback: () =>
     console.log 'hello'
+
+
+# -------------------------------------------------------------------
+# -------------------------------------------------------------------
 
 class AmoebaSite.Cube
   constructor: (parentDiv, @callback) ->
@@ -30,7 +58,7 @@ class AmoebaSite.Cube
 
     setTimeout( =>
       this._transformToCube(@cubeTransforms)
-    ,2000)
+    ,6000)
 
   tearDown: () =>
     if @container
@@ -121,9 +149,7 @@ class AmoebaSite.Cube
     callback = () =>
       count--
       if count == 0
-        setTimeout( =>
-          this.rotateToIndex(3)
-        , 400)
+        this._transformToCubeDone()
 
     _.each(@cubeFaces, (face, index) =>
       theCSS = _.extend({delay: index*theDelay}, transformArray[index])
@@ -201,5 +227,12 @@ class AmoebaSite.Cube
       @flatTransforms.push(this._flatTransform(index))
     )
 
+  _transformToCubeDone: () =>
+    setTimeout( =>
+      this.rotateToIndex(4)
+    , 400)
+
   _rotateDone:() =>
-    console.log 'duh'
+    setTimeout( =>
+      console.log 'duh'
+    , 400)
