@@ -15,9 +15,23 @@ class AmoebaSite.CloudsController
     # rotate world slowly
     AmoebaSite.cloudWorld.toggleRotateWorld()
 
-    this.showFallingClouds()
-    this.showRocketShip()
+    this._showFallingClouds()
+    this._showRocketShip()
     this._createStarsAndPlanet()
+
+  tearDown: () =>
+    if @fallingClouds?
+      @fallingClouds.stop()
+      @fallingClouds = undefined
+
+    if @rocketShip?
+      @rocketShip.stop()
+      @rocketShip = undefined
+
+    @viewPort.empty()
+    @$planet = undefined
+    @$bigStars = undefined
+    @$smallStars = undefined
 
   _createStarsAndPlanet: () =>
     @$planet = $("<img/>")
@@ -59,15 +73,15 @@ class AmoebaSite.CloudsController
       )
       .appendTo(@viewPort)
 
-  showFallingClouds: () =>
+  _showFallingClouds: () =>
     if @fallingClouds?
       @fallingClouds.stop()
       @fallingClouds = undefined
 
     @fallingClouds = new AmoebaSite.FallingClouds(@viewPort, @fps)
 
-  showRocketShip: () =>
-    rocketShip = new AmoebaSite.RocketShip(@viewPort, @fps, (animationStep) =>
+  _showRocketShip: () =>
+    @rocketShip = new AmoebaSite.RocketShip(@viewPort, @fps, (animationStep) =>
       switch (animationStep)
         when 1  # called on final rocket blast off, fly world out
           AmoebaSite.cloudWorld.transitionDown()
@@ -107,8 +121,9 @@ class AmoebaSite.CloudsController
 
         when 10  # done, tear it down
           # stop rocket
-          rocketShip.stop()
-          rocketShip = undefined
+          if @rocketShip?
+            @rocketShip.stop()
+            @rocketShip = undefined
     )
 
   _addEventHandlers: () =>
@@ -126,7 +141,7 @@ class AmoebaSite.CloudsController
         when 71  # 'g' key
           AmoebaSite.cloudWorld.reversehyperspace()
         when 72
-          this.showRocketShip()
+          this._showRocketShip()
         when 73
           AmoebaSite.cloudWorld.toggleRotateWorld()
 #        else
