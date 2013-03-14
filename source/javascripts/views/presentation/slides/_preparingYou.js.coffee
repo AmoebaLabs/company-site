@@ -16,7 +16,6 @@ class AmoebaSite.Presentation.Slide_PreparingYou extends AmoebaSB.Slide_Base
 
   _start: () =>
     @cube = new AmoebaSite.Cube(@el, this._stepOneCallback)
-    @cube.rotateToIndex(2)
 
   _stepOneCallback: () =>
     console.log 'hello'
@@ -72,27 +71,20 @@ class AmoebaSite.Cube
     )
 
   _setupCube: =>
-
-    if true
-      css =
-        position: 'relative'
-        width: @cubeSize
-        height: @cubeSize
+    css =
+      position: 'relative'
+      width: @cubeSize
+      height: @cubeSize
 #        this doesn't work, but webkit-perspective does?
 #        perspective: '1200px'
 #        '-webkit-perspective': 1200
 
-      _.extend(css, AmoebaSB.layout.center(@cubeSize, @cubeSize))
+    _.extend(css, AmoebaSB.layout.center(@cubeSize, @cubeSize))
 
-      stage = $('<div/>')
-        .appendTo(@container)
-        .addClass('somePerspective')   # perspective above didn't work, see notes in _presentation.css.scss
-        .css(css)
-    else
-      stage = $('<div/>')
-        .appendTo(@container)
-        .attr("id", "threeDCubeStage")
-        .css(AmoebaSB.layout.center(@cubeSize, @cubeSize))
+    stage = $('<div/>')
+      .appendTo(@container)
+      .addClass('somePerspective')   # perspective above didn't work, see notes in _presentation.css.scss
+      .css(css)
 
     cube = $('<div/>')
       .appendTo(stage)
