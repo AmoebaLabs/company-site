@@ -172,7 +172,7 @@ class AmoebaSite.Cube
     return result
 
   _initializeVariables: () =>
-    @cubeSize = 560
+    @cubeSize = 520
     @cubeFaces = []
 
     @rotationSteps = [
