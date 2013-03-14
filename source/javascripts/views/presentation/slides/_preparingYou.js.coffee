@@ -22,7 +22,10 @@ class AmoebaSite.Presentation.Slide_PreparingYou extends AmoebaSB.Slide_Base
     console.log 'hello'
 
 class AmoebaSite.Cube
-  constructor: (@parentDiv, @callback) ->
+  constructor: (parentDiv, @callback) ->
+   @container = $('<div/>')
+    .appendTo(parentDiv)
+
     this._initializeVariables()
     this._setupCube()
     this._transformToCube()
@@ -54,7 +57,9 @@ class AmoebaSite.Cube
     ]
 
   tearDown: () =>
-    console.log 'todo'
+    if @container
+      @container.remove()
+      @container = undefined
 
   rotateToIndex: (theIndex) =>
     r = @rotationSteps[theIndex]
@@ -67,20 +72,36 @@ class AmoebaSite.Cube
     )
 
   _setupCube: =>
-    stage = $('<div/>')
-      .appendTo(@parentDiv)
-      .attr("id", "threeDCubeStage")
-      .css(AmoebaSB.layout.center(@cubeSize, @cubeSize))
+
+    if true
+      css =
+        position: 'relative'
+        width: @cubeSize
+        height: @cubeSize
+#        this doesn't work, but webkit-perspective does?
+#        perspective: '1200px'
+#        '-webkit-perspective': 1200
+
+      _.extend(css, AmoebaSB.layout.center(@cubeSize, @cubeSize))
+
+      stage = $('<div/>')
+        .appendTo(@container)
+        .addClass('somePerspective')   # perspective above didn't work, see notes in _presentation.css.scss
+        .css(css)
+    else
+      stage = $('<div/>')
+        .appendTo(@container)
+        .attr("id", "threeDCubeStage")
+        .css(AmoebaSB.layout.center(@cubeSize, @cubeSize))
 
     cube = $('<div/>')
       .appendTo(stage)
       .attr("id", "threeDCube")
 
-    _.each([0..5], (text, index) =>
+    _.each([0..5], (theNum, index) =>
       @cubeFaces.push(
         $('<div/>')
           .appendTo(cube)
-          .text(text)
           .css(@flatTransforms[index])
       )
     )
@@ -97,7 +118,7 @@ class AmoebaSite.Cube
 
   _flatTransform: (theIndex) =>
     result =
-      transform: "translateY(#{theIndex*-34}px) translateX(#{theIndex*63}px)"
+      transform: "translateY(#{theIndex*-34}px) translateX(#{theIndex*63}px) translateZ(-2000px)"
 
     return result
 
@@ -131,6 +152,7 @@ class AmoebaSite.Cube
       this._cubeTransform(0, -90, 90, pop, spin)
       this._cubeTransform(-90, 0, 0, pop, spin)
     ]
+
 
     @flatTransforms = []
     _.each([0..5], (element, index) =>

@@ -205,3 +205,40 @@ $cardHeight: 200px;
     @include transform-style(preserve-3d);
   }
 }
+
+// the jquery css vendor prefix addtions gives a result that doesn't work well
+// $var.css(perspective: '400px') gives us:  -webkit-transform: perspective(400px)
+// using the @include below gives us
+// -webkit-perspective: 1200px; that works.
+.somePerspective {
+  @include perspective( 1200px );
+}
+
+
+// --------------------------------------------------------
+// --------------------------------------------------------
+// 3d cube
+
+$cubeSize: 420px;
+$halfCubeSize: $cubeSize / 2;
+
+#threeDCube {
+  @include transform-style(preserve-3d);
+  @include transform-origin($halfCubeSize $halfCubeSize 0);
+
+  div {
+    position: absolute;
+    opacity: .4;
+    width: $cubeSize;
+    height: $cubeSize;
+    border: 1px solid $amoebaGreen;
+    background: $amoebaGreenMedium;
+    @include box-shadow(inset 0 0 20px rgba(0,0,0,0.2));
+    @include border-radius(20px);
+
+    @include backface-visibility(visible); // use 'hidden' to turn off, but we need it to fill the corners
+
+    @include background-image(radial-gradient(center, circle farthest-corner, rgba(255,255,255,.6) 0%, $amoebaGreenMedium 100%));
+  }
+}
+
