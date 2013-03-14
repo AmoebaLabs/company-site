@@ -27,7 +27,7 @@ class AmoebaSite.Cube
 
     this._initializeVariables()
     this._setupCube()
-    this._transformToCube()
+#    this._transformToCube()
 
     @rotationSteps = [
       x:0
@@ -108,9 +108,42 @@ class AmoebaSite.Cube
 
     return result
 
-  _flatTransform: (theIndex) =>
+  _flatTransform: (index) =>
+    margin = 20
+    z = -2000
+    x = (@container.width() - @cubeSize) / 2
+    y = (@container.height() - @cubeSize) / 2
+
+    switch(index)
+#      when 0
+#        # already ok
+      when 1
+        # shift one to the right
+        x += @cubeSize + margin
+      when 2
+        # shift one to the left
+        x -= @cubeSize + margin
+      when 3
+        # shift one to the left
+        x -= @cubeSize + margin
+
+        # shift one up
+        y -= @cubeSize + margin
+      when 4
+        # shift two to the left
+        x -= @cubeSize + margin
+
+        # shift one down
+        y += @cubeSize + margin
+      when 5
+        # shift two to the left
+        x -= (@cubeSize + margin) * 2
+
+        # shift one down
+        y += @cubeSize + margin
+
     result =
-      transform: "translateY(#{theIndex*-34}px) translateX(#{theIndex*63}px) translateZ(-2000px)"
+      transform: "translateY(#{y}px) translateX(#{x}px) translateZ(#{z}px)"
 
     return result
 
@@ -148,7 +181,7 @@ class AmoebaSite.Cube
 
     @flatTransforms = []
     _.each([0..5], (element, index) =>
-      @flatTransforms.push(this._flatTransform(index+1))
+      @flatTransforms.push(this._flatTransform(index))
     )
 
 
