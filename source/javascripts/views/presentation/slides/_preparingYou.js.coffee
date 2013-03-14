@@ -58,7 +58,7 @@ class AmoebaSite.Cube
 
     setTimeout( =>
       this._transformToCube(@cubeTransforms)
-    ,6000)
+    ,5000)
 
   tearDown: () =>
     if @container
