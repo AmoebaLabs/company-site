@@ -69,6 +69,11 @@ class AmoebaSite.Presentation.Slide_Team extends AmoebaSB.Slide_Base
 
   _typewriterEffect: (message, bottom) =>
     if not @typewriter?
-      @typewriter = new AmoebaSite.Typewriter(@el, message)
+      css =
+        bottom: bottom
+        height: 200
+        width: 400
 
-    @typewriter.write(bottom)
+      @typewriter = new AmoebaSite.Typewriter(@el, message, css)
+
+    @typewriter.write()

@@ -4,10 +4,6 @@ class AmoebaSite.Presentation.Slide_Customer extends AmoebaSB.Slide_Base
     this._setupElement("customerSlide")
     @transition = 'zoom'
 
-    @imageSize = 200
-
-    this._createDivs()
-
   slideIn: (afterTransitionComplete) =>
     if afterTransitionComplete
       this._start()
@@ -15,196 +11,292 @@ class AmoebaSite.Presentation.Slide_Customer extends AmoebaSB.Slide_Base
   slideOut: (afterTransitionComplete) =>
     if afterTransitionComplete
       # reset stuff back to invisible
-      @message1.css(opacity: 0)
-      @message2.css(opacity: 0)
-      @message3.css(opacity: 0)
-
-      @manImage1.css(opacity: 0)
-      @manImage2.css(opacity: 0)
-      @manImage3.css(opacity: 0)
+      console.log 'sdfk'
 
   _start: () =>
-    this._doNextStep(0)
+    @customerStepOne = new Customer_StepOne(@el, this._stepOneCallback)
+    @customerStepOne.run()
 
-  _doNextStep: (stepIndex) =>
-    # can't use the keyframe animation delay parameter since that will draw the text at the current
-    # position while it's waiting to start
-    scheduleNextStep = true
+  _stepOneCallback: () =>
+    console.log 'hello'
 
-    setTimeout( =>
+class Customer_StepOne
+  constructor: (parentDiv, @callback) ->
+    @numSteps = 25
+    @imageSize = 300
+    @zoomDepth = 4000
 
-      switch stepIndex
-        when 0
-          this._step1()
-        when 1
-          this._step2()
-        when 2
-          this._step3()
-        when 3
-          scheduleNextStep = false
-          this._sideIsDone()
+    @manPath = '/images/presentation/man.svg'
+    @questionPath = '/images/presentation/man_question.svg'
+    @exclaimPath = '/images/presentation/man_exclaim.svg'
 
-      if scheduleNextStep
-        this._doNextStep(stepIndex + 1)
+    @container = $('<div/>')
+      .addClass('slide3DContainer')
+      .appendTo(parentDiv)
 
-    , 1500)
+  run: () =>
+    this._doFlyInMan()
 
-  _sideIsDone: () =>
-    this._typewriterEffect("We are here to help.", 0)
+  tearDown: () =>
+    if @container
+      @container.remove()
+      @container = undefined
 
-  _step1: () =>
-    @message1.css(
-      opacity: 1
-    )
-    @message1.keyframe('bounceInDown', 1000, 'ease-out', 0, 1, 'normal', () =>
-      @message1.css(AmoebaSB.keyframeAnimationPlugin.animationProperty, '')
-    )
+  _doFlyInMan: () =>
+    # counter so we know when we are all done
+    @steps = 0
+    @container.empty()
 
-    # man image zoom in
-    @manImage1.css(
-      scale: 4
-    )
+    masterDiv = this._createImageDiv(@manPath, 'man', @imageSize)
 
-    # do the transition
-    @manImage1.transition(
-      scale: 1
-      opacity: 1
-      duration: 1000
-    )
+    x = (@container.width() - @imageSize) / 2
+    y = (@container.height() - @imageSize) / 2
 
-  _step2: () =>
-    # hide previous divs
-    this._hideDivs([@message1, @manImage1])
+    offset = 200
+    this._flyIn(masterDiv, x, y, false)
 
-    # show new divs
-    @message2.css(
-      opacity: 1
-    )
-    @message2.keyframe('bounceInDown', 1000, 'ease-out', 0, 1, 'normal', () =>
-      @message1.css(AmoebaSB.keyframeAnimationPlugin.animationProperty, '')
-    )
+  _flyIn: (masterDiv, x, y, fromRight, rotate=false) =>
+    rOffset = 0
+    if rotate
+      rOffset = 360/(@numSteps-1)
+      if fromRight
+        rOffset *= -1
 
-    # man image zoom in
-    @manImage2.css(
-      scale: 4
-    )
+    r = 0
 
-    # do the transition
-    @manImage2.transition(
-      scale: 1
-      opacity: 1
-      duration: 1000
-    )
+    len = (x + @imageSize)
+    xOff = x - len
 
-  _step3: () =>
-    # hide previous divs
-    this._hideDivs([@message2, @manImage2])
+    if fromRight
+      len = @container.width() - x
+      xOff = x + len
 
-    # show new divs
-    @message3.css(
-      opacity: 1
-    )
-    @message3.keyframe('bounceInDown', 1000, 'ease-out', 0, 1, 'normal', () =>
-      @message1.css(AmoebaSB.keyframeAnimationPlugin.animationProperty, '')
-    )
+    xOffset = len/(@numSteps-1)
 
-    # man image zoom in
-    @manImage3.css(
-      scale: 4
-    )
+    if fromRight
+      xOffset *= -1
 
-    # do the transition
-    @manImage3.transition(
-      scale: 1
-      opacity: 1
-      duration: 1000
-    )
+    last = false
 
-  _hideDivs: (divsArray) =>
-    _.each(divsArray, (element) =>
-      element.transition(
-        opacity: 0
-        duration: 300
-      )
-    )
+    @steps += @numSteps
 
-  _createDivs: () =>
-    messageString1 = 'Who are you?'
-    messageString2 = 'Our ideal customer is funded, has a strong vision, but haven’t yet built out their app (or maybe only have a prototype).'
-    messageString3 = 'We work with you to build on your idea until a viable product emerges through our lean, iterative approach.'
+    _.each([0...@numSteps], (loopIndex) =>
+      last = loopIndex == (@numSteps - 1)
 
-    @message1 = $('<div/>')
-      .text(messageString1)
-      .appendTo(@el)
-      .attr(class: "amoebaText")
-      .css(
-        fontSize: "4em"
-        position: "absolute"
-        textAlign: "center"
-        top: 0
+      clone = masterDiv.clone()
+      clone.appendTo(@container)
+
+      t = "translateX(#{xOff}px) translateY(#{y}px) rotate(#{r}deg)"
+
+      clone.css(
+        scale: 1
         left: 0
-        opacity: 0
-        width: "100%"
-        textShadow: "#{AmoebaSite.Colors.amoebaGreenDark} 1px 0px 2px"
-        color: "#{AmoebaSite.Colors.amoebaGreenMedium}"
-      )
-    @message2 = $('<div/>')
-      .text(messageString2)
-      .appendTo(@el)
-      .attr(class: "amoebaText")
-      .css(
-        fontSize: "2em"
-        position: "absolute"
-        textAlign: "center"
         top: 0
-        left: 0
+        transform: t
         opacity: 0
-        width: "100%"
-        textShadow: "#{AmoebaSite.Colors.amoebaGreenDark} 1px 0px 2px"
-        color: "#{AmoebaSite.Colors.amoebaGreenMedium}"
-      )
-    @message3 = $('<div/>')
-      .text(messageString3)
-      .appendTo(@el)
-      .attr(class: "amoebaText")
-      .css(
-        fontSize: "2em"
-        position: "absolute"
-        textAlign: "center"
-        top: 0
-        left: 0
-        opacity: 0
-        width: "100%"
-        textShadow: "#{AmoebaSite.Colors.amoebaGreenDark} 1px 0px 2px"
-        color: "#{AmoebaSite.Colors.amoebaGreenMedium}"
       )
 
-    @manImage1 = this._createImageDiv('/images/presentation/man.svg')
-    @manImage2 = this._createImageDiv('/images/presentation/man_question.svg')
-    @manImage3 = this._createImageDiv('/images/presentation/man_exclaim.svg')
+      do (last) =>
+        clone.transition(
+          opacity:1
+          delay: loopIndex * 30
+          duration: 0
+          complete: =>
+            if !last
+              clone.transition(
+                opacity: 0
+                delay: 0
+                duration: 800
+                complete: =>
+                  clone.remove()    # remove ourselves
 
-    @tripWalker = new AmoebaSite.TripWalker(@el, '/images/presentation/man.svg')
+                  this._afterFlyInStep()
+              )
+            else
+              this._afterFlyInStep()
+        )
 
-  _createImageDiv: (path) =>
+      xOff += xOffset
+      r += rOffset
+    )
+
+  _createImageDiv: (path, divClass, imageSize) =>
     result = $('<div/>')
-      .appendTo(@el)
       .css(
         backgroundImage: 'url("' + path + '")'
         backgroundPosition: 'center center'
         backgroundSize: 'contain'
         backgroundRepeat: 'no-repeat'
 
-        top: (@el.height() - @imageSize) / 2
-        left: (@el.width() - @imageSize) / 2
+        top: (@container.height() - imageSize) / 2
+        left: (@container.width() - imageSize) / 2
         position: "absolute"
-        width: @imageSize
-        height: @imageSize
+        width:imageSize
+        height: imageSize
         opacity: 0
       )
 
+    if divClass
+      result.addClass(divClass)
+
     return result
 
-  _typewriterEffect: (message, bottom) =>
-    typewriter = new AmoebaSite.Typewriter(@el, message)
+  _createTextDiv: (text, divClass, size=2, align='center') =>
+    result = $('<div/>')
+      .text(text)
+      .appendTo(@container)
+      .attr(class: "amoebaText")
+      .css(
+        fontSize: "#{size}em"
+        position: "absolute"
+        textAlign: align
+        top: 0
+        left: 0
+        opacity: 0
+        width: "100%"
+        textShadow: "#{AmoebaSite.Colors.amoebaGreenDark} 1px 0px 2px"
+        color: "#{AmoebaSite.Colors.amoebaGreenMedium}"
+      )
 
-    typewriter.write(bottom)
+    if divClass
+      result.addClass(divClass)
+
+    return result
+
+  _afterFlyInStep: () =>
+    if --@steps == 0
+      this._whoAreYou()
+
+  _whoAreYou: () =>
+    who = this._createTextDiv("Who", 'who', 8)
+    are = this._createTextDiv("Are", 'who', 8)
+    you = this._createTextDiv("You?", 'who', 8)
+
+    height = 140
+    width = 400
+    top = 100
+
+    who.css(
+      top: top
+      height: height
+      width: width
+#      backgroundColor: 'rgba(232,0,0,.2)'
+    )
+    top += height
+    are.css(
+      top: top
+      height: height
+      width: width
+#      backgroundColor: 'rgba(0,231,0,.2)'
+    )
+    top += height
+    you.css(
+      top: top
+      height: height
+      width: width
+#      backgroundColor: 'rgba(0,0,122,.2)'
+    )
+    who.transition(
+      opacity: 1
+      duration: 800
+      complete: =>
+        are.transition(
+          opacity: 1
+          duration: 800
+          complete: =>
+            you.transition(
+              opacity: 1
+              duration: 800
+              complete: =>
+                this._whoAreYouDone()
+            )
+          )
+    )
+
+  _fadeInQuestionMan: () =>
+    this._fadeOutDivs(['man', 'who'], () =>
+      questionMan = this._createImageDiv(@questionPath, 'man', @imageSize*2)
+      questionMan.appendTo(@container)
+
+      questionMan.css(
+        scale: .5
+      )
+      questionMan.transition(
+        top: 10
+        left: 10
+        opacity: 1
+        scale: 1
+        complete: =>
+          this._fadeInQuestionManDone()
+      )
+    )
+
+  _fadeOutDivs: (divClasses, fadeCallback) =>
+    count = divClasses.length
+
+    _.each(divClasses, (divClass) =>
+      div = $(".#{divClass}")
+
+      div.transition(
+        opacity: 0
+        duration: 800
+        complete: =>
+          div.remove()
+
+          count--
+          if count == 0
+            if fadeCallback
+              fadeCallback()
+      )
+    )
+
+  _typewriter: () =>
+
+    @messages = [
+      'Our ideal customer is...'
+      'funded with a strong vision'
+
+      'but, We work with you to build on your idea'
+      'until you haven’t yet built out their app'
+      'or maybe only have a prototype.'
+      'viable product emerges through our lean, iterative approach.'
+
+      'Other clients may have an application in the wild and have'
+      'started gaining traction, but can’t hire engineering talent'
+      'fast enough to build out new products.'
+      'Maybe you haven’t yet built a mobile version?'
+      'Or just need us to help fill the design/engineering gap.'
+    ]
+
+    @typewriterIndex = 0
+    this._nextTypewriter()
+
+  _nextTypewriter: () =>
+    message = @messages.shift()
+
+    @typewriterIndex += 1
+
+    startTop = 100
+
+    if message
+      css =
+        left: '50%'
+        width: 400 # can't be a percentage
+        top: startTop + (20 * @typewriterIndex)
+        height: 20
+
+      typewriter = new AmoebaSite.Typewriter(@container, message, css, 'left')
+      typewriter.write(this._nextTypewriter)
+    else
+      this._typewriterDone()
+
+  _typewriterDone: () =>
+    if @callback
+      @callback()
+
+  _whoAreYouDone: () =>
+    this._fadeInQuestionMan()
+
+  _fadeInQuestionManDone: () =>
+    this._typewriter()
+
