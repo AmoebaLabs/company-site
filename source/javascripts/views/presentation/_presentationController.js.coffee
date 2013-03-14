@@ -17,6 +17,7 @@ class AmoebaSite.Presentation.Controller
       new AmoebaSite.Presentation.Slide_Customer(),
       new AmoebaSite.Presentation.Slide_Tools(),
       new AmoebaSite.Presentation.Slide_Clouds(),
+      new AmoebaSite.Presentation.Slide_PreparingYou(),
       new AmoebaSite.Presentation.Slide_Cog(),
       new AmoebaSite.Presentation.Slide_Cube()
       ]
