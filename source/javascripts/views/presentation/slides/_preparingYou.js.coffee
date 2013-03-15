@@ -220,7 +220,7 @@ class AmoebaSite.Cube
 
   _transformToCubeDone: () =>
     setTimeout( =>
-      this.rotateToIndex(3)
+      this.rotateToIndex(4)
     , 400)
 
   _rotateDone:() =>
@@ -341,8 +341,45 @@ class AmoebaSite.Cube
     )
 
   _buildCubeSize3: (sideDiv) =>
-    eyes = AmoebaSite.utils.createImageDiv('/images/presentation/eyes.svg', 'cube', 300, sideDiv)
-    eyes.css(opacity: 1)
+   # message
+    title = AmoebaSite.utils.createTextDiv("Data Driven", 'who', 4, sideDiv, 'left')
+    sentence = 'We like to involve the stakeholders as well as actual users in our process, to validate our assumptions, and drive the product development. In designing a MVP we collect and use user data early in the process to help shape product decisions. Grow at different rates'
+    message = AmoebaSite.utils.createTextDiv(sentence, 'who', 1.3, sideDiv, 'left')
+
+    title.transition(
+      top: 20
+      left: 20
+      color: 'white'
+      height: 200
+      width: 500
+      opacity: 1
+      duration: 400
+    )
+    message.transition(
+      top: 120
+      left: 20
+
+      color: 'white'
+      height: 80
+      width: 500
+      opacity: 1
+      duration: 400
+    )
+
+    graph1 = this._buildGraphDiv(100, "#{AmoebaSite.Colors.amoebaGreenDark}", sideDiv)
+    graph2 = this._buildGraphDiv(220, "#{AmoebaSite.Colors.amoebaGreen}", sideDiv)
+    graph3 = this._buildGraphDiv(340, "white", sideDiv)
+
+    # add infinite animations
+    graph1.keyframe('barGraphMover', 8000, 'linear', 2000, 'Infinite', 'alternate', () =>
+      graph1.css(AmoebaSB.keyframeAnimationPlugin.animationProperty, '')
+    )
+    graph2.keyframe('barGraphMover', 8000, 'linear', 0, 'Infinite', 'alternate', () =>
+      graph2.css(AmoebaSB.keyframeAnimationPlugin.animationProperty, '')
+    )
+    graph3.keyframe('barGraphMover', 8000, 'linear', 4320, 'Infinite', 'alternate', () =>
+      graph3.css(AmoebaSB.keyframeAnimationPlugin.animationProperty, '')
+    )
 
   _buildCubeSize4: (sideDiv) =>
     eyes = AmoebaSite.utils.createImageDiv('/images/presentation/eyes.svg', 'cube', 300, sideDiv)
@@ -352,4 +389,14 @@ class AmoebaSite.Cube
     eyes = AmoebaSite.utils.createImageDiv('/images/presentation/eyes.svg', 'cube', 300, sideDiv)
     eyes.css(opacity: 1)
 
-
+  _buildGraphDiv: (left, color, parentDiv) =>
+     result = $('<div/>')
+      .appendTo(parentDiv)
+      .css(
+        position: 'absolute'
+        height: 200
+        width: 100
+        bottom: 30
+        left: left
+        backgroundColor: color
+      )

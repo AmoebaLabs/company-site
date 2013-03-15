@@ -206,6 +206,21 @@ $cardHeight: 200px;
   }
 }
 
+@include keyframes(barGraphMover) {
+  0% {
+    height: 200px;
+  } 50% {
+    height: 20px;
+  } 75% {
+    height: 120px;
+  } 85% {
+    height: 80px;
+  } 100% {
+    height: 200px;
+  }
+}
+
+
 // the jquery css vendor prefix addtions gives a result that doesn't work well
 // $var.css(perspective: '400px') gives us:  -webkit-transform: perspective(400px)
 // using the @include below gives us
