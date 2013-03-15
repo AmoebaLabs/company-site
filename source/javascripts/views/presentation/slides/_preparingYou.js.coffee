@@ -17,8 +17,8 @@ class AmoebaSite.Presentation.Slide_PreparingYou extends AmoebaSB.Slide_Base
   _start: () =>
     sentence = "As the client hires developers, we include them on our team, at our offices. As integrated team members, our client's develop- ers are trained on the processes, tools and technologies they will need to continue development after version 1.0 and beyond."
 
-    title = AmoebaSite.utils.createTextDiv("Preparing You", 'who', 4, @el, 'left')
-    message = AmoebaSite.utils.createTextDiv(sentence, 'who', 1.3, @el, 'left')
+    title = AmoebaSite.utils.createTextDiv("Preparing You", null, 4, @el, 'left')
+    message = AmoebaSite.utils.createTextDiv(sentence, null, 1.3, @el, 'left')
 
     title.css(
       top:70
@@ -220,7 +220,7 @@ class AmoebaSite.Cube
 
   _transformToCubeDone: () =>
     setTimeout( =>
-      this.rotateToIndex(4)
+      this.rotateToIndex(5)
     , 400)
 
   _rotateDone:() =>
@@ -254,9 +254,9 @@ class AmoebaSite.Cube
 
   _buildCubeSize1: (sideDiv) =>
     # message
-    title = AmoebaSite.utils.createTextDiv("Great Software\nPhilosophy", 'who', 4, sideDiv, 'left')
+    title = AmoebaSite.utils.createTextDiv("Great Software\nPhilosophy", null, 4, sideDiv, 'left')
     sentence = 'Building great software is a delicate balance of creative vision, architecture, and engineering.'
-    message = AmoebaSite.utils.createTextDiv(sentence, 'who', 1.3, sideDiv, 'left')
+    message = AmoebaSite.utils.createTextDiv(sentence, null, 1.3, sideDiv, 'left')
 
     title.transition(
       top: 80
@@ -289,9 +289,9 @@ class AmoebaSite.Cube
 
   _buildCubeSize2: (sideDiv) =>
     # message
-    title = AmoebaSite.utils.createTextDiv("Logic Driven", 'who', 4, sideDiv, 'left')
+    title = AmoebaSite.utils.createTextDiv("Logic Driven", null, 4, sideDiv, 'left')
     sentence = 'We build software in an agile way, ensuring that we only build the minimum product for each iteration. This allows us to constantly design, engineer, and finally get feedback on the product.'
-    message = AmoebaSite.utils.createTextDiv(sentence, 'who', 1.3, sideDiv, 'left')
+    message = AmoebaSite.utils.createTextDiv(sentence, null, 1.3, sideDiv, 'left')
 
     title.transition(
       top: 20
@@ -341,10 +341,10 @@ class AmoebaSite.Cube
     )
 
   _buildCubeSize3: (sideDiv) =>
-   # message
-    title = AmoebaSite.utils.createTextDiv("Data Driven", 'who', 4, sideDiv, 'left')
+    # message
+    title = AmoebaSite.utils.createTextDiv("Data Driven", null, 4, sideDiv, 'left')
     sentence = 'We like to involve the stakeholders as well as actual users in our process, to validate our assumptions, and drive the product development. In designing a MVP we collect and use user data early in the process to help shape product decisions. Grow at different rates'
-    message = AmoebaSite.utils.createTextDiv(sentence, 'who', 1.3, sideDiv, 'left')
+    message = AmoebaSite.utils.createTextDiv(sentence, null, 1.3, sideDiv, 'left')
 
     title.transition(
       top: 20
@@ -382,12 +382,46 @@ class AmoebaSite.Cube
     )
 
   _buildCubeSize4: (sideDiv) =>
-    eyes = AmoebaSite.utils.createImageDiv('/images/presentation/eyes.svg', 'cube', 300, sideDiv)
-    eyes.css(opacity: 1)
+    # message
+    title = AmoebaSite.utils.createTextDiv("Process", null, 4, sideDiv, 'left')
+    sentence = 'We work on an idea until a viable product merges through our lean iterative approach.'
+    message = AmoebaSite.utils.createTextDiv(sentence, null, 1.3, sideDiv, 'left')
+
+    title.transition(
+      top: 20
+      left: 20
+      color: 'white'
+      height: 200
+      width: 500
+      opacity: 1
+      duration: 400
+    )
+    message.transition(
+      top: 120
+      left: 20
+
+      color: 'white'
+      height: 80
+      width: 500
+      opacity: 1
+      duration: 400
+    )
 
   _buildCubeSize5: (sideDiv) =>
-    eyes = AmoebaSite.utils.createImageDiv('/images/presentation/eyes.svg', 'cube', 300, sideDiv)
-    eyes.css(opacity: 1)
+    $('<div/>')
+      .html('Amoeba<sup style="vertical-align: super; font-size: 0.2em;">\u2120</sup>')   # vertical-align: super is the magic that makes this work
+      .appendTo(sideDiv)
+      .addClass("amoebaText")
+      .css(
+        fontSize: "8em"
+        position: "absolute"
+        textAlign: "center"
+        top: 120
+        left: 0
+        width: "100%"
+        color: 'white'
+        opacity: 1
+      )
 
   _buildGraphDiv: (left, color, parentDiv) =>
      result = $('<div/>')
