@@ -48,30 +48,38 @@ class AmoebaSite.Presentation.Controller
     if colorClass == 'default'
       colorClass = 'none'
 
-    background = $('#presentationBackground')
+    # remove any in flight transition if any
+    this._removeBackgroundDiv()
 
-    background.css(
-      opacity: 0
-    )
+    # use a fresh div every time.  That way if we can call this twice in a row
+    # without worrying about halting an inflight transition
+    @backgroundDiv = $('<div/>')
+      .addClass(colorClass)
+      .css(
+        opacity: 0
+        height: '100%'
+        width: '100%'
+      )
+      .appendTo($('#presentationBackground'))
 
-    if not background.hasClass(colorClass)
-      background.removeClass(allClasses)
-      background.addClass(colorClass)
-
-    background.transition(
+    @backgroundDiv.transition(
       opacity: 1
       duration: 2000
       complete: =>
+        # now set the presentation view to match the now faded in background, and remove the background
         parent = $("#presentation")
 
         if not parent.hasClass(colorClass)
-          parent.removeClass(allClasses)
-          parent.addClass(colorClass)
+          parent.removeClass(allClasses).addClass(colorClass)
 
-        background.css(
-          opacity: 0
-        )
+        this._removeBackgroundDiv()
     )
+
+  _removeBackgroundDiv: () =>
+    if @backgroundDiv?
+      @backgroundDiv.css(opacity: 0)  # avoids flicker on the remove()
+      @backgroundDiv.remove()
+      @backgroundDiv = undefined
 
   _next: =>
     success = this._currentSlide().next()
