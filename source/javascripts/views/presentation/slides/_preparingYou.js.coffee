@@ -220,7 +220,7 @@ class AmoebaSite.Cube
 
   _transformToCubeDone: () =>
     setTimeout( =>
-      this.rotateToIndex(2)
+      this.rotateToIndex(3)
     , 400)
 
   _rotateDone:() =>
@@ -253,7 +253,6 @@ class AmoebaSite.Cube
     eyesImage.css(opacity: 1)
 
   _buildCubeSize1: (sideDiv) =>
-
     # message
     title = AmoebaSite.utils.createTextDiv("Great Software\nPhilosophy", 'who', 4, sideDiv, 'left')
     sentence = 'Building great software is a delicate balance of creative vision, architecture, and engineering.'
@@ -289,8 +288,57 @@ class AmoebaSite.Cube
     )
 
   _buildCubeSize2: (sideDiv) =>
-    eyes = AmoebaSite.utils.createImageDiv('/images/presentation/eyes.svg', 'cube', 300, sideDiv)
-    eyes.css(opacity: 1)
+    # message
+    title = AmoebaSite.utils.createTextDiv("Logic Driven", 'who', 4, sideDiv, 'left')
+    sentence = 'We build software in an agile way, ensuring that we only build the minimum product for each iteration. This allows us to constantly design, engineer, and finally get feedback on the product.'
+    message = AmoebaSite.utils.createTextDiv(sentence, 'who', 1.3, sideDiv, 'left')
+
+    title.transition(
+      top: 20
+      left: 20
+      color: 'white'
+      height: 200
+      width: 500
+      opacity: 1
+      duration: 400
+    )
+    message.transition(
+      top: 120
+      left: 20
+
+      color: 'white'
+      height: 80
+      width: 500
+      opacity: 1
+      duration: 400
+    )
+
+    scaleImage = AmoebaSite.utils.createImageDiv('/images/presentation/gear.svg', 'cube', 160, sideDiv)
+    scaleImage.transition(
+      top: 'auto' # unset top set in createImageDiv
+      bottom: 110
+      left: 80
+      opacity: 1
+      duration: 400
+    )
+
+    scaleImage = AmoebaSite.utils.createImageDiv('/images/presentation/gear.svg', 'cube', 160, sideDiv)
+    scaleImage.transition(
+      top: 'auto' # unset top set in createImageDiv
+      bottom: 0
+      opacity: 1
+      duration: 400
+    )
+
+    scaleImage = AmoebaSite.utils.createImageDiv('/images/presentation/gear.svg', 'cube', 160, sideDiv)
+    scaleImage.transition(
+      top: 'auto' # unset top set in createImageDiv
+      left: 'auto'
+      right: 80
+      bottom: 110
+      opacity: 1
+      duration: 400
+    )
 
   _buildCubeSize3: (sideDiv) =>
     eyes = AmoebaSite.utils.createImageDiv('/images/presentation/eyes.svg', 'cube', 300, sideDiv)
