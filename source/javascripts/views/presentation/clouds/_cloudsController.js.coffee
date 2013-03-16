@@ -1,25 +1,34 @@
 class AmoebaSite.CloudsController
-  constructor:() ->
-    @viewPort = $("#viewport")
+  constructor:(parentDiv) ->
+    # create this to host the 3d world div
+    @viewPort = $("<div/>")
+      .attr(id: 'viewport')
+      .appendTo(parentDiv)
+    @world = $("<div/>")
+      .attr(id: 'world')
+      .appendTo(@viewPort)
+
     @fps = 24
 
-    AmoebaSite.textures = new AmoebaSite.Textures()
-    AmoebaSite.cloudWorld = new AmoebaSite.CloudWorld(@fps)
-
-    AmoebaSite.cloudWorld.generate()
-
-    # this._addEventHandlers()
+    AmoebaSite.textures ?= new AmoebaSite.Textures()
     this._setupRAF()
-    # this._setupEventListenersToMoveWorld()
 
-    # rotate world slowly
-    AmoebaSite.cloudWorld.toggleRotateWorld()
+    @cloudWorld = new AmoebaSite.CloudWorld(@world, @fps)
+    @cloudWorld.generate()
+    @cloudWorld.toggleRotateWorld()
 
     this._showFallingClouds()
     this._showRocketShip()
     this._createStarsAndPlanet()
 
   tearDown: () =>
+    # stop any timed actions from happening
+    @stopped = true
+
+    if @cloudWorld?
+      @cloudWorld.tearDown()
+      @cloudWorld = undefined
+
     if @fallingClouds?
       @fallingClouds.stop()
       @fallingClouds = undefined
@@ -28,10 +37,17 @@ class AmoebaSite.CloudsController
       @rocketShip.stop()
       @rocketShip = undefined
 
-    @viewPort.empty()
-    @$planet = undefined
+    # remove any running animation
+    @$bigStars?.css(AmoebaSB.keyframeAnimationPlugin.animationProperty, '')
     @$bigStars = undefined
+
+    # remove any running animation
+    @$smallStars?.css(AmoebaSB.keyframeAnimationPlugin.animationProperty, '')
     @$smallStars = undefined
+
+    @viewPort?.remove()
+    @viewPort = undefined
+    @$planet = undefined
 
   _createStarsAndPlanet: () =>
     @$planet = $("<img/>")
@@ -82,70 +98,51 @@ class AmoebaSite.CloudsController
 
   _showRocketShip: () =>
     @rocketShip = new AmoebaSite.RocketShip(@viewPort, @fps, (animationStep) =>
+      # break out if we have been torn down
+      if @stopped
+        return
+
       switch (animationStep)
         when 1  # called on final rocket blast off, fly world out
-          AmoebaSite.cloudWorld.transitionDown()
+          @cloudWorld?.transitionDown()
 
           # stop falling clouds
-          if @fallingClouds?
-            @fallingClouds.stop()
-            @fallingClouds = undefined
+          @fallingClouds?.stop()
+          @fallingClouds = undefined
 
           # slowly fade in the planet
-          @$planet.transition(
+          @$planet?.transition(
             opacity: 1
             scale: 1
             duration: 7000
           )
 
           # slowly fade in the stars
-          @$bigStars.transition(
+          @$bigStars?.transition(
             opacity: 1
             duration: 7000
 
             complete: =>
-              @$bigStars.keyframe('starFlicker', 300000, 'linear', 0, 'Infinite', 'alternate', () =>
-                @$bigStars.css(AmoebaSB.keyframeAnimationPlugin.animationProperty, '')
+              @$bigStars?.keyframe('starFlicker', 300000, 'linear', 0, 'Infinite', 'alternate', () =>
+                @$bigStars?.css(AmoebaSB.keyframeAnimationPlugin.animationProperty, '')
               )
           )
 
-          @$smallStars.transition(
+          @$smallStars?.transition(
             opacity: 1
             duration: 7000
 
             complete: =>
-              @$smallStars.keyframe('starFlicker', 1000000, 'linear', 500, 'Infinite', 'alternate', () =>
-                @$smallStars.css(AmoebaSB.keyframeAnimationPlugin.animationProperty, '')
+              @$smallStars?.keyframe('starFlicker', 1000000, 'linear', 500, 'Infinite', 'alternate', () =>
+                @$smallStars?.css(AmoebaSB.keyframeAnimationPlugin.animationProperty, '')
               )
           )
 
         when 10  # done, tear it down
           # stop rocket
-          if @rocketShip?
-            @rocketShip.stop()
-            @rocketShip = undefined
+          @rocketShip?.stop()
+          @rocketShip = undefined
     )
-
-  _addEventHandlers: () =>
-    window.addEventListener "keydown", (e) =>
-      # keycodes are always the uppercase character's ascii code
-      switch (e.keyCode)
-        when 32
-          AmoebaSite.cloudWorld.generate()
-        when 68  # 'd' key
-          AmoebaSite.cloudWorld.hyperspace()
-        when 69  # 'e' key
-          AmoebaSite.cloudWorld.zoomWorld()
-        when 70  # 'f' key
-          this.showFallingClouds()
-        when 71  # 'g' key
-          AmoebaSite.cloudWorld.reversehyperspace()
-        when 72
-          this._showRocketShip()
-        when 73
-          AmoebaSite.cloudWorld.toggleRotateWorld()
-#        else
-#          console.log("keyCode: #{e.keyCode}")
 
   # requestAnimationFrame polyfill
   _setupRAF: () =>
@@ -173,53 +170,4 @@ class AmoebaSite.CloudsController
     unless window.cancelAnimationFrame
       window.cancelAnimationFrame = (id) ->
         clearTimeout id
-
-  _setupEventListenersToMoveWorld: () =>
-    orientationhandler = (e) ->
-      [xAngle, yAngle, zTranslate] = AmoebaSite.cloudWorld.worldState()
-
-      if not e.gamma and not e.beta
-        e.gamma = -(e.x * (180 / Math.PI))
-        e.beta = -(e.y * (180 / Math.PI))
-      x = e.gamma
-      y = e.beta
-      xAngle = y
-      yAngle = x
-      AmoebaSite.cloudWorld.updateWorld(xAngle, yAngle, zTranslate)
-
-    # window.addEventListener( 'deviceorientation', orientationhandler, false );
-    # window.addEventListener( 'MozOrientation', orientationhandler, false );
-
-    onContainerMouseWheel = (event) =>
-      [xAngle, yAngle, zTranslate] = AmoebaSite.cloudWorld.worldState()
-
-      event = (if event then event else window.event)
-      zTranslate = zTranslate - ((if event.detail then event.detail * -5 else event.wheelDelta / 8))
-      AmoebaSite.cloudWorld.updateWorld(xAngle, yAngle, zTranslate)
-
-    window.addEventListener "mousewheel", onContainerMouseWheel
-    window.addEventListener "DOMMouseScroll", onContainerMouseWheel
-
-    window.addEventListener "mousemove", (e) =>
-      # alternate calculation
-      # xAngle = -(.1 * ( e.clientY - .5 * window.innerHeight ))
-      # yAngle = .1 * ( e.clientX - .5 * window.innerWidth )
-
-      [xAngle, yAngle, zTranslate] = AmoebaSite.cloudWorld.worldState()
-
-      yAngle = -(.5 - (e.clientX / window.innerWidth)) * 180
-      xAngle = (.5 - (e.clientY / window.innerHeight)) * 180
-
-      AmoebaSite.cloudWorld.updateWorld(xAngle, yAngle, zTranslate)
-
-    window.addEventListener "touchmove", (e) =>
-      [xAngle, yAngle, zTranslate] = AmoebaSite.cloudWorld.worldState()
-
-      _.each(e.changedTouches, (touch, index) =>
-        yAngle = -(.5 - (touch.pageX / window.innerWidth)) * 180
-        xAngle = (.5 - (touch.pageY / window.innerHeight)) * 180
-        AmoebaSite.cloudWorld.updateWorld(xAngle, yAngle, zTranslate)
-      )
-
-      e.preventDefault()
 

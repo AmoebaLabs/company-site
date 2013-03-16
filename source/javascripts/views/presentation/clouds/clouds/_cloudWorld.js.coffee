@@ -1,7 +1,6 @@
 class AmoebaSite.CloudWorld
-  constructor:(@fps, @numClusters=5, @preset='current') ->
-    @world = $("#world")
-    @viewPort = $("#viewport")
+  constructor:(@world, @fps, @numClusters=5, @preset='current') ->
+
     @clouds = []
     @translateZ = 0
     @worldXAngle = 0
@@ -10,10 +9,8 @@ class AmoebaSite.CloudWorld
 
     this._animate()  # starts the requestAnimationFrame loop
 
-  destructor: () =>
-    _.each(@clouds, (cloud, index) =>
-      cloud.destructor()
-    )
+  tearDown: () =>
+    @stopAnimationLoop = true  # must stop the requestAnimationFrame loop otherwise it cancels out this transition
 
   generate: (clearWorld=true) =>
     if clearWorld

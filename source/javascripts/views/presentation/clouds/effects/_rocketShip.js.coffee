@@ -128,6 +128,9 @@ class AmoebaSite.RocketShip extends AmoebaSite.EffectsBase
     this._runRocketAnimations(steps)
 
   _runRocketAnimations: (steps, transitionID=0) =>
+    if @stopped
+      return
+
     if steps.length
       nextStep = steps.shift()
 
