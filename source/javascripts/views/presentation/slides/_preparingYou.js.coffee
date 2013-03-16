@@ -74,7 +74,7 @@ class AmoebaSite.Cube
       rotate: r.z
       duration: 2000
       complete: =>
-        this._rotateDone()
+        this._stepDone('rotate')
     )
 
   _setupCube: =>
@@ -152,7 +152,7 @@ class AmoebaSite.Cube
     callback = () =>
       count--
       if count == 0
-        this._transformToCubeDone()
+        this._stepDone('cube')
 
     _.each(@cubeFaces, (face, index) =>
       theCSS = _.extend({delay: index*theDelay}, transformArray[index])
@@ -218,23 +218,6 @@ class AmoebaSite.Cube
       @flatTransforms.push(this._flatTransform(index))
     )
 
-  _transformToCubeDone: () =>
-    setTimeout( =>
-      @index ?= 0
-
-      if (@index > 5)
-        @index = 0
-
-      this.rotateToIndex(@index++)
-
-      this._transformToCubeDone()
-    , 400)
-
-  _rotateDone:() =>
-    setTimeout( =>
-      console.log 'duh'
-    , 400)
-
   _addContentForCubeSide: (theIndex, sideDiv) =>
     result = null
     switch (theIndex)
@@ -254,6 +237,24 @@ class AmoebaSite.Cube
         console.log 'bad index'
 
     return result
+
+  _stepDone: (stepID) =>
+    switch (stepID)
+      when 'cube'
+        setTimeout( =>
+          @index ?= 0
+
+          if (@index > 5)
+            @index = 0
+
+          this.rotateToIndex(@index++)
+
+          this._stepDone(stepID)
+        , 400)
+      when 'rotate'
+        setTimeout( =>
+          console.log 'duh'
+        , 400)
 
   _buildCubeSize0: (sideDiv) =>
     # message
