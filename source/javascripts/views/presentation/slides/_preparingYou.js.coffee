@@ -220,7 +220,14 @@ class AmoebaSite.Cube
 
   _transformToCubeDone: () =>
     setTimeout( =>
-      this.rotateToIndex(5)
+      @index ?= 0
+
+      if (@index > 5)
+        @index = 0
+
+      this.rotateToIndex(@index++)
+
+      this._transformToCubeDone()
     , 400)
 
   _rotateDone:() =>
@@ -249,10 +256,6 @@ class AmoebaSite.Cube
     return result
 
   _buildCubeSize0: (sideDiv) =>
-    eyesImage = AmoebaSite.utils.createImageDiv('/images/presentation/eyes.svg', 'cube', 300, sideDiv)
-    eyesImage.css(opacity: 1)
-
-  _buildCubeSize1: (sideDiv) =>
     # message
     title = AmoebaSite.utils.createTextDiv("Great Software\nPhilosophy", null, 4, sideDiv, 'left')
     sentence = 'Building great software is a delicate balance of creative vision, architecture, and engineering.'
@@ -287,7 +290,7 @@ class AmoebaSite.Cube
       duration: 400
     )
 
-  _buildCubeSize2: (sideDiv) =>
+  _buildCubeSize1: (sideDiv) =>
     # message
     title = AmoebaSite.utils.createTextDiv("Logic Driven", null, 4, sideDiv, 'left')
     sentence = 'We build software in an agile way, ensuring that we only build the minimum product for each iteration. This allows us to constantly design, engineer, and finally get feedback on the product.'
@@ -340,7 +343,7 @@ class AmoebaSite.Cube
       duration: 400
     )
 
-  _buildCubeSize3: (sideDiv) =>
+  _buildCubeSize2: (sideDiv) =>
     # message
     title = AmoebaSite.utils.createTextDiv("Data Driven", null, 4, sideDiv, 'left')
     sentence = 'We like to involve the stakeholders as well as actual users in our process, to validate our assumptions, and drive the product development. In designing a MVP we collect and use user data early in the process to help shape product decisions. Grow at different rates'
@@ -381,7 +384,7 @@ class AmoebaSite.Cube
       graph3.css(AmoebaSB.keyframeAnimationPlugin.animationProperty, '')
     )
 
-  _buildCubeSize4: (sideDiv) =>
+  _buildCubeSize3: (sideDiv) =>
     # message
     title = AmoebaSite.utils.createTextDiv("Process", null, 4, sideDiv, 'left')
     sentence = 'We work on an idea until a viable product merges through our lean iterative approach.'
@@ -407,7 +410,7 @@ class AmoebaSite.Cube
       duration: 400
     )
 
-  _buildCubeSize5: (sideDiv) =>
+  _buildCubeSize4: (sideDiv) =>
     $('<div/>')
       .html('Amoeba<sup style="vertical-align: super; font-size: 0.2em;">\u2120</sup>')   # vertical-align: super is the magic that makes this work
       .appendTo(sideDiv)
@@ -422,6 +425,10 @@ class AmoebaSite.Cube
         color: 'white'
         opacity: 1
       )
+
+  _buildCubeSize5: (sideDiv) =>
+    eyesImage = AmoebaSite.utils.createImageDiv('/images/presentation/eyes.svg', 'cube', 300, sideDiv)
+    eyesImage.css(opacity: 1)
 
   _buildGraphDiv: (left, color, parentDiv) =>
      result = $('<div/>')
