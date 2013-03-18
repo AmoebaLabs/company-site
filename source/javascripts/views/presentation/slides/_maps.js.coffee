@@ -73,14 +73,31 @@ class AmoebaSite.Presentation.Slide_Map extends AmoebaSB.Slide_Base
     i=0
     delay = 0
 
+    countDown = points.length
+
     _.each(points, (aPointArray, index) =>
       theDot = $('<span/>')
         .appendTo("div.blipDiv")
         .addClass("blipblip-dot")
 
-      delay += 0.1
+      # animate a bounceIn, can't use keyframes delay, so using setTimeout
+      delay += 100
+      setTimeout(=>
+        # set position and opacity = 1
+        theDot.css(
+          top: "#{aPointArray[0]}px"
+          left: "#{aPointArray[1]}px"
+          opacity: 1
+        )
 
-      theDot.css({"top": "#{aPointArray[0]}px", "left": "#{aPointArray[1]}px", "animation-delay": "#{delay}s"})
+        theDot.keyframe('bounceIn', 1000, 'ease-out', 0, 1, 'normal', () =>
+          theDot.css(AmoebaSB.keyframeAnimationPlugin.animationProperty, '')
+
+          countDown--
+          if countDown == 0
+            this._slideIsDone(1000)
+        )
+      , delay)
     )
 
   _hideBlipBackground: () =>
