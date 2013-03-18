@@ -244,7 +244,7 @@ class AmoebaSite.Cube
       when 'cubeTransformDone'
         setTimeout( =>
             this.rotateToIndex(@cubeRotateIndex++)
-        , 400)
+        , 100)
       when 'rotationDone'
         setTimeout( =>
           if (@cubeRotateIndex > 5)
