@@ -38,6 +38,10 @@ class AmoebaSite.TripWalker
       )
 
   _doZoomIn: () =>
+    # make sure we haven't been torn down already
+    if not @container?
+      return
+
     @steps = 0
     @container.empty()
 
@@ -104,6 +108,10 @@ class AmoebaSite.TripWalker
     )
 
   _doFlyIn: () =>
+    # make sure we haven't been torn down already
+    if not @container?
+      return
+
     # counter so we know when we are all done
     @steps = 0
     @container.empty()
@@ -187,6 +195,10 @@ class AmoebaSite.TripWalker
     )
 
   _doBackIn: () =>
+    # make sure we haven't been torn down already
+    if not @container?
+      return
+
     @steps = 0
     @container.empty()
 
@@ -242,6 +254,10 @@ class AmoebaSite.TripWalker
     )
 
   _doBowDown: () =>
+    # make sure we haven't been torn down already
+    if not @container?
+      return
+
     @steps = 0
     @container.empty()
 

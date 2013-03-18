@@ -46,6 +46,8 @@ class AmoebaSite.Presentation.Slide_Computer extends AmoebaSB.Slide_Base
       )
       @message.keyframe('bounceInDown', 1000, 'ease-out', 0, 1, 'normal', () =>
         @message.css(AmoebaSB.keyframeAnimationPlugin.animationProperty, '')
+
+        this._slideIsDone(1000)
       )
     , 400)
 

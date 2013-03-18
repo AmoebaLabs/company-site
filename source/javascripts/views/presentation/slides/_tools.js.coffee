@@ -309,6 +309,7 @@ class AmoebaSite.Presentation.Slide_Tools extends AmoebaSB.Slide_Base
 
   _finalStep: =>
     @animationIndex = -1
+    this._slideIsDone(1000)
 
   _dropOneTool: (tools) =>
     element = tools.shift()

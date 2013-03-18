@@ -186,4 +186,6 @@ class AmoebaSite.Presentation.Slide_Phone extends AmoebaSB.Slide_Base
     @imgEl.transition(
       opacity: 0
       duration: 800
+      complete: =>
+        this._slideIsDone(1000)
     )

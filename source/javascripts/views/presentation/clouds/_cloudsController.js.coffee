@@ -1,5 +1,5 @@
 class AmoebaSite.CloudsController
-  constructor:(parentDiv) ->
+  constructor:(parentDiv, @doneCallback) ->
     # create this to host the 3d world div
     @viewPort = $("<div/>")
       .attr(id: 'viewport')
@@ -142,6 +142,10 @@ class AmoebaSite.CloudsController
           # stop rocket
           @rocketShip?.stop()
           @rocketShip = undefined
+
+          # slide is done, autoadvance to next
+          if @doneCallback?
+            @doneCallback()
     )
 
   # requestAnimationFrame polyfill

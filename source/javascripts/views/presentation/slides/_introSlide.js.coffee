@@ -83,6 +83,9 @@ class AmoebaSite.Presentation.Slide_Intro extends AmoebaSB.Slide_Base
     @instructions.keyframe('fadeInUpBig', 1800, 'ease-out', 0, 1, 'normal', () =>
       @instructions.css(AmoebaSB.keyframeAnimationPlugin.animationProperty, '')
 
+      # slideDone autoadvance to next slide after delay
+      this._slideIsDone(1000)
+
       @instructions.keyframe(@amoebaInfoAnimation, 1800, 'ease-in-out', 0, 'infinite', 'normal', () =>
         @instructions.css(AmoebaSB.keyframeAnimationPlugin.animationProperty, '')
       )

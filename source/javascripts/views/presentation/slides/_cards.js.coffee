@@ -27,16 +27,22 @@ class AmoebaSite.Presentation.Slide_Cards extends AmoebaSB.Slide_Base
       this._resetCards()
 
   _showCards: () =>
-    _.each([0..5], (theIndex) =>
-      theCard = $("##{theIndex}.businessCard")
+    theCards = @el.find(".businessCard")
 
-      if theCard.length > 0
-        theCSS = _.extend({ delay: theIndex*50 }, {x: 0, y: 0})
-        theCard.transition(theCSS, =>
-          theCard.keyframe('bounceIn', 800, 'ease-out', 0, 1, 'normal', () =>
-            theCard.css(AmoebaSB.keyframeAnimationPlugin.animationProperty, '')
-          )
+    countDown = theCards.length
+
+    _.each(theCards, (element, theIndex) =>
+      theCard = $(element)
+      theCSS = _.extend({ delay: theIndex*50 }, {x: 0, y: 0})
+      theCard.transition(theCSS, =>
+        theCard.keyframe('bounceIn', 800, 'ease-out', 0, 1, 'normal', () =>
+          theCard.css(AmoebaSB.keyframeAnimationPlugin.animationProperty, '')
+
+          countDown--
+          if countDown == 0
+            this._slideIsDone(1000)
         )
+      )
     )
 
   _cardCSSObject: (index) =>
@@ -81,7 +87,6 @@ class AmoebaSite.Presentation.Slide_Cards extends AmoebaSB.Slide_Base
 
     theCard = $('<div/>')
       .addClass("businessCard")
-      .attr(id: theIndex)
       .css(this._cardCSSObject(theIndex))
       .appendTo(@el)
 

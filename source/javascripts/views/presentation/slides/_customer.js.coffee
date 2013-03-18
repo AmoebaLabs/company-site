@@ -19,7 +19,7 @@ class AmoebaSite.Presentation.Slide_Customer extends AmoebaSB.Slide_Base
     @customerStepOne.run()
 
   _stepOneCallback: () =>
-    console.log 'hello'
+    this._slideIsDone(1000)
 
 class Customer_StepOne
   constructor: (parentDiv, @callback) ->
