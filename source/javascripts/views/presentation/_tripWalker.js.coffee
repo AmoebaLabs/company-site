@@ -1,10 +1,6 @@
 
-# assets needed.
-# 1. better guy with a tie
-# 2.
-
 class AmoebaSite.TripWalker
-  constructor: (@parentDiv, @imagePath) ->
+  constructor: (@parentDiv, @imagePath, @callback) ->
     @numSteps = 25
     @imageSize = 200
     @zoomDepth = 4000
@@ -319,5 +315,6 @@ class AmoebaSite.TripWalker
 
   _afterBowDownStep: () =>
     if --@steps == 0
-      console.log 'done'
+      if @callback
+        @callback()
 

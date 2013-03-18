@@ -48,22 +48,22 @@ class AmoebaSite.Presentation.Slide_Team extends AmoebaSB.Slide_Base
           this._step1()
         when 1
           scheduleNextStep = false
-          this._sideIsDone()
+          this._typewriterEffect("We are here to help.", 0)
 
       if scheduleNextStep
         this._doNextStep(stepIndex + 1)
 
     , 1500)
 
-  _sideIsDone: () =>
-    this._typewriterEffect("We are here to help.", 0)
-
   _step1: () =>
     this._tripWalker()
 
+  _tripWalkerCallback: () =>
+    this._slideIsDone(1000)
+
   _tripWalker: () =>
     if not @tripWalker?
-      @tripWalker = new AmoebaSite.TripWalker(@el, '/images/presentation/man.svg')
+      @tripWalker = new AmoebaSite.TripWalker(@el, '/images/presentation/man.svg', this._tripWalkerCallback)
 
     @tripWalker.run()
 
