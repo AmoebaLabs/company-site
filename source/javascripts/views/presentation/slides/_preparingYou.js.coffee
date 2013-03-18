@@ -42,8 +42,7 @@ class AmoebaSite.Presentation.Slide_PreparingYou extends AmoebaSB.Slide_Base
     )
 
   _stepOneCallback: () =>
-    console.log 'hello'
-
+    this._slideIsDone(1000)
 
 # -------------------------------------------------------------------
 # -------------------------------------------------------------------
@@ -74,7 +73,7 @@ class AmoebaSite.Cube
       rotate: r.z
       duration: 2000
       complete: =>
-        this._stepDone('rotate')
+        this._stepDone('rotationDone')
     )
 
   _setupCube: =>
@@ -152,7 +151,7 @@ class AmoebaSite.Cube
     callback = () =>
       count--
       if count == 0
-        this._stepDone('cube')
+        this._stepDone('cubeTransformDone')
 
     _.each(@cubeFaces, (face, index) =>
       theCSS = _.extend({delay: index*theDelay}, transformArray[index])
@@ -239,21 +238,19 @@ class AmoebaSite.Cube
     return result
 
   _stepDone: (stepID) =>
+    @cubeRotateIndex ?= 0
+
     switch (stepID)
-      when 'cube'
+      when 'cubeTransformDone'
         setTimeout( =>
-          @index ?= 0
-
-          if (@index > 5)
-            @index = 0
-
-          this.rotateToIndex(@index++)
-
-          this._stepDone(stepID)
+            this.rotateToIndex(@cubeRotateIndex++)
         , 400)
-      when 'rotate'
+      when 'rotationDone'
         setTimeout( =>
-          console.log 'duh'
+          if (@cubeRotateIndex > 5)
+            @callback()
+          else
+            this.rotateToIndex(@cubeRotateIndex++)
         , 400)
 
   _buildCubeSize0: (sideDiv) =>
