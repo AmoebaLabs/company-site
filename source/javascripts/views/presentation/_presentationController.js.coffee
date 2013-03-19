@@ -23,7 +23,7 @@ class AmoebaSite.Presentation.Controller
 
     @transAPI = new AmoebaSB.SlideTransitions(@slides)
 
-    @navigationControls = new AmoebaSB.NavigationControls(@slides.length)
+    @navigationControls = new AmoebaSB.NavigationControls(@slides.length, false, false)
 
     document.addEventListener("displayIndexEventName", (event) =>
       # force going to active step again, to trigger rescaling
