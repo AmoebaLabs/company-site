@@ -20,6 +20,43 @@ class AmoebaSite.CloudsController
     this._showFallingClouds()
     this._showRocketShip()
     this._createStarsAndPlanet()
+    this._showMessage(0)
+
+  _showMessage: (messageIndex) =>
+    switch (messageIndex)
+      when 0
+        theText = "Light-up your Start-up"
+      when 1
+        theText = "and Blast off!"
+      when 2
+        theText = "Rule the universe"
+
+    if theText?
+      message = AmoebaSite.utils.createTextDiv(theText, 'message', 4, @world)
+
+      message.css(
+        top: 200
+        left: 0
+        transform: 'translateZ(0px)'
+      )
+      message.transition(
+        duration: 2000
+        opacity: 1
+        transform: 'translateZ(300px)'
+
+        complete: =>
+          message.transition(
+            delay: 800
+            duration: 1000
+            opacity: 0
+
+            complete: =>
+              # remove the message from the DOM
+              $('.message').remove()
+
+              this._showMessage(messageIndex+1)
+          )
+      )
 
   tearDown: () =>
     # stop any timed actions from happening
