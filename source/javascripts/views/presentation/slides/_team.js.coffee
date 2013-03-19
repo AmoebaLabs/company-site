@@ -4,19 +4,19 @@ class AmoebaSite.Presentation.Slide_Team extends AmoebaSB.Slide_Base
     this._setupElement("teamSlide")
     @transition = 'zoom'
 
-    @button = $('<button/>')
-      .text('Again')
-      .appendTo(@el)
-      .css(
-        position: 'absolute'
-        bottom: 20
-        right: 20
-        width: 100
-        zIndex: 400
-      )
-      .click( (event) =>
-        this._tripWalker()
-      )
+#    @button = $('<button/>')
+#      .text('Again')
+#      .appendTo(@el)
+#      .css(
+#        position: 'absolute'
+#        bottom: 20
+#        right: 20
+#        width: 100
+#        zIndex: 400
+#      )
+#      .click( (event) =>
+#        this._tripWalker()
+#      )
 
   slideIn: (afterTransitionComplete) =>
     if afterTransitionComplete

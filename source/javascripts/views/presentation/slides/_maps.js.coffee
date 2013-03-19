@@ -91,7 +91,8 @@ class AmoebaSite.Presentation.Slide_Map extends AmoebaSB.Slide_Base
         )
 
         theDot.keyframe('bounceIn', 1000, 'ease-out', 0, 1, 'normal', () =>
-          theDot.css(AmoebaSB.keyframeAnimationPlugin.animationProperty, '')
+          # removing this animation causes flicker, very lame
+          # theDot.css(AmoebaSB.keyframeAnimationPlugin.animationProperty, '')
 
           countDown--
           if countDown == 0

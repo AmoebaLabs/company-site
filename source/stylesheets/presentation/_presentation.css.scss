@@ -277,6 +277,6 @@ $blipBorderRadius: $blipSize / 2;
   opacity: 0;
 
   @include border-radius($blipBorderRadius);
-  @include box-shadow(0 2px 6px rgba(0, 0, 0, .4));
+  @include box-shadow(0 6px 6px rgba(0, 0, 0, .6));
   @include background-image(linear-gradient(#ffaaaa, #aa0000));
 }

@@ -8,7 +8,7 @@ class AmoebaSite.Presentation.Slide_Intro extends AmoebaSB.Slide_Base
     @titleColor = 'rgba(255,255,255,.4)'
     @amoebaTitleAnimation = 'amoebaTitlePulse'
     @amoebaInfoAnimation = 'amoebaInfoPulse'
-    @spaceToContinueMessage = 'Press the space bar to continue'
+    @spaceToContinueMessage = 'Press the space bar to begin'
     if dark
       @amoebaTitleAnimation = 'amoebaTitlePulseDark'
       @titleColor = 'rgba(0,0,0,.4)'
@@ -83,8 +83,9 @@ class AmoebaSite.Presentation.Slide_Intro extends AmoebaSB.Slide_Base
     @instructions.keyframe('fadeInUpBig', 1800, 'ease-out', 0, 1, 'normal', () =>
       @instructions.css(AmoebaSB.keyframeAnimationPlugin.animationProperty, '')
 
+      # disabled, force the user to hit the space bar to start
       # slideDone autoadvance to next slide after delay
-      this._slideIsDone(1000)
+      # this._slideIsDone(1000)
 
       @instructions.keyframe(@amoebaInfoAnimation, 1800, 'ease-in-out', 0, 'infinite', 'normal', () =>
         @instructions.css(AmoebaSB.keyframeAnimationPlugin.animationProperty, '')
