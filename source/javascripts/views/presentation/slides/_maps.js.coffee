@@ -33,38 +33,38 @@ class AmoebaSite.Presentation.Slide_Map extends AmoebaSB.Slide_Base
     this._showBlipBackground()
 
     points = [
-      [300, 129.5],
-      [352, 230.5],
-      [467, 330.5],
-      [511, 500.5],
-      [443, 827.5],
-      [334, 742.5],
-      [307, 731.5],
-      [334, 710.5],
-      [386, 653.5],
-      [360, 652.5],
-      [334, 551.5],
-      [364, 562.5],
-      [409, 264.5],
-      [571, 267.5],
-      [360, 171.5],
-      [293, 258.5],
-      [300, 231.5],
-      [275, 217.5],
-      [264, 655.5],
-      [250, 599.5],
-      [297, 619.5],
-      [513, 764.5],
-      [505, 800.5],
-      [173, 92.5],
-      [188, 102.5],
-      [219, 474.5],
-      [222, 504.5],
-      [307, 808.5],
-      [312, 777.5],
-      [489, 521.5],
-      [350, 524.5],
-      [358, 406.5]
+      [300, 129],
+      [352, 230],
+      [467, 330],
+      [511, 500],
+      [443, 827],
+      [334, 742],
+      [307, 731],
+      [334, 710],
+      [386, 653],
+      [360, 652],
+      [334, 551],
+      [364, 562],
+      [409, 264],
+      [571, 267],
+      [360, 171],
+      [293, 258],
+      [300, 231],
+      [275, 217],
+      [264, 655],
+      [250, 599],
+      [297, 619],
+      [513, 764],
+      [505, 800],
+      [173, 92],
+      [188, 102],
+      [219, 474],
+      [222, 504],
+      [307, 808],
+      [312, 777],
+      [489, 521],
+      [350, 524],
+      [358, 406]
     ]
 
     this._makeBlip(points)
@@ -91,8 +91,7 @@ class AmoebaSite.Presentation.Slide_Map extends AmoebaSB.Slide_Base
         )
 
         theDot.keyframe('bounceIn', 1000, 'ease-out', 0, 1, 'normal', () =>
-          # removing this animation causes flicker, very lame
-          # theDot.css(AmoebaSB.keyframeAnimationPlugin.animationProperty, '')
+          theDot.css(AmoebaSB.keyframeAnimationPlugin.animationProperty, '')
 
           countDown--
           if countDown == 0
