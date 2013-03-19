@@ -19,7 +19,11 @@ class AmoebaSite.Presentation.Slide_Cog extends AmoebaSB.Slide_Base
       if not @cogDemo?
         @cogDemo = new AmoebaSite.Presentation.CogDemo("cogPaper", 320, 32)
 
-      @cogDemo.start()
+      @cogDemo.start(this._cogDemoDoneCallback)
+
+  _cogDemoDoneCallback: () =>
+    this._slideIsDone(0)
+    console.log 'cog demo done'
 
   slideOut: (afterTransitionComplete) =>
     if afterTransitionComplete

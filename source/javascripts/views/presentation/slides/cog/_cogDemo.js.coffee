@@ -12,7 +12,8 @@ class AmoebaSite.Presentation.CogDemo
       "rect4Points": AmoebaSB.Graphics.rectWithFourPoints(0,0,200,300),
     }
 
-  start: =>
+  start: (callback) =>
+    @callback = callback
     this.stop()
 
     # colors copied from the variables css file. didn't know a simple way of sharing these vars outside of sass
@@ -20,8 +21,16 @@ class AmoebaSite.Presentation.CogDemo
       "90-#{AmoebaSite.Colors.amoebaGreen}-#{AmoebaSite.Colors.amoebaGreenMedium}",
       "90-#{AmoebaSite.Colors.amoebaGreenMedium}-#{AmoebaSite.Colors.amoebaGreenDark}"]
 
-    _.each([0...3], (i) =>
-      @animations.push(new CogAnimation(amoebaColors[i], i, @size, @graphicsPaper, @pathMap))
+    numCogs = 3
+    countDown = numCogs
+    animationCallback = =>
+      countDown--
+      if countDown == 0
+        if @callback
+          @callback()
+
+    _.each([0...numCogs], (i) =>
+      @animations.push(new CogAnimation(amoebaColors[i], i, @size, @graphicsPaper, @pathMap, animationCallback))
     )
 
     one.animate() for one in @animations
@@ -33,7 +42,7 @@ class AmoebaSite.Presentation.CogDemo
     @animations.length = 0
 
 class CogAnimation
-  constructor: (@fillColor, @index, @cogSize, graphicsPaper, @pathMap) ->
+  constructor: (@fillColor, @index, @cogSize, graphicsPaper, @pathMap, @callback) ->
     @pathSwitch = true
     @removed = false;
 
@@ -96,7 +105,8 @@ class CogAnimation
       if (bBox?)  # saw this randomly return undefined once
         diff = 700 - bBox.y2
         @mainPath.animate transform:"t0,#{diff}", 800, "bounce", =>
-          console.log("done")
+          if @callback
+            @callback()
 
     , 500)
 
