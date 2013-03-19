@@ -1,6 +1,6 @@
 
 #viewport {
-  @include perspective(1000);
+  @include perspective(1200);
   @include transform-style(preserve-3d);
   position: absolute;
   left: 0;
@@ -17,14 +17,13 @@
   margin-top: -256px;
   height: 512px;
   width: 512px;
-  // border: 1px solid red
   @include transform-style(preserve-3d);
   pointer-events: none;
-}
 
-#world div {
-  // clouds don't rotate in 3d without this
-  @include transform-style(preserve-3d);
+  div {
+    // clouds don't rotate in 3d without this
+    @include transform-style(preserve-3d);
+  }
 }
 
 .cloudBase {

@@ -1,5 +1,8 @@
 class AmoebaSite.CloudWorld
-  constructor:(@world, @fps, @numClusters=5, @preset='current') ->
+  constructor:(parentDiv, @fps, @numClusters=5, @preset='current') ->
+    @world = $("<div/>")
+      .attr(id: 'world')
+      .appendTo(parentDiv)
 
     @clouds = []
     @translateZ = 0

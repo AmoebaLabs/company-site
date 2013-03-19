@@ -4,8 +4,10 @@ class AmoebaSite.CloudsController
     @viewPort = $("<div/>")
       .attr(id: 'viewport')
       .appendTo(parentDiv)
-    @world = $("<div/>")
-      .attr(id: 'world')
+
+    # used for messages or anthing else
+    @contentDiv = $("<div/>")
+      .addClass('effectsStage')
       .appendTo(@viewPort)
 
     @fps = 24
@@ -13,7 +15,7 @@ class AmoebaSite.CloudsController
     AmoebaSite.textures ?= new AmoebaSite.Textures()
     this._setupRAF()
 
-    @cloudWorld = new AmoebaSite.CloudWorld(@world, @fps)
+    @cloudWorld = new AmoebaSite.CloudWorld(@viewPort, @fps)
     @cloudWorld.generate()
     @cloudWorld.toggleRotateWorld()
 
@@ -29,20 +31,26 @@ class AmoebaSite.CloudsController
       when 1
         theText = "and Blast off!"
       when 2
+        theText = "Leap ahead of the pack"
+      when 3
+        theText = "Preparing you for growth"
+      when 4
         theText = "Rule the universe"
+      when 5
+        theText = "Don't be a douche"
 
     if theText?
-      message = AmoebaSite.utils.createTextDiv(theText, 'message', 4, @world)
+      message = AmoebaSite.utils.createTextDiv(theText, 'message', 4, @contentDiv)
 
       message.css(
         top: 200
         left: 0
-        transform: 'translateZ(0px)'
+        transform: 'translateZ(-3000px) rotateY(-90deg)'
       )
       message.transition(
         duration: 2000
         opacity: 1
-        transform: 'translateZ(300px)'
+        transform: 'translateZ(100px) rotateY(0deg)'
 
         complete: =>
           message.transition(
