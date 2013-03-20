@@ -150,7 +150,7 @@ class AmoebaSite.Presentation.Slide_Tools extends AmoebaSB.Slide_Base
         opacity: 0
       )
 
-    info = "We help jumpstart startups by combining outsourced software engineering with process and technology training. We staff projects with seasoned teams of developers experienced in Agile development philosophy...Tools ...and use a standard suite of open source technologies well-suited for a rapid roll- out. Training"
+    info = "We partner with startups by combining software engineering, process and technology training. We staff projects with seasoned teams of developers experienced in Agile development philosophy...Tools ...and use a standard suite of open source technologies well-suited for a rapid roll- out. Training"
 
     @infoText = $('<div/>')
       .text(info)
