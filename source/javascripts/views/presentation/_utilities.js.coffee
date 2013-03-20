@@ -53,15 +53,15 @@ AmoebaSite.utils =
     return result
 
   deepTextShadowCSS: () =>
-    shadowString = ""
+    shadowString = "0 1px 2px rgba(0, 0, 0, .8),"
     # loop and create progressivly darker shadows
-    _.each([1..5], (element, index) =>
+    _.each([2..6], (element, index) =>
       # x, y, blur, color
       shadowString += "0 #{element}px 0 rgba(#{255 - (12*element)}, #{255 - (12*element)}, #{255 - (12*element)}, 1.0), "
     )
 
-    shadowString += "0 6px 7px rgba(0, 0, 0, 0.4),"
-    shadowString += "0 7px 10px rgba(0, 0, 0, 0.2)"
+    shadowString += "0 7px 7px rgba(0, 0, 0, 0.4),"
+    shadowString += "0 8px 10px rgba(0, 0, 0, 0.2)"
 
     result =
       textShadow: shadowString
