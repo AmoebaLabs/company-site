@@ -40,12 +40,14 @@ class AmoebaSite.CloudsController
         theText = "Don't be a douche"
 
     if theText?
-      message = AmoebaSite.utils.createTextDiv(theText, 'message', 4, @contentDiv)
+      theCSS = _.extend({}, AmoebaSite.utils.deepTextShadowCSS())
+      theCSS = _.extend(theCSS, AmoebaSite.utils.textCSSForSize(4))
+      message = AmoebaSite.utils.createTextDiv(theText, theCSS, 'message', @contentDiv)
 
       message.css(
         top: 200
         left: 0
-        transform: 'translateZ(-3000px) rotateY(-90deg)'
+        transform: 'translateZ(-3000px) rotateY(0deg)'
       )
       message.transition(
         duration: 2000

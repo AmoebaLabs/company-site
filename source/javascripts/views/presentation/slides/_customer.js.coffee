@@ -126,9 +126,11 @@ class Customer_StepOne
       this._whoAreYou()
 
   _whoAreYou: () =>
-    who = AmoebaSite.utils.createTextDiv("Who", 'who', 8, @container)
-    are = AmoebaSite.utils.createTextDiv("Are", 'who', 8, @container)
-    you = AmoebaSite.utils.createTextDiv("You?", 'who', 8, @container)
+    theCSS = AmoebaSite.utils.textCSSForSize(8)
+
+    who = AmoebaSite.utils.createTextDiv("Who", theCSS, 'who', @container)
+    are = AmoebaSite.utils.createTextDiv("Are", theCSS, 'who', @container)
+    you = AmoebaSite.utils.createTextDiv("You?", theCSS, 'who', @container)
 
     height = 140
     width = 400

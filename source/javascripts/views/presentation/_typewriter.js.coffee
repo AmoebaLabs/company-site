@@ -33,7 +33,7 @@ class AmoebaSite.Typewriter
     message = $('<div/>')
       .text(@message)
       .appendTo(@container)
-      .attr(class: "amoebaText")
+      .attr(class: "amoebaBoldFont")
       .css(
         fontSize: "#{@fontSize}em"
         position: "absolute"

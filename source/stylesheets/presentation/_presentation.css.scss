@@ -114,12 +114,15 @@ $cardHeight: 200px;
   background-size: 16px 16px;
  }
 
-.amoebaText {
+// add class to set the font
+.amoebaBoldFont {
   @extend %amoebaFontSemiBold;
-
-  top: 0px;
-  left: 0px;
-  width: 100%
+}
+.amoebaFont {
+  @extend %amoebaFontMedium;
+}
+.amoebaFont {
+  @extend %amoebaFontRegular;
 }
 
 @include keyframes(amoebaTitlePulse) {

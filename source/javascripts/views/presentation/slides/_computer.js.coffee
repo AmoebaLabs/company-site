@@ -55,7 +55,7 @@ class AmoebaSite.Presentation.Slide_Computer extends AmoebaSB.Slide_Base
     @message = $('<div/>')
       .text("We design and build web apps...")
       .appendTo(@el)
-      .attr(class: "amoebaText")
+      .attr(class: "amoebaBoldFont")
       .css(
         fontSize: "4em"
         position: "absolute"

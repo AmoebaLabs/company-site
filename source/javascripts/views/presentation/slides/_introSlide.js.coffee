@@ -17,7 +17,7 @@ class AmoebaSite.Presentation.Slide_Intro extends AmoebaSB.Slide_Base
     @title = $('<div/>')
       .html('Amoeba<sup style="vertical-align: super; font-size: 0.2em;">\u2120</sup>')   # vertical-align: super is the magic that makes this work
       .appendTo(@el)
-      .attr(class: "amoebaText")
+      .attr(class: "amoebaBoldFont")
       .css(
         fontSize: "16em"
         position: "absolute"
@@ -32,7 +32,7 @@ class AmoebaSite.Presentation.Slide_Intro extends AmoebaSB.Slide_Base
     @instructions = $('<div/>')
       .text(@spaceToContinueMessage)
       .appendTo(@el)
-      .attr(class: "amoebaText")
+      .attr(class: "amoebaBoldFont")
       .css(
         fontSize: "2em"
         position: "absolute"

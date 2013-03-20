@@ -137,7 +137,7 @@ class AmoebaSite.Presentation.Slide_Tools extends AmoebaSB.Slide_Base
     @titleText = $('<div/>')
       .text("Jumpstart Startups")
       .appendTo(@el)
-      .attr(class: "amoebaText")
+      .attr(class: "amoebaBoldFont")
       .css(
         fontSize: "4em"
         position: "absolute"
@@ -146,6 +146,7 @@ class AmoebaSite.Presentation.Slide_Tools extends AmoebaSB.Slide_Base
         color: "#{AmoebaSite.Colors.amoebaGreenMedium}"
         top: 200
         left: 0
+        width: '100%'
         opacity: 0
       )
 
@@ -154,7 +155,7 @@ class AmoebaSite.Presentation.Slide_Tools extends AmoebaSB.Slide_Base
     @infoText = $('<div/>')
       .text(info)
       .appendTo(@el)
-      .attr(class: "amoebaText")
+      .attr(class: "amoebaBoldFont")
       .css(
         fontSize: "1.4em"
         position: "absolute"

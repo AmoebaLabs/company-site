@@ -137,7 +137,7 @@ class AmoebaSite.Presentation.Slide_Map extends AmoebaSB.Slide_Base
     @titleText = $('<div/>')
       .text("in use by millions of people across the world.")
       .appendTo(@el)
-      .attr(class: "amoebaText")
+      .attr(class: "amoebaBoldFont")
       .css(
         fontSize: "4.5em"
         position: "absolute"
@@ -146,6 +146,7 @@ class AmoebaSite.Presentation.Slide_Map extends AmoebaSB.Slide_Base
         color: "#{AmoebaSite.Colors.amoebaGreenMedium}"
         top: 500
         left: 0
+        width: '100%'
         opacity: 0
       )
 

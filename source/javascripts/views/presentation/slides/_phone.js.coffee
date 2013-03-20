@@ -34,8 +34,9 @@ class AmoebaSite.Presentation.Slide_Phone extends AmoebaSB.Slide_Base
     @banner = $('<div/>')
       .text("and mobile apps.")
       .appendTo(@el)
-      .attr(class: "amoebaText")
+      .attr(class: "amoebaBoldFont")
       .css(
+        width: '100%'
         fontSize: "3em"
         position: "absolute"
         textAlign: "center"
@@ -51,11 +52,12 @@ class AmoebaSite.Presentation.Slide_Phone extends AmoebaSB.Slide_Base
     @message = $('<div/>')
       .text("We're")
       .appendTo(@el)
-      .attr(class: "amoebaText")
+      .attr(class: "amoebaBoldFont")
       .css(
         opacity: 0
         left: 0
         top: theTop
+        width: '100%'
         fontSize: "7em"
         position: "absolute"
         textAlign: "center"
@@ -65,11 +67,12 @@ class AmoebaSite.Presentation.Slide_Phone extends AmoebaSB.Slide_Base
     @message2 = $('<div/>')
       .text("Agile")
       .appendTo(@el)
-      .attr(class: "amoebaText")
+      .attr(class: "amoebaBoldFont")
       .css(
         opacity: 0
         left: 0
         top: theTop2
+        width: '100%'
         fontSize: "13em"
         textTransform: "uppercase"
         position: "absolute"
@@ -81,11 +84,12 @@ class AmoebaSite.Presentation.Slide_Phone extends AmoebaSB.Slide_Base
     @finalMessage = $('<div/>')
       .text("...and that's more than a buzz word. To us, it’s a pervasive philosophy.")
       .appendTo(@el)
-      .attr(class: "amoebaText")
+      .attr(class: "amoebaBoldFont")
       .css(
         opacity: 0
         left: 0
         top: 520
+        width: '100%'
         fontSize: "3em"
         textTransform: "uppercase"
         position: "absolute"
