@@ -59,13 +59,12 @@ class AmoebaSite.Presentation.Slide_Team extends AmoebaSB.Slide_Base
   _tripWalkerCallback: (done) =>
     success = this._showNextMessage()
 
-    if !success
-      console.log 'no more messages'
+#    if !success
+#      console.log 'no more messages'
 
     if done
-      console.log 'trip walker done'
-      # commented out for debugging, revert when done
-      # this._slideIsDone(1000)
+#      console.log 'trip walker done'
+      this._slideIsDone(1000)
 
   _typewriterCallback: () =>
     console.log 'typewriter callback'
@@ -74,12 +73,16 @@ class AmoebaSite.Presentation.Slide_Team extends AmoebaSB.Slide_Base
     # fade out current message if any
     @typewriter?.tearDown(true) # true fades it out before it removes it from the DOM
 
-    css =
+    positionCSS =
       position: 'absolute'
-      bottom: bottom
-      left: 100
+      top: 100
+      left: 300
       height: 200
       width: 400
 
-    @typewriter = new AmoebaSite.Typewriter(@el, message, css)
+    styleCSS =
+      textAlign: 'center'
+      fontSize: '2em'
+
+    @typewriter = new AmoebaSite.Typewriter(@el, message, positionCSS, styleCSS)
     @typewriter.write(this._typewriterCallback)
