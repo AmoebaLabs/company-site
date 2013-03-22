@@ -439,7 +439,6 @@ class AmoebaSite.Cube
       duration: 400
     )
 
-
   _buildCubeSize4: (sideDiv) =>
     $('<div/>')
       .html('Amoeba<sup style="vertical-align: super; font-size: 0.2em;">\u2120</sup>')   # vertical-align: super is the magic that makes this work
