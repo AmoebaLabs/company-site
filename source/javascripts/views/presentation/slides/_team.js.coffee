@@ -4,19 +4,19 @@ class AmoebaSite.Presentation.Slide_Team extends AmoebaSB.Slide_Base
     this._setupElement("teamSlide")
     @transition = 'zoom'
 
-#    @button = $('<button/>')
-#      .text('Again')
-#      .appendTo(@el)
-#      .css(
-#        position: 'absolute'
-#        bottom: 20
-#        right: 20
-#        width: 100
-#        zIndex: 400
-#      )
-#      .click( (event) =>
-#        this._tripWalker()
-#      )
+    @button = $('<button/>')
+      .text('Again')
+      .appendTo(@el)
+      .css(
+        position: 'absolute'
+        bottom: 20
+        right: 20
+        width: 100
+        zIndex: 400
+      )
+      .click( (event) =>
+        this._tripWalker()
+      )
 
   slideIn: (afterTransitionComplete) =>
     if afterTransitionComplete
@@ -34,46 +34,52 @@ class AmoebaSite.Presentation.Slide_Team extends AmoebaSB.Slide_Base
         @typewriter = undefined
 
   _start: () =>
-    this._doNextStep(0)
+    # create this on step one.
+    # We remove from the array for each message to avoid having to keep track of the current index
+    @messages = [
+      "We Are Flexible...",
+      "We Get out of your way...",
+      "We Move Fast...",
+      "We build it for YOU!"
+    ]
 
-  _doNextStep: (stepIndex) =>
-    # can't use the keyframe animation delay parameter since that will draw the text at the current
-    # position while it's waiting to start
-    scheduleNextStep = true
+    # start the trip walker and it sends callbacks for the message timing
+    @tripWalker = new AmoebaSite.TripWalker(@el, '/images/presentation/man.svg', this._tripWalkerCallback).run()
 
-    setTimeout( =>
+  # return false when no more messages
+  _showNextMessage: () =>
+    message = @messages.shift()
+    if message
+      this._typewriterEffect(message)
+      return true
 
-      switch stepIndex
-        when 0
-          this._step1()
-        when 1
-          scheduleNextStep = false
-          this._typewriterEffect("We are here to help.", 0)
+    return false
 
-      if scheduleNextStep
-        this._doNextStep(stepIndex + 1)
+  # callback on start, at segment breaks and at the end
+  _tripWalkerCallback: (done) =>
+    success = this._showNextMessage()
 
-    , 1500)
+    if !success
+      console.log 'no more messages'
 
-  _step1: () =>
-    this._tripWalker()
+    if done
+      console.log 'trip walker done'
+      # commented out for debugging, revert when done
+      # this._slideIsDone(1000)
 
-  _tripWalkerCallback: () =>
-    this._slideIsDone(1000)
-
-  _tripWalker: () =>
-    if not @tripWalker?
-      @tripWalker = new AmoebaSite.TripWalker(@el, '/images/presentation/man.svg', this._tripWalkerCallback)
-
-    @tripWalker.run()
+  _typewriterCallback: () =>
+    console.log 'typewriter callback'
 
   _typewriterEffect: (message, bottom) =>
-    if not @typewriter?
-      css =
-        bottom: bottom
-        height: 200
-        width: 400
+    # fade out current message if any
+    @typewriter?.tearDown(true) # true fades it out before it removes it from the DOM
 
-      @typewriter = new AmoebaSite.Typewriter(@el, message, css)
+    css =
+      position: 'absolute'
+      bottom: bottom
+      left: 100
+      height: 200
+      width: 400
 
-    @typewriter.write()
+    @typewriter = new AmoebaSite.Typewriter(@el, message, css)
+    @typewriter.write(this._typewriterCallback)

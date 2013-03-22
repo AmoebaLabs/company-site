@@ -11,6 +11,7 @@ class AmoebaSite.TripWalker
 
   run: () =>
     this._doFlyIn()
+    this._callCallback()
 
   tearDown: () =>
     if @container
@@ -304,17 +305,22 @@ class AmoebaSite.TripWalker
   _afterFlyInStep: () =>
     if --@steps == 0
       this._doBackIn()
+      this._callCallback()
 
   _afterBackInStep: () =>
     if --@steps == 0
       this._doZoomIn()
+      this._callCallback()
 
   _afterZoomInStep: () =>
     if --@steps == 0
       this._doBowDown()
+      this._callCallback()
 
   _afterBowDownStep: () =>
     if --@steps == 0
-      if @callback
-        @callback()
+      this._callCallback(true)
 
+  _callCallback: (done=false) =>
+   if @callback
+        @callback(done)

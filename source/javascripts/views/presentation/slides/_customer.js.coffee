@@ -251,7 +251,7 @@ class Customer_StepOne
         top: startTop + (20 * @typewriterIndex)
         height: 20
 
-      typewriter = new AmoebaSite.Typewriter(@container, message, css, 'left')
+      typewriter = new AmoebaSite.Typewriter(@container, message, css)
       typewriter.write(this._nextTypewriter)
     else
       this._typewriterDone()
