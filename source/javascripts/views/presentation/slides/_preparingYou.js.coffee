@@ -18,9 +18,9 @@ class AmoebaSite.Presentation.Slide_PreparingYou extends AmoebaSB.Slide_Base
     sentence = "As the client hires developers, we include them on our team, at our offices. As integrated team members, our client's develop- ers are trained on the processes, tools and technologies they will need to continue development after version 1.0 and beyond."
 
     theCSS = AmoebaSite.utils.textCSSForSize(4, 'left')
-    title = AmoebaSite.utils.createTextDiv("Preparing You", theCSS, null, @el)
+    title = AmoebaSite.utils.createTextDiv("Preparing You", theCSS, 'message', @el)
     theCSS = AmoebaSite.utils.textCSSForSize(1.3, 'left')
-    message = AmoebaSite.utils.createTextDiv(sentence, theCSS, null, @el)
+    message = AmoebaSite.utils.createTextDiv(sentence, theCSS, 'message', @el)
 
     title.css(
       top:70
@@ -58,6 +58,12 @@ class AmoebaSite.Cube
     this._setupCube()
 
     setTimeout( =>
+      #slowly fade out any text
+      parentDiv.find('.message').transition(
+        opacity: 0
+        duration: 2000
+      )
+
       this._transformToCube(@cubeTransforms)
     ,5000)
 
@@ -400,7 +406,9 @@ class AmoebaSite.Cube
 
     sentence = 'We work on an idea until a viable product merges through our lean iterative approach.'
     theCSS = AmoebaSite.utils.textCSSForSize(1.3, 'left')
-    message = AmoebaSite.utils.createTextDiv(sentence, null, sideDiv)
+    message = AmoebaSite.utils.createTextDiv(sentence, theCSS, null, sideDiv)
+
+    lightBulb = AmoebaSite.utils.createImageDiv('/images/presentation/lightbulb.svg', null, 300, sideDiv)
 
     title.transition(
       top: 20
@@ -422,6 +430,16 @@ class AmoebaSite.Cube
       duration: 400
     )
 
+    lightBulb.transition(
+      top: 200
+      left: 200
+
+      color: 'white'
+      opacity: 1
+      duration: 400
+    )
+
+
   _buildCubeSize4: (sideDiv) =>
     $('<div/>')
       .html('Amoeba<sup style="vertical-align: super; font-size: 0.2em;">\u2120</sup>')   # vertical-align: super is the magic that makes this work
@@ -435,7 +453,32 @@ class AmoebaSite.Cube
         left: 0
         width: "100%"
         color: 'white'
-        opacity: 1
+      )
+
+    info = [
+      "Amoeba Consulting, LLC"
+    ,
+      "Email: <a href='mailto:sayhi@amoe.ba'>sayhi@amoe.ba</a>"
+    ,
+      "Phone: 1+(415)444-5544"
+    ,
+      "<a href='www.amoe.ba'>www.amoe.ba</a>"
+    ]
+
+    info = info.join("<br>")
+
+    $('<div/>')
+      .html(info)
+      .appendTo(sideDiv)
+      .addClass("amoebaBoldFont")
+      .css(
+        fontSize: "1em"
+        position: "absolute"
+        textAlign: "center"
+        top: 320
+        left: 0
+        width: "100%"
+        color: 'black'
       )
 
   _buildCubeSize5: (sideDiv) =>
