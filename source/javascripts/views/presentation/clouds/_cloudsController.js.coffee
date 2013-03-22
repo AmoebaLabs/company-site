@@ -52,7 +52,7 @@ class AmoebaSite.CloudsController
       message.transition(
         duration: 2000
         opacity: 1
-        transform: 'translateZ(100px) rotateY(0deg)'
+        transform: 'translateZ(260px) rotateY(0deg)' # clouds go from 256 to -256
 
         complete: =>
           message.transition(
