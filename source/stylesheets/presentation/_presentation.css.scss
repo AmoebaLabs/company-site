@@ -66,39 +66,24 @@ $cardHeight: 200px;
   border: 1px solid rgba(0, 0, 0, .1);
   @include border-radius(10px);
   @include box-shadow(0 2px 12px rgba(0, 0, 0, .4));
-}
 
-.businessCard img {
-  // border radius added for chrome, might not be needed in the future.  overflow hidden was not cropping the corners. safari was ok
-  @include border-left-radius(inherit);
+  img {
+    // border radius added for chrome, might not be needed in the future.  overflow hidden was not cropping the corners. safari was ok
+    @include border-left-radius(inherit);
 
-  position: absolute;
+    float: left;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+  }
 
-  top: 0px;
-  left: 0px;
-  height: 100%;
-}
+  span {
+    font-size: 1em;
 
-.businessCard span {
-  font-size: 1em;
-
-  float: right;
-  top: 0px;
-  height: 100%;
-}
-
-.businessCard {
-  overflow: hidden;
-  position: absolute;
-  height: $cardHeight;
-  width: $cardHeight * 1.75;
-  background-color: $amoebaGreen;
-
-  font-size: .4em;
-
-  border: 1px solid rgba(0, 0, 0, .1);
-  @include border-radius(10px);
-  @include box-shadow(0 2px 12px rgba(0, 0, 0, .4));
+    float: left;
+    top: 0px;
+    height: 100%;
+  }
 }
 
 // --------------------------------------------------------

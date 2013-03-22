@@ -11,7 +11,7 @@ class AmoebaSite.Presentation.Slide_Cards extends AmoebaSB.Slide_Base
     leftOffset = 0
 
     theDiv = $('<div/>')
-      .text("\"Los Amoebos\"")
+      .text("\"The Founders\"")
       .appendTo(@el)
       .css({"bottom": "#{bottomOffet}px", "left": "#{leftOffset}px", "position": "absolute", "font-size": "72px"})
 

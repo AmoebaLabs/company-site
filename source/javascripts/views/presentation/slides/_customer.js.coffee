@@ -191,6 +191,9 @@ class Customer_StepOne
     )
 
   _fadeOutDivs: (divClasses, fadeCallback) =>
+    if not @container?
+      return
+
     count = divClasses.length
 
     _.each(divClasses, (divClass) =>
