@@ -9,16 +9,17 @@ class AmoebaSite.Presentation.Controller
 
     @slides = [
       new AmoebaSite.Presentation.Slide_Intro(),
-      new AmoebaSite.Presentation.Slide_Computer(),
-      new AmoebaSite.Presentation.Slide_Phone(),
-      new AmoebaSite.Presentation.Slide_Team(),
-      new AmoebaSite.Presentation.Slide_Cards(),
-      new AmoebaSite.Presentation.Slide_Map(),
-      new AmoebaSite.Presentation.Slide_Customer(),
+      new AmoebaSite.Presentation.Slide_PreparingYou(),
       new AmoebaSite.Presentation.Slide_Tools(),
       new AmoebaSite.Presentation.Slide_Clouds(),
-      new AmoebaSite.Presentation.Slide_PreparingYou(),
-      new AmoebaSite.Presentation.Slide_Cog(),
+
+#      new AmoebaSite.Presentation.Slide_Computer(),
+#      new AmoebaSite.Presentation.Slide_Phone(),
+#      new AmoebaSite.Presentation.Slide_Team(),
+#      new AmoebaSite.Presentation.Slide_Cards(),
+#      new AmoebaSite.Presentation.Slide_Map(),
+#      new AmoebaSite.Presentation.Slide_Customer(),
+#      new AmoebaSite.Presentation.Slide_Cog(),
     ]
 
     @transAPI = new AmoebaSB.SlideTransitions(@slides)

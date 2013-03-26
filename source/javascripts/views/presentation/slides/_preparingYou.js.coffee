@@ -15,6 +15,9 @@ class AmoebaSite.Presentation.Slide_PreparingYou extends AmoebaSB.Slide_Base
       @cube = undefined
 
   _start: () =>
+    @cube = new AmoebaSite.Cube(@el, this._cubeCallback)
+
+  _cubeCallback: () =>
     sentence = "As the client hires developers, we include them on our team, at our offices. As integrated team members, our client's develop- ers are trained on the processes, tools and technologies they will need to continue development after version 1.0 and beyond."
 
     theCSS = AmoebaSite.utils.textCSSForSize(4, 'left')
@@ -40,11 +43,8 @@ class AmoebaSite.Presentation.Slide_PreparingYou extends AmoebaSB.Slide_Base
       opacity: 1
       duration: 800
       complete: =>
-        @cube = new AmoebaSite.Cube(@el, this._stepOneCallback)
+        this._slideIsDone(1000)
     )
-
-  _stepOneCallback: () =>
-    this._slideIsDone(1000)
 
 # -------------------------------------------------------------------
 # -------------------------------------------------------------------
@@ -57,15 +57,11 @@ class AmoebaSite.Cube
     this._initializeVariables()
     this._setupCube()
 
-    setTimeout( =>
-      #slowly fade out any text
-      parentDiv.find('.message').transition(
-        opacity: 0
-        duration: 2000
-      )
+    @cubeRotateIndex = 0
 
-      this._transformToCube(@cubeTransforms)
-    ,5000)
+    setTimeout( =>
+      this.rotateToIndex(@cubeRotateIndex++)
+    , 100)
 
   tearDown: () =>
     if @container
@@ -109,16 +105,9 @@ class AmoebaSite.Cube
       theDiv = $('<div/>')
         .appendTo(cube)
         .addClass("threeDCubeSide")
-        .css(_.extend({top: 1400, left: 3000}, @flatTransforms[index]))
+        .css(@cubeTransforms[index])
 
       this._addContentForCubeSide(index, theDiv)
-
-      theDiv.transition(
-        duration: 400
-        delay: Math.random() * 400
-        top:0
-        left: 0
-      )
 
       @cubeFaces.push(theDiv)
     )
@@ -246,17 +235,16 @@ class AmoebaSite.Cube
     return result
 
   _stepDone: (stepID) =>
-    @cubeRotateIndex ?= 0
-
     switch (stepID)
       when 'cubeTransformDone'
-        setTimeout( =>
-            this.rotateToIndex(@cubeRotateIndex++)
-        , 100)
+        @callback()
       when 'rotationDone'
         setTimeout( =>
           if (@cubeRotateIndex > 5)
-            @callback()
+
+            setTimeout( =>
+              this._transformToCube(@flatTransforms)
+            ,1000)
           else
             this.rotateToIndex(@cubeRotateIndex++)
         , 400)
