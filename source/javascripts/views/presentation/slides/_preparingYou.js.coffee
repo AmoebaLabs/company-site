@@ -201,12 +201,12 @@ class AmoebaSite.Cube
     ]
 
     @cubeTransforms = [
+      this._cubeTransform(0, 0, 0)
       this._cubeTransform(0, 90, 0)
       this._cubeTransform(90, 90, 0)
       this._cubeTransform(0, 180, 90)
       this._cubeTransform(0, -90, 90)
       this._cubeTransform(-90, 0, 0)
-      this._cubeTransform(0, 0, 0)
     ]
 
     @flatTransforms = []
