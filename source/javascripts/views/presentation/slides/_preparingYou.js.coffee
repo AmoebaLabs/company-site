@@ -43,7 +43,8 @@ class AmoebaSite.Presentation.Slide_PreparingYou extends AmoebaSB.Slide_Base
       opacity: 1
       duration: 800
       complete: =>
-        this._slideIsDone(1000)
+        console.log 'disabled for testing'
+#        this._slideIsDone(1000)
     )
 
 # -------------------------------------------------------------------
@@ -68,16 +69,17 @@ class AmoebaSite.Cube
       @container.remove()
       @container = undefined
 
-  rotateToIndex: (theIndex) =>
+  rotateToIndex: (theIndex, notify=true) =>
     r = @rotationSteps[theIndex]
 
     $("#threeDCube").transition(
       rotateX: r.x
       rotateY: r.y
       rotate: r.z
-      duration: 2000
+      duration: 1000
       complete: =>
-        this._stepDone('rotationDone')
+        if notify
+          this._stepDone('rotationDone')
     )
 
   _setupCube: =>
@@ -140,7 +142,7 @@ class AmoebaSite.Cube
 
     return result
 
-  _transformToCube: (transformArray) =>
+  _transformCube: (transformArray) =>
     theDelay = 400
 
     # call back when the transform is done for all sizes
@@ -150,7 +152,7 @@ class AmoebaSite.Cube
       if count == 0
         this._stepDone('cubeTransformDone')
 
-    _.each(@cubeFaces, (face, index) =>
+    _.each(@cubeFaces.reverse(), (face, index) =>
       theCSS = _.extend({delay: index*theDelay}, transformArray[index])
 
       # add callback
@@ -174,40 +176,76 @@ class AmoebaSite.Cube
     @cubeSize = 520
     @cubeFaces = []
 
-    @rotationSteps = [
-      x:0
-      y:0
-      z:0
-    ,
-      x:0
-      y:-90
-      z:0
-    ,
-      x:0
-      y:-90
-      z:90
-    ,
-      x:0
-      y:-180
-      z:90
-    ,
-      x:-90
-      y:-180
-      z:90
-    ,
-      x:-90
-      y:-180
-      z:180
-    ]
+    simpleRotation = false
+    if simpleRotation
+      @rotationSteps = [
+        x:0
+        y:0
+        z:0
+      ,
+        x:0
+        y:-90
+        z:0
+      ,
+        x:0
+        y:-90
+        z:90
+      ,
+        x:0
+        y:-180
+        z:90
+      ,
+        x:-90
+        y:-180
+        z:90
+      ,
+        x:-90
+        y:-180
+        z:180
+      ]
+      @cubeTransforms = [
+        this._cubeTransform(0, 90, 0)
+        this._cubeTransform(90, 90, 0)
+        this._cubeTransform(0, 180, 90)
+        this._cubeTransform(0, -90, 90)
+        this._cubeTransform(-90, 0, 0)
+        this._cubeTransform(0, 0, 0)
+      ]
+    else
+      @rotationSteps = [
+        x:0
+        y:0
+        z:0
+      ,
+        x:90
+        y:0
+        z:90
+      ,
+        x:0
+        y:-90
+        z:90
+      ,
+        x:0
+        y:-180
+        z:180
+      ,
+        x:-90
+        y:-180
+        z:90
+      ,
+        x:-90
+        y:-180
+        z:180
+      ]
 
-    @cubeTransforms = [
-      this._cubeTransform(0, 0, 0)
-      this._cubeTransform(0, 90, 0)
-      this._cubeTransform(90, 90, 0)
-      this._cubeTransform(0, 180, 90)
-      this._cubeTransform(0, -90, 90)
-      this._cubeTransform(-90, 0, 0)
-    ]
+      @cubeTransforms = [
+        this._cubeTransform(0, 90, -90)
+        this._cubeTransform(90, 90, 0)
+        this._cubeTransform(0, 180, 180)
+        this._cubeTransform(0, -90, 90)
+        this._cubeTransform(-90, 0, 0)
+        this._cubeTransform(0, 0, 0)
+      ]
 
     @flatTransforms = []
     _.each([0..5], (element, index) =>
@@ -243,8 +281,8 @@ class AmoebaSite.Cube
           if (@cubeRotateIndex > 5)
 
             setTimeout( =>
-              this.rotateToIndex(0)
-              this._transformToCube(@flatTransforms)
+              this.rotateToIndex(0, false)
+              this._transformCube(@flatTransforms)
             ,1000)
           else
             this.rotateToIndex(@cubeRotateIndex++)
