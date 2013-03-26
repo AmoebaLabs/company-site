@@ -90,7 +90,7 @@ class AmoebaSite.Presentation.Slide_Tools extends AmoebaSB.Slide_Base
         cursor: 'pointer'
         opacity: 0
         position: 'absolute'
-        transform: 'translateZ(40px)'     # needed for zIndex to work? not sure why
+        zIndex: -1
 #        padding: 10
 #        boxSizing: 'border-box'   # keep the padding from exanding the size of the div
 #        backgroundColor: 'rgba(255,255,255,0.4)'
@@ -367,8 +367,7 @@ class AmoebaSite.Presentation.Slide_Tools extends AmoebaSB.Slide_Base
         position: 'absolute'
         height: 160
         width: 160
-        zIndex: -1    # not sure why we needed zIndex here, without it, it's above the rocket
-#        transform: 'translateZ(40px)'     # needed for zIndex to work? not sure why
+        zIndex: -1
         opacity: 0
       )
 
