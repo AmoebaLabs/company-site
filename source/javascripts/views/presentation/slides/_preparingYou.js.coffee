@@ -105,7 +105,7 @@ class AmoebaSite.Cube
       theDiv = $('<div/>')
         .appendTo(cube)
         .addClass("threeDCubeSide")
-#        .css(@cubeTransforms[index])
+        .css(@cubeTransforms[index])
 
       this._addContentForCubeSide(index, theDiv)
 
@@ -157,8 +157,6 @@ class AmoebaSite.Cube
       _.extend(theCSS, {complete: callback})
 
       # transition
-      debugger
-
       face.transition(theCSS)
     )
 
@@ -245,6 +243,7 @@ class AmoebaSite.Cube
           if (@cubeRotateIndex > 5)
 
             setTimeout( =>
+              this.rotateToIndex(0)
               this._transformToCube(@flatTransforms)
             ,1000)
           else
