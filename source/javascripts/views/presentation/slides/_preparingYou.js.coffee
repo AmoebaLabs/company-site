@@ -200,7 +200,11 @@ class AmoebaSite.Cube
         this._stepDone('cubeTransformDone')
 
     _.each(@cubeFaces.reverse(), (face, index) =>
-      theCSS = _.extend({delay: index*theDelay}, transformArray[index])
+      moreCSS =
+        delay: index*theDelay
+        boxShadow: '5px 5px 40px black'
+
+      theCSS = _.extend(moreCSS, transformArray[index])
 
       # add callback
       _.extend(theCSS, {complete: callback})
@@ -592,7 +596,7 @@ class AmoebaSite.Cube
     @cube3D.transition(
       opacity: 1
       transform: 'translateY(0px) translateZ(-5200px) rotateX(360deg) rotateY(60deg)'
-      duration: 4000
+      duration: 3000
       complete: =>
         this._rollDiceToScreen()
     )
@@ -606,7 +610,7 @@ class AmoebaSite.Cube
     @cube3D.transition(
       opacity: 1
       transform: 'translateZ(0px) rotateX(0deg) rotateY(0deg)'
-      duration: 5000
+      duration: 3000
       complete: =>
         setTimeout( =>
           this._fadeInContentScreen()
@@ -620,5 +624,5 @@ class AmoebaSite.Cube
       @cubeRotateIndex = 0
 
       this.rotateToIndex(@cubeRotateIndex++)
-    , 500)
+    , 100)
 
