@@ -44,6 +44,12 @@ class AmoebaSite.Presentation.Slide_Intro extends AmoebaSB.Slide_Base
         opacity: 0
       )
 
+  # override pause to start on space bar, sends a next event
+  pause: () =>
+    AmoebaSB.eventHelper.triggerEvent(document, AmoebaSB.eventHelper.nextKeyEventName)
+
+    return true # we handled the event
+
   slideIn: (afterTransitionComplete) =>
     if afterTransitionComplete
       # delay a bit and then show stuff
