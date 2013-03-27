@@ -91,3 +91,26 @@ AmoebaSite.utils =
       result.appendTo(parentDiv)
 
     return result
+
+  fadeOut: (remove, divClasses, parentDiv, callback) =>
+    if not parentDiv?
+      return
+
+    count = divClasses.length
+
+    _.each(divClasses, (divClass) =>
+      div = parentDiv.find(".#{divClass}")
+
+      div.transition(
+        opacity: 0
+        duration: 800
+        complete: =>
+          if remove
+            div.remove()
+
+          count--
+          if count == 0
+            if callback
+              callback()
+      )
+    )

@@ -43,8 +43,7 @@ class AmoebaSite.Presentation.Slide_PreparingYou extends AmoebaSB.Slide_Base
       opacity: 1
       duration: 800
       complete: =>
-        console.log 'disabled for testing'
-#        this._slideIsDone(1000)
+        this._slideIsDone(1000)
     )
 
 # -------------------------------------------------------------------
@@ -76,7 +75,7 @@ class AmoebaSite.Cube
       rotateX: r.x
       rotateY: r.y
       rotate: r.z
-      duration: 1000
+      duration: 3000
       complete: =>
         if notify
           this._stepDone('rotationDone')
@@ -102,8 +101,12 @@ class AmoebaSite.Cube
       .appendTo(stage)
       .attr("id", "threeDCube")
 
-    _.each([0..5], (theNum, index) =>
+    this._buildOuterCube(cube)
+    this._buildInnerCube(cube)
+#    this._buildInnerCubeSafari(cube)
 
+  _buildOuterCube: (cube) =>
+    _.each([0..5], (theNum, index) =>
       theDiv = $('<div/>')
         .appendTo(cube)
         .addClass("threeDCubeSide")
@@ -112,6 +115,33 @@ class AmoebaSite.Cube
       this._addContentForCubeSide(index, theDiv)
 
       @cubeFaces.push(theDiv)
+    )
+
+  _buildInnerCube: (cube) =>
+    _.each([0..5], (theNum, index) =>
+      theDiv = $('<div/>')
+        .appendTo(cube)
+        .css(@innerCubeTransforms[index])
+        .addClass("innerCubeSide girder")
+
+      $('<div/>')
+        .appendTo(theDiv)
+        .addClass("ics")
+    )
+
+  _buildInnerCubeSafari: (cube) =>
+
+    cnt = @safariTransforms.length
+
+    _.each([0...cnt], (theNum, index) =>
+      theDiv = $('<div/>')
+        .appendTo(cube)
+        .css(@safariTransforms[index])
+        .addClass("innerCubeSide girder")
+
+      $('<div/>')
+        .appendTo(theDiv)
+        .addClass("ics")
     )
 
   _flatTransform: (index) =>
@@ -142,7 +172,7 @@ class AmoebaSite.Cube
 
     return result
 
-  _transformCube: (transformArray) =>
+  _timedTransform: (transformArray) =>
     theDelay = 400
 
     # call back when the transform is done for all sizes
@@ -162,11 +192,7 @@ class AmoebaSite.Cube
       face.transition(theCSS)
     )
 
-  _cubeTransform: (x, y, z, pop=0, spin=0) =>
-    x += spin
-    y += spin
-    z += spin
-
+  _cubeTransform: (x, y, z, pop=0) =>
     result =
       transform: "rotateY(#{y}deg) rotateX(#{x}deg) rotateZ(#{z}deg) translateZ(#{(@cubeSize / 2) + pop}px)"
 
@@ -175,6 +201,22 @@ class AmoebaSite.Cube
   _initializeVariables: () =>
     @cubeSize = 520
     @cubeFaces = []
+
+    inset = -30
+    @innerCubeTransforms = [
+        this._cubeTransform(0, 90, 0, inset)
+        this._cubeTransform(90, 90, 0, inset)
+        this._cubeTransform(0, 180, 90, inset)
+        this._cubeTransform(0, -90, 90, inset)
+        this._cubeTransform(-90, 0, 0, inset)
+        this._cubeTransform(0, 0, 0, inset)
+      ]
+
+    @safariTransforms = [
+        this._cubeTransform(0, 90, 0, inset)
+        this._cubeTransform(90, 0, 0, inset)
+        this._cubeTransform(0, 0, 0, inset)
+      ]
 
     simpleRotation = false
     if simpleRotation
@@ -281,8 +323,18 @@ class AmoebaSite.Cube
           if (@cubeRotateIndex > 5)
 
             setTimeout( =>
-              this.rotateToIndex(0, false)
-              this._transformCube(@flatTransforms)
+              AmoebaSite.utils.fadeOut(false, ['girder'], @container, () =>
+#                this.rotateToIndex(0, false)
+
+                $("#threeDCube").css(
+                  rotateX: 0
+                  rotateY: 0
+                  rotate: 0
+                )
+
+                this._timedTransform(@flatTransforms)
+              )
+
             ,1000)
           else
             this.rotateToIndex(@cubeRotateIndex++)

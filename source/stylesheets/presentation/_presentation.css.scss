@@ -220,6 +220,7 @@ $cardHeight: 200px;
 
 $cubeSize: 520px;
 $halfCubeSize: $cubeSize / 2;
+$innerCubeSize: $cubeSize - 1;
 
 #threeDCube {
   @include transform-style(preserve-3d);
@@ -235,9 +236,31 @@ $halfCubeSize: $cubeSize / 2;
     @include box-shadow(inset 0 0 20px rgba(0,0,0,0.2));
     @include border-radius(20px);
 
-    @include backface-visibility(visible); // use 'hidden'/'visible' to turn off, but we need it to fill the corners
+    @include backface-visibility(hidden); // use 'hidden'/'visible'
 
     @include background-image(radial-gradient(center, circle farthest-corner, rgba(255,255,255,.6) 0%, $amoebaGreenMedium 100%));
+  }
+
+  .innerCubeSide {
+    position: absolute;
+    width: $cubeSize;
+    height: $cubeSize;
+
+    .ics {
+      opacity: 1;
+      position: absolute;
+      height: $innerCubeSize;
+      width: $innerCubeSize;
+
+      left: 50%;
+      top: 50%;
+      margin-left: -($innerCubeSize / 2);
+      margin-top: -($innerCubeSize / 2);
+
+      background: $amoebaGreenMedium;
+      //background: rgba(111,111,111,1);
+      //background: red;
+    }
   }
 }
 

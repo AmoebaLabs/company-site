@@ -17,8 +17,8 @@ gem "steering", "~> 1.2.0"
 # Added to revert the alpha version included in compass-animation
 gem "sass", "~> 3.2.5"
 
-gem "amoeba-storybook", path: "~/GitHub/AmoebaStorybook"
-# gem "amoeba-storybook", :github => "AmoebaConsulting/AmoebaStorybook"
+# gem "amoeba-storybook", path: "~/GitHub/AmoebaStorybook"
+gem "amoeba-storybook", :github => "AmoebaConsulting/AmoebaStorybook"
 
 # AmoebaJS
 gem "amoeba-js-rails", :github => "AmoebaConsulting/amoeba-js"

@@ -174,7 +174,7 @@ class Customer_StepOne
     )
 
   _fadeInQuestionMan: (thePath) =>
-    this._fadeOutDivs(['man', 'who', 'typewriter'], () =>
+    AmoebaSite.utils.fadeOut(true, ['man', 'who', 'typewriter'], @container, () =>
       questionMan = AmoebaSite.utils.createImageDiv(thePath, 'man', @imageSize*2, @container)
 
       questionMan.css(
@@ -187,28 +187,6 @@ class Customer_StepOne
         scale: 1
         complete: =>
           this._fadeInQuestionManDone()
-      )
-    )
-
-  _fadeOutDivs: (divClasses, fadeCallback) =>
-    if not @container?
-      return
-
-    count = divClasses.length
-
-    _.each(divClasses, (divClass) =>
-      div = @container.find(".#{divClass}")
-
-      div.transition(
-        opacity: 0
-        duration: 800
-        complete: =>
-          div.remove()
-
-          count--
-          if count == 0
-            if fadeCallback
-              fadeCallback()
       )
     )
 
