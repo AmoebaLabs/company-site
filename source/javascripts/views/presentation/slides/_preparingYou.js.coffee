@@ -203,12 +203,17 @@ class AmoebaSite.Cube
     callback = () =>
       count--
       if count == 0
+        _.each(@cubeFaces, (face, index) =>
+          face.css(
+            boxShadow: '5px 5px 40px black'
+          )
+        )
+
         this._stepDone('cubeTransformDone')
 
-    _.each(@cubeFaces.reverse(), (face, index) =>
+    _.each(@cubeFaces, (face, index) =>
       moreCSS =
         delay: index*theDelay
-        boxShadow: '5px 5px 40px black'
 
       theCSS = _.extend(moreCSS, transformArray[index])
 
@@ -335,13 +340,14 @@ class AmoebaSite.Cube
               AmoebaSite.utils.remove(false, true, ['girder'], @container, () =>
 #                this.rotateToIndex(0, false)
 
-                @cube3D.css(
+                @cube3D.transition(
                   rotateX: 0
                   rotateY: 0
                   rotate: 0
+                  duration: 1000
+                  complete: =>
+                    this._timedTransform(@flatTransforms)
                 )
-
-                this._timedTransform(@flatTransforms)
               )
 
             ,1000)
