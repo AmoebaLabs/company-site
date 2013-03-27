@@ -94,13 +94,11 @@ class AmoebaSite.Presentation.Controller
     return @slides[@transAPI.activeStepIndex]
 
   _setupKeyHandlers: (add) =>
-    if not @prevFunction?
-      @prevFunction = =>
-        this._previous()
+    @prevFunction ?= =>
+      this._previous()
 
-    if not @nextFunction?
-      @nextFunction = =>
-        this._next()
+    @nextFunction ?= =>
+      this._next()
 
     if add
       document.addEventListener(AmoebaSB.eventHelper.prevKeyEventName, @prevFunction)

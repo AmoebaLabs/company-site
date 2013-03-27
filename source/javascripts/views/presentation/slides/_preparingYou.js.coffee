@@ -628,7 +628,7 @@ class AmoebaSite.Cube
     @cube3D.transition(
       opacity: 1
       transform: 'translateZ(0px) rotateX(0deg) rotateY(0deg)'
-      duration: 3000
+      duration: 2000
       complete: =>
         setTimeout( =>
           this._fadeInContentScreen()
