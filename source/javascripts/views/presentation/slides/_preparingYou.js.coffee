@@ -75,7 +75,7 @@ class AmoebaSite.Cube
       rotateX: r.x
       rotateY: r.y
       rotate: r.z
-      duration: 3000
+      duration: 2000
       complete: =>
         if notify
           this._stepDone('rotationDone')
@@ -102,8 +102,9 @@ class AmoebaSite.Cube
       .attr("id", "threeDCube")
 
     this._buildOuterCube(cube)
-    this._buildInnerCube(cube)
-#    this._buildInnerCubeSafari(cube)
+    # this might be better, but Safari has some flicker issues
+    # this._buildInnerCube(cube)
+    this._buildInnerCubeSafari(cube)
 
   _buildOuterCube: (cube) =>
     _.each([0..5], (theNum, index) =>
@@ -130,7 +131,6 @@ class AmoebaSite.Cube
     )
 
   _buildInnerCubeSafari: (cube) =>
-
     cnt = @safariTransforms.length
 
     _.each([0...cnt], (theNum, index) =>
@@ -192,9 +192,11 @@ class AmoebaSite.Cube
       face.transition(theCSS)
     )
 
-  _cubeTransform: (x, y, z, pop=0) =>
+  _cubeTransform: (x, y, z, translateZ = 0) =>
+    transZ = (@cubeSize / 2) + translateZ
+
     result =
-      transform: "rotateY(#{y}deg) rotateX(#{x}deg) rotateZ(#{z}deg) translateZ(#{(@cubeSize / 2) + pop}px)"
+      transform: "rotateY(#{y}deg) rotateX(#{x}deg) rotateZ(#{z}deg) translateZ(#{transZ}px)"
 
     return result
 
@@ -202,7 +204,7 @@ class AmoebaSite.Cube
     @cubeSize = 520
     @cubeFaces = []
 
-    inset = -30
+    inset = -20
     @innerCubeTransforms = [
         this._cubeTransform(0, 90, 0, inset)
         this._cubeTransform(90, 90, 0, inset)
@@ -213,9 +215,9 @@ class AmoebaSite.Cube
       ]
 
     @safariTransforms = [
-        this._cubeTransform(0, 90, 0, inset)
-        this._cubeTransform(90, 0, 0, inset)
-        this._cubeTransform(0, 0, 0, inset)
+        this._cubeTransform(0, 90, 0, -(@cubeSize / 2))
+        this._cubeTransform(90, 0, 0, -(@cubeSize / 2))
+        this._cubeTransform(0, 0, 0, -(@cubeSize / 2))
       ]
 
     simpleRotation = false
