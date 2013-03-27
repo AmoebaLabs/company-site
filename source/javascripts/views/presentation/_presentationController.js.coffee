@@ -95,7 +95,7 @@ class AmoebaSite.Presentation.Controller
   _pause: =>
     handledBySlide = this._currentSlide().pause()
     if not handledBySlide
-      AmoebaSB.eventHelper.triggerEvent(document, AmoebaSB.eventHelper.pauseEventName)
+      AmoebaSB.eventHelper.togglePause()
 
   _currentSlide: =>
     return @slides[@transAPI.activeStepIndex]

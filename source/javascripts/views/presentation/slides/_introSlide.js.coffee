@@ -48,7 +48,8 @@ class AmoebaSite.Presentation.Slide_Intro extends AmoebaSB.Slide_Base
   pause: () =>
     AmoebaSB.eventHelper.triggerEvent(document, AmoebaSB.eventHelper.nextKeyEventName)
 
-    return true # we handled the event
+    # we handled the event, return true
+    return true
 
   slideIn: (afterTransitionComplete) =>
     if afterTransitionComplete
