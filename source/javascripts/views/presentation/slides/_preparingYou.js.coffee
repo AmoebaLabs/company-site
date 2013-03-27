@@ -57,10 +57,8 @@ class AmoebaSite.Cube
     this._initializeVariables()
     this._setupCube()
 
-    @cubeRotateIndex = 0
-
     setTimeout( =>
-      this.rotateToIndex(@cubeRotateIndex++)
+      this._cubeDownToScreen()
     , 100)
 
   tearDown: () =>
@@ -68,10 +66,12 @@ class AmoebaSite.Cube
       @container.remove()
       @container = undefined
 
+    @cube3D = undefined
+
   rotateToIndex: (theIndex, notify=true) =>
     r = @rotationSteps[theIndex]
 
-    $("#threeDCube").transition(
+    @cube3D.transition(
       rotateX: r.x
       rotateY: r.y
       rotate: r.z
@@ -97,31 +97,48 @@ class AmoebaSite.Cube
       .addClass('somePerspective')   # perspective above didn't work, see notes in _presentation.css.scss
       .css(css)
 
-    cube = $('<div/>')
+    @cube3D = $('<div/>')
       .appendTo(stage)
       .attr("id", "threeDCube")
 
-    this._buildOuterCube(cube)
+    this._buildOuterCube()
     # this might be better, but Safari has some flicker issues
-    # this._buildInnerCube(cube)
-    this._buildInnerCubeSafari(cube)
+    # this._buildInnerCube()
+    this._buildInnerCubeSafari()
 
-  _buildOuterCube: (cube) =>
+  _buildOuterCube: () =>
     _.each([0..5], (theNum, index) =>
       theDiv = $('<div/>')
-        .appendTo(cube)
+        .appendTo(@cube3D)
         .addClass("threeDCubeSide")
         .css(@cubeTransforms[index])
-
-      this._addContentForCubeSide(index, theDiv)
 
       @cubeFaces.push(theDiv)
     )
 
-  _buildInnerCube: (cube) =>
+  _addContentToCube: () =>
+    _.each(@cubeFaces, (theDiv, index) =>
+      switch (index)
+        when 0
+          this._buildCubeSize0(theDiv)
+        when 1
+          this._buildCubeSize1(theDiv)
+        when 2
+          this._buildCubeSize2(theDiv)
+        when 3
+          this._buildCubeSize3(theDiv)
+        when 4
+          this._buildCubeSize4(theDiv)
+        when 5
+          this._buildCubeSize5(theDiv)
+        else
+          console.log 'bad index'
+    )
+
+  _buildInnerCube: () =>
     _.each([0..5], (theNum, index) =>
       theDiv = $('<div/>')
-        .appendTo(cube)
+        .appendTo(@cube3D)
         .css(@innerCubeTransforms[index])
         .addClass("innerCubeSide girder")
 
@@ -130,12 +147,12 @@ class AmoebaSite.Cube
         .addClass("ics")
     )
 
-  _buildInnerCubeSafari: (cube) =>
+  _buildInnerCubeSafari: () =>
     cnt = @safariTransforms.length
 
     _.each([0...cnt], (theNum, index) =>
       theDiv = $('<div/>')
-        .appendTo(cube)
+        .appendTo(@cube3D)
         .css(@safariTransforms[index])
         .addClass("innerCubeSide girder")
 
@@ -296,26 +313,6 @@ class AmoebaSite.Cube
       @flatTransforms.push(this._flatTransform(index))
     )
 
-  _addContentForCubeSide: (theIndex, sideDiv) =>
-    result = null
-    switch (theIndex)
-      when 0
-        this._buildCubeSize0(sideDiv)
-      when 1
-        this._buildCubeSize1(sideDiv)
-      when 2
-        this._buildCubeSize2(sideDiv)
-      when 3
-        this._buildCubeSize3(sideDiv)
-      when 4
-        this._buildCubeSize4(sideDiv)
-      when 5
-        this._buildCubeSize5(sideDiv)
-      else
-        console.log 'bad index'
-
-    return result
-
   _stepDone: (stepID) =>
     switch (stepID)
       when 'cubeTransformDone'
@@ -328,7 +325,7 @@ class AmoebaSite.Cube
               AmoebaSite.utils.fadeOut(false, ['girder'], @container, () =>
 #                this.rotateToIndex(0, false)
 
-                $("#threeDCube").css(
+                @cube3D.css(
                   rotateX: 0
                   rotateY: 0
                   rotate: 0
@@ -563,10 +560,13 @@ class AmoebaSite.Cube
 
   _buildCubeSize5: (sideDiv) =>
     eyesImage = AmoebaSite.utils.createImageDiv('/images/presentation/eyes.svg', 'cube', 300, sideDiv)
-    eyesImage.css(opacity: 1)
+    eyesImage.transition(
+      opacity: 1
+      duration: 1000
+    )
 
   _buildGraphDiv: (left, color, parentDiv) =>
-     result = $('<div/>')
+    result = $('<div/>')
       .appendTo(parentDiv)
       .css(
         position: 'absolute'
@@ -576,3 +576,49 @@ class AmoebaSite.Cube
         left: left
         backgroundColor: color
       )
+
+    return result
+
+  # ====================================================
+  # cube animations
+  # ====================================================
+
+  _cubeDownToScreen:() =>
+    @cube3D.css(
+      opacity:.3
+      transform: 'translateY(4000px) translateZ(-5200px) rotateX(460deg) rotateY(760deg)'
+    )
+
+    @cube3D.transition(
+      opacity: 1
+      transform: 'translateY(0px) translateZ(-5200px) rotateX(360deg) rotateY(60deg)'
+      duration: 4000
+      complete: =>
+        this._rollDiceToScreen()
+    )
+
+  _rollDiceToScreen:() =>
+    @cube3D.css(
+      opacity:1
+      transform: 'translateZ(-5200px) rotateX(360deg) rotateY(60deg)'
+    )
+
+    @cube3D.transition(
+      opacity: 1
+      transform: 'translateZ(0px) rotateX(0deg) rotateY(0deg)'
+      duration: 5000
+      complete: =>
+        setTimeout( =>
+          this._fadeInContentScreen()
+        , 100)
+    )
+
+  _fadeInContentScreen:() =>
+    this._addContentToCube()
+
+    setTimeout( =>
+      @cubeRotateIndex = 0
+
+      this.rotateToIndex(@cubeRotateIndex++)
+    , 500)
+
