@@ -20,9 +20,12 @@ class AmoebaSite.CloudsController
     @cloudWorld.toggleRotateWorld()
 
     this._showFallingClouds()
-    this._showRocketShip()
-    this._createStarsAndPlanet()
-    this._showMessage(0)
+
+    setTimeout(=>
+      this._showRocketShip()
+      this._createStarsAndPlanet()
+      this._showMessage(0)
+    , 1000)
 
   _showMessage: (messageIndex) =>
     switch (messageIndex)

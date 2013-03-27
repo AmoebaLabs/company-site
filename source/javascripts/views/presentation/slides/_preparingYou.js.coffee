@@ -205,7 +205,7 @@ class AmoebaSite.Cube
       if count == 0
         this._stepDone('cubeTransformDone')
 
-    _.each(@cubeFaces, (face, index) =>
+    _.each(@cubeFaces.reverse(), (face, index) =>
       moreCSS =
         delay: index*theDelay
         boxShadow: '5px 5px 40px black'
@@ -594,6 +594,9 @@ class AmoebaSite.Cube
   # ====================================================
 
   _cubeDownToScreen:() =>
+    if not @cube3D?
+      return
+
     @cube3D.css(
       opacity:.3
       transform: 'translateY(4000px) translateZ(-5200px) rotateX(460deg) rotateY(760deg)'
@@ -608,6 +611,9 @@ class AmoebaSite.Cube
     )
 
   _rollDiceToScreen:() =>
+    if not @cube3D?
+      return
+
     @cube3D.css(
       opacity:1
       transform: 'translateZ(-5200px) rotateX(360deg) rotateY(60deg)'

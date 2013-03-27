@@ -17,7 +17,9 @@ class AmoebaSite.Presentation.Slide_Clouds extends AmoebaSB.Slide_Base
       @controller = undefined
 
   _start: () =>
-    @controller = new AmoebaSite.CloudsController(@el, this._cloudControllerCallback)
+    setTimeout(=>
+      @controller = new AmoebaSite.CloudsController(@el, this._cloudControllerCallback)
+    , 300)
 
   # called when cloud controller finishes it's animation sequence
   _cloudControllerCallback: () =>
