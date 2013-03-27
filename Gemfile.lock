@@ -1,8 +1,8 @@
 GIT
   remote: git://github.com/AmoebaConsulting/AmoebaStorybook.git
-  revision: cbc720e400b0e21275b554dfb7ca3dadd6f9e338
+  revision: e7f5edcb548f41ca9c8d211ecccd30505d1ec78e
   specs:
-    amoeba-storybook (0.0.23)
+    amoeba-storybook (0.0.24)
 
 GIT
   remote: git://github.com/AmoebaConsulting/amoeba-js.git
