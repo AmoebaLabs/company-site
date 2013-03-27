@@ -239,7 +239,7 @@ $innerCubeSize: $cubeSize - 1;
 
     @include backface-visibility(hidden); // use 'hidden'/'visible'
 
-    @include background-image(radial-gradient(center, circle farthest-corner, rgba(255,255,255,.6) 0%, $amoebaGreenMedium 100%));
+    @include background-image(radial-gradient(center, circle farthest-corner, rgba(255,255,255,.4) 0%, $amoebaGreenMedium 100%));
   }
 
   .innerCubeSide {
