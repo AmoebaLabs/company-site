@@ -12,8 +12,6 @@ class AmoebaSite.Presentation.Slide_Cog extends AmoebaSB.Slide_Base
       .appendTo(@el)
       .css({"bottom": "#{bottomOffet}px", "left": "#{leftOffset}px", "position": "absolute", "font-size": "72px"})
 
-  _update: =>
-
   slideIn: (afterTransitionComplete) =>
     if afterTransitionComplete
       if not @cogDemo?

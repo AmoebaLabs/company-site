@@ -33,7 +33,7 @@ class AmoebaSite.Presentation.Controller
       @transAPI.goto(theIndex)
     )
 
-    document.addEventListener("navigateToIndexEventName", (event) =>
+    document.addEventListener(AmoebaSB.eventHelper.indexEventName, (event) =>
       # force going to active step again, to trigger rescaling
       theIndex = Number(event.detail)
 
@@ -83,29 +83,36 @@ class AmoebaSite.Presentation.Controller
       @backgroundDiv = undefined
 
   _next: =>
-    success = this._currentSlide().next()
-    if not success
-      AmoebaSB.eventHelper.triggerEvent(document, "navigateToIndexEventName", @transAPI.nextIndex())
+    handledBySlide = this._currentSlide().next()
+    if not handledBySlide
+      AmoebaSB.eventHelper.triggerEvent(document, AmoebaSB.eventHelper.indexEventName, @transAPI.nextIndex())
 
   _previous: =>
-    AmoebaSB.eventHelper.triggerEvent(document, "navigateToIndexEventName", @transAPI.prevIndex())
+    handledBySlide = this._currentSlide().previous()
+    if not handledBySlide
+      AmoebaSB.eventHelper.triggerEvent(document, AmoebaSB.eventHelper.indexEventName, @transAPI.prevIndex())
+
+  _pause: =>
+    handledBySlide = this._currentSlide().pause()
+    if not handledBySlide
+      AmoebaSB.eventHelper.triggerEvent(document, AmoebaSB.eventHelper.pauseEventName)
 
   _currentSlide: =>
     return @slides[@transAPI.activeStepIndex]
 
   _setupKeyHandlers: (add) =>
-    @prevFunction ?= =>
+    prevFunction = =>
       this._previous()
-
-    @nextFunction ?= =>
+    nextFunction = =>
       this._next()
+    pauseFunction = =>
+      this._pause()
 
     if add
-      document.addEventListener(AmoebaSB.eventHelper.prevKeyEventName, @prevFunction)
-      document.addEventListener(AmoebaSB.eventHelper.nextKeyEventName, @nextFunction)
+      document.addEventListener(AmoebaSB.eventHelper.prevKeyEventName, prevFunction)
+      document.addEventListener(AmoebaSB.eventHelper.nextKeyEventName, nextFunction)
+      document.addEventListener(AmoebaSB.eventHelper.pauseKeyEventName, pauseFunction)
     else
-      document.removeEventListener(AmoebaSB.eventHelper.prevKeyEventName, @prevFunction)
-      document.removeEventListener(AmoebaSB.eventHelper.nextKeyEventName, @nextFunction)
-
-      @nextFunction = undefined
-      @prevFunction = undefined
+      document.removeEventListener(AmoebaSB.eventHelper.prevKeyEventName, prevFunction)
+      document.removeEventListener(AmoebaSB.eventHelper.nextKeyEventName, nextFunction)
+      document.removeEventListener(AmoebaSB.eventHelper.pauseKeyEventName, pauseFunction)

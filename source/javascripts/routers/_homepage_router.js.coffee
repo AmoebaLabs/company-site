@@ -25,8 +25,8 @@ class AmoebaSite.HomepageRouter extends Amoeba.Router
   _showPresentationSlide: (theSlideID) =>
       this._updateViewState(false)
 
-      # displayIndexEventName is only called here, any other code should use navigateToIndexEventName
-      # navigateToIndexEventName will call router navigate and we end up here
+      # displayIndexEventName is only called here, any other code should use AmoebaSB.eventHelper.indexEventName
+      # AmoebaSB.eventHelper.indexEventName will call router navigate and we end up here
       AmoebaSB.eventHelper.triggerEvent(document, "displayIndexEventName", theSlideID)
 
   _updateViewState: (homePage=true) =>
