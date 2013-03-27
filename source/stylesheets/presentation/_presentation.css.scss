@@ -221,6 +221,7 @@ $cardHeight: 200px;
 $cubeSize: 520px;
 $halfCubeSize: $cubeSize / 2;
 $innerCubeSize: $cubeSize - 1;
+$borderRadius: 30px;
 
 #threeDCube {
   opacity: 0;
@@ -235,7 +236,7 @@ $innerCubeSize: $cubeSize - 1;
     border: 1px solid $amoebaGreenMedium;
     background: $amoebaGreenMedium;
     @include box-shadow(inset 0 0 20px rgba(0,0,0,0.2));
-    @include border-radius(20px);
+    @include border-radius($borderRadius);
 
     @include backface-visibility(hidden); // use 'hidden'/'visible'
 

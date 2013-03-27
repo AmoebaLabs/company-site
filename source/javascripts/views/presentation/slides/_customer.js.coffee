@@ -174,7 +174,7 @@ class Customer_StepOne
     )
 
   _fadeInQuestionMan: (thePath) =>
-    AmoebaSite.utils.fadeOut(true, ['man', 'who', 'typewriter'], @container, () =>
+    AmoebaSite.utils.remove(true, true, ['man', 'who', 'typewriter'], @container, () =>
       questionMan = AmoebaSite.utils.createImageDiv(thePath, 'man', @imageSize*2, @container)
 
       questionMan.css(

@@ -14,6 +14,9 @@ class AmoebaSite.Presentation.Slide_PreparingYou extends AmoebaSB.Slide_Base
       @cube.tearDown()
       @cube = undefined
 
+    # removes the messages
+    AmoebaSite.utils.remove(true, false, ['message'], @el)
+
   _start: () =>
     @cube = new AmoebaSite.Cube(@el, this._cubeCallback)
 
@@ -69,6 +72,9 @@ class AmoebaSite.Cube
     @cube3D = undefined
 
   rotateToIndex: (theIndex, notify=true) =>
+    if not @cube3D?
+      return
+
     r = @rotationSteps[theIndex]
 
     @cube3D.transition(
@@ -199,7 +205,7 @@ class AmoebaSite.Cube
       if count == 0
         this._stepDone('cubeTransformDone')
 
-    _.each(@cubeFaces.reverse(), (face, index) =>
+    _.each(@cubeFaces, (face, index) =>
       moreCSS =
         delay: index*theDelay
         boxShadow: '5px 5px 40px black'
@@ -326,7 +332,7 @@ class AmoebaSite.Cube
           if (@cubeRotateIndex > 5)
 
             setTimeout( =>
-              AmoebaSite.utils.fadeOut(false, ['girder'], @container, () =>
+              AmoebaSite.utils.remove(false, true, ['girder'], @container, () =>
 #                this.rotateToIndex(0, false)
 
                 @cube3D.css(
