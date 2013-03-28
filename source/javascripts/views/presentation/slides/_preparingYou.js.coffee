@@ -133,9 +133,7 @@ class AmoebaSite.Cube
       .attr("id", "threeDCube")
 
     this._buildOuterCube()
-    # this might be better, but Safari has some flicker issues
-    # this._buildInnerCube()
-    this._buildInnerCubeSafari()
+    this._buildInnerCube()
 
   _buildOuterCube: () =>
     _.each([0..5], (theNum, index) =>
@@ -167,24 +165,13 @@ class AmoebaSite.Cube
     )
 
   _buildInnerCube: () =>
-    _.each([0..5], (theNum, index) =>
-      theDiv = $('<div/>')
-        .appendTo(@cube3D)
-        .css(@innerCubeTransforms[index])
-        .addClass("innerCubeSide girder")
-
-      $('<div/>')
-        .appendTo(theDiv)
-        .addClass("ics")
-    )
-
-  _buildInnerCubeSafari: () =>
-    cnt = @safariTransforms.length
+    transforms = this._girderTransform()
+    cnt = transforms.length
 
     _.each([0...cnt], (theNum, index) =>
       theDiv = $('<div/>')
         .appendTo(@cube3D)
-        .css(@safariTransforms[index])
+        .css(@innerCubeTransforms[index])
         .addClass("innerCubeSide girder")
 
       $('<div/>')
@@ -261,22 +248,6 @@ class AmoebaSite.Cube
     @cubeSize = 520
     @cubeFaces = []
 
-    inset = -20
-    @innerCubeTransforms = [
-        this._cubeTransform(0, 90, 0, inset)
-        this._cubeTransform(90, 90, 0, inset)
-        this._cubeTransform(0, 180, 90, inset)
-        this._cubeTransform(0, -90, 90, inset)
-        this._cubeTransform(-90, 0, 0, inset)
-        this._cubeTransform(0, 0, 0, inset)
-      ]
-
-    @safariTransforms = [
-        this._cubeTransform(0, 90, 0, -(@cubeSize / 2))
-        this._cubeTransform(90, 0, 0, -(@cubeSize / 2))
-        this._cubeTransform(0, 0, 0, -(@cubeSize / 2))
-      ]
-
     if AmoebaSite.simpleRotation
       @cubeTransforms = [
         this._cubeTransform(0, 90, 0)
@@ -300,6 +271,26 @@ class AmoebaSite.Cube
     _.each([0..5], (element, index) =>
       @flatTransforms.push(this._flatTransform(index))
     )
+
+  _girderTransform: () =>
+    safari = true
+
+    if safari
+      @safariTransforms = [
+        this._cubeTransform(0, 90, 0, -(@cubeSize / 2))
+        this._cubeTransform(90, 0, 0, -(@cubeSize / 2))
+        this._cubeTransform(0, 0, 0, -(@cubeSize / 2))
+      ]
+    else
+      inset = -20
+      @innerCubeTransforms = [
+        this._cubeTransform(0, 90, 0, inset)
+        this._cubeTransform(90, 90, 0, inset)
+        this._cubeTransform(0, 180, 90, inset)
+        this._cubeTransform(0, -90, 90, inset)
+        this._cubeTransform(-90, 0, 0, inset)
+        this._cubeTransform(0, 0, 0, inset)
+      ]
 
   _stepDone: (stepID) =>
     switch (stepID)
