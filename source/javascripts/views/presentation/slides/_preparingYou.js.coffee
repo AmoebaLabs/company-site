@@ -1,3 +1,5 @@
+# global, could be removed once finalize
+AmoebaSite.simpleRotation = false
 
 class AmoebaSite.Presentation.Slide_PreparingYou extends AmoebaSB.Slide_Base
   setup: ->
@@ -19,6 +21,25 @@ class AmoebaSite.Presentation.Slide_PreparingYou extends AmoebaSB.Slide_Base
 
   _start: () =>
     @cube = new AmoebaSite.Cube(@el, this._cubeCallback)
+
+  # overriding pause/next/previous to handle the cube
+  pause: () =>
+    if @cube
+      return @cube.pause()
+
+    return false
+
+  next: () =>
+    if @cube
+      return @cube.next()
+
+    return false
+
+  previous: () =>
+    if @cube
+      return @cube.previous()
+
+    return false
 
   _cubeCallback: () =>
     sentence = "As the client hires developers, we include them on our team, at our offices. As integrated team members, our client's develop- ers are trained on the processes, tools and technologies they will need to continue development after version 1.0 and beyond."
@@ -70,22 +91,26 @@ class AmoebaSite.Cube
       @container = undefined
 
     @cube3D = undefined
+    @rotationController = undefined
 
-  rotateToIndex: (theIndex, notify=true) =>
-    if not @cube3D?
-      return
+  pause: () =>
+    if @rotationController
+      @rotationController.togglePause()
+      return true
 
-    r = @rotationSteps[theIndex]
+    return false
 
-    @cube3D.transition(
-      rotateX: r.x
-      rotateY: r.y
-      rotate: r.z
-      duration: 2000
-      complete: =>
-        if notify
-          this._stepDone('rotationDone')
-    )
+  next: () =>
+    if @rotationController
+      return @rotationController.next()
+
+    return false
+
+  previous: () =>
+    if @rotationController
+      return @rotationController.previous()
+
+    return false
 
   _setupCube: =>
     css =
@@ -252,33 +277,7 @@ class AmoebaSite.Cube
         this._cubeTransform(0, 0, 0, -(@cubeSize / 2))
       ]
 
-    simpleRotation = false
-    if simpleRotation
-      @rotationSteps = [
-        x:0
-        y:0
-        z:0
-      ,
-        x:0
-        y:-90
-        z:0
-      ,
-        x:0
-        y:-90
-        z:90
-      ,
-        x:0
-        y:-180
-        z:90
-      ,
-        x:-90
-        y:-180
-        z:90
-      ,
-        x:-90
-        y:-180
-        z:180
-      ]
+    if AmoebaSite.simpleRotation
       @cubeTransforms = [
         this._cubeTransform(0, 90, 0)
         this._cubeTransform(90, 90, 0)
@@ -288,32 +287,6 @@ class AmoebaSite.Cube
         this._cubeTransform(0, 0, 0)
       ]
     else
-      @rotationSteps = [
-        x:0
-        y:0
-        z:0
-      ,
-        x:90
-        y:0
-        z:90
-      ,
-        x:0
-        y:-90
-        z:90
-      ,
-        x:0
-        y:-180
-        z:180
-      ,
-        x:-90
-        y:-180
-        z:90
-      ,
-        x:-90
-        y:-180
-        z:180
-      ]
-
       @cubeTransforms = [
         this._cubeTransform(0, 90, -90)
         this._cubeTransform(90, 90, 0)
@@ -332,28 +305,6 @@ class AmoebaSite.Cube
     switch (stepID)
       when 'cubeTransformDone'
         @callback()
-      when 'rotationDone'
-        setTimeout( =>
-          if (@cubeRotateIndex > 5)
-
-            setTimeout( =>
-              AmoebaSite.utils.remove(false, true, ['girder'], @container, () =>
-#                this.rotateToIndex(0, false)
-
-                @cube3D.transition(
-                  rotateX: 0
-                  rotateY: 0
-                  rotate: 0
-                  duration: 1000
-                  complete: =>
-                    this._timedTransform(@flatTransforms)
-                )
-              )
-
-            ,1000)
-          else
-            this.rotateToIndex(@cubeRotateIndex++)
-        , 400)
 
   _buildCubeSize0: (sideDiv) =>
     # message
@@ -635,12 +586,147 @@ class AmoebaSite.Cube
         , 100)
     )
 
+  _rotationControllerCallback: () =>
+    # controller is done, not needed any longer
+    @rotationController = undefined
+
+    # remove the cube interior girders
+    AmoebaSite.utils.remove(false, true, ['girder'], @container, () =>
+
+      # get the cube back to 0,0,0
+      @cube3D.transition(
+        rotateX: 0
+        rotateY: 0
+        rotate: 0
+        duration: 1000
+        complete: =>
+          this._timedTransform(@flatTransforms)
+      )
+    )
+
   _fadeInContentScreen:() =>
     this._addContentToCube()
 
     setTimeout( =>
-      @cubeRotateIndex = 0
 
-      this.rotateToIndex(@cubeRotateIndex++)
+      @rotationController = new AmoebaSite.Presentation.RotationController(@cube3D, this._rotationControllerCallback)
+
+      @rotationController.start()
     , 100)
+
+class AmoebaSite.Presentation.RotationController
+  constructor: (@cube3D, @callback) ->
+    this._initializeVariables()
+
+  start: () =>
+    this._rotateCube()
+
+  togglePause: () =>
+    @paused = not @paused
+
+    if not @paused
+      this.next()
+
+  next: () =>
+    this._rotateCube(true, true)
+    return true
+
+  previous: () =>
+    if @showingIndex > 0
+      this._rotateCube(false, true)
+      return true
+
+    return false
+
+  _rotateToIndex: (theIndex, fast=false) =>
+    if not @cube3D?
+      return
+
+    @showingIndex = theIndex
+    duration = if fast then 200 else 2000
+
+    r = @rotationSteps[theIndex]
+
+    @cube3D.transition(
+      rotateX: r.x
+      rotateY: r.y
+      rotate: r.z
+      duration: duration
+      complete: =>
+        if not @paused
+          this._rotateCube(true, false)
+    )
+
+  _rotateCube: (forwards = true, fast=false) =>
+      if (@showingIndex == 5)
+        delay = if fast then 0 else 1000
+
+        setTimeout( =>
+          if @callback
+            @callback()
+        ,delay)
+      else
+        delay = if fast then 0 else 400
+
+        setTimeout( =>
+          theIndex = if forwards then @showingIndex + 1 else @showingIndex - 1
+          this._rotateToIndex(theIndex, fast)
+        , delay)
+
+  _initializeVariables: () =>
+    @showingIndex = 0
+    @paused = false
+
+    if AmoebaSite.simpleRotation
+      @rotationSteps = [
+        x:0
+        y:0
+        z:0
+      ,
+        x:0
+        y:-90
+        z:0
+      ,
+        x:0
+        y:-90
+        z:90
+      ,
+        x:0
+        y:-180
+        z:90
+      ,
+        x:-90
+        y:-180
+        z:90
+      ,
+        x:-90
+        y:-180
+        z:180
+      ]
+    else
+      @rotationSteps = [
+        x:0
+        y:0
+        z:0
+      ,
+        x:90
+        y:0
+        z:90
+      ,
+        x:0
+        y:-90
+        z:90
+      ,
+        x:0
+        y:-180
+        z:180
+      ,
+        x:-90
+        y:-180
+        z:90
+      ,
+        x:-90
+        y:-180
+        z:180
+      ]
 

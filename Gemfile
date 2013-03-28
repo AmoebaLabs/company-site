@@ -1,6 +1,8 @@
 source :rubygems
 
-gem "middleman", "~>3.0.5"
+# 3.0.13 broke the presentation url proxies
+# https://github.com/middleman/middleman/pull/736/files
+gem "middleman", "3.0.12"
 
 # Compresses PNGs
 gem "middleman-smusher", "~> 3.0.0"
