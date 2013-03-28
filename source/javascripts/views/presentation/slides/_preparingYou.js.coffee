@@ -171,7 +171,7 @@ class AmoebaSite.Cube
     _.each([0...cnt], (theNum, index) =>
       theDiv = $('<div/>')
         .appendTo(@cube3D)
-        .css(@innerCubeTransforms[index])
+        .css(transforms[index])
         .addClass("innerCubeSide girder")
 
       $('<div/>')
@@ -276,14 +276,14 @@ class AmoebaSite.Cube
     safari = true
 
     if safari
-      @safariTransforms = [
+      result = [
         this._cubeTransform(0, 90, 0, -(@cubeSize / 2))
         this._cubeTransform(90, 0, 0, -(@cubeSize / 2))
         this._cubeTransform(0, 0, 0, -(@cubeSize / 2))
       ]
     else
       inset = -20
-      @innerCubeTransforms = [
+      result = [
         this._cubeTransform(0, 90, 0, inset)
         this._cubeTransform(90, 90, 0, inset)
         this._cubeTransform(0, 180, 90, inset)
@@ -291,6 +291,8 @@ class AmoebaSite.Cube
         this._cubeTransform(-90, 0, 0, inset)
         this._cubeTransform(0, 0, 0, inset)
       ]
+
+    return result
 
   _stepDone: (stepID) =>
     switch (stepID)
@@ -604,6 +606,9 @@ class AmoebaSite.Cube
 
       @rotationController.start()
     , 100)
+
+# ===========================================================
+# ===========================================================
 
 class AmoebaSite.Presentation.RotationController
   constructor: (@cube3D, @callback) ->
