@@ -15,7 +15,17 @@ class AmoebaSite.CubeScene
       scale: 2
     )
 
-    this._fadeInContentScreen()
+    # bounce up eyes from bottom
+    this._bounceInEyes()
+
+
+    # set background white
+
+    # set cube to fancy
+
+    # scale it to 1
+
+    # message bubbles
 
   tearDown: () =>
     @container?.remove()
@@ -23,17 +33,6 @@ class AmoebaSite.CubeScene
 
     @cube3D = undefined
     @rotationController = undefined
-
-  start: () =>
-    _.each(@cubeFaces, (face, index) =>
-      face.addClass('fancy')
-    )
-
-    @cube3D.transition(
-      scale: 1
-      duration: 2000
-    )
-
 
   pause: () =>
     if @rotationController
@@ -53,6 +52,107 @@ class AmoebaSite.CubeScene
       return @rotationController.previous()
 
     return false
+
+
+
+
+
+
+
+
+
+  _bounceInEyes: =>
+    sideDiv = @cubeFaces[5]
+    eyesImage = AmoebaSite.utils.createImageDiv('/images/presentation/eyes.svg', 'cube', 300, sideDiv)
+    eyesImage.transition(
+      opacity: 1
+      duration: 2000
+      complete: =>
+        this._moveCubeToCenter()
+    )
+
+  _moveCubeToCenter: =>
+    setTimeout(=>
+      AmoebaSite.presentation.setBackground('white')
+
+      # make the cube more fancy
+      _.each(@cubeFaces, (face, index) =>
+        face.addClass('fancy')
+      )
+
+      @cube3D.transition(
+        scale: 1
+        duration: 1000
+
+        complete: =>
+          this._tiltLeft()
+      )
+
+    , 500)
+
+  _tiltLeft: =>
+    @cube3D.transition(
+      transform: 'translateZ(-500px) rotateX(-15deg) rotateY(-15deg) rotate(0deg)'
+      duration: 1000
+      complete: =>
+        @typeWriterMode = 1
+        this._typewriter()
+    )
+
+  _typewriter: =>
+    if @typeWriterMode == 1
+      @messages = [
+        'Would you like your nuts in a sack?'
+        'Do hairy and smelly armpits make you horny?'
+
+        'Maybe you need some Amoeboze'
+      ]
+    else
+      @messages = [
+        'This toad has a choad.  wtf?'
+        'Big feet and small titties?'
+
+        'Maybe you need some Amoeboze?'
+      ]
+
+    @typewriterIndex = 0
+    this._nextTypewriter()
+
+  _nextTypewriter: =>
+    message = @messages.shift()
+
+    @typewriterIndex += 1
+
+    startTop = 100
+
+    if message
+      css =
+        left: '50%'
+        width: 400 # can't be a percentage
+        top: startTop + (20 * @typewriterIndex)
+        height: 20
+
+      typewriter = new AmoebaSite.Typewriter(@container, message, css)
+      typewriter.write(this._nextTypewriter)
+    else
+      this._typewriterDone()
+
+  _typewriterDone: =>
+    if @typeWriterMode == 1
+      AmoebaSite.utils.remove(true, true, ['typewriter'], @el, () =>
+        this._tiltRight()
+      )
+    else
+      console.log 'hello'
+
+  _tiltRight: =>
+    @cube3D.transition(
+      transform: 'translateZ(-500px) rotateX(-15deg) rotateY(15deg) rotate(0deg)'
+      duration: 1000
+      complete: =>
+        @typeWriterMode = 2
+        this._typewriter();
+    )
 
   _setupCube: =>
     css =
@@ -542,12 +642,11 @@ class AmoebaSite.CubeScene
   _fadeInContentScreen:() =>
     this._addContentToCube()
 
-#    setTimeout( =>
-#
-#      @rotationController = new AmoebaSite.Presentation.RotationController(@cube3D, this._rotationControllerCallback)
-#
-#      @rotationController.start()
-#    , 100)
+    setTimeout( =>
+      @rotationController = new AmoebaSite.Presentation.RotationController(@cube3D, this._rotationControllerCallback)
+
+      @rotationController.start()
+    , 100)
 
 # ===========================================================
 # ===========================================================
