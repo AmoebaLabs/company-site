@@ -3,6 +3,7 @@
 class AmoebaSite.Presentation.Controller
   constructor: () ->
     AmoebaSB.layout ?= new AmoebaSB.SlideLayout($("#stage"), $('#stageHolder'))
+    @backgroundColorClasses = 'white black blue green, none'
 
     this.setBackground('default')
     this._setupKeyHandlers(true)
@@ -44,9 +45,16 @@ class AmoebaSite.Presentation.Controller
   tearDown: =>
     this._setupKeyHandlers(false)
 
-  setBackground: (colorClass) =>
-    allClasses = 'white black blue green, none'
+  setBackgroundColor: (color) =>
+    parent = $("#presentation")
 
+    parent.removeClass(@backgroundColorClasses)
+
+    parent.css(
+      backgroundColor: color
+    )
+
+  setBackground: (colorClass) =>
     if colorClass == 'default'
       colorClass = 'none'
 
@@ -72,7 +80,7 @@ class AmoebaSite.Presentation.Controller
         parent = $("#presentation")
 
         if not parent.hasClass(colorClass)
-          parent.removeClass(allClasses).addClass(colorClass)
+          parent.removeClass(@backgroundColorClasses).addClass(colorClass)
 
         this._removeBackgroundDiv()
     )

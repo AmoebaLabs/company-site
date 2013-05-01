@@ -12,6 +12,6 @@ class AmoebaSite.CloudScene
   tearDown: () =>
     AmoebaSite.presentation.setBackground('default')
 
-    @controller.tearDown()
+    @controller?.tearDown()
     @controller = undefined
 

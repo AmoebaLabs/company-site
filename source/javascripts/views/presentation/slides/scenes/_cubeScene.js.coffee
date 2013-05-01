@@ -20,9 +20,8 @@ class AmoebaSite.CubeScene
     , 100)
 
   tearDown: () =>
-    if @container
-      @container.remove()
-      @container = undefined
+    @container?.remove()
+    @container = undefined
 
     @cube3D = undefined
     @rotationController = undefined

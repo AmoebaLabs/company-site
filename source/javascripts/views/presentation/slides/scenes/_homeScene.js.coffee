@@ -6,7 +6,7 @@ class AmoebaSite.HomeScene
     this._createStarsAndPlanet()
 
   tearDown: =>
-    @cube.tearDown()
+    @cube?.tearDown()
     @cube = undefined
 
   _createMascot: =>
@@ -38,16 +38,27 @@ class AmoebaSite.HomeScene
       )
       .appendTo(@el)
 
+  _hideHomeDivs: (show) =>
+    @mascot.css(
+      display: if show == true then 'block' else 'none'
+    )
+    @$planet.css(
+      display: if show == true then 'block' else 'none'
+    )
+
 
   _zoomInOnMascotEyes: =>
     # scale and translate x,y to zoom into eyes
     @el.transition(
       opacity:1
-      scale: 15
-      x: 3400
-      y: 0
+      scale: 25
+      x: 7000
+      y: 1100
       duration: 3000
       complete: =>
+        this._hideHomeDivs()
+        AmoebaSite.presentation.setBackgroundColor(AmoebaSite.Colors.amoebaGreenMedium)
+
         @el.css(
           scale: 1
           x: 0
