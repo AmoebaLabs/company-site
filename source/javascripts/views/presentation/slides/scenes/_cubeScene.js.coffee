@@ -10,14 +10,12 @@ class AmoebaSite.CubeScene
     this._initializeVariables()
     this._setupCube()
 
-    setTimeout( =>
-      @cube3D.css(
-        opacity: 1
-        scale: 2
-      )
+    @cube3D.css(
+      opacity: 1
+      scale: 2
+    )
 
-      this._fadeInContentScreen()
-    , 100)
+    this._fadeInContentScreen()
 
   tearDown: () =>
     @container?.remove()
@@ -25,6 +23,17 @@ class AmoebaSite.CubeScene
 
     @cube3D = undefined
     @rotationController = undefined
+
+  start: () =>
+    _.each(@cubeFaces, (face, index) =>
+      face.addClass('fancy')
+    )
+
+    @cube3D.transition(
+      scale: 1
+      duration: 2000
+    )
+
 
   pause: () =>
     if @rotationController

@@ -70,6 +70,11 @@ class AmoebaSite.HomeScene
   _fadeInCube: () =>
     @cube = new AmoebaSite.CubeScene(@el, this._cubeCallback)
 
+    setTimeout(=>
+      @cube.start()
+      AmoebaSite.presentation.setBackground('white')
+    , 3000)
+
   _cubeCallback: () =>
     sentence = "As the client hires developers, we include them on our team, at our offices. As integrated team members, our client's develop- ers are trained on the processes, tools and technologies they will need to continue development after version 1.0 and beyond."
 
