@@ -7,12 +7,14 @@ class AmoebaSite.CubeScene
     @container = $('<div/>')
       .appendTo(@el)
 
+    @el.addClass('somePerspective')
+
     this._initializeVariables()
     this._setupCube()
 
     @cube3D.css(
       opacity: 1
-      scale: 2
+      scale: 1.3
     )
 
     # bounce up eyes from bottom
@@ -102,17 +104,19 @@ class AmoebaSite.CubeScene
   _typewriter: =>
     if @typeWriterMode == 1
       @messages = [
-        'Would you like your nuts in a sack?'
-        'Do hairy and smelly armpits make you horny?'
-
-        'Maybe you need some Amoeboze'
+        "Hi, I’m Amoeba"
+        "I work with early stage technology companies"
+        "to transform their idea into a minimum viable product"
+      ]
+    else if @typeWriterMode == 2
+      @messages = [
+        "Get it done in weeks, not months"
+        "( or god forbid, years )"
       ]
     else
       @messages = [
-        'This toad has a choad.  wtf?'
-        'Big feet and small titties?'
-
-        'Maybe you need some Amoeboze?'
+        'How the fuck is this possible?'
+        "Don't give me your Jew bullshit"
       ]
 
     @typewriterIndex = 0
@@ -126,12 +130,12 @@ class AmoebaSite.CubeScene
     startTop = 100
 
     if message
+      height = 20
       css =
         left: '50%'
         width: 600 # can't be a percentage
-        top: startTop + (40 * @typewriterIndex)
-        height: 40
-        fontSize: "2em"
+        top: startTop + (height * @typewriterIndex)
+        height: height
 
       typewriter = new AmoebaSite.Typewriter(@el, message, css)
       typewriter.write(this._nextTypewriter)
@@ -143,8 +147,10 @@ class AmoebaSite.CubeScene
       AmoebaSite.utils.remove(true, true, ['typewriter'], @el, () =>
         this._tiltRight()
       )
+    else if @typeWriterMode == 2
+      this._slideInCustomer()
     else
-      console.log 'hello'
+      this._slideOutCustomer()
 
   _tiltRight: =>
     @cube3D.transition(
@@ -154,6 +160,64 @@ class AmoebaSite.CubeScene
         @typeWriterMode = 2
         this._typewriter();
     )
+
+  _slideInCustomer: =>
+    this._createCustomer()
+
+    AmoebaSite.utils.remove(true, true, ['typewriter'], @el, () =>
+      @customer.transition(
+        transform: 'translateX(0px) translateZ(0px)'
+        opacity: 1
+        duration: 3000
+
+        complete: =>
+          @typeWriterMode = 3
+          this._typewriter();
+      )
+    )
+
+  _slideOutCustomer: =>
+    AmoebaSite.utils.remove(true, true, ['typewriter'], @el, () =>
+      @customer.transition(
+        transform: 'translateX(-2000px) translateZ(-2000px)'
+        opacity: 0
+        duration: 3000
+
+        complete: =>
+          this._fadeInContentScreen()
+      )
+    )
+
+  _createCustomer: =>
+    if not @customer?
+      @customer = $('<img/>')
+        .attr(src: '/images/presentation/space_mascot.svg')
+        .appendTo(@el)
+        .css(
+          position: 'absolute'
+          top: 250
+          right: 0
+          height: 260
+          width: 260
+          transform: 'translateX(1000px) translateZ(-1000px)'
+          opacity: 0
+        )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   _setupCube: =>
     css =
@@ -202,7 +266,7 @@ class AmoebaSite.CubeScene
         when 4
           this._buildCubeSize4(theDiv)
         when 5
-          this._buildCubeSize5(theDiv)
+#          this._buildCubeSize5(theDiv)
         else
           console.log 'bad index'
     )

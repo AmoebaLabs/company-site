@@ -1,6 +1,6 @@
 
 class AmoebaSite.HomeScene
-  constructor: (@el) ->
+  constructor: (@el, @callback) ->
     AmoebaSite.presentation.setBackground('black')
     this._createMascot()
     this._createStarsAndPlanet()
@@ -95,7 +95,8 @@ class AmoebaSite.HomeScene
       opacity: 1
       duration: 800
       complete: =>
-        this._slideIsDone(1000)
+        if @callback?
+          @callback()
     )
 
 
