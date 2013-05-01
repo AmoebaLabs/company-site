@@ -116,7 +116,7 @@ class AmoebaSite.CubeScene
     else
       @messages = [
         'How the fuck is this possible?'
-        "Don't give me your Jew bullshit"
+        "I don't believe it."
       ]
 
     @typewriterIndex = 0
@@ -190,6 +190,16 @@ class AmoebaSite.CubeScene
 
   _createCustomer: =>
     if not @customer?
+
+
+      @bubbleWrapper = $('<div/>')
+        .addClass("leftBubbleBox")
+        .appendTo(@el)
+      @bubble = $('<div/>')
+        .addClass("bubble")
+        .appendTo(@bubbleWrapper)
+
+
       @customer = $('<img/>')
         .attr(src: '/images/presentation/space_mascot.svg')
         .appendTo(@el)
@@ -202,10 +212,6 @@ class AmoebaSite.CubeScene
           transform: 'translateX(1000px) translateZ(-1000px)'
           opacity: 0
         )
-
-
-
-
 
 
 

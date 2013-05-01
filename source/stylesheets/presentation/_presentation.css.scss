@@ -299,3 +299,27 @@ $blipBorderRadius: $blipSize / 2;
 #presentationMascot {
   display: none;
 }
+
+// --------------------------------------------------------
+// --------------------------------------------------------
+// speech bubbles
+
+.leftBubbleBox {
+  position: absolute;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  height: 150px;
+  width: 300px;
+
+  @include bubbleMixin();
+}
+
+.rightBubbleBox {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  height: 150px;
+  width: 300px;
+  @include bubbleMixin();
+}
