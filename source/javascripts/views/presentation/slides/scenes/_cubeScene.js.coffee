@@ -92,7 +92,7 @@ class AmoebaSite.CubeScene
 
   _tiltLeft: =>
     @cube3D.transition(
-      transform: 'translateZ(-500px) rotateX(-15deg) rotateY(-15deg) rotate(0deg)'
+      transform: 'translateZ(-1000px) rotateX(-15deg) rotateY(-15deg) rotate(0deg)'
       duration: 1000
       complete: =>
         @typeWriterMode = 1
@@ -128,11 +128,12 @@ class AmoebaSite.CubeScene
     if message
       css =
         left: '50%'
-        width: 400 # can't be a percentage
-        top: startTop + (20 * @typewriterIndex)
-        height: 20
+        width: 600 # can't be a percentage
+        top: startTop + (40 * @typewriterIndex)
+        height: 40
+        fontSize: "2em"
 
-      typewriter = new AmoebaSite.Typewriter(@container, message, css)
+      typewriter = new AmoebaSite.Typewriter(@el, message, css)
       typewriter.write(this._nextTypewriter)
     else
       this._typewriterDone()
@@ -147,7 +148,7 @@ class AmoebaSite.CubeScene
 
   _tiltRight: =>
     @cube3D.transition(
-      transform: 'translateZ(-500px) rotateX(-15deg) rotateY(15deg) rotate(0deg)'
+      transform: 'translateZ(-500px) rotateX(-375deg) rotateY(15deg) rotate(0deg)'
       duration: 1000
       complete: =>
         @typeWriterMode = 2
