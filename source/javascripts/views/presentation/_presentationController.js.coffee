@@ -8,11 +8,12 @@ class AmoebaSite.Presentation.Controller
     this._setupKeyHandlers(true)
 
     @slides = [
-      new AmoebaSite.Presentation.Slide_Intro(),
-      new AmoebaSite.Presentation.Slide_PreparingYou(),
-      new AmoebaSite.Presentation.Slide_Tools(),
-      new AmoebaSite.Presentation.Slide_Clouds(),
+      new AmoebaSite.Presentation.Slide_Home(),
 
+#      new AmoebaSite.Presentation.Slide_Intro(),
+      new AmoebaSite.Presentation.Slide_PreparingYou(),
+#      new AmoebaSite.Presentation.Slide_Tools(),
+#      new AmoebaSite.Presentation.Slide_Clouds(),
 #      new AmoebaSite.Presentation.Slide_Computer(),
 #      new AmoebaSite.Presentation.Slide_Phone(),
 #      new AmoebaSite.Presentation.Slide_Team(),
