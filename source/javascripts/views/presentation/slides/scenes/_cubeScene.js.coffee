@@ -1,16 +1,22 @@
-# -------------------------------------------------------------------
-# -------------------------------------------------------------------
 
-class AmoebaSite.CubeController
-  constructor: (parentDiv, @callback) ->
+# global, could be removed once finalize
+AmoebaSite.simpleRotation = false
+
+class AmoebaSite.CubeScene
+  constructor: (@el, @callback) ->
     @container = $('<div/>')
-      .appendTo(parentDiv)
+      .appendTo(@el)
 
     this._initializeVariables()
     this._setupCube()
 
     setTimeout( =>
-      this._cubeDownToScreen()
+      @cube3D.css(
+        opacity: 1
+        scale: 2
+      )
+
+      this._fadeInContentScreen()
     , 100)
 
   tearDown: () =>
@@ -528,12 +534,12 @@ class AmoebaSite.CubeController
   _fadeInContentScreen:() =>
     this._addContentToCube()
 
-    setTimeout( =>
-
-      @rotationController = new AmoebaSite.Presentation.RotationController(@cube3D, this._rotationControllerCallback)
-
-      @rotationController.start()
-    , 100)
+#    setTimeout( =>
+#
+#      @rotationController = new AmoebaSite.Presentation.RotationController(@cube3D, this._rotationControllerCallback)
+#
+#      @rotationController.start()
+#    , 100)
 
 # ===========================================================
 # ===========================================================

@@ -11,7 +11,7 @@ class AmoebaSite.Presentation.Controller
       new AmoebaSite.Presentation.Slide_Home(),
 
 #      new AmoebaSite.Presentation.Slide_Intro(),
-      new AmoebaSite.Presentation.Slide_PreparingYou(),
+#      new AmoebaSite.Presentation.Slide_PreparingYou(),
 #      new AmoebaSite.Presentation.Slide_Tools(),
 #      new AmoebaSite.Presentation.Slide_Clouds(),
 #      new AmoebaSite.Presentation.Slide_Computer(),

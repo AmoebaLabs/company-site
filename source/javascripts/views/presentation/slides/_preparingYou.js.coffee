@@ -20,7 +20,7 @@ class AmoebaSite.Presentation.Slide_PreparingYou extends AmoebaSB.Slide_Base
     AmoebaSite.utils.remove(true, false, ['message'], @el)
 
   _start: () =>
-    @cube = new AmoebaSite.CubeController(@el, this._cubeCallback)
+    @cube = new AmoebaSite.CubeScene(@el, this._cubeCallback)
 
   # overriding pause/next/previous to handle the cube
   pause: () =>
