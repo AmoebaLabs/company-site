@@ -1,4 +1,3 @@
-#= require_tree ./scenes
 
 class AmoebaSite.Presentation.Slide_Home extends AmoebaSB.Slide_Base
   setup: ->
