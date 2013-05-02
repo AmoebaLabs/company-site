@@ -199,7 +199,7 @@ class AmoebaSite.CubeScene
       return
 
     @cube3D.transition(
-      transform: "translateZ(-5200px) rotateX(0deg) rotateY(720deg) rotate(0deg)"
+      transform: "translateY(4000px) translateZ(-5200px) rotateX(0deg) rotateY(720deg) rotate(0deg)"
       duration: AmoebaSite.utils.dur(6000)
       complete: =>
         console.log 'duh'
