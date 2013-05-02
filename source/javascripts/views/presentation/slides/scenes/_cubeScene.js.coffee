@@ -654,10 +654,6 @@ class AmoebaSite.CubeScene
 
     return result
 
-  # ====================================================
-  # cube animations
-  # ====================================================
-
   _cubeDownToScreen:() =>
     if not @cube3D?
       return
