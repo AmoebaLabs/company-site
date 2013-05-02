@@ -17,17 +17,7 @@ class AmoebaSite.CubeScene
       scale: 1.3
     )
 
-    # bounce up eyes from bottom
     this._bounceInEyes()
-
-
-    # set background white
-
-    # set cube to fancy
-
-    # scale it to 1
-
-    # message bubbles
 
   tearDown: () =>
     @container?.remove()
@@ -68,7 +58,7 @@ class AmoebaSite.CubeScene
     eyesImage = AmoebaSite.utils.createImageDiv('/images/presentation/eyes.svg', 'cube', 300, sideDiv)
     eyesImage.transition(
       opacity: 1
-      duration: 2000
+      duration: AmoebaSite.utils.dur(2000)
       complete: =>
         this._moveCubeToCenter()
     )
@@ -84,7 +74,7 @@ class AmoebaSite.CubeScene
 
       @cube3D.transition(
         scale: 1
-        duration: 1000
+        duration: AmoebaSite.utils.dur(1000)
 
         complete: =>
           this._tiltLeft()
@@ -95,7 +85,7 @@ class AmoebaSite.CubeScene
   _tiltLeft: =>
     @cube3D.transition(
       transform: 'translateZ(-1000px) rotateX(-15deg) rotateY(-15deg) rotate(0deg)'
-      duration: 1000
+      duration: AmoebaSite.utils.dur(1000)
       complete: =>
         @typeWriterMode = 1
         this._typewriter()
@@ -155,7 +145,7 @@ class AmoebaSite.CubeScene
   _tiltRight: =>
     @cube3D.transition(
       transform: 'translateZ(-500px) rotateX(-375deg) rotateY(15deg) rotate(0deg)'
-      duration: 1000
+      duration: AmoebaSite.utils.dur(1000)
       complete: =>
         @typeWriterMode = 2
         this._typewriter();
@@ -168,7 +158,7 @@ class AmoebaSite.CubeScene
       @customer.transition(
         transform: 'translateX(0px) translateZ(0px)'
         opacity: 1
-        duration: 3000
+        duration: AmoebaSite.utils.dur(3000)
 
         complete: =>
           @typeWriterMode = 3
@@ -181,7 +171,7 @@ class AmoebaSite.CubeScene
       @customer.transition(
         transform: 'translateX(-2000px) translateZ(-2000px)'
         opacity: 0
-        duration: 3000
+        duration: AmoebaSite.utils.dur(3000)
 
         complete: =>
           this._fadeInContentScreen()
@@ -192,12 +182,22 @@ class AmoebaSite.CubeScene
     if not @customer?
 
 
-      @bubbleWrapper = $('<div/>')
-        .addClass("leftBubbleBox")
+      @leftBubble = $('<div/>')
+        .addClass("left-bubble-box")
         .appendTo(@el)
-      @bubble = $('<div/>')
+      lb = $('<div/>')
         .addClass("bubble")
-        .appendTo(@bubbleWrapper)
+        .appendTo(@leftBubble)
+
+
+      @rightBubble = $('<div/>')
+        .addClass("right-bubble-box")
+        .appendTo(@el)
+      rb = $('<div/>')
+        .addClass("bubble")
+        .appendTo(@rightBubble)
+
+
 
 
       @customer = $('<img/>')
@@ -428,7 +428,7 @@ class AmoebaSite.CubeScene
       height: 200
       width: 500
       opacity: 1
-      duration: 400
+      duration: AmoebaSite.utils.dur(400)
     )
     message.transition(
       top: 260
@@ -438,7 +438,7 @@ class AmoebaSite.CubeScene
       height: 80
       width: 500
       opacity: 1
-      duration: 400
+      duration: AmoebaSite.utils.dur(400)
     )
 
     # image at bottom
@@ -447,7 +447,7 @@ class AmoebaSite.CubeScene
       top: 'auto' # unset top set in createImageDiv
       bottom: 0
       opacity: 1
-      duration: 400
+      duration: AmoebaSite.utils.dur(400)
     )
 
   _buildCubeSize1: (sideDiv) =>
@@ -466,7 +466,7 @@ class AmoebaSite.CubeScene
       height: 200
       width: 500
       opacity: 1
-      duration: 400
+      duration: AmoebaSite.utils.dur(400)
     )
     message.transition(
       top: 120
@@ -476,7 +476,7 @@ class AmoebaSite.CubeScene
       height: 80
       width: 500
       opacity: 1
-      duration: 400
+      duration: AmoebaSite.utils.dur(400)
     )
 
     scaleImage = AmoebaSite.utils.createImageDiv('/images/presentation/gear.svg', 'cube', 160, sideDiv)
@@ -485,7 +485,7 @@ class AmoebaSite.CubeScene
       bottom: 110
       left: 80
       opacity: 1
-      duration: 400
+      duration: AmoebaSite.utils.dur(400)
     )
 
     scaleImage = AmoebaSite.utils.createImageDiv('/images/presentation/gear.svg', 'cube', 160, sideDiv)
@@ -493,7 +493,7 @@ class AmoebaSite.CubeScene
       top: 'auto' # unset top set in createImageDiv
       bottom: 0
       opacity: 1
-      duration: 400
+      duration: AmoebaSite.utils.dur(400)
     )
 
     scaleImage = AmoebaSite.utils.createImageDiv('/images/presentation/gear.svg', 'cube', 160, sideDiv)
@@ -503,7 +503,7 @@ class AmoebaSite.CubeScene
       right: 80
       bottom: 110
       opacity: 1
-      duration: 400
+      duration: AmoebaSite.utils.dur(400)
     )
 
   _buildCubeSize2: (sideDiv) =>
@@ -522,7 +522,7 @@ class AmoebaSite.CubeScene
       height: 200
       width: 500
       opacity: 1
-      duration: 400
+      duration: AmoebaSite.utils.dur(400)
     )
     message.transition(
       top: 120
@@ -532,7 +532,7 @@ class AmoebaSite.CubeScene
       height: 80
       width: 500
       opacity: 1
-      duration: 400
+      duration: AmoebaSite.utils.dur(400)
     )
 
     graph1 = this._buildGraphDiv(100, "#{AmoebaSite.Colors.amoebaGreenDark}", sideDiv)
@@ -568,7 +568,7 @@ class AmoebaSite.CubeScene
       height: 200
       width: 500
       opacity: 1
-      duration: 400
+      duration: AmoebaSite.utils.dur(400)
     )
     message.transition(
       top: 120
@@ -578,7 +578,7 @@ class AmoebaSite.CubeScene
       height: 80
       width: 500
       opacity: 1
-      duration: 400
+      duration: AmoebaSite.utils.dur(400)
     )
 
     lightBulb.transition(
@@ -587,7 +587,7 @@ class AmoebaSite.CubeScene
 
       color: 'white'
       opacity: 1
-      duration: 400
+      duration: AmoebaSite.utils.dur(400)
     )
 
   _buildCubeSize4: (sideDiv) =>
@@ -635,7 +635,7 @@ class AmoebaSite.CubeScene
     eyesImage = AmoebaSite.utils.createImageDiv('/images/presentation/eyes.svg', 'cube', 300, sideDiv)
     eyesImage.transition(
       opacity: 1
-      duration: 1000
+      duration: AmoebaSite.utils.dur(1000)
     )
 
   _buildGraphDiv: (left, color, parentDiv) =>
@@ -668,7 +668,7 @@ class AmoebaSite.CubeScene
     @cube3D.transition(
       opacity: 1
       transform: 'translateY(0px) translateZ(-5200px) rotateX(360deg) rotateY(60deg)'
-      duration: 3000
+      duration: AmoebaSite.utils.dur(3000)
       complete: =>
         this._rollDiceToScreen()
     )
@@ -685,7 +685,7 @@ class AmoebaSite.CubeScene
     @cube3D.transition(
       opacity: 1
       transform: 'translateZ(0px) rotateX(0deg) rotateY(0deg)'
-      duration: 2000
+      duration: AmoebaSite.utils.dur(2000)
       complete: =>
         setTimeout( =>
           this._fadeInContentScreen()
@@ -704,7 +704,7 @@ class AmoebaSite.CubeScene
         rotateX: 0
         rotateY: 0
         rotate: 0
-        duration: 1000
+        duration: AmoebaSite.utils.dur(1000)
         complete: =>
           this._timedTransform(@flatTransforms)
       )
@@ -759,7 +759,7 @@ class AmoebaSite.Presentation.RotationController
       rotateX: r.x
       rotateY: r.y
       rotate: r.z
-      duration: duration
+      duration: AmoebaSite.utils.dur(duration)
       complete: =>
         if not @paused
           this._rotateCube(true, false)

@@ -304,10 +304,10 @@ $blipBorderRadius: $blipSize / 2;
 // --------------------------------------------------------
 // speech bubbles
 
-.leftBubbleBox {
+.left-bubble-box {
   position: absolute;
   position: absolute;
-  right: 10px;
+  left: 10px;
   top: 10px;
   height: 150px;
   width: 300px;
@@ -315,7 +315,7 @@ $blipBorderRadius: $blipSize / 2;
   @include bubbleMixin();
 }
 
-.rightBubbleBox {
+.right-bubble-box {
   position: absolute;
   right: 10px;
   top: 10px;

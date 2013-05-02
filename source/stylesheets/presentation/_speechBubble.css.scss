@@ -1,4 +1,6 @@
 
+// generated here: http://htmlgenerator.weebly.com/css-speech-bubble-generator.html
+
 @mixin bubbleMixin()
 {
   .bubble {
@@ -14,8 +16,9 @@
   .bubble:after {
     content: "";
     position: absolute;
-    bottom: -14px;
-    left: 38px;
+    bottom: -13px;
+    left: 10%;
+    @include transform(translateX(3px));
     border-style: solid;
     border-width: 14px 14px 0;
     border-color: #FFFFFF transparent;
@@ -28,7 +31,7 @@
     content: "";
     position: absolute;
     bottom: -18px;
-    left: 35px;
+    left: 10%;
     border-style: solid;
     border-width: 17px 17px 0;
     border-color: #807F7F transparent;

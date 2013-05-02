@@ -53,7 +53,7 @@ class AmoebaSite.HomeScene
       scale: 25
       x: 7000
       y: 1100
-      duration: 2000
+      duration: AmoebaSite.utils.dur(2000)
       complete: =>
         this._hideHomeDivs()
         AmoebaSite.presentation.setBackgroundColor(AmoebaSite.Colors.amoebaGreenMedium)
@@ -83,7 +83,7 @@ class AmoebaSite.HomeScene
     )
     title.transition(
       opacity: 1
-      duration: 800
+      duration: AmoebaSite.utils.dur(800)
     )
 
     message.css(
@@ -93,7 +93,7 @@ class AmoebaSite.HomeScene
     )
     message.transition(
       opacity: 1
-      duration: 800
+      duration: AmoebaSite.utils.dur(800)
       complete: =>
         if @callback?
           @callback()
