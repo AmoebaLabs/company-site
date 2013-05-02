@@ -69,10 +69,10 @@ class AmoebaSite.HomeScene
           x: 0
           y: 0
         )
-        this._fadeInCube()
+        this._runSequence()
     )
 
-  _fadeInCube: () =>
+  _runSequence: () =>
     @cube = new AmoebaSite.CubeScene(@el, =>
       @cube.tearDown()
       @cube = undefined
@@ -84,6 +84,8 @@ class AmoebaSite.HomeScene
         @cloudScene = new AmoebaSite.CloudScene(@el, =>
           @cloudScene.tearDown()
           @cloudScene = undefined
+
+          this._hideHomeDivs(true)
         )
       )
 

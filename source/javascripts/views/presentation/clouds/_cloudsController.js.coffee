@@ -53,14 +53,14 @@ class AmoebaSite.CloudsController
         transform: 'translateZ(-3000px) rotateY(0deg)'
       )
       message.transition(
-        duration: 2000
+        duration: AmoebaSite.utils.dur(2000)
         opacity: 1
         transform: 'translateZ(260px) rotateY(0deg)' # clouds go from 256 to -256
 
         complete: =>
           message.transition(
-            delay: 800
-            duration: 1000
+            delay: AmoebaSite.utils.dur(800)
+            duration: AmoebaSite.utils.dur(1000)
             opacity: 0
 
             complete: =>
@@ -164,13 +164,13 @@ class AmoebaSite.CloudsController
           @$planet?.transition(
             opacity: 1
             scale: 1
-            duration: 7000
+            duration: AmoebaSite.utils.dur(7000)
           )
 
           # slowly fade in the stars
           @$bigStars?.transition(
             opacity: 1
-            duration: 7000
+            duration: AmoebaSite.utils.dur(7000)
 
             complete: =>
               @$bigStars?.keyframe('starFlicker', 300000, 'linear', 0, 'Infinite', 'alternate', () =>
@@ -180,7 +180,7 @@ class AmoebaSite.CloudsController
 
           @$smallStars?.transition(
             opacity: 1
-            duration: 7000
+            duration: AmoebaSite.utils.dur(7000)
 
             complete: =>
               @$smallStars?.keyframe('starFlicker', 1000000, 'linear', 500, 'Infinite', 'alternate', () =>

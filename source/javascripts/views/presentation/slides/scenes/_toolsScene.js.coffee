@@ -75,7 +75,7 @@ class AmoebaSite.ToolsScene
         element.keyframe('bounceInDown', 2200, 'ease-in', 0, 1, 'normal', () =>
           element.css(AmoebaSB.keyframeAnimationPlugin.animationProperty, '')
         )
-      , delay)
+      , AmoebaSite.utils.dur(delay))
     )
 
   _buildOneItem: (image, url) =>
@@ -304,7 +304,7 @@ class AmoebaSite.ToolsScene
           this._finalStep()
 
       @animationIndex++
-    , delayTime)
+    , AmoebaSite.utils.dur(delayTime))
 
   _finalStep: =>
     @animationIndex = -1
@@ -321,28 +321,28 @@ class AmoebaSite.ToolsScene
     element.transition(
       top: @toolTopOffset / 4
       left: @endLocationLeft
-      duration: 500
+      duration: AmoebaSite.utils.dur(500)
       easing: 'snap'
     )
 
     # bounce
     .transition(
       scale: 1.25
-      duration: 100
+      duration: AmoebaSite.utils.dur(100)
     )
     .transition(
       scale: 0.9
-      duration: 100
+      duration: AmoebaSite.utils.dur(100)
     )
     .transition(
       scale: 1
-      duration: 10
+      duration: AmoebaSite.utils.dur(10)
     )
 
     .transition(
       top: @endLocationTop
       left: @endLocationLeft
-      duration: 700
+      duration: AmoebaSite.utils.dur(700)
       easing: 'out'
 
       complete: =>
@@ -379,13 +379,13 @@ class AmoebaSite.ToolsScene
 
     @mascot.transition(
       top: @toolTopOffset - 15
-      duration: 1500
+      duration: AmoebaSite.utils.dur(1500)
       easing: 'in'
       complete: =>
         @mascot.transition(
           top: @endLocationTop
-          duration: 1000
-          delay: 500
+          duration: AmoebaSite.utils.dur(1000)
+          delay: AmoebaSite.utils.dur(500)
           easing: 'in'
           complete: =>
             this._setNextAnimationTimer(200)
