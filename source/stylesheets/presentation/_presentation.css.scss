@@ -223,7 +223,7 @@ $halfCubeSize: $cubeSize / 2;
 $innerCubeSize: $cubeSize - 1;
 $borderRadius: 30px;
 
-#threeDCube {
+.threeDCube {
   opacity: 0;
   @include transform-style(preserve-3d);
   @include transform-origin($halfCubeSize $halfCubeSize 0);

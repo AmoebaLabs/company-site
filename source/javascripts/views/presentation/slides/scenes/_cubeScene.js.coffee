@@ -257,7 +257,7 @@ class AmoebaSite.CubeScene
 
     @cube3D = $('<div/>')
       .appendTo(stage)
-      .attr("id", "threeDCube")
+      .addClass("threeDCube")
 
     this._buildOuterCube()
     this._buildInnerCube()
