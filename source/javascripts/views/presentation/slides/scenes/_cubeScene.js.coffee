@@ -93,58 +93,39 @@ class AmoebaSite.CubeScene
 
   _typewriter: =>
     if @typeWriterMode == 1
-      @messages = [
+      messages = [
         "Hi, I’m Amoeba"
         "I work with early stage technology companies"
         "to transform their idea into a minimum viable product"
       ]
     else if @typeWriterMode == 2
-      @messages = [
+      messages = [
         "Get it done in weeks, not months"
         "( or god forbid, years )"
       ]
     else
-      @messages = [
+      messages = [
         'How the fuck is this possible?'
         "I don't believe it."
       ]
 
-    @typewriterIndex = 0
-    this._nextTypewriter()
+    positionCSS =
+      top: 10
+      left: 10
+      height: 100
+      width: 300
 
-  _nextTypewriter: =>
-    message = @messages.shift()
-
-    @typewriterIndex += 1
-
-    startTop = 0
-
-    if message
-      height = 20
-      css =
-        padding: 10
-        left: 0
-        width: 600 # can't be a percentage
-        top: startTop + (height * @typewriterIndex)
-        height: height
-
-      # put the typewriter inside the bubble
-      this._createBubbles()
-
-      @leftBubble.css(
-        opacity: 1
-      )
-
-      typewriter = new AmoebaSite.Typewriter(@leftBubble, message, css)
-      typewriter.write(this._nextTypewriter)
-    else
-      this._typewriterDone()
+    @speechBubble = new AmoebaSite.SpeechBubble(@el, messages, positionCSS, 42, this._typewriterDone)
+    @speechBubble.start()
 
   _typewriterDone: =>
+
+    if @speechBubble?
+      @speechBubble.tearDown()
+      @speechBubble = undefined
+
     if @typeWriterMode == 1
-      AmoebaSite.utils.remove(true, true, ['typewriter'], @el, () =>
-        this._tiltRight()
-      )
+      this._tiltRight()
     else if @typeWriterMode == 2
       this._slideInCustomer()
     else
@@ -162,28 +143,24 @@ class AmoebaSite.CubeScene
   _slideInCustomer: =>
     this._createCustomer()
 
-    AmoebaSite.utils.remove(true, true, ['typewriter'], @el, () =>
-      @customer.transition(
-        transform: 'translateX(0px) translateZ(0px)'
-        opacity: 1
-        duration: AmoebaSite.utils.dur(3000)
+    @customer.transition(
+      transform: 'translateX(0px) translateZ(0px)'
+      opacity: 1
+      duration: AmoebaSite.utils.dur(3000)
 
-        complete: =>
-          @typeWriterMode = 3
-          this._typewriter();
-      )
+      complete: =>
+        @typeWriterMode = 3
+        this._typewriter();
     )
 
   _slideOutCustomer: =>
-    AmoebaSite.utils.remove(true, true, ['typewriter'], @el, () =>
-      @customer.transition(
-        transform: 'translateX(-2000px) translateZ(-2000px)'
-        opacity: 0
-        duration: AmoebaSite.utils.dur(3000)
+    @customer.transition(
+      transform: 'translateX(-2000px) translateZ(-2000px)'
+      opacity: 0
+      duration: AmoebaSite.utils.dur(3000)
 
-        complete: =>
-          this._fadeInContentScreen()
-      )
+      complete: =>
+        this._fadeInContentScreen()
     )
 
   _createCustomer: =>
@@ -200,27 +177,6 @@ class AmoebaSite.CubeScene
           transform: 'translateX(1000px) translateZ(-1000px)'
           opacity: 0
         )
-
-  _createBubbles: =>
-    if not @leftBubble?
-      @leftBubble = $('<div/>')
-        .addClass("left-bubble-box")
-        .appendTo(@el)
-      lb = $('<div/>')
-        .addClass("bubble")
-        .appendTo(@leftBubble)
-
-    if not @rightBubble?
-      @rightBubble = $('<div/>')
-        .addClass("right-bubble-box")
-        .appendTo(@el)
-      rb = $('<div/>')
-        .addClass("bubble")
-        .appendTo(@rightBubble)
-
-
-
-
 
 
 

@@ -14,6 +14,7 @@
     height: 100%;
     padding: 0px;
     background: $backColor;
+    z-index: 1;
 
     border: $borderColor solid 4px;
     @include border-radius($borderRadius);
@@ -30,7 +31,7 @@
     border-color: $backColor transparent;
     display: block;
     width: 0;
-    z-index: 1;
+    z-index: 2;
   }
 
   .bubble:before {
@@ -47,28 +48,8 @@
   }
 }
 
-// --------------------------------------------------------
-// --------------------------------------------------------
-// speech bubbles
-
-.left-bubble-box {
+.bubble-box {
   position: absolute;
-  left: 10px;
-  top: 10px;
-  height: 150px;
-  width: 300px;
   opacity: 0;
-  z-index: 1;
-  @include bubbleMixin();
-}
-
-.right-bubble-box {
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  height: 150px;
-  width: 300px;
-  opacity: 0;
-  z-index: 1;
   @include bubbleMixin();
 }

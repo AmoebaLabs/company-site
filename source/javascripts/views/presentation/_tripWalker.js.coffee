@@ -14,7 +14,7 @@ class AmoebaSite.TripWalker
     this._callCallback()
 
   tearDown: () =>
-    if @container
+    if @container?
       @container.remove()
       @container = undefined
 
