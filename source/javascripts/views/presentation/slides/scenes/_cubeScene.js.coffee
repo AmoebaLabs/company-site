@@ -178,6 +178,62 @@ class AmoebaSite.CubeScene
           opacity: 0
         )
 
+  _rollRollCubeOut:() =>
+    if not @cube3D?
+      return
+
+    @cube3D.css(
+      opacity:1
+    )
+
+    @cube3D.transition(
+      opacity:.3
+      transform: "translateZ(-5200px) rotateX(0deg) rotateY(0deg) rotate(0deg)"
+      duration: AmoebaSite.utils.dur(2000)
+      complete: =>
+        this._rollRollCubeDown()
+    )
+
+  _rollRollCubeDown:() =>
+    if not @cube3D?
+      return
+
+    @cube3D.transition(
+      transform: "translateZ(-5200px) rotateX(0deg) rotateY(720deg) rotate(0deg)"
+      duration: AmoebaSite.utils.dur(6000)
+      complete: =>
+        console.log 'duh'
+    )
+
+  _fadeInContentScreen:() =>
+    this._addContentToCube()
+
+    setTimeout( =>
+      @rotationController = new AmoebaSite.CubeRotationController(@cube3D, =>
+        # controller is done, not needed any longer
+        @rotationController = undefined
+        this._rollRollCubeOut()
+      )
+
+      @rotationController.start()
+    , AmoebaSite.utils.dur(100))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -645,31 +701,4 @@ class AmoebaSite.CubeScene
           this._fadeInContentScreen()
         , AmoebaSite.utils.dur(100))
     )
-
-  _rotationControllerCallback: () =>
-    # controller is done, not needed any longer
-    @rotationController = undefined
-
-    # remove the cube interior girders
-    AmoebaSite.utils.remove(false, true, ['girder'], @container, () =>
-
-      # get the cube back to 0,0,0
-      @cube3D.transition(
-        rotateX: 0
-        rotateY: 0
-        rotate: 0
-        duration: AmoebaSite.utils.dur(1000)
-        complete: =>
-          this._timedTransform(@flatTransforms)
-      )
-    )
-
-  _fadeInContentScreen:() =>
-    this._addContentToCube()
-
-    setTimeout( =>
-      @rotationController = new AmoebaSite.CubeRotationController(@cube3D, this._rotationControllerCallback)
-
-      @rotationController.start()
-    , AmoebaSite.utils.dur(100))
 

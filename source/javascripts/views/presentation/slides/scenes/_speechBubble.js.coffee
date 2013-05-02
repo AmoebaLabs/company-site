@@ -2,7 +2,6 @@ class AmoebaSite.SpeechBubble
   constructor: (@el, @messages, positionCSS, @identifier, @callback) ->
     this._createBubble(positionCSS)
 
-
   tearDown: =>
     if @bubble?
       AmoebaSite.utils.remove(true, true, ['typewriter'], @bubble)
@@ -12,7 +11,6 @@ class AmoebaSite.SpeechBubble
       @bubbleContainer.remove()
       @bubbleContainer = undefined
 
-
   start: =>
     @bubbleContainer.transition(
       opacity: 1
@@ -21,7 +19,6 @@ class AmoebaSite.SpeechBubble
 
     @typewriterIndex = 0
     this._nextTypewriter()
-
 
   _nextTypewriter: =>
     message = @messages.shift()
@@ -44,12 +41,12 @@ class AmoebaSite.SpeechBubble
     else if @callback?
       @callback()
 
-
   _createBubble: (positionCSS) =>
     @bubbleContainer = $('<div/>')
       .addClass("bubble-box")
       .css(positionCSS)
       .appendTo(@el)
+
     @bubble = $('<div/>')
       .addClass("bubble")
       .appendTo(@bubbleContainer)
