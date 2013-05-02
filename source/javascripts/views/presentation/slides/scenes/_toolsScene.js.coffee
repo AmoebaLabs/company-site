@@ -289,22 +289,21 @@ class AmoebaSite.ToolsScene
       @animationTimeout = undefined
 
       # don't continue unless the active slide
-      if @activeSlide
-        switch @animationIndex
-          when 0
-            this._swingLidOpen()
-          when 1
-            this._droptToolsInRocket()
-          when 2
-            this._popoutMascot()
-          when 3
-            this._swingLidClosed()
-          when 4
-            this._blastOffRocket()
-          else
-            this._finalStep()
+      switch @animationIndex
+        when 0
+          this._swingLidOpen()
+        when 1
+          this._droptToolsInRocket()
+        when 2
+          this._popoutMascot()
+        when 3
+          this._swingLidClosed()
+        when 4
+          this._blastOffRocket()
+        else
+          this._finalStep()
 
-        @animationIndex++
+      @animationIndex++
     , delayTime)
 
   _finalStep: =>
@@ -347,12 +346,10 @@ class AmoebaSite.ToolsScene
       easing: 'out'
 
       complete: =>
-        # only continue if we are the activeSlide
-        if @activeSlide
-          if tools.length
-            this._dropOneTool(tools)  # call until empty
-          else
-            this._setNextAnimationTimer()
+        if tools.length
+          this._dropOneTool(tools)  # call until empty
+        else
+          this._setNextAnimationTimer()
     )
 
   _droptToolsInRocket: =>
