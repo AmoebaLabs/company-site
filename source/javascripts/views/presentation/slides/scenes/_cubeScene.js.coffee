@@ -80,7 +80,7 @@ class AmoebaSite.CubeScene
           this._tiltLeft()
       )
 
-    , 500)
+    , AmoebaSite.utils.dur(500))
 
   _tiltLeft: =>
     @cube3D.transition(
@@ -117,17 +117,25 @@ class AmoebaSite.CubeScene
 
     @typewriterIndex += 1
 
-    startTop = 100
+    startTop = 0
 
     if message
       height = 20
       css =
-        left: '50%'
+        padding: 10
+        left: 0
         width: 600 # can't be a percentage
         top: startTop + (height * @typewriterIndex)
         height: height
 
-      typewriter = new AmoebaSite.Typewriter(@el, message, css)
+      # put the typewriter inside the bubble
+      this._createBubbles()
+
+      @leftBubble.css(
+        opacity: 1
+      )
+
+      typewriter = new AmoebaSite.Typewriter(@leftBubble, message, css)
       typewriter.write(this._nextTypewriter)
     else
       this._typewriterDone()
@@ -180,26 +188,6 @@ class AmoebaSite.CubeScene
 
   _createCustomer: =>
     if not @customer?
-
-
-      @leftBubble = $('<div/>')
-        .addClass("left-bubble-box")
-        .appendTo(@el)
-      lb = $('<div/>')
-        .addClass("bubble")
-        .appendTo(@leftBubble)
-
-
-      @rightBubble = $('<div/>')
-        .addClass("right-bubble-box")
-        .appendTo(@el)
-      rb = $('<div/>')
-        .addClass("bubble")
-        .appendTo(@rightBubble)
-
-
-
-
       @customer = $('<img/>')
         .attr(src: '/images/presentation/space_mascot.svg')
         .appendTo(@el)
@@ -213,8 +201,22 @@ class AmoebaSite.CubeScene
           opacity: 0
         )
 
+  _createBubbles: =>
+    if not @leftBubble?
+      @leftBubble = $('<div/>')
+        .addClass("left-bubble-box")
+        .appendTo(@el)
+      lb = $('<div/>')
+        .addClass("bubble")
+        .appendTo(@leftBubble)
 
-
+    if not @rightBubble?
+      @rightBubble = $('<div/>')
+        .addClass("right-bubble-box")
+        .appendTo(@el)
+      rb = $('<div/>')
+        .addClass("bubble")
+        .appendTo(@rightBubble)
 
 
 
@@ -338,7 +340,7 @@ class AmoebaSite.CubeScene
 
     _.each(@cubeFaces, (face, index) =>
       moreCSS =
-        delay: index*theDelay
+        delay: AmoebaSite.utils.dur(index*theDelay)
 
       theCSS = _.extend(moreCSS, transformArray[index])
 
@@ -689,7 +691,7 @@ class AmoebaSite.CubeScene
       complete: =>
         setTimeout( =>
           this._fadeInContentScreen()
-        , 100)
+        , AmoebaSite.utils.dur(100))
     )
 
   _rotationControllerCallback: () =>
@@ -714,127 +716,8 @@ class AmoebaSite.CubeScene
     this._addContentToCube()
 
     setTimeout( =>
-      @rotationController = new AmoebaSite.Presentation.RotationController(@cube3D, this._rotationControllerCallback)
+      @rotationController = new AmoebaSite.CubeRotationController(@cube3D, this._rotationControllerCallback)
 
       @rotationController.start()
-    , 100)
-
-# ===========================================================
-# ===========================================================
-
-class AmoebaSite.Presentation.RotationController
-  constructor: (@cube3D, @callback) ->
-    this._initializeVariables()
-
-  start: () =>
-    this._rotateCube()
-
-  togglePause: () =>
-    @paused = not @paused
-
-    if not @paused
-      this.next()
-
-  next: () =>
-    this._rotateCube(true, true)
-    return true
-
-  previous: () =>
-    if @showingIndex > 0
-      this._rotateCube(false, true)
-      return true
-
-    return false
-
-  _rotateToIndex: (theIndex, fast=false) =>
-    if not @cube3D?
-      return
-
-    @showingIndex = theIndex
-    duration = if fast then 200 else 2000
-
-    r = @rotationSteps[theIndex]
-
-    @cube3D.transition(
-      rotateX: r.x
-      rotateY: r.y
-      rotate: r.z
-      duration: AmoebaSite.utils.dur(duration)
-      complete: =>
-        if not @paused
-          this._rotateCube(true, false)
-    )
-
-  _rotateCube: (forwards = true, fast=false) =>
-      if (@showingIndex == 5)
-        delay = if fast then 0 else 1000
-
-        setTimeout( =>
-          if @callback
-            @callback()
-        ,delay)
-      else
-        delay = if fast then 0 else 400
-
-        setTimeout( =>
-          theIndex = if forwards then @showingIndex + 1 else @showingIndex - 1
-          this._rotateToIndex(theIndex, fast)
-        , delay)
-
-  _initializeVariables: () =>
-    @showingIndex = 0
-    @paused = false
-
-    if AmoebaSite.simpleRotation
-      @rotationSteps = [
-        x:0
-        y:0
-        z:0
-      ,
-        x:0
-        y:-90
-        z:0
-      ,
-        x:0
-        y:-90
-        z:90
-      ,
-        x:0
-        y:-180
-        z:90
-      ,
-        x:-90
-        y:-180
-        z:90
-      ,
-        x:-90
-        y:-180
-        z:180
-      ]
-    else
-      @rotationSteps = [
-        x:0
-        y:0
-        z:0
-      ,
-        x:90
-        y:0
-        z:90
-      ,
-        x:0
-        y:-90
-        z:90
-      ,
-        x:0
-        y:-180
-        z:180
-      ,
-        x:-90
-        y:-180
-        z:90
-      ,
-        x:-90
-        y:-180
-        z:180
-      ]
+    , AmoebaSite.utils.dur(100))
 

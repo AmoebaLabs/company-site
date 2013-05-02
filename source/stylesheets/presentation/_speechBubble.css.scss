@@ -3,25 +3,31 @@
 
 @mixin bubbleMixin()
 {
+  $arrowLocation: 75%;
+  $backColor: rgba(240,240,240,1);
+  $borderColor: rgba(52,52,52,1);
+  $borderRadius: 30px;
+
   .bubble {
     position: relative;
     width: 100%;
     height: 100%;
     padding: 0px;
-    background: #FFFFFF;
-    border: #807F7F solid 4px;
-    @include border-radius(20px);
+    background: $backColor;
+
+    border: $borderColor solid 4px;
+    @include border-radius($borderRadius);
   }
 
   .bubble:after {
     content: "";
     position: absolute;
     bottom: -13px;
-    left: 10%;
+    left: $arrowLocation;
     @include transform(translateX(3px));
     border-style: solid;
     border-width: 14px 14px 0;
-    border-color: #FFFFFF transparent;
+    border-color: $backColor transparent;
     display: block;
     width: 0;
     z-index: 1;
@@ -31,10 +37,10 @@
     content: "";
     position: absolute;
     bottom: -18px;
-    left: 10%;
+    left: $arrowLocation;
     border-style: solid;
     border-width: 17px 17px 0;
-    border-color: #807F7F transparent;
+    border-color: $borderColor transparent;
     display: block;
     width: 0;
     z-index: 0;

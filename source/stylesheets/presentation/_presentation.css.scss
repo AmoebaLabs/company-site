@@ -311,7 +311,7 @@ $blipBorderRadius: $blipSize / 2;
   top: 10px;
   height: 150px;
   width: 300px;
-
+  opacity: 0;
   @include bubbleMixin();
 }
 
@@ -321,5 +321,6 @@ $blipBorderRadius: $blipSize / 2;
   top: 10px;
   height: 150px;
   width: 300px;
+  opacity: 0;
   @include bubbleMixin();
 }

@@ -7,7 +7,7 @@ class AmoebaSite.Presentation.Slide_Home extends AmoebaSB.Slide_Base
   slideIn: (afterTransitionComplete) =>
     if afterTransitionComplete
       @home = new AmoebaSite.HomeScene(@el, =>
-        this._slideIsDone(1000)
+#        this._slideIsDone(1000)
       )
 
   slideOut: (afterTransitionComplete) =>

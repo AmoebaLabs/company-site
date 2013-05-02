@@ -40,7 +40,7 @@ class AmoebaSite.Typewriter
   write: (callback) =>
     @container.transition(
       width: @width
-      duration: 1000
+      duration: AmoebaSite.utils.dur(1000)
 
       complete: =>
         if callback
