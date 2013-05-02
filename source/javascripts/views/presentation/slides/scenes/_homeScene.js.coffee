@@ -74,9 +74,16 @@ class AmoebaSite.HomeScene
 
   _fadeInCube: () =>
     @cube = new AmoebaSite.CubeScene(@el, =>
+      @cube.tearDown()
+      @cube = undefined
+
       @toolsScene = new AmoebaSite.ToolsScene(@el, =>
+        @toolsScene.tearDown()
+        @toolsScene = undefined
+
         @cloudScene = new AmoebaSite.CloudScene(@el, =>
-          console.log 'hello'
+          @cloudScene.tearDown()
+          @cloudScene = undefined
         )
       )
 
