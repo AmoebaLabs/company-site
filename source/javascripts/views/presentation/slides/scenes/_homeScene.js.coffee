@@ -9,6 +9,12 @@ class AmoebaSite.HomeScene
     @cube?.tearDown()
     @cube = undefined
 
+    @toolsScene?.tearDown()
+    @toolsScene = undefined
+
+    @cloudScene?.tearDown()
+    @cloudScene = undefined
+
   _createMascot: =>
     @mascot = $('<img/>')
       .attr(src: '/images/presentation/mascot_noshadow.svg')
@@ -67,41 +73,12 @@ class AmoebaSite.HomeScene
     )
 
   _fadeInCube: () =>
-    @cube = new AmoebaSite.CubeScene(@el, this._cubeCallback)
+    @cube = new AmoebaSite.CubeScene(@el, =>
+      @toolsScene = new AmoebaSite.ToolsScene(@el, =>
+        @cloudScene = new AmoebaSite.CloudScene(@el, =>
+          console.log 'hello'
+        )
+      )
 
-  _cubeCallback: () =>
-    sentence = "As the client hires developers, we include them on our team, at our offices. As integrated team members, our client's develop- ers are trained on the processes, tools and technologies they will need to continue development after version 1.0 and beyond."
-
-    theCSS = AmoebaSite.utils.textCSSForSize(4, 'left')
-    title = AmoebaSite.utils.createTextDiv("Preparing You", theCSS, 'message', @el)
-    theCSS = AmoebaSite.utils.textCSSForSize(1.3, 'left')
-    message = AmoebaSite.utils.createTextDiv(sentence, theCSS, 'message', @el)
-
-    title.css(
-      top:70
-      left: '50%'
+      @toolsScene.start()
     )
-    title.transition(
-      opacity: 1
-      duration: AmoebaSite.utils.dur(800)
-    )
-
-    message.css(
-      top:450
-      left: '50%'
-      width: 450
-    )
-    message.transition(
-      opacity: 1
-      duration: AmoebaSite.utils.dur(800)
-      complete: =>
-        if @callback?
-          @callback()
-    )
-
-
-
-
-
-
-

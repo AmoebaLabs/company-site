@@ -65,7 +65,7 @@ class AmoebaSite.CubeScene
 
   _moveCubeToCenter: =>
     setTimeout(=>
-      AmoebaSite.presentation.setBackground('white')
+      AmoebaSite.presentation.setBackground('default')
 
       # make the cube more fancy
       _.each(@cubeFaces, (face, index) =>
@@ -202,7 +202,8 @@ class AmoebaSite.CubeScene
       transform: "translateY(4000px) translateZ(-5200px) rotateX(0deg) rotateY(720deg) rotate(0deg)"
       duration: AmoebaSite.utils.dur(6000)
       complete: =>
-        console.log 'duh'
+        if @callback?
+          @callback()
     )
 
   _fadeInContentScreen:() =>

@@ -1,5 +1,5 @@
 class AmoebaSite.CloudScene
-  constructor: (parentDiv, @callback) ->
+  constructor: (@el, @callback) ->
     AmoebaSite.presentation.setBackground('blue')
 
     setTimeout(=>
