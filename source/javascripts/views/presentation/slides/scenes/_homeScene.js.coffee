@@ -102,3 +102,11 @@ class AmoebaSite.HomeScene
     # mascot jumps out of top
 
     # rocket flys off
+
+    # making it large so we don't get pixels when scaling up from a smaller size
+    @shipWidth = 600
+    @shipHeight = 1200
+
+    @rocketShip = new AmoebaSite.RocketShip(@el, @shipWidth, @shipHeight)
+    @rocketShip.start()
+

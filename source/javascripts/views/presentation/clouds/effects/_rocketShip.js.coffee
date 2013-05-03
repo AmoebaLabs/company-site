@@ -2,6 +2,9 @@
 class AmoebaSite.RocketShip
   constructor: (parentDiv, @shipWidth, @shipHeight) ->
     @fps = 24
+    @stopped = false
+    @numExpectedCallbacks = 0
+
     this._buildShip(parentDiv)
 
   start: =>
