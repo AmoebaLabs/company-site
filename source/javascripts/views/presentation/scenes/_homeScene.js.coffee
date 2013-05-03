@@ -56,9 +56,9 @@ class AmoebaSite.HomeScene
     # scale and translate x,y to zoom into eyes
     @el.transition(
       opacity:1
-      scale: 25
-      x: 7000
-      y: 1100
+      scale: 10
+      x: 320
+      y: 10
       duration: AmoebaSite.utils.dur(2000)
       complete: =>
         this._hideDiv(@mascot)
