@@ -44,7 +44,7 @@ class AmoebaSite.HomeScene
       )
       .appendTo(@el)
 
-  _hideHomeDivs: (show) =>
+  _hideDiv: (theDiv, show) =>
     @mascot.css(
       display: if show == true then 'block' else 'none'
     )
@@ -61,7 +61,8 @@ class AmoebaSite.HomeScene
       y: 1100
       duration: AmoebaSite.utils.dur(2000)
       complete: =>
-        this._hideHomeDivs()
+        this._hideDiv(@mascot)
+        this._hideDiv(@$planet)
         AmoebaSite.presentation.setBackgroundColor(AmoebaSite.Colors.amoebaGreenMedium)
 
         @el.css(
@@ -85,9 +86,19 @@ class AmoebaSite.HomeScene
           @cloudScene.tearDown()
           @cloudScene = undefined
 
-          this._hideHomeDivs(true)
+          this._hideDiv(@mascot, true)
+          this._hideDiv(@$planet, true)
+
+          this._rocketLandingSequence()
         )
       )
 
       @toolsScene.start()
     )
+
+  _rocketLandingSequence: =>
+    # move rocket down
+
+    # mascot jumps out of top
+
+    # rocket flys off

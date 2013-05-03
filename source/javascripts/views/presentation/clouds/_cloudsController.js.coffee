@@ -147,7 +147,7 @@ class AmoebaSite.CloudsController
     @fallingClouds = new AmoebaSite.FallingClouds(@viewPort, @fps)
 
   _showRocketShip: () =>
-    @rocketShip = new AmoebaSite.RocketShip(@viewPort, @fps, (animationStep) =>
+    @rocketShip = new AmoebaSite.RocketShipAnimation(@viewPort, @fps, (animationStep) =>
       # break out if we have been torn down
       if @stopped
         return

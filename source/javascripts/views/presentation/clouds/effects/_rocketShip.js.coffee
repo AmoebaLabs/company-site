@@ -1,25 +1,36 @@
 
-class AmoebaSite.RocketShip extends AmoebaSite.EffectsBase
-  # called from base classes constructor
-  setup:() =>
+class AmoebaSite.RocketShip
+  constructor: (parentDiv, @shipWidth, @shipHeight) ->
+    @fps = 24
+    this._buildShip(parentDiv)
 
-    @duration = 4000
+  start: =>
+    this._startShakeAnimation()
+    this._startExhaustAnimation()
 
-    # making it large so we don't get pixels when scaling up from a smaller size
-    @shipWidth = 600
-    @shipHeight = 1200
+  tearDown: =>
+    @rocketShip?.remove()
+    @rocketShip = undefined
 
-    # should make rocket go between some clouds
-    @rocketZ = '1px'
-    @rocketZInFront = '200px'
-    fragment = document.createDocumentFragment();
+  css: (theParams) =>
+    @rocketShip.css(theParams)
+    return this # chainable
 
-    this._buildShip(fragment)
+  transition: (theParams) =>
+    @rocketShip.transition(theParams)
+    return this # chainable
 
-    @containerDiv[0].appendChild(fragment);
+  _startShakeAnimation: =>
+    # shake rocket to look more real
+    @shipDiv.css(
+      transformOrigin: '50% 0%'
+    )
 
-    this._runShipAnimation()
+    @shipDiv.keyframe('rocketShake', 100, 'linear', 0, 'Infinite', 'normal', () =>
+      @shipDiv.css(AmoebaSB.keyframeAnimationPlugin.animationProperty, '')
+    )
 
+  _startExhaustAnimation: =>
     delay = 0
     _.each(@exhaustClouds, (cloud, index) =>
       this._runExhaustAnimation(cloud, delay)
@@ -109,20 +120,30 @@ class AmoebaSite.RocketShip extends AmoebaSite.EffectsBase
       new AmoebaSite.Cloud(parentDiv, AmoebaSite.textures.weightedTextures('bay'), @fps)
     ]
 
-  # =======================================================================================
-  # =======================================================================================
-  # Rocket Animation
+
+class AmoebaSite.RocketShipAnimation extends AmoebaSite.EffectsBase
+  # called from base classes constructor
+  setup:() =>
+
+    @duration = AmoebaSite.utils.dur(4000)
+
+    # making it large so we don't get pixels when scaling up from a smaller size
+    @shipWidth = 600
+    @shipHeight = 1200
+
+    # should make rocket go between some clouds
+    @rocketZ = '1px'
+    @rocketZInFront = '200px'
+    fragment = document.createDocumentFragment();
+
+    @rocketShip = new AmoebaSite.RocketShip(fragment, @shipWidth, @shipHeight)
+    @rocketShip.start()
+
+    @containerDiv[0].appendChild(fragment);
+
+    this._runShipAnimation()
 
   _runShipAnimation: () =>
-    # shake rocket to look more real
-    @shipDiv.css(
-      transformOrigin: '50% 0%'
-    )
-
-    @shipDiv.keyframe('rocketShake', 100, 'linear', 0, 'Infinite', 'normal', () =>
-      @shipDiv.css(AmoebaSB.keyframeAnimationPlugin.animationProperty, '')
-    )
-
     steps = [this._rocketStep1, this._rocketStep2, this._rocketStep3, this._rocketStep4, this._rocketStep5]
 
     this._runRocketAnimations(steps)
