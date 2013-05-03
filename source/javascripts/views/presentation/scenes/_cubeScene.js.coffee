@@ -87,23 +87,26 @@ class AmoebaSite.CubeScene
       transform: 'translateZ(-1000px) rotateX(-15deg) rotateY(-15deg) rotate(0deg)'
       duration: AmoebaSite.utils.dur(1000)
       complete: =>
-        @typeWriterMode = 1
-        this._typewriter()
+        this._typewriter(1)
     )
 
-  _typewriter: =>
-    if @typeWriterMode == 1
+  _typewriter: (conversationIndex) =>
+    left = 10
+
+    if conversationIndex == 1
       messages = [
         "Hi, I’m Amoeba"
         "I work with early stage technology companies"
         "to transform their idea into a minimum viable product"
       ]
-    else if @typeWriterMode == 2
+    else if conversationIndex == 2
       messages = [
         "Get it done in weeks, not months"
         "( or god forbid, years )"
       ]
     else
+      left = 500
+
       messages = [
         'How the fuck is this possible?'
         "I don't believe it."
@@ -111,22 +114,21 @@ class AmoebaSite.CubeScene
 
     positionCSS =
       top: 10
-      left: 10
+      left: left
       height: 100
-      width: 300
+      width: 400
 
-    @speechBubble = new AmoebaSite.SpeechBubble(@el, messages, positionCSS, 42, this._typewriterDone)
+    @speechBubble = new AmoebaSite.SpeechBubble(@el, messages, positionCSS, conversationIndex, this._speechBubbleCallback)
     @speechBubble.start()
 
-  _typewriterDone: =>
-
+  _speechBubbleCallback: (conversationIndex) =>
     if @speechBubble?
       @speechBubble.tearDown()
       @speechBubble = undefined
 
-    if @typeWriterMode == 1
+    if conversationIndex == 1
       this._tiltRight()
-    else if @typeWriterMode == 2
+    else if conversationIndex == 2
       this._slideInCustomer()
     else
       this._slideOutCustomer()
@@ -136,8 +138,8 @@ class AmoebaSite.CubeScene
       transform: 'translateZ(-500px) rotateX(-375deg) rotateY(15deg) rotate(0deg)'
       duration: AmoebaSite.utils.dur(1000)
       complete: =>
-        @typeWriterMode = 2
-        this._typewriter();
+        conversationIndex = 2
+        this._typewriter(2);
     )
 
   _slideInCustomer: =>
@@ -149,8 +151,7 @@ class AmoebaSite.CubeScene
       duration: AmoebaSite.utils.dur(3000)
 
       complete: =>
-        @typeWriterMode = 3
-        this._typewriter();
+        this._typewriter(3);
     )
 
   _slideOutCustomer: =>
