@@ -9,7 +9,8 @@ class AmoebaSite.Views.Presentation extends Amoeba.View
 
   showView: () ->
     if not AmoebaSite.presentation?
-      AmoebaSite.presentation = new AmoebaSite.Presentation.Controller()
+      AmoebaSite.presentation = new AmoebaSite.SceneController(@$el)
+      AmoebaSite.presentation.start()
 
     @$el.disolveIn()
 

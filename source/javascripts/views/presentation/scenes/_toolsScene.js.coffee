@@ -19,14 +19,11 @@ class AmoebaSite.ToolsScene
     this._createMascot()
 
   start: =>
-    # delay a bit and then show stuff
-    setTimeout =>
-      this._showTools()
-      this._showTitle()
-      this._showInfo()
-      this._showRocket()
-      this._setNextAnimationTimer()
-    , 100
+    this._showTools()
+    this._showTitle()
+    this._showInfo()
+    this._showRocket()
+    this._setNextAnimationTimer()
 
   tearDown: =>
     # cancel the animation timers if set to run
