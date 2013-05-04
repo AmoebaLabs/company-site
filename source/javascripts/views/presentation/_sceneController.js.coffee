@@ -55,7 +55,6 @@ class AmoebaSite.SceneController
           theDiv.remove()
       )
 
-
   _setPresentationBackgroundColor: (backgroundColor, backgroundClass) =>
     theDiv = $("#presentation")
 
