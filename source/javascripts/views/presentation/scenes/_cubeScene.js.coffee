@@ -45,14 +45,6 @@ class AmoebaSite.CubeScene
 
     return false
 
-
-
-
-
-
-
-
-
   _bounceInEyes: =>
     sideDiv = @cubeFaces[5]
     eyesImage = AmoebaSite.utils.createImageDiv('/images/presentation/eyes.svg', 'cube', 300, sideDiv)
@@ -219,27 +211,6 @@ class AmoebaSite.CubeScene
 
       @rotationController.start()
     , AmoebaSite.utils.dur(100))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   _setupCube: =>
     css =
