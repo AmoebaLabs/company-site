@@ -4,19 +4,13 @@ class AmoebaSite.Presentation.Slide_Computer extends AmoebaSB.Slide_Base
     this._setupElement("computerSlide")
     @transition = 'zoom'
     this._createDivs()
-    @mascot = new AmoebaSite.MascotController
 
   slideIn: (afterTransitionComplete) =>
     if afterTransitionComplete
       this._start()
 
-      # make sure mascot comes back if entering presenation and is removed in other cases
-      @mascot.slideIn()
-
   slideOut: (afterTransitionComplete) =>
-    if !afterTransitionComplete
-      @mascot.zoomOut()
-    else
+    if afterTransitionComplete
       # reset stuff back to invisible
       @message.css(
         opacity: 0

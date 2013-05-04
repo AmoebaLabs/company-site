@@ -246,23 +246,8 @@ class AmoebaSite.CubeScene
     )
 
   _addContentToCube: () =>
-    _.each(@cubeFaces, (theDiv, index) =>
-      switch (index)
-        when 0
-          this._buildCubeSize0(theDiv)
-        when 1
-          this._buildCubeSize1(theDiv)
-        when 2
-          this._buildCubeSize2(theDiv)
-        when 3
-          this._buildCubeSize3(theDiv)
-        when 4
-          this._buildCubeSize4(theDiv)
-        when 5
-#          this._buildCubeSize5(theDiv)
-        else
-          console.log 'bad index'
-    )
+    this._buildCubeSize0(@cubeFaces[0])
+    this._buildCubeSize4(@cubeFaces[1])
 
   _buildInnerCube: () =>
     transforms = this._girderTransform()
@@ -400,13 +385,9 @@ class AmoebaSite.CubeScene
         @callback()
 
   _buildCubeSize0: (sideDiv) =>
-    # message
-    theCSS = AmoebaSite.utils.textCSSForSize(4, 'left')
-    title = AmoebaSite.utils.createTextDiv("Great Software\nPhilosophy", theCSS, null, sideDiv)
-
-    sentence = 'Building great software is a delicate balance of creative vision, architecture, and engineering.'
-    theCSS = AmoebaSite.utils.textCSSForSize(1.3, 'left')
-    message = AmoebaSite.utils.createTextDiv(sentence, theCSS, null, sideDiv)
+    sentence = "Building great software doesn't have to be rocket science."
+    theCSS = AmoebaSite.utils.textCSSForSize(2.3, 'left')
+    title = AmoebaSite.utils.createTextDiv(sentence, theCSS, null, sideDiv)
 
     title.transition(
       top: 80
@@ -417,162 +398,12 @@ class AmoebaSite.CubeScene
       opacity: 1
       duration: AmoebaSite.utils.dur(400)
     )
-    message.transition(
-      top: 260
-      left: 20
-
-      color: 'white'
-      height: 80
-      width: 500
-      opacity: 1
-      duration: AmoebaSite.utils.dur(400)
-    )
 
     # image at bottom
-    scaleImage = AmoebaSite.utils.createImageDiv('/images/presentation/scale.svg', 'cube', 200, sideDiv)
+    scaleImage = AmoebaSite.utils.createImageDiv('/images/presentation/rocket.svg', 'cube', 200, sideDiv)
     scaleImage.transition(
       top: 'auto' # unset top set in createImageDiv
       bottom: 0
-      opacity: 1
-      duration: AmoebaSite.utils.dur(400)
-    )
-
-  _buildCubeSize1: (sideDiv) =>
-    # message
-    theCSS = AmoebaSite.utils.textCSSForSize(4, 'left')
-    title = AmoebaSite.utils.createTextDiv("Logic Driven", theCSS, null, sideDiv)
-    sentence = 'We build software in an agile way, ensuring that we only build the minimum product for each iteration. This allows us to constantly design, engineer, and finally get feedback on the product.'
-
-    theCSS = AmoebaSite.utils.textCSSForSize(1.3, 'left')
-    message = AmoebaSite.utils.createTextDiv(sentence, theCSS, null, sideDiv)
-
-    title.transition(
-      top: 20
-      left: 20
-      color: 'white'
-      height: 200
-      width: 500
-      opacity: 1
-      duration: AmoebaSite.utils.dur(400)
-    )
-    message.transition(
-      top: 120
-      left: 20
-
-      color: 'white'
-      height: 80
-      width: 500
-      opacity: 1
-      duration: AmoebaSite.utils.dur(400)
-    )
-
-    scaleImage = AmoebaSite.utils.createImageDiv('/images/presentation/gear.svg', 'cube', 160, sideDiv)
-    scaleImage.transition(
-      top: 'auto' # unset top set in createImageDiv
-      bottom: 110
-      left: 80
-      opacity: 1
-      duration: AmoebaSite.utils.dur(400)
-    )
-
-    scaleImage = AmoebaSite.utils.createImageDiv('/images/presentation/gear.svg', 'cube', 160, sideDiv)
-    scaleImage.transition(
-      top: 'auto' # unset top set in createImageDiv
-      bottom: 0
-      opacity: 1
-      duration: AmoebaSite.utils.dur(400)
-    )
-
-    scaleImage = AmoebaSite.utils.createImageDiv('/images/presentation/gear.svg', 'cube', 160, sideDiv)
-    scaleImage.transition(
-      top: 'auto' # unset top set in createImageDiv
-      left: 'auto'
-      right: 80
-      bottom: 110
-      opacity: 1
-      duration: AmoebaSite.utils.dur(400)
-    )
-
-  _buildCubeSize2: (sideDiv) =>
-    # message
-    theCSS = AmoebaSite.utils.textCSSForSize(4, 'left')
-    title = AmoebaSite.utils.createTextDiv("Data Driven", theCSS, null, sideDiv)
-
-    sentence = 'We like to involve the stakeholders as well as actual users in our process, to validate our assumptions, and drive the product development. In designing a MVP we collect and use user data early in the process to help shape product decisions. Grow at different rates'
-    theCSS = AmoebaSite.utils.textCSSForSize(1.3, 'left')
-    message = AmoebaSite.utils.createTextDiv(sentence, theCSS, null, sideDiv)
-
-    title.transition(
-      top: 20
-      left: 20
-      color: 'white'
-      height: 200
-      width: 500
-      opacity: 1
-      duration: AmoebaSite.utils.dur(400)
-    )
-    message.transition(
-      top: 120
-      left: 20
-
-      color: 'white'
-      height: 80
-      width: 500
-      opacity: 1
-      duration: AmoebaSite.utils.dur(400)
-    )
-
-    graph1 = this._buildGraphDiv(100, "#{AmoebaSite.Colors.amoebaGreenDark}", sideDiv)
-    graph2 = this._buildGraphDiv(220, "#{AmoebaSite.Colors.amoebaGreen}", sideDiv)
-    graph3 = this._buildGraphDiv(340, "white", sideDiv)
-
-    # add infinite animations
-    graph1.keyframe('barGraphMover', 8000, 'linear', 2000, 'Infinite', 'alternate', () =>
-      graph1.css(AmoebaSB.keyframeAnimationPlugin.animationProperty, '')
-    )
-    graph2.keyframe('barGraphMover', 8000, 'linear', 0, 'Infinite', 'alternate', () =>
-      graph2.css(AmoebaSB.keyframeAnimationPlugin.animationProperty, '')
-    )
-    graph3.keyframe('barGraphMover', 8000, 'linear', 4320, 'Infinite', 'alternate', () =>
-      graph3.css(AmoebaSB.keyframeAnimationPlugin.animationProperty, '')
-    )
-
-  _buildCubeSize3: (sideDiv) =>
-    # message
-    theCSS = AmoebaSite.utils.textCSSForSize(4, 'left')
-    title = AmoebaSite.utils.createTextDiv("Process", theCSS, null, sideDiv)
-
-    sentence = 'We work on an idea until a viable product merges through our lean iterative approach.'
-    theCSS = AmoebaSite.utils.textCSSForSize(1.3, 'left')
-    message = AmoebaSite.utils.createTextDiv(sentence, theCSS, null, sideDiv)
-
-    lightBulb = AmoebaSite.utils.createImageDiv('/images/presentation/lightbulb.svg', null, 300, sideDiv)
-
-    title.transition(
-      top: 20
-      left: 20
-      color: 'white'
-      height: 200
-      width: 500
-      opacity: 1
-      duration: AmoebaSite.utils.dur(400)
-    )
-    message.transition(
-      top: 120
-      left: 20
-
-      color: 'white'
-      height: 80
-      width: 500
-      opacity: 1
-      duration: AmoebaSite.utils.dur(400)
-    )
-
-    lightBulb.transition(
-      top: 200
-      left: 200
-
-      color: 'white'
       opacity: 1
       duration: AmoebaSite.utils.dur(400)
     )
@@ -617,27 +448,6 @@ class AmoebaSite.CubeScene
         width: "100%"
         color: 'black'
       )
-
-  _buildCubeSize5: (sideDiv) =>
-    eyesImage = AmoebaSite.utils.createImageDiv('/images/presentation/eyes.svg', 'cube', 300, sideDiv)
-    eyesImage.transition(
-      opacity: 1
-      duration: AmoebaSite.utils.dur(1000)
-    )
-
-  _buildGraphDiv: (left, color, parentDiv) =>
-    result = $('<div/>')
-      .appendTo(parentDiv)
-      .css(
-        position: 'absolute'
-        height: 200
-        width: 100
-        bottom: 30
-        left: left
-        backgroundColor: color
-      )
-
-    return result
 
   _cubeDownToScreen:() =>
     if not @cube3D?
