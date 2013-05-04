@@ -86,6 +86,8 @@ class AmoebaSite.HomeScene
           @cloudScene.tearDown()
           @cloudScene = undefined
 
+          AmoebaSite.presentation.setBackground('black')
+
           this._hideDiv(@mascot, true)
           this._hideDiv(@$planet, true)
 
