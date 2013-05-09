@@ -43,9 +43,6 @@ page "/team/index.html", :proxy => "/index.html"
 
 # presentation routing, not sure if this is the best way
 page "/presentation/index.html", :proxy => "/index.html"
-(0..15).each do |x|
-  page "/presentation/#{x}", :proxy => "/index.html"
-end
 
 # 404 page, has no layout to avoid the JS router and such
 page "/404.html", :layout => false
