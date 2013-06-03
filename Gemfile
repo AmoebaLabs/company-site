@@ -1,6 +1,6 @@
 source :rubygems
 
-gem "middleman", "3.0.13"
+gem "middleman", "~> 3.0.14"
 
 # Compresses PNGs
 gem "middleman-smusher", "~> 3.0.0"
