@@ -2,7 +2,6 @@
 #= require_directory ./homepage
 
 class AmoebaSite.Views.Homepage extends Amoeba.View
-  events: 'click #mobile-button': 'toggleMobileNav'
   animationTime: 1000
   el: '#homepage'
 
@@ -13,6 +12,7 @@ class AmoebaSite.Views.Homepage extends Amoeba.View
       team: @_render 'Homepage.Team'
 
     @mascot = @_render 'Homepage.Mascot'
+    @header = @_render 'Homepage.Header'
 
   transition: (to) ->
     return if @currentSubView and @currentSubView.name is to
@@ -22,15 +22,6 @@ class AmoebaSite.Views.Homepage extends Amoeba.View
     from = if @currentSubView then @currentSubView.name else 'none'
     @currentSubView = @subViews[to]
     @currentSubView.transitionIn?(from)
-
-  toggleMobileNav: ->
-    $("#mobile-nav").slideToggle(@animationTime)
-
-  showHeader: (animationTime = 0) ->
-    $("#header").slideDown(animationTime)
-
-  hideHeader: (animationTime = 0) ->
-    $("#header").slideUp(animationTime)
 
   showFooter: (animationTime = 0) ->
     $("#footer").disolveIn(animationTime)

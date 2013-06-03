@@ -12,7 +12,7 @@ class AmoebaSite.Views.Homepage.Team extends Amoeba.View
     @helpers.scrollToTop(animationTime) if animationTime > 0
 
     # Slide in the header (nav) bar
-    @parent.showHeader(animationTime)
+    @parent.header.showHeader(animationTime)
 
     @parent.mascot.hide(animationTime)
 

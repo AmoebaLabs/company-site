@@ -27,7 +27,7 @@ class AmoebaSite.Views.Homepage.Contactus extends Amoeba.View
       easing: 'ease-in'
 
     # Slide in Header
-    @parent.showHeader(animationTime)
+    @parent.header.showHeader(animationTime)
 
   transitionOut: (to) ->
     animationTime = @parent.animationTime
