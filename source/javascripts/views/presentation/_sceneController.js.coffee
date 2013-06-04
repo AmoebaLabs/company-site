@@ -3,7 +3,7 @@
 class AmoebaSite.SceneController
   constructor: (@el) ->
     AmoebaSB.layout ?= new AmoebaSB.SlideLayout($("#stage"), $('#stageHolder'))
-    @backgroundColorClasses = 'white black blue green, none'
+    @backgroundColorClasses = 'white black blue green none'
 
   start: =>
     this.setBackground('default')
