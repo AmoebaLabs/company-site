@@ -6,6 +6,8 @@ class AmoebaSite.Views.Homepage extends Amoeba.View
   el: '#homepage'
 
   initialize: ->
+    @tch = new AmoebaSite.Helpers.transitionCallbackHelper(this._transitionCompleteCallback)
+
     @subViews =
       home: @_render 'Homepage.Home'
       contactus: @_render 'Homepage.Contactus'
@@ -15,22 +17,21 @@ class AmoebaSite.Views.Homepage extends Amoeba.View
     @header = @_render 'Homepage.Header'
 
   transition: (to) ->
-    # to avoid problems of clicking too fast on header buttons there is a check to make sure they are spaced by a second
-    if @justClicked
+    # don't do anything if busy
+    if @tch.busy()
       @delayedTransitionToValue = to
-    else
-      @justClicked = true
-      this._transition(to)
+      return
 
-      setTimeout(=>
-        @justClicked = false
+    from = this.currentPageName()
+    return if from == to
 
-        if @delayedTransitionToValue
-          delayedTo = @delayedTransitionToValue
-          @delayedTransitionToValue = null
+    @currentSubView?.transitionOut?(to)
 
-          this.transition(delayedTo)
-      , 2000)
+    @currentSubView = @subViews[to]
+    @currentSubView.transitionIn?(from, @tch)
+
+    # show or hide header depending on state
+    @header.adjustHeader()
 
   currentPageName: ->
     return if @currentSubView then @currentSubView.name else 'none'
@@ -41,14 +42,9 @@ class AmoebaSite.Views.Homepage extends Amoeba.View
   hideFooter: (animationTime = 0) ->
     $("#footer").disolveOut(animationTime)
 
-  _transition: (to) ->
-    from = this.currentPageName()
-    return if from == to
+  _transitionCompleteCallback: () =>
+    if @delayedTransitionToValue
+      delayedTo = @delayedTransitionToValue
+      @delayedTransitionToValue = null
 
-    @currentSubView?.transitionOut?(to)
-
-    @currentSubView = @subViews[to]
-    @currentSubView.transitionIn?(from)
-
-    # show or hide header depending on state
-    @header.adjustHeader()
+      this.transition(delayedTo)
