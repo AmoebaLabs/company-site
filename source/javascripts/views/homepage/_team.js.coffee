@@ -11,9 +11,6 @@ class AmoebaSite.Views.Homepage.Team extends Amoeba.View
     # Scroll to top if we're animating (not an initial page load)
     @helpers.scrollToTop(animationTime) if animationTime > 0
 
-    # Slide in the header (nav) bar
-    @parent.header.showHeader(animationTime)
-
     @parent.mascot.hide(animationTime)
 
     # Show team, after a delay

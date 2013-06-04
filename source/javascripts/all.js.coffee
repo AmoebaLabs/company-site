@@ -1,5 +1,6 @@
 #= require jquery-1.8.2
 #= require jquery.transit
+#= require enquire
 #= require amoeba-js
 #= require_self
 #= require_tree ./lib

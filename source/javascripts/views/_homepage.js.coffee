@@ -19,9 +19,15 @@ class AmoebaSite.Views.Homepage extends Amoeba.View
 
     @currentSubView?.transitionOut?(to)
 
-    from = if @currentSubView then @currentSubView.name else 'none'
+    from = this.currentPageName()
     @currentSubView = @subViews[to]
     @currentSubView.transitionIn?(from)
+
+    # show or hide header depending on state
+    @header.adjustHeader()
+
+  currentPageName: ->
+    return if @currentSubView then @currentSubView.name else 'none'
 
   showFooter: (animationTime = 0) ->
     $("#footer").disolveIn(animationTime)
