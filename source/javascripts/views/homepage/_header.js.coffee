@@ -1,5 +1,4 @@
 class AmoebaSite.Views.Homepage.Header extends Amoeba.View
-  animationTime: 1000
   el: '#header'
   events:
     'click #mobile-button': '_toggleMobileNav'
@@ -18,7 +17,7 @@ class AmoebaSite.Views.Homepage.Header extends Amoeba.View
     )
 
   _toggleMobileNav: ->
-    $("#mobile-nav").slideToggle(@animationTime)
+    $("#mobile-nav").slideToggle(@parent.animationTime)
 
   adjustHeader: () =>
     # header always shows the header
