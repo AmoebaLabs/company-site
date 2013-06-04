@@ -5,6 +5,8 @@ class AmoebaSite.Views.Homepage.Header extends Amoeba.View
     'click #mobile-button': '_toggleMobileNav'
 
   initialize: ->
+    this._setupMobileNavClickHandler()
+
     @mobileMode = false
     enquire.register("screen and (max-width: 760px)",   # see _util.css.scss - this is mobile
       match: =>
@@ -38,3 +40,14 @@ class AmoebaSite.Views.Homepage.Header extends Amoeba.View
     @mobileMode = mobile
 
     this.adjustHeader()
+
+  _setupMobileNavClickHandler: () ->
+    $("html").click (e) ->   # using html rather than body since you could click outside the body and we want to work always
+      if e.target
+        targ = $(e.target)
+        if targ.hasClass('mobile-nav-button')
+          $("#mobile-nav").hide()
+        else
+          # hide on everything except clicking the button to show the menu
+          if targ.parent().attr('id') != 'mobile-button'
+            $("#mobile-nav").hide()
