@@ -88,7 +88,7 @@ GEM
       sprockets-sass (~> 1.0.0)
     mini_magick (3.6.0)
       subexec (~> 0.2.1)
-    multi_json (1.7.5)
+    multi_json (1.7.6)
     padrino-core (0.10.7)
       activesupport (~> 3.2.0)
       http_router (~> 0.10.2)

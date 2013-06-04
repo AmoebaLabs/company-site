@@ -2,7 +2,6 @@
 #= require_directory ./homepage
 
 class AmoebaSite.Views.Homepage extends Amoeba.View
-  events: 'click #mobile-button': 'toggleMobileNav'
   animationTime: 1000
   el: '#homepage'
 
@@ -13,24 +12,28 @@ class AmoebaSite.Views.Homepage extends Amoeba.View
       team: @_render 'Homepage.Team'
 
     @mascot = @_render 'Homepage.Mascot'
+    @header = @_render 'Homepage.Header'
 
   transition: (to) ->
-    return if @currentSubView and @currentSubView.name is to
+    # to avoid problems of clicking too fast on header buttons there is a check to make sure they are spaced by a second
+    if @justClicked
+      @delayedTransitionToValue = to
+    else
+      @justClicked = true
+      this._transition(to)
 
-    @currentSubView?.transitionOut?(to)
+      setTimeout(=>
+        @justClicked = false
 
-    from = if @currentSubView then @currentSubView.name else 'none'
-    @currentSubView = @subViews[to]
-    @currentSubView.transitionIn?(from)
+        if @delayedTransitionToValue
+          delayedTo = @delayedTransitionToValue
+          @delayedTransitionToValue = null
 
-  toggleMobileNav: ->
-    $("#mobile-nav").slideToggle(@animationTime)
+          this.transition(delayedTo)
+      , 2000)
 
-  showHeader: (animationTime = 0) ->
-    $("#header").slideDown(animationTime)
-
-  hideHeader: (animationTime = 0) ->
-    $("#header").slideUp(animationTime)
+  currentPageName: ->
+    return if @currentSubView then @currentSubView.name else 'none'
 
   showFooter: (animationTime = 0) ->
     $("#footer").disolveIn(animationTime)
@@ -38,18 +41,14 @@ class AmoebaSite.Views.Homepage extends Amoeba.View
   hideFooter: (animationTime = 0) ->
     $("#footer").disolveOut(animationTime)
 
-  showView: () ->
-    @mascot.show()
-    @$el.disolveIn()
+  _transition: (to) ->
+    from = this.currentPageName()
+    return if from == to
 
-  hideView: () ->
-    @mascot.hide()
-    @$el.disolveOut()
+    @currentSubView?.transitionOut?(to)
 
-    # hiding stuff, not sure if this is the best way or not
-    this.hideHeader()
-    this.hideFooter()
+    @currentSubView = @subViews[to]
+    @currentSubView.transitionIn?(from)
 
-    # setting this to undefined so next time it's shown and transition is called it should set things up properly
-    @currentSubView = undefined
-
+    # show or hide header depending on state
+    @header.adjustHeader()

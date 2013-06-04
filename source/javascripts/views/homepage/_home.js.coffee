@@ -15,7 +15,6 @@ class AmoebaSite.Views.Homepage.Home extends Amoeba.View
     # When from is 'none' this is an initial page load, so animate instantly
     animationTime = if from is 'none' then 0 else @parent.animationTime
 
-    @parent.hideHeader(animationTime) # Coming from contactus, get rid of header
     @helpers.scrollToTop(animationTime)
     @showCapabilities(animationTime)
     @parent.showFooter(animationTime)
