@@ -15,16 +15,22 @@ class AmoebaSite.Views.Homepage extends Amoeba.View
     @header = @_render 'Homepage.Header'
 
   transition: (to) ->
-    return if @currentSubView and @currentSubView.name is to
+    # to avoid problems of clicking too fast on header buttons there is a check to make sure they are spaced by a second
+    if @justClicked
+      @delayedTransitionToValue = to
+    else
+      @justClicked = true
+      this._transition(to)
 
-    @currentSubView?.transitionOut?(to)
+      setTimeout(=>
+        @justClicked = false
 
-    from = this.currentPageName()
-    @currentSubView = @subViews[to]
-    @currentSubView.transitionIn?(from)
+        if @delayedTransitionToValue
+          delayedTo = @delayedTransitionToValue
+          @delayedTransitionToValue = null
 
-    # show or hide header depending on state
-    @header.adjustHeader()
+          this.transition(delayedTo)
+      , 2000)
 
   currentPageName: ->
     return if @currentSubView then @currentSubView.name else 'none'
@@ -34,3 +40,15 @@ class AmoebaSite.Views.Homepage extends Amoeba.View
 
   hideFooter: (animationTime = 0) ->
     $("#footer").disolveOut(animationTime)
+
+  _transition: (to) ->
+    from = this.currentPageName()
+    return if from == to
+
+    @currentSubView?.transitionOut?(to)
+
+    @currentSubView = @subViews[to]
+    @currentSubView.transitionIn?(from)
+
+    # show or hide header depending on state
+    @header.adjustHeader()
