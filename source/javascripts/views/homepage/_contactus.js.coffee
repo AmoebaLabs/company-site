@@ -4,7 +4,7 @@ class AmoebaSite.Views.Homepage.Contactus extends Amoeba.View
   events:
     'submit #contact-form': 'submitForm'
 
-  transitionIn: (from) ->
+  transitionIn: (from, tch) ->
     animationTime = if from is 'none' then 0 else @parent.animationTime
 
     @helpers.scrollToTop(animationTime)
@@ -25,6 +25,7 @@ class AmoebaSite.Views.Homepage.Contactus extends Amoeba.View
       rotateY: '0deg'
       duration: animationTime
       easing: 'ease-in'
+      complete: tch.callback()
 
   transitionOut: (to) ->
     animationTime = @parent.animationTime

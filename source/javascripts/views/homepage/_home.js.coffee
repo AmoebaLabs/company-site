@@ -8,33 +8,30 @@ class AmoebaSite.Views.Homepage.Home extends Amoeba.View
     ,(e) =>
       $(this).find('.rollover').fadeIn(@parent.animationTime)
 
-    @parent.on('hideCapabilities:home', @hideCapabilities)
-    @parent.on('showCapabilities:home', @showCapabilities)
-
-  transitionIn: (from) ->
+  transitionIn: (from, tch) ->
     # When from is 'none' this is an initial page load, so animate instantly
     animationTime = if from is 'none' then 0 else @parent.animationTime
 
     @helpers.scrollToTop(animationTime)
-    @showCapabilities(animationTime)
+    @_showCapabilities(animationTime)
     @parent.showFooter(animationTime)
     @parent.mascot.show(animationTime)
-    @showLogo(animationTime)
+    @_showLogo(animationTime, tch)
 
   transitionOut: (to) ->
     animationTime = @parent.animationTime
 
-    @hideCapabilities(animationTime)
-    @hideLogo(animationTime)
+    @_hideCapabilities(animationTime)
+    @_hideLogo(animationTime)
 
-  showCapabilities: (animationTime = 0) ->
+  _showCapabilities: (animationTime = 0) ->
     @$(".capabilities").disolveIn(animationTime)
 
-  hideCapabilities: (animationTime = 0) ->
+  _hideCapabilities: (animationTime = 0) ->
     @$(".capabilities").disolveOut(animationTime)
 
-  showLogo: (animationTime = 0) ->
-    @$("#logo").disolveIn(animationTime)
+  _showLogo: (animationTime, tch) ->
+    @$("#logo").disolveIn(animationTime, tch.callback())
 
-  hideLogo: (animationTime = 0) ->
+  _hideLogo: (animationTime) ->
     @$("#logo").disolveOut(animationTime)
