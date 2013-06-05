@@ -83,19 +83,25 @@ class AmoebaSite.HomeScene
         @toolsScene = undefined
 
         @cloudScene = new AmoebaSite.CloudScene(@el, =>
-          @cloudScene.tearDown()
-          @cloudScene = undefined
-
-#          AmoebaSite.presentation.setBackground('black')
-#
-#          this._hideDiv(@mascot, true)
-#          this._hideDiv(@$planet, true)
-
-          # we're done, call the callback
-          this.callback?()
+          # keep the clouds on for a few seconds
+          setTimeout(=>
+            this.sequenceDone()
+          , 2000)
         )
       )
 
       @toolsScene.start()
     )
+
+  sequenceDone: =>
+    # old shit, throw away if not used
+    #          @cloudScene.tearDown()
+    #          @cloudScene = undefined
+    #          AmoebaSite.presentation.setBackground('black')
+    #          this._hideDiv(@mascot, true)
+    #          this._hideDiv(@$planet, true)
+
+    # we're done, call the callback
+    this.callback?()
+
 

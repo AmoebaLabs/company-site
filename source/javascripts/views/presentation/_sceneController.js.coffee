@@ -10,8 +10,6 @@ class AmoebaSite.SceneController
 
     @home = new AmoebaSite.HomeScene(@el.find('#content'), =>
       $("body").trigger("switchToPresentation", [false])
-
-      console.log 'home callback called'
     )
 
   tearDown: =>
