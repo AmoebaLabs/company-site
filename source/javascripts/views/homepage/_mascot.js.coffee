@@ -27,4 +27,4 @@ class AmoebaSite.Views.Homepage.Mascot extends Amoeba.View
       @$el.removeClass("contactus")
 
   mascotClick: ->
-    $("body").trigger("switchToPresentation")
+    $("body").trigger("switchToPresentation", [true])

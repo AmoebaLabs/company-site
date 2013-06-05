@@ -1,7 +1,6 @@
 class AmoebaSite.HomepageRouter extends Amoeba.Router
   initialize: (options) ->
-    @homepageView = @render 'Homepage'
-    @presentationView = @render 'Presentation'
+    this.setupViews()
 
     @route "", "home", ->
       @homepageView.transition('home')
@@ -10,9 +9,16 @@ class AmoebaSite.HomepageRouter extends Amoeba.Router
     @route /contactus(.*)/, "contactus", ->
       @homepageView.transition('contactus')
 
+  setupViews: ->
+    @homepageView = @render 'Homepage'
+    @presentationView = @render 'Presentation'
 
-    $("body").on("switchToPresentation", (event) =>
-      @homepageView.hideView()
-      @presentationView.showView()
+    $("body").on("switchToPresentation", (event, presentation) =>
+      if presentation
+        @homepageView.hideView()
+        @presentationView.showView()
+      else
+        @homepageView.showView()
+        @presentationView.hideView()
     )
 

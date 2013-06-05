@@ -86,29 +86,16 @@ class AmoebaSite.HomeScene
           @cloudScene.tearDown()
           @cloudScene = undefined
 
-          AmoebaSite.presentation.setBackground('black')
+#          AmoebaSite.presentation.setBackground('black')
+#
+#          this._hideDiv(@mascot, true)
+#          this._hideDiv(@$planet, true)
 
-          this._hideDiv(@mascot, true)
-          this._hideDiv(@$planet, true)
-
-          this._rocketLandingSequence()
+          # we're done, call the callback
+          this.callback?()
         )
       )
 
       @toolsScene.start()
     )
-
-  _rocketLandingSequence: =>
-    # move rocket down
-
-    # mascot jumps out of top
-
-    # rocket flys off
-
-    # making it large so we don't get pixels when scaling up from a smaller size
-    @shipWidth = 600
-    @shipHeight = 1200
-
-    @rocketShip = new AmoebaSite.RocketShip(@el, @shipWidth, @shipHeight)
-    @rocketShip.start()
 

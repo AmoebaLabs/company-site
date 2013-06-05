@@ -1,6 +1,6 @@
 $ = jQuery
 
-$.fn.disolveIn = (duration, callback) ->
+$.fn.disolveIn = (duration=1000, callback=null) ->
   this.removeClass("hidden")
 
   # warning, callback must always be called to be compatible with code that relies on this behavior
@@ -10,7 +10,7 @@ $.fn.disolveIn = (duration, callback) ->
     complete: ->
       callback?()
 
-$.fn.disolveOut = (duration, callback) ->
+$.fn.disolveOut = (duration=1000, callback=null) ->
   # warning, callback must always be called to be compatible with code that relies on this behavior
   this.transition
     opacity: 0

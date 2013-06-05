@@ -9,6 +9,8 @@ class AmoebaSite.SceneController
     this.setBackground('default')
 
     @home = new AmoebaSite.HomeScene(@el.find('#content'), =>
+      $("body").trigger("switchToPresentation", [false])
+
       console.log 'home callback called'
     )
 
