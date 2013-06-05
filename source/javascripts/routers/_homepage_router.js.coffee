@@ -9,3 +9,10 @@ class AmoebaSite.HomepageRouter extends Amoeba.Router
       @homepageView.transition('team')
     @route /contactus(.*)/, "contactus", ->
       @homepageView.transition('contactus')
+
+
+    $("body").on("switchToPresentation", (event) =>
+      @homepageView.hideView()
+      @presentationView.showView()
+    )
+

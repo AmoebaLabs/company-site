@@ -3,7 +3,7 @@
 
 class AmoebaSite.Views.Homepage extends Amoeba.View
   animationTime: 1000
-  el: '#homepage'
+  el: '#main-site'
 
   initialize: ->
     @tch = new AmoebaSite.Helpers.transitionCallbackHelper(this._transitionCompleteCallback)
@@ -41,6 +41,12 @@ class AmoebaSite.Views.Homepage extends Amoeba.View
 
   hideFooter: (animationTime = 0) ->
     $("#footer").disolveOut(animationTime)
+
+  showView: () ->
+    @$el.disolveIn()
+
+  hideView: () ->
+    @$el.disolveOut()
 
   _transitionCompleteCallback: () =>
     if @delayedTransitionToValue
