@@ -3,7 +3,6 @@ class AmoebaSite.HomeScene
   constructor: (@el, @callback) ->
     AmoebaSite.presentation.setBackground('black')
     this._createMascot()
-    this._createStarsAndPlanet()
 
   tearDown: =>
     @cube?.tearDown()
@@ -30,28 +29,10 @@ class AmoebaSite.HomeScene
         opacity: 1
       )
 
-  _createStarsAndPlanet: () =>
-    @$planet = $("<img/>")
-      .attr(src: "/images/presentation/planet.svg")
-      .css(
-        position: 'absolute'
-        height: 2000
-        width: 2000
-        top: '40%'
-        left: -400
-        opacity: 1
-        zIndex: -1
-      )
-      .appendTo(@el)
-
   _hideDiv: (theDiv, show) =>
     @mascot.css(
       display: if show == true then 'block' else 'none'
     )
-    @$planet.css(
-      display: if show == true then 'block' else 'none'
-    )
-
   _zoomInOnMascotEyes: =>
     # scale and translate x,y to zoom into eyes
     @el.transition(
@@ -62,7 +43,6 @@ class AmoebaSite.HomeScene
       duration: AmoebaSite.utils.dur(2000)
       complete: =>
         this._hideDiv(@mascot)
-        this._hideDiv(@$planet)
         AmoebaSite.presentation.setBackgroundColor(AmoebaSite.Colors.amoebaGreenMedium)
 
         @el.css(
@@ -99,7 +79,6 @@ class AmoebaSite.HomeScene
     #          @cloudScene = undefined
     #          AmoebaSite.presentation.setBackground('black')
     #          this._hideDiv(@mascot, true)
-    #          this._hideDiv(@$planet, true)
 
     # we're done, call the callback
     this.callback?()
