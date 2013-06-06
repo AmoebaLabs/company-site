@@ -4,7 +4,7 @@ class AmoebaSite.Views.Homepage.Team extends Amoeba.View
 
   initialize: ->
 
-  transitionIn: (from, tch) ->
+  transitionIn: (from) ->
     # When from is 'none' this is an initial page load, so animate instantly
     animationTime = if from is 'none' then 0 else @parent.animationTime
 
@@ -24,7 +24,7 @@ class AmoebaSite.Views.Homepage.Team extends Amoeba.View
       delay: animationTime
       duration: animationTime
       easing: 'ease'
-      complete: tch.callback()
+      complete: @parent.callbackHelper.callback()
 
     # Move footer
     $('#footer').fadeOut animationTime, =>
