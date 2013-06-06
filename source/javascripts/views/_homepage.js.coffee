@@ -6,7 +6,7 @@ class AmoebaSite.Views.Homepage extends Amoeba.View
   el: '#main-site'
 
   initialize: ->
-    @tch = new AmoebaSite.Helpers.transitionCallbackHelper(this._transitionCompleteCallback)
+    @callbackHelper = new AmoebaSite.Helpers.transitionCallbackHelper(this._transitionCompleteCallback)
 
     @subViews =
       home: @_render 'Homepage.Home'
@@ -18,7 +18,7 @@ class AmoebaSite.Views.Homepage extends Amoeba.View
 
   transition: (to) ->
     # don't do anything if busy
-    if @tch.busy()
+    if @callbackHelper.busy()
       @delayedTransitionToValue = to
       return
 
@@ -28,7 +28,7 @@ class AmoebaSite.Views.Homepage extends Amoeba.View
     @currentSubView?.transitionOut?(to)
 
     @currentSubView = @subViews[to]
-    @currentSubView.transitionIn?(from, @tch)
+    @currentSubView.transitionIn?(from)
 
     # show or hide header depending on state
     @header.adjustHeader()
