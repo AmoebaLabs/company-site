@@ -53,6 +53,7 @@ class AmoebaSite.Views.Homepage.Header extends Amoeba.View
     # jqueryObject.slideToggle(@parent.animationTime)
 
     heightKey = 'saved-height'
+    duration = @parent.animationTime * .7  # make it faster than the standard time
 
     # save the original height
     savedHeight = jqueryObject.data(heightKey)
@@ -62,26 +63,26 @@ class AmoebaSite.Views.Homepage.Header extends Amoeba.View
 
     if jqueryObject.css('display') == "none"
       jqueryObject.css(
-          display: 'block'
-          height: 0
-          overflow: 'hidden'
-        )
+        display: 'block'
+        height: 0
+        overflow: 'hidden'
+      )
 
-        jqueryObject.transition(
-          duration: @parent.animationTime
-          height: savedHeight
-          easing: 'ease'
-        )
+      jqueryObject.transition(
+        duration: duration
+        height: savedHeight
+        easing: 'ease'
+      )
     else
-        jqueryObject.transition(
-          duration: @parent.animationTime
-          height: 0
-          easing: 'ease'
-          complete: =>
-            jqueryObject.css(
-              display: 'none'
-            )
-        )
+      jqueryObject.transition(
+        duration: duration
+        height: 0
+        easing: 'ease'
+        complete: =>
+          jqueryObject.css(
+            display: 'none'
+          )
+      )
 
 
 
