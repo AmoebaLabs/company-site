@@ -4,8 +4,7 @@ class AmoebaSite.Views.Homepage.Header extends Amoeba.View
     'click #mobile-button': '_toggleMobileNav'
 
   initialize: ->
-    # disabled the close on click behaviour, I think making the user toggle it manually is better
-    # this._setupMobileNavClickHandler()
+    this._setupMobileNavClickHandler()
 
     @mobileMode = false
     enquire.register("screen and (max-width: 760px)",   # see _util.css.scss - this is mobile
