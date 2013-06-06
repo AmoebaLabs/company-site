@@ -16,7 +16,7 @@ class AmoebaSite.Views.Homepage.Header extends Amoeba.View
     )
 
   _toggleMobileNav: ->
-    $("#mobile-nav").slideToggle(@parent.animationTime)
+   this._css3SlideToggle($("#mobile-nav"))
 
   adjustHeader: () =>
     # header always shows the header
@@ -46,5 +46,42 @@ class AmoebaSite.Views.Homepage.Header extends Amoeba.View
   _setupMobileNavClickHandler: () ->
     # closes menu on click
     $(".mobile-nav-button").click (e) ->
-      $("#mobile-nav").slideUp()
+      this._css3SlideToggle($("#mobile-nav"))
+
+  _css3SlideToggle: (jqueryObject) =>
+    # this code replaces this:
+    # jqueryObject.slideToggle(@parent.animationTime)
+
+    heightKey = 'saved-height'
+
+    # save the original height
+    savedHeight = jqueryObject.data(heightKey)
+    if not savedHeight?
+      savedHeight = jqueryObject.height()
+      jqueryObject.data(heightKey, savedHeight)
+
+    if jqueryObject.css('display') == "none"
+      jqueryObject.css(
+          display: 'block'
+          height: 0
+          overflow: 'hidden'
+        )
+
+        jqueryObject.transition(
+          duration: @parent.animationTime
+          height: savedHeight
+          easing: 'ease'
+        )
+    else
+        jqueryObject.transition(
+          duration: @parent.animationTime
+          height: 0
+          easing: 'ease'
+          complete: =>
+            jqueryObject.css(
+              display: 'none'
+            )
+        )
+
+
 
