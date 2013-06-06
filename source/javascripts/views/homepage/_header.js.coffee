@@ -45,7 +45,7 @@ class AmoebaSite.Views.Homepage.Header extends Amoeba.View
 
   _setupMobileNavClickHandler: () ->
     # closes menu on click
-    $(".mobile-nav-button").click (e) ->
+    $(".mobile-nav-button").click (e) =>
       this._css3SlideToggle($("#mobile-nav"))
 
   _css3SlideToggle: (jqueryObject) =>
