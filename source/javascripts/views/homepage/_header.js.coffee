@@ -24,6 +24,9 @@ class AmoebaSite.Views.Homepage.Header extends Amoeba.View
     if @mobileMode
       this._showHeader()
     else
+      # make sure the mobile nav is hidden when not mobile. show the nav in mobile then resize window size to see it disappear
+      $("#mobile-nav").hide()
+
       switch @parent.currentPageName()
         when 'home', 'none'   # hides the header on home screen, show otherwise
           this._hideHeader()
