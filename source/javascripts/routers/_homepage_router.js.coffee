@@ -15,18 +15,18 @@ class AmoebaSite.HomepageRouter extends Amoeba.Router
 
     $("body").on("switchToPresentation", (event, presentation) =>
       if presentation
-        curtains = new AmoebaSite.Curtains($("body"), false, =>
-          curtains.tearDown()
+        @homepageView.hideView()
 
-          @homepageView.hideView()
+        curtains = new AmoebaSite.Curtains($("body"), false, =>
           @presentationView.showView()
+          curtains.tearDown()
         )
       else
-        curtains = new AmoebaSite.Curtains($("body"), true, =>
-          curtains.tearDown()
+        @presentationView.hideView()
 
+        curtains = new AmoebaSite.Curtains($("body"), true, =>
           @homepageView.showView()
-          @presentationView.hideView()
+          curtains.tearDown()
         )
     )
 
