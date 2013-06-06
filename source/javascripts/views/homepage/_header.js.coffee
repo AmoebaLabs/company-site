@@ -46,5 +46,5 @@ class AmoebaSite.Views.Homepage.Header extends Amoeba.View
   _setupMobileNavClickHandler: () ->
     # closes menu on click
     $(".mobile-nav-button").click (e) ->
-      $("#mobile-nav").hide()
+      $("#mobile-nav").slideUp()
 
