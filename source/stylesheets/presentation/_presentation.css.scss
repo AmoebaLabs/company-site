@@ -185,6 +185,7 @@ $cardHeight: 200px;
   height: 100%;
   width: 100%;
   pointer-events: none;
+  overflow: hidden;
 
   div {
     @include transform-style(preserve-3d);
