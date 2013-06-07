@@ -1,7 +1,7 @@
 
 AmoebaSite.utils =
   dur: (duration) =>
-    multiplier = .2  # speed up animations for testing, 1 is normal speed
+    multiplier = 1  # speed up animations for testing, 1 is normal speed
     return duration * multiplier
 
   createImageDiv: (path, divClass, imageSize, parentDiv) =>

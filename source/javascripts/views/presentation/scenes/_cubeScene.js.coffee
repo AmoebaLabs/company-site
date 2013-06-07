@@ -4,6 +4,8 @@ AmoebaSite.simpleRotation = false
 
 class AmoebaSite.CubeScene
   constructor: (@el, @callback) ->
+    AmoebaSite.presentation.setBackgroundColor(AmoebaSite.Colors.amoebaGreenMedium)
+
     @container = $('<div/>')
       .appendTo(@el)
 
