@@ -94,6 +94,11 @@ AmoebaSite.utils =
 
     return result
 
+  hideDiv: (theDiv, show) =>
+    theDiv.css(
+      display: if show == true then 'block' else 'none'
+    )
+
   remove: (remove, fadeOut, divClasses, parentDiv, callback) =>
     if not parentDiv?
       return

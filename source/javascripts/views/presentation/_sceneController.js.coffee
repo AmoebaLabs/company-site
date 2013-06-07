@@ -6,15 +6,51 @@ class AmoebaSite.SceneController
     @backgroundColorClasses = 'white black blue green none'
 
   start: =>
-    this.setBackground('default')
-
-    @home = new AmoebaSite.HomeScene(@el.find('#content'), =>
-      $("body").trigger("switchToPresentation", [false])
-    )
+    this._runSequence()
 
   tearDown: =>
-    @home.tearDown()
-    @home = undefined
+    @cube?.tearDown()
+    @cube = undefined
+
+    @toolsScene?.tearDown()
+    @toolsScene = undefined
+
+    @cloudScene?.tearDown()
+    @cloudScene = undefined
+
+  _runSequence: () =>
+    contentDiv = @el.find('#content')
+
+    @cube = new AmoebaSite.CubeScene(contentDiv, =>
+      @cube.tearDown()
+      @cube = undefined
+
+      # short curcuit to get the start and end polished
+      this._sequenceDone()
+
+#      @toolsScene = new AmoebaSite.ToolsScene(@el, =>
+#        @toolsScene.tearDown()
+#        @toolsScene = undefined
+#
+#        @cloudScene = new AmoebaSite.CloudScene(@el, =>
+#          # keep the clouds on for a few seconds
+#          setTimeout(=>
+#            this._sequenceDone()
+#          , 2000)
+#        )
+#      )
+#
+#      @toolsScene.start()
+    )
+
+  _sequenceDone: =>
+    # old shit, throw away if not used
+    #          @cloudScene.tearDown()
+    #          @cloudScene = undefined
+    #          AmoebaSite.presentation.setBackground('black')
+    #          AmoebaSite.utils.hideDiv(@mascot, true)
+
+    $("body").trigger("switchToPresentation", [false])
 
   setBackgroundColor: (color) =>
     this._setPresentationBackgroundColor(color)

@@ -12,7 +12,7 @@ class AmoebaSite.Views.Presentation extends Amoeba.View
       AmoebaSite.presentation = new AmoebaSite.SceneController(@$el)
       AmoebaSite.presentation.start()
 
-    @$el.disolveIn(1000)
+    @$el.disolveIn(0)
 
   hideView: () ->
     if AmoebaSite.presentation?
@@ -20,7 +20,7 @@ class AmoebaSite.Views.Presentation extends Amoeba.View
       AmoebaSite.presentation = undefined
 
     # Hide presentation, also sets hidden class
-    @$el.disolveOut(1000)
+    @$el.disolveOut(0)
 
 
 
