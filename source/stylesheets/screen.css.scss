@@ -36,4 +36,16 @@ body {
     color: $amoebaGreen;
     text-decoration: none;
   }
+
+  // Remove Firefox's ugly dotted outline on things
+  :focus {
+    outline: none;
+  }
+
+  ::-moz-focus-inner {
+    border: 0;
+  }
+
+  // Force vertical scrollbar so Gecko browsers don't "jump"
+  overflow-y: scroll;
 }
