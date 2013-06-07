@@ -1,8 +1,7 @@
 
 class AmoebaSite.Curtains
-  constructor: (@parentDiv, @closeCurtains, @callback) ->
-    @faderMaxOpacity = .5
-
+  constructor: (@parentDiv, @openCurtains, @callback) ->
+    this._initVariables()
     this._createContainer()
     this._createCurtains()
     this._step1()
@@ -16,14 +15,14 @@ class AmoebaSite.Curtains
     @left.transition(
       left: @leftEnd
       easing: 'ease'
-      transform: "skew(0deg)"
+      transform: @leftEndSkew
 
       duration: 2000
     )
     @right.transition(
       left: @rightEnd
       easing: 'ease'
-      transform: "skew(0deg)"
+      transform: @rightEndSkew
 
       duration: 2000
       complete: =>
@@ -31,7 +30,7 @@ class AmoebaSite.Curtains
     )
 
     @fader.transition(
-      opacity: if @closeCurtains then 0 else @faderMaxOpacity
+      opacity: @faderEndOpacity
       duration: 2000
     )
 
@@ -55,7 +54,7 @@ class AmoebaSite.Curtains
   _step3: =>
     this.callback?()
 
-  _createCurtainDiv: (left, transform) =>
+  _createCurtainDiv: (left, skew) =>
     result = $('<div/>')
       .css(
         position: "absolute"
@@ -64,7 +63,7 @@ class AmoebaSite.Curtains
         width: "100%"
         height: "100%"
         opacity: 1
-        transform: transform
+        transform: skew
         backgroundColor: AmoebaSite.Colors.amoebaGreenMedium
         boxShadow: "0px 0px 50px rgba(0, 0, 0, 1.0)"
         border: "solid 1px transparent"
@@ -75,22 +74,8 @@ class AmoebaSite.Curtains
     return result
 
   _createCurtains: =>
-    @leftStart = "-110%"
-    @leftEnd = "-50%"
-    @leftSkew = "skew(-10deg)"
-
-    @rightStart = "110%"
-    @rightEnd = "50%"
-    @rightSkew = "skew(10deg)"
-
-    # if closing, swap the values
-    if @closeCurtains
-      [@leftStart, @leftEnd] = [@leftEnd, @leftStart]
-      [@rightStart, @rightEnd] = [@rightEnd, @rightStart]
-      [@leftSkew, @rightSkew] = [@rightSkew, @leftSkew]
-
-    @left = this._createCurtainDiv(@leftStart, @leftSkew)
-    @right = this._createCurtainDiv(@rightStart, @rightSkew)
+    @left = this._createCurtainDiv(@leftStart, @leftStartSkew)
+    @right = this._createCurtainDiv(@rightStart, @rightStartSkew)
 
   _createContainer: =>
     @container = $('<div/>')
@@ -114,7 +99,31 @@ class AmoebaSite.Curtains
         width: '100%'
         zIndex: 1001
 
-        opacity: if @closeCurtains then @faderMaxOpacity else 0
+        opacity: @faderStartOpacity
         backgroundColor: 'black'
       )
       .appendTo(@container)
+
+  _initVariables: =>
+    @faderStartOpacity = 0
+    @faderEndOpacity = .5
+
+    @leftStart = "-110%"
+    @leftEnd = "-50%"
+    @leftStartSkew = "skew(-10deg)"
+    @leftEndSkew = "skew(0deg)"
+
+    @rightStart = "110%"
+    @rightEnd = "50%"
+    @rightStartSkew = "skew(10deg)"
+    @rightEndSkew = "skew(0deg)"
+
+    # if closing, swap the values
+    if @openCurtains
+      [@leftStart, @leftEnd] = [@leftEnd, @leftStart]
+      [@rightStart, @rightEnd] = [@rightEnd, @rightStart]
+      [@leftStartSkew, @rightStartSkew] = [@rightStartSkew, @leftStartSkew]
+      [@faderStartOpacity, @faderEndOpacity] = [@faderEndOpacity, @faderStartOpacity]
+
+      [@leftEndSkew, @leftStartSkew] = [@leftStartSkew, @leftEndSkew]
+      [@rightEndSkew, @rightStartSkew] = [@rightStartSkew, @rightEndSkew]

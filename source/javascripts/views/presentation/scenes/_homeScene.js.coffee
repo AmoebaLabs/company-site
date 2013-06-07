@@ -24,19 +24,22 @@ class AmoebaSite.HomeScene
       @cube.tearDown()
       @cube = undefined
 
-      @toolsScene = new AmoebaSite.ToolsScene(@el, =>
-        @toolsScene.tearDown()
-        @toolsScene = undefined
+      # short curcuit to get the start and end polished
+      this.sequenceDone()
 
-        @cloudScene = new AmoebaSite.CloudScene(@el, =>
-          # keep the clouds on for a few seconds
-          setTimeout(=>
-            this.sequenceDone()
-          , 2000)
-        )
-      )
-
-      @toolsScene.start()
+#      @toolsScene = new AmoebaSite.ToolsScene(@el, =>
+#        @toolsScene.tearDown()
+#        @toolsScene = undefined
+#
+#        @cloudScene = new AmoebaSite.CloudScene(@el, =>
+#          # keep the clouds on for a few seconds
+#          setTimeout(=>
+#            this.sequenceDone()
+#          , 2000)
+#        )
+#      )
+#
+#      @toolsScene.start()
     )
 
   sequenceDone: =>
