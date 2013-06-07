@@ -4,14 +4,31 @@ class AmoebaSite.Curtains
     this._initVariables()
     this._createContainer()
     this._createCurtains()
-    this._step1()
 
-  tearDown: () =>
+    this._step0()
+
+  tearDown: =>
     if @container?
       @container.remove()
       @container = undefined
 
-  _step1: () =>
+  _step0: =>
+    # open curtains fades in curtains, closing just shows them immediately
+    if @openCurtains
+      @container.transition(
+        easing: 'ease'
+        opacity: 1
+        duration: 2000
+        complete: =>
+          this._step1()
+      )
+    else
+      @container.css(
+        opacity: 1
+      )
+      this._step1()
+
+  _step1: =>
     @left.transition(
       left: @leftEnd
       easing: 'ease'
@@ -87,6 +104,8 @@ class AmoebaSite.Curtains
         width: '100%'
         overflow: 'hidden'
         zIndex: 1000
+
+        opacity: 0  # start off transparent
       )
       .appendTo(@parentDiv)
 
