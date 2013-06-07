@@ -45,4 +45,7 @@ body {
   ::-moz-focus-inner {
     border: 0;
   }
+
+  // Force vertical scrollbar so Gecko browsers don't "jump"
+  overflow-y: scroll;
 }
