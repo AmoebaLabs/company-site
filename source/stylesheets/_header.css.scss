@@ -118,17 +118,21 @@
     margin: 0;
     text-align: right;
     vertical-align: middle;
-    right: 10px;
-    top: 10px;
+    top: 0;
     left: auto;
   }
 
-  // This span surrounds the next two elements
+  // This span surrounds the next two elements (jump-to and the i tag)
   #mobile-button {
-    display: block;  // without this there is a gap between the text and icon that is not clickable
+    display: none;
 
-    &:hover {
-      cursor: pointer;
+    @include breakpoint(mobile) {
+      display: block;  // without this there is a gap between the text and icon that is not clickable
+      padding: 10px 10px 10px 0;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 
