@@ -8,6 +8,7 @@ class AmoebaSite.Views.Homepage.Contactus extends Amoeba.View
     animationTime = if from is 'none' then 0 else @parent.animationTime
 
     @helpers.scrollToTop(animationTime)
+    @parent.showFooter(animationTime)
     @parent.mascot.show(animationTime)
     @parent.mascot.shrink(if from is 'home' then @parent.animationTime else 0)
 
