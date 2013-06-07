@@ -32,11 +32,11 @@ class AmoebaSite.Views.Homepage.Header extends Amoeba.View
         else
           this._showHeader()
 
-  _showHeader: (animationTime = 0) ->
-    $("#header").slideDown(animationTime)
+  _showHeader: () ->
+    $("#header").slideDown(@parent.animationTime)
 
-  _hideHeader: (animationTime = 0) ->
-    $("#header").slideUp(animationTime)
+  _hideHeader: () ->
+    $("#header").slideUp(@parent.animationTime)
 
   _updateForMobile: (mobile) ->
     @mobileMode = mobile
