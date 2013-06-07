@@ -43,10 +43,10 @@ class AmoebaSite.Views.Homepage extends Amoeba.View
     $("#footer").disolveOut(animationTime)
 
   showView: () ->
-    @$el.disolveIn()
+    @$el.disolveIn(1000)
 
   hideView: () ->
-    @$el.disolveOut()
+    @$el.disolveOut(1000)
 
   _transitionCompleteCallback: () =>
     if @delayedTransitionToValue

@@ -2,14 +2,30 @@
 class AmoebaSite.Curtains
   constructor: (@parentDiv, @closeCurtains, @callback) ->
     @container = $('<div/>')
-#      .addClass('slide3DContainer')
       .css(
+        position: 'absolute'
+        top: 0
+        left: 0
         height: '100%'
         width: '100%'
         overflow: 'hidden'
         zIndex: 1000
       )
       .appendTo(@parentDiv)
+
+    @fader = $('<div/>')
+      .css(
+        position: 'absolute'
+        top: 0
+        left: 0
+        height: '100%'
+        width: '100%'
+        zIndex: 1001
+
+        opacity: 0
+        backgroundColor: 'black'
+      )
+      .appendTo(@container)
 
     this._createCurtains()
     this._step1()
@@ -35,6 +51,11 @@ class AmoebaSite.Curtains
       duration: 2000
       complete: =>
         this._step2()
+    )
+
+    @fader.transition(
+      opacity: .6
+      duration: 2000
     )
 
   _step2: =>
@@ -73,6 +94,7 @@ class AmoebaSite.Curtains
         backgroundColor: AmoebaSite.Colors.amoebaGreenMedium
         boxShadow: "0px 0px 50px rgba(0, 0, 0, 1.0)"
         border: "solid 1px transparent"
+        zIndex: 1002
       )
       .appendTo(@container)
 
@@ -81,14 +103,17 @@ class AmoebaSite.Curtains
   _createCurtains: =>
     @leftStart = "-110%"
     @leftEnd = "-50%"
+    @leftSkew = "skew(-10deg)"
 
     @rightStart = "110%"
     @rightEnd = "50%"
+    @rightSkew = "skew(10deg)"
 
     # if closing, swap the values
     if @closeCurtains
       [@leftStart, @leftEnd] = [@leftEnd, @leftStart]
       [@rightStart, @rightEnd] = [@rightEnd, @rightStart]
+      [@leftSkew, @rightSkew] = [@rightSkew, @leftSkew]
 
-    @left = this._createCurtainDiv(@leftStart, "skew(-10deg)")
-    @right = this._createCurtainDiv(@rightStart, "skew(10deg)")
+    @left = this._createCurtainDiv(@leftStart, @leftSkew)
+    @right = this._createCurtainDiv(@rightStart, @rightSkew)
