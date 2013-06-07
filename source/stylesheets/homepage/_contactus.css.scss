@@ -23,7 +23,7 @@
     left: 25px;
   }
   @include breakpoint(mobile) {
-    top: 25px;
+    top: 0px;
     position: relative;
     width: 100%;
     left: 0;
