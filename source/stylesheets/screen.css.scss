@@ -36,4 +36,13 @@ body {
     color: $amoebaGreen;
     text-decoration: none;
   }
+
+  // Remove Firefox's ugly dotted outline on things
+  :focus {
+    outline: none;
+  }
+
+  ::-moz-focus-inner {
+    border: 0;
+  }
 }
