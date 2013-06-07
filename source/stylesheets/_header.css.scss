@@ -114,7 +114,7 @@
     top: 17px;
   }
   @include breakpoint(mobile) {
-    width: 200px;
+    width: auto;     // want this to be as big as the text and icon button, this limits the clickable area to the correct area
     margin: 0;
     text-align: right;
     vertical-align: middle;
@@ -125,6 +125,8 @@
 
   // This span surrounds the next two elements
   #mobile-button {
+    display: block;  // without this there is a gap between the text and icon that is not clickable
+
     &:hover {
       cursor: pointer;
     }

@@ -48,40 +48,49 @@ class AmoebaSite.Views.Homepage.Header extends Amoeba.View
     $(".mobile-nav-button").click (e) =>
       this._css3SlideToggle($("#mobile-nav"))
 
+    $("#header a").click (e) =>
+      this._css3SlideUp($("#mobile-nav"))
+
   _css3SlideToggle: (jqueryObject) =>
-    # this code replaces this:
-    # jqueryObject.slideToggle(@parent.animationTime)
-
-    heightKey = 'saved-height'
-
-    # save the original height
-    savedHeight = jqueryObject.data(heightKey)
-    if not savedHeight?
-      savedHeight = jqueryObject.height()
-      jqueryObject.data(heightKey, savedHeight)
-
     if jqueryObject.css('display') == "none"
-      jqueryObject.css(
-          display: 'block'
-          height: 0
-          overflow: 'hidden'
-        )
-
-        jqueryObject.transition(
-          duration: @parent.animationTime
-          height: savedHeight
-          easing: 'ease'
-        )
+      this._css3SlideDown(jqueryObject)
     else
-        jqueryObject.transition(
-          duration: @parent.animationTime
-          height: 0
-          easing: 'ease'
-          complete: =>
-            jqueryObject.css(
-              display: 'none'
-            )
-        )
+      this._css3SlideUp(jqueryObject)
 
+  _css3SlideUp: (jqueryObject) =>
+    if jqueryObject.css('display') != "none"
+      duration = @parent.animationTime * .7  # make it faster than the standard time
 
+      jqueryObject.transition(
+        duration: duration
+        height: 0
+        easing: 'ease'
+        complete: =>
+          jqueryObject.css(
+            display: 'none'
+          )
+      )
+
+  _css3SlideDown: (jqueryObject) =>
+    if jqueryObject.css('display') == "none"
+      duration = @parent.animationTime * .7  # make it faster than the standard time
+
+      # save/read the original height
+      heightKey = 'saved-height'
+      savedHeight = jqueryObject.data(heightKey)
+      if not savedHeight?
+        savedHeight = jqueryObject.height()
+        jqueryObject.data(heightKey, savedHeight)
+
+      jqueryObject.css(
+        display: 'block'
+        height: 0
+        overflow: 'hidden'
+      )
+
+      jqueryObject.transition(
+        duration: duration
+        height: savedHeight
+        easing: 'ease'
+      )
 
