@@ -72,7 +72,7 @@ class AmoebaSite.Curtains
         transform: transform
         backgroundColor: AmoebaSite.Colors.amoebaGreenMedium
         boxShadow: "0px 0px 50px rgba(0, 0, 0, 1.0)"
-        border: "solid 1px black"
+        border: "solid 1px transparent"
       )
       .appendTo(@container)
 
