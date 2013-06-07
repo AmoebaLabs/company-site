@@ -72,16 +72,16 @@ class AmoebaSite.Views.Homepage.Header extends Amoeba.View
       )
 
   _css3SlideDown: (jqueryObject) =>
-    duration = @parent.animationTime * .7  # make it faster than the standard time
-
-    # save/read the original height
-    heightKey = 'saved-height'
-    savedHeight = jqueryObject.data(heightKey)
-    if not savedHeight?
-      savedHeight = jqueryObject.height()
-      jqueryObject.data(heightKey, savedHeight)
-
     if jqueryObject.css('display') == "none"
+      duration = @parent.animationTime * .7  # make it faster than the standard time
+
+      # save/read the original height
+      heightKey = 'saved-height'
+      savedHeight = jqueryObject.data(heightKey)
+      if not savedHeight?
+        savedHeight = jqueryObject.height()
+        jqueryObject.data(heightKey, savedHeight)
+
       jqueryObject.css(
         display: 'block'
         height: 0
