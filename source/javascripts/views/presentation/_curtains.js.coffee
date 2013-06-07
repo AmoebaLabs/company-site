@@ -79,10 +79,10 @@ class AmoebaSite.Curtains
     return result
 
   _createCurtains: =>
-    @leftStart = "-100%"
+    @leftStart = "-110%"
     @leftEnd = "-50%"
 
-    @rightStart = "100%"
+    @rightStart = "110%"
     @rightEnd = "50%"
 
     # if closing, swap the values
