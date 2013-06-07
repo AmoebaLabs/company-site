@@ -48,14 +48,34 @@ class AmoebaSite.Views.Homepage.Header extends Amoeba.View
     $(".mobile-nav-button").click (e) =>
       this._css3SlideToggle($("#mobile-nav"))
 
-  _css3SlideToggle: (jqueryObject) =>
-    # this code replaces this:
-    # jqueryObject.slideToggle(@parent.animationTime)
+    $("#header a").click (e) =>
+      this._css3SlideUp($("#mobile-nav"))
 
-    heightKey = 'saved-height'
+  _css3SlideToggle: (jqueryObject) =>
+    if jqueryObject.css('display') == "none"
+      this._css3SlideDown(jqueryObject)
+    else
+      this._css3SlideUp(jqueryObject)
+
+  _css3SlideUp: (jqueryObject) =>
+    if jqueryObject.css('display') != "none"
+      duration = @parent.animationTime * .7  # make it faster than the standard time
+
+      jqueryObject.transition(
+        duration: duration
+        height: 0
+        easing: 'ease'
+        complete: =>
+          jqueryObject.css(
+            display: 'none'
+          )
+      )
+
+  _css3SlideDown: (jqueryObject) =>
     duration = @parent.animationTime * .7  # make it faster than the standard time
 
-    # save the original height
+    # save/read the original height
+    heightKey = 'saved-height'
     savedHeight = jqueryObject.data(heightKey)
     if not savedHeight?
       savedHeight = jqueryObject.height()
@@ -73,16 +93,4 @@ class AmoebaSite.Views.Homepage.Header extends Amoeba.View
         height: savedHeight
         easing: 'ease'
       )
-    else
-      jqueryObject.transition(
-        duration: duration
-        height: 0
-        easing: 'ease'
-        complete: =>
-          jqueryObject.css(
-            display: 'none'
-          )
-      )
-
-
 
