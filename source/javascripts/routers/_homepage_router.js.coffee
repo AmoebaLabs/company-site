@@ -18,8 +18,11 @@ class AmoebaSite.HomepageRouter extends Amoeba.Router
         @homepageView.hideView()
 
         curtains = new AmoebaSite.Curtains($("body"), false, =>
-          @presentationView.showView()
-          curtains.tearDown()
+          # delay a bit so it's not so fast a transition
+          setTimeout( =>
+            @presentationView.showView()
+            curtains.tearDown()
+          , 1000)
         )
       else
         @presentationView.hideView()

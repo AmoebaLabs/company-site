@@ -1,32 +1,9 @@
 
 class AmoebaSite.Curtains
   constructor: (@parentDiv, @closeCurtains, @callback) ->
-    @container = $('<div/>')
-      .css(
-        position: 'absolute'
-        top: 0
-        left: 0
-        height: '100%'
-        width: '100%'
-        overflow: 'hidden'
-        zIndex: 1000
-      )
-      .appendTo(@parentDiv)
+    @faderMaxOpacity = .5
 
-    @fader = $('<div/>')
-      .css(
-        position: 'absolute'
-        top: 0
-        left: 0
-        height: '100%'
-        width: '100%'
-        zIndex: 1001
-
-        opacity: 0
-        backgroundColor: 'black'
-      )
-      .appendTo(@container)
-
+    this._createContainer()
     this._createCurtains()
     this._step1()
 
@@ -54,7 +31,7 @@ class AmoebaSite.Curtains
     )
 
     @fader.transition(
-      opacity: .6
+      opacity: if @closeCurtains then 0 else @faderMaxOpacity
       duration: 2000
     )
 
@@ -76,10 +53,7 @@ class AmoebaSite.Curtains
     )
 
   _step3: =>
-    # pause before callback
-    setTimeout( =>
-      this.callback?()
-    , 2000)
+    this.callback?()
 
   _createCurtainDiv: (left, transform) =>
     result = $('<div/>')
@@ -117,3 +91,30 @@ class AmoebaSite.Curtains
 
     @left = this._createCurtainDiv(@leftStart, @leftSkew)
     @right = this._createCurtainDiv(@rightStart, @rightSkew)
+
+  _createContainer: =>
+    @container = $('<div/>')
+      .css(
+        position: 'absolute'
+        top: 0
+        left: 0
+        height: '100%'
+        width: '100%'
+        overflow: 'hidden'
+        zIndex: 1000
+      )
+      .appendTo(@parentDiv)
+
+    @fader = $('<div/>')
+      .css(
+        position: 'absolute'
+        top: 0
+        left: 0
+        height: '100%'
+        width: '100%'
+        zIndex: 1001
+
+        opacity: if @closeCurtains then @faderMaxOpacity else 0
+        backgroundColor: 'black'
+      )
+      .appendTo(@container)
