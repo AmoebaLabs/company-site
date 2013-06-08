@@ -89,6 +89,7 @@
       left: 0;
       right: 0;
       width: 100%;
+      padding: 10px 0;
     }
 
     #know {
@@ -116,7 +117,7 @@
     @include border-radius(0);
     margin: 0;
     width: 100%;
-    padding: 10px;
+    padding-bottom: 10px;
     top: -43px;
     position: relative;
     margin-bottom: 0px;
