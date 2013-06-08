@@ -33,6 +33,10 @@ class AmoebaSite.Views.Homepage.Team extends Amoeba.View
   transitionOut: (to) ->
     animationTime = @parent.animationTime
 
+    # hack that will be removed when refactored
+    if @parent.mobileMode
+      animationTime = 0
+
     # Move footer
     $('#footer').hide().removeClass("team").appendTo("#homepage").fadeIn(animationTime)
 
