@@ -21,6 +21,10 @@ class AmoebaSite.Views.Homepage.Home extends Amoeba.View
   transitionOut: (to) ->
     animationTime = @parent.animationTime
 
+    # hack that will be removed when refactored
+    if @parent.mobileMode
+      animationTime = 0
+
     @_hideCapabilities(animationTime)
     @_hideLogo(animationTime)
 
