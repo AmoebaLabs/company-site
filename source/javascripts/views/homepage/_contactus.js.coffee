@@ -31,6 +31,10 @@ class AmoebaSite.Views.Homepage.Contactus extends Amoeba.View
   transitionOut: (to) ->
     animationTime = @parent.animationTime
 
+    # hack that will be removed when refactored
+    if @parent.mobileMode
+      animationTime = 0
+
     if to is 'home'
       @parent.mascot.grow(animationTime)
     else

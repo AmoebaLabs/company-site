@@ -6,13 +6,8 @@ class AmoebaSite.Views.Homepage.Header extends Amoeba.View
   initialize: ->
     this._setupMobileNavClickHandler()
 
-    @mobileMode = false
-    enquire.register("screen and (max-width: 760px)",   # see _util.css.scss - this is mobile
-      match: =>
-        this._updateForMobile(true)
-      ,
-      unmatch: =>
-        this._updateForMobile(false)
+    $('body').on('amoeba:mobileModeUpdated', =>
+      this.adjustHeader()
     )
 
   _toggleMobileNav: ->
@@ -20,7 +15,7 @@ class AmoebaSite.Views.Homepage.Header extends Amoeba.View
 
   adjustHeader: () =>
     # header always shows the header
-    if @mobileMode
+    if @parent.mobileMode
       this._showHeader()
     else
       # make sure the mobile nav is hidden when not mobile. show the nav in mobile then resize window size to see it disappear
@@ -37,11 +32,6 @@ class AmoebaSite.Views.Homepage.Header extends Amoeba.View
 
   _hideHeader: () ->
     $("#header").slideUp(@parent.animationTime)
-
-  _updateForMobile: (mobile) ->
-    @mobileMode = mobile
-
-    this.adjustHeader()
 
   _setupMobileNavClickHandler: () ->
     # closes menu on click
