@@ -1,24 +1,14 @@
 #= require jquery-1.8.2
-#= require state-machine-2.2.0
-#= require davis
+#= require jquery.transit
+#= require enquire
+#= require amoeba-js
 #= require_self
-#= require_tree .
+#= require_tree ./lib
+#= require_tree ./helpers
+#= require_tree ./routers
+#= require_tree ./views
+#= require _app
 
-window.Amoeba ?= {}
-
-jQuery ($) ->
-  Amoeba.homepageView = new Amoeba.HomepageView
-
-  Amoeba.App = Davis ->
-    this.configure ->
-      this.generateRequestOnPageLoad = true
-    this.get '/', (req) ->
-      Amoeba.homepageView.showHome()
-    this.get '/team*splat', (req) ->
-      Amoeba.homepageView.showTeam()
-    this.get '/contactus*splat', (req) ->
-      Amoeba.homepageView.showContact()
-    this.post '/contactus/submit', (req) ->
-      Amoeba.homepageView.submitForm(req)
-
-  Amoeba.App.start()
+window.AmoebaSite =
+  Views: {}
+  Helpers: {}

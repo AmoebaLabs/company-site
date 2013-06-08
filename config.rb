@@ -64,7 +64,9 @@ set :js_dir, 'javascripts'
 
 set :images_dir, 'images'
 
-set :js_assets_paths, %w(vendor)
+after_configuration do
+  sprockets.append_path "vendor"
+end
 
 ###
 # Other modules

@@ -21,15 +21,3 @@
     @include translateY(0);
   }
 }
-
-// ---------------------------------------------------------------------------
-// This is really flipInY
-@include keyframes(contactus-in) {
-  0% {
-    @include transform(perspective(400px) rotateY(-90deg));
-    @include opacity(0);
-  } 100% {
-    @include transform(perspective(400px) rotateY(0deg));
-    @include opacity(1);
-  }
-}

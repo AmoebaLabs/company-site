@@ -1,13 +1,39 @@
-/* This file is used to write (legacy) IE specific override styles.
- * Import this file using the following HTML or equivalent:
- * <!--[if lt IE 10]>
- *   <link href="/stylesheets/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
- * <![endif]-->
- *
- */
+@import "variables";
 
 div#iesucks {
   display: block;
+  background-color: black;
+  margin: 50px auto;
+  width: 850px;
+
+  h1{
+    color: white;
+    padding: 25px 50px;
+    text-align: center;
+    font-size: 90px;
+    text-color: white;
+
+    strong {
+      color: red;
+      font-style: bold;
+    }
+  }
+
+  img {
+    float: right;
+  }
+
+  p {
+    color: white;
+    padding-left: 75px;
+    font-size: 36px;
+    text-color: white;
+    text-align: left;
+    a {
+      color: $amoebaGreen;
+      font-weight: bold;
+    }
+  }
 }
 
 #homepage {

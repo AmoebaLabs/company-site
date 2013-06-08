@@ -16,3 +16,8 @@ bundle install
 Then while you're editing, run `bundle exec middleman server` and connect to http://localhost:4567 to see your changes.
 
 When you want to build the site to upload, run `bundle exec middleman build` and it will create a `build/` directory, which can be uploaded.
+
+Deploying to Staging
+-------------------------
+
+Also note that pushing to the branch `staging` will automatically deploy to http://staging.amoe.ba
