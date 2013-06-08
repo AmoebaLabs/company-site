@@ -22,7 +22,7 @@
   }
   @include breakpoint(mobile) {
     width: 100%;
-    height: 375px;
+    height: 405px;
     margin: 0px;
     padding: 0px;
     left: 0;
@@ -49,7 +49,7 @@
     }
     @include breakpoint(mobile) {
       width: 100%;
-      height: 115px;
+      height: 125px; //(.capabilities:height/3) - 10px
       float: left;
 
       border-bottom: 1px solid $amoebaGreenMedium;
@@ -165,7 +165,7 @@
         }
         @include breakpoint(mobile) {
           margin-left: 60px;
-          margin-top: -100px;
+          margin-top: -110px;
         }
       }
     }
