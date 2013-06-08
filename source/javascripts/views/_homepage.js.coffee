@@ -6,6 +6,8 @@ class AmoebaSite.Views.Homepage extends Amoeba.View
   el: '#homepage'
 
   initialize: ->
+    this._setupEnquire()
+
     @callbackHelper = new AmoebaSite.Helpers.transitionCallbackHelper(this._transitionCompleteCallback)
 
     @subViews =
@@ -48,3 +50,16 @@ class AmoebaSite.Views.Homepage extends Amoeba.View
       @delayedTransitionToValue = null
 
       this.transition(delayedTo)
+
+  _setupEnquire: =>
+    @mobileMode = false
+
+    enquire.register("screen and (max-width: 760px)",   # see _util.css.scss - this is mobile
+    match: =>
+      @mobileMode = true
+      $('body').trigger('amoeba:mobileModeUpdated')
+    ,
+    unmatch: =>
+      @mobileMode = false
+      $('body').trigger('amoeba:mobileModeUpdated')
+    )
