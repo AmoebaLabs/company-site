@@ -25,22 +25,19 @@ class AmoebaSite.SceneController
       @cube.tearDown()
       @cube = undefined
 
-      # short curcuit to get the start and end polished
-      this._sequenceDone()
+      @toolsScene = new AmoebaSite.ToolsScene(contentDiv, =>
+        @toolsScene.tearDown()
+        @toolsScene = undefined
 
-#      @toolsScene = new AmoebaSite.ToolsScene(@el, =>
-#        @toolsScene.tearDown()
-#        @toolsScene = undefined
-#
-#        @cloudScene = new AmoebaSite.CloudScene(@el, =>
-#          # keep the clouds on for a few seconds
-#          setTimeout(=>
-#            this._sequenceDone()
-#          , 2000)
-#        )
-#      )
-#
-#      @toolsScene.start()
+        @cloudScene = new AmoebaSite.CloudScene(contentDiv, =>
+          # keep the clouds on for a few seconds
+          setTimeout(=>
+            this._sequenceDone()
+          , 2000)
+        )
+      )
+
+      @toolsScene.start()
     )
 
   _sequenceDone: =>

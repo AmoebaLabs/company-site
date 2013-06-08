@@ -13,6 +13,8 @@ class AmoebaSite.Curtains
       @container = undefined
 
   _step0: =>
+    this.callback?('0')
+
     # open curtains fades in curtains, closing just shows them immediately
     if @openCurtains
       @container.transition(
@@ -29,6 +31,8 @@ class AmoebaSite.Curtains
       this._step1()
 
   _step1: =>
+    this.callback?('1')
+
     @left.transition(
       left: @leftEnd
       easing: 'ease'
@@ -52,6 +56,8 @@ class AmoebaSite.Curtains
     )
 
   _step2: =>
+    this.callback?('2')
+
     # fade out border and shadow, looks ugly when they both touch
     @left.transition(
       boxShadow: "0px 0px 0px rgba(0, 0, 0, 0)"
@@ -69,7 +75,7 @@ class AmoebaSite.Curtains
     )
 
   _step3: =>
-    this.callback?()
+    this.callback?('done')
 
   _createCurtainDiv: (left, skew) =>
     result = $('<div/>')
