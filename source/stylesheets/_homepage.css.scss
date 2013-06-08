@@ -49,7 +49,7 @@
     }
     @include breakpoint(mobile) {
       width: 100%;
-      font-size: 85px;
+      font-size: 82px;
       padding: 0px 0px 0px 0px;
       text-align: center;
       margin-top: -30px;
@@ -97,7 +97,8 @@
       text-align: center;
       font-size: 18px;
       margin-top: -30px;
-      margin-left: 20px;
+      margin-left: -10px;
+      padding-right: 0;
     }
   }
 }
