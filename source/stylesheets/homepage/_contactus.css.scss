@@ -118,11 +118,10 @@
     margin: 0;
     width: 100%;
     padding-bottom: 10px;
-    top: -43px;
+    top: 0px;
     position: relative;
     margin-bottom: 0px;
     height: 400px;
-    z-index: -99;
   }
 
   @include border-radius(3%);
