@@ -25,7 +25,7 @@ class AmoebaSite.Curtains
         easing: 'ease'
         top: 0
         opacity: 1
-        duration: 2000
+        duration: 1000
         complete: =>
           this._step1()
       )
@@ -136,7 +136,7 @@ class AmoebaSite.Curtains
 
   _initVariables: =>
     @faderStartOpacity = 0
-    @faderEndOpacity = .5
+    @faderEndOpacity = .6
 
     @leftStart = "-110%"
     @leftEnd = "-50%"

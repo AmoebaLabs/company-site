@@ -44,7 +44,7 @@ class AmoebaSite.CloudsController
 
     if theText?
       theCSS = _.extend({}, AmoebaSite.utils.deepTextShadowCSS())
-      theCSS = _.extend(theCSS, AmoebaSite.utils.textCSSForSize(4))
+      theCSS = _.extend(theCSS, AmoebaSite.utils.textCSSForSize(3))
       message = AmoebaSite.utils.createTextDiv(theText, theCSS, 'message', @contentDiv)
 
       message.css(
