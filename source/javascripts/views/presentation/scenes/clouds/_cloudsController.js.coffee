@@ -195,7 +195,13 @@ class AmoebaSite.CloudsController
 
           # slide is done, autoadvance to next
           if @doneCallback?
-            @doneCallback()
+            # fade out everything
+            @viewPort.transition(
+              opacity: 0
+              duration: 1000
+              complete: =>
+                @doneCallback()
+            )
     )
 
   # requestAnimationFrame polyfill

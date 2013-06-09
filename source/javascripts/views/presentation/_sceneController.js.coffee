@@ -33,7 +33,7 @@ class AmoebaSite.SceneController
           # keep the clouds on for a few seconds
           setTimeout(=>
             this._sequenceDone()
-          , 2000)
+          , 1000)
         )
       )
 

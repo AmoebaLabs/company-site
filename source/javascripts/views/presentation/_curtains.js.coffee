@@ -17,8 +17,13 @@ class AmoebaSite.Curtains
 
     # open curtains fades in curtains, closing just shows them immediately
     if @openCurtains
+      @container.css(
+        top: -@container.height()
+      )
+
       @container.transition(
         easing: 'ease'
+        top: 0
         opacity: 1
         duration: 2000
         complete: =>
