@@ -19,7 +19,10 @@ class AmoebaSite.CubeScene
       scale: 1.3
     )
 
-    this._bounceInEyes()
+    # fade didn't work unless we had this 0 timeout wrapper.  weird
+    setTimeout( =>
+      this._fadeInEyes()
+    ,0)
 
   tearDown: () =>
     @container?.remove()
@@ -47,15 +50,32 @@ class AmoebaSite.CubeScene
 
     return false
 
-  _bounceInEyes: =>
+  _fadeInEyes: =>
     sideDiv = @cubeFaces[5]
-    eyesImage = AmoebaSite.utils.createImageDiv('/images/presentation/eyes.svg', 'cube', 300, sideDiv)
-    eyesImage.transition(
+    @eyesImage = AmoebaSite.utils.createImageDiv('/images/presentation/eyes.svg', 'cube', 300, sideDiv)
+
+    @eyesImage.transition(
       opacity: 1
-      duration: AmoebaSite.utils.dur(2000)
+      duration: 2000
       complete: =>
-        this._moveCubeToCenter()
+        @nextOpacity = 0
+        this._blinkEyes()
     )
+
+  _blinkEyes: =>
+    setTimeout( =>
+
+      @eyesImage.css(
+        opacity: @nextOpacity
+      )
+
+      if @nextOpacity == 1
+        this._moveCubeToCenter()
+      else if @nextOpacity == 0
+        @nextOpacity = 1
+        this._blinkEyes()
+
+    , 200)
 
   _moveCubeToCenter: =>
     setTimeout(=>
@@ -74,7 +94,7 @@ class AmoebaSite.CubeScene
           this._tiltLeft()
       )
 
-    , AmoebaSite.utils.dur(500))
+    , AmoebaSite.utils.dur(1500))
 
   _tiltLeft: =>
     @cube3D.transition(
