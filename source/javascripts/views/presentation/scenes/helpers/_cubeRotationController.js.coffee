@@ -6,12 +6,6 @@ class AmoebaSite.CubeRotationController
   start: () =>
     this._rotateCube()
 
-  togglePause: () =>
-    @paused = not @paused
-
-    if not @paused
-      this.next()
-
   next: () =>
     this._rotateCube(true, true)
     return true
@@ -38,29 +32,27 @@ class AmoebaSite.CubeRotationController
       rotate: r.z
       duration: AmoebaSite.utils.dur(duration)
       complete: =>
-        if not @paused
-          this._rotateCube(true, false)
+        this._rotateCube(true, false)
     )
 
   _rotateCube: (forwards = true, fast=false) =>
-      if (@showingIndex == 5)
-        delay = if fast then 0 else 1000
+    if (@showingIndex == 5)
+      delay = if fast then 0 else 1000
 
-        setTimeout( =>
-          if @callback
-            @callback()
-        ,delay)
-      else
-        delay = if fast then 0 else 400
+      setTimeout( =>
+        if @callback
+          @callback()
+      ,delay)
+    else
+      delay = if fast then 0 else 400
 
-        setTimeout( =>
-          theIndex = if forwards then @showingIndex + 1 else @showingIndex - 1
-          this._rotateToIndex(theIndex, fast)
-        , AmoebaSite.utils.dur(delay))
+      setTimeout( =>
+        theIndex = if forwards then @showingIndex + 1 else @showingIndex - 1
+        this._rotateToIndex(theIndex, fast)
+      , AmoebaSite.utils.dur(delay))
 
   _initializeVariables: () =>
     @showingIndex = 0
-    @paused = false
 
     if AmoebaSite.simpleRotation
       @rotationSteps = [
