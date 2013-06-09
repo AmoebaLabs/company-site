@@ -214,10 +214,10 @@ class AmoebaSite.ToolsScene
       .appendTo(@el)
      .css(
         position: 'absolute'
-        top: 0
-        left: 0
-        height: '100%'
-        width: 400
+        top: 50
+        left: 50
+        height: '80%'
+        width: 300
         opacity: 0
       )
 
