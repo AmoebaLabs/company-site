@@ -11,16 +11,24 @@ nav {
   display: block;
   @include float-right;
 
+  @include breakpoint(tablet) {
+    width: 80%;
+  }
+  @include breakpoint(mobile) {
+    display: none;
+  }
+
   ul {
     margin: 0;
     padding: 0;
     list-style: none;
+    
     li {
       display: block;
       position: relative;
       @include float-right;
       height: 30px;
-
+      
       // Setup the borders between the navigation elements:
       border-left: 1px solid $amoebaGreenMedium;
       margin-top: 6px;

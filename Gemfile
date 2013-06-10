@@ -1,6 +1,6 @@
-source :rubygems
+source 'https://rubygems.org'
 
-gem "middleman", "~>3.0.5"
+gem "middleman", "~>3.0.14"
 
 # Compresses PNGs
 gem "middleman-smusher", "~> 3.0.0"
@@ -13,3 +13,10 @@ gem "animation", :github => "ericam/compass-animation"
 
 # Steering gem for Handlebars compilation
 gem "steering", "~> 1.2.0"
+
+# Added to revert the alpha version included in compass-animation
+gem "sass", "~> 3.2.5"
+
+
+# AmoebaJS
+gem "amoeba-js-rails", :github => "AmoebaConsulting/amoeba-js"
