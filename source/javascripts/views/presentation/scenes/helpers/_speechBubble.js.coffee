@@ -29,13 +29,17 @@ class AmoebaSite.SpeechBubble
       height = 20
       startTop = 0
 
+      styleCss =
+        textShadow: ""
+        color: "white"
+
       css =
         left: 30
         width: 600 # can't be a percentage
         top: startTop + (height * @typewriterIndex)
         height: height
 
-      typewriter = new AmoebaSite.Typewriter(@bubble, message, css)
+      typewriter = new AmoebaSite.Typewriter(@bubble, message, css, styleCss)
       typewriter.write(this._nextTypewriter)
     else if @callback?
       @callback(@conversationIndex)
