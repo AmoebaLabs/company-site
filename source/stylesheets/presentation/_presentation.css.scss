@@ -255,7 +255,7 @@ $borderRadius: 30px;
     @include backface-visibility(visible); // use 'hidden'/'visible'
 
     &.fancy {
-      @include box-shadow(inset 0 0 20px rgba(0,0,0,0.2));
+      @include box-shadow(inset 0 0 40px rgba(0,0,0,0.2));
       @include background-image(radial-gradient(center, circle farthest-corner, rgba(255,255,255,.4) 0%, $amoebaGreenMedium 100%));
     }
   }
