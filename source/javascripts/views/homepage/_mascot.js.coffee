@@ -1,6 +1,8 @@
 class AmoebaSite.Views.Homepage.Mascot extends Amoeba.View
   name: 'home'
   el: '#mascot'
+  events:
+    'click img': 'mascotClick'
 
   show: (animationTime = 0) ->
     @$el.disolveIn(animationTime)
@@ -23,3 +25,6 @@ class AmoebaSite.Views.Homepage.Mascot extends Amoeba.View
         duration: animationTime
     else
       @$el.removeClass("contactus")
+
+  mascotClick: ->
+    $("body").trigger("switchToPresentation", [true])

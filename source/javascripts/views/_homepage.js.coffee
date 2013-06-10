@@ -3,7 +3,7 @@
 
 class AmoebaSite.Views.Homepage extends Amoeba.View
   animationTime: 1000
-  el: '#homepage'
+  el: '#main-site'
 
   initialize: ->
     this._setupEnquire()
@@ -43,6 +43,12 @@ class AmoebaSite.Views.Homepage extends Amoeba.View
 
   hideFooter: (animationTime = 0) ->
     $("#footer").disolveOut(animationTime)
+
+  showView: () ->
+    @$el.disolveIn(0)
+
+  hideView: () ->
+    @$el.disolveOut(0)
 
   _transitionCompleteCallback: () =>
     if @delayedTransitionToValue

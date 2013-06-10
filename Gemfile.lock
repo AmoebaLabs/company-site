@@ -12,6 +12,11 @@ GIT
       compass (>= 0.12.0)
       sass (>= 3.2.0.alpha.95)
 
+PATH
+  remote: ~/GitHub/AmoebaStorybook
+  specs:
+    amoeba-storybook (0.0.24)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -83,7 +88,7 @@ GEM
       sprockets-sass (~> 1.0.0)
     mini_magick (3.6.0)
       subexec (~> 0.2.1)
-    multi_json (1.7.5)
+    multi_json (1.7.6)
     padrino-core (0.10.7)
       activesupport (~> 3.2.0)
       http_router (~> 0.10.2)
@@ -138,6 +143,7 @@ PLATFORMS
 
 DEPENDENCIES
   amoeba-js-rails!
+  amoeba-storybook!
   animation!
   middleman (~> 3.0.14)
   middleman-favicon-maker (~> 3.0.0)

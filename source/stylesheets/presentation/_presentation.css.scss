@@ -1,0 +1,322 @@
+
+// --------------------------------------------------------
+// --------------------------------------------------------
+// public
+
+@mixin blue-print() {
+  background-color:#269;
+  @include background(linear-gradient(white 2px, transparent 2px),
+    linear-gradient(90deg, white 2px, transparent 2px),
+    linear-gradient(rgba(255,255,255,.3) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.3) 1px, transparent 1px));
+
+  background-size:100px 100px, 100px 100px, 20px 20px, 20px 20px;
+
+  background-position:-2px -2px, -2px -2px, -1px -1px, -1px -1px;
+}
+
+#presentation {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  opacity: 0;  // start off hidden
+
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+#presentationBackground {
+  width: 100%;
+  height: 100%;
+}
+
+// different backgrounds controled by setting classes
+.green {
+  @include background(transparent radial-gradient(circle cover, $amoebaGreen 0%, $amoebaGreenDark 100%));
+}
+.blue {
+  @include background(transparent linear-gradient(bottom, rgb(69,132,180) 28%, rgb(31,71,120) 64%));
+}
+.white {
+  @include background(transparent radial-gradient(circle cover, rgb(235,235,235) 0%, rgb(255,255,255) 100%));
+}
+.black {
+  @include background(transparent radial-gradient(circle cover, rgb(100,100,100) 0%, rgb(0,0,0) 100%));
+}
+.none {
+  @include background(transparent);
+  @include blue-print();
+}
+
+div#bakgrnd {
+  background: transparent url('/images/presentation/world.svg') no-repeat;
+  @include background-size(contain); // warning this must go after setting background:, background: resets the size
+  background-position:center;
+
+  height: 100%;
+  width: 100%;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  z-index: -9999;
+}
+
+// --------------------------------------------------------
+// --------------------------------------------------------
+// Business Card
+
+$cardHeight: 200px;
+
+.businessCard {
+  overflow: hidden;
+  position: absolute;
+  height: $cardHeight;
+  width: $cardHeight * 1.75;
+  background-color: $amoebaGreen;
+
+  border: 1px solid rgba(0, 0, 0, .1);
+  @include border-radius(10px);
+  @include box-shadow(0 2px 12px rgba(0, 0, 0, .4));
+
+  img {
+    // border radius added for chrome, might not be needed in the future.  overflow hidden was not cropping the corners. safari was ok
+    @include border-left-radius(inherit);
+
+    float: left;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+  }
+
+  span {
+    font-size: 1em;
+
+    float: left;
+    top: 0px;
+    height: 100%;
+  }
+}
+
+// --------------------------------------------------------
+// --------------------------------------------------------
+// metal background
+
+@mixin metalBackground() {
+  @include background(radial-gradient(rgba(black, .5), rgba(black, .5) 14%, transparent 15%) 0 0,
+                      radial-gradient(rgba(black, .5), rgba(black, .5) 14%, transparent 15%) 7px 7px,
+                      radial-gradient(rgba(white, .1) 14%, transparent 16%) 0 1px,
+                      radial-gradient(rgba(white, .1) 14%, transparent 16%) 7px 8px);
+  background-color: #40454f;
+  background-size: 16px 16px;
+ }
+
+// add class to set the font
+.amoebaBoldFont {
+  @extend %amoebaFontSemiBold;
+}
+.amoebaFont {
+  @extend %amoebaFontMedium;
+}
+.amoebaFont {
+  @extend %amoebaFontRegular;
+}
+
+@include keyframes(amoebaTitlePulse) {
+  0% {
+    @include transform(scale(1));
+    color: rgba(255,255,255,.4)
+  } 100% {
+    @include transform(scale(1.03));
+    color: rgba(255,255,255,.6);
+    @include text-shadow(0px 0px 40px white);
+  }
+}
+
+@include keyframes(amoebaTitlePulseDark) {
+  0% {
+    @include transform(scale(1));
+    color: rgba(0,0,0,.4)
+  } 100% {
+    @include transform(scale(1.03));
+    color: rgba(0,0,0,.6);
+    @include text-shadow(0px 0px 40px black);
+  }
+}
+
+@include keyframes(amoebaInfoPulse) {
+  0% {
+    @include text-shadow(0px 0px 40px white);
+  } 100% {
+  }
+}
+
+@include keyframes(amoebaInfoPulseDark) {
+  0% {
+    @include text-shadow(0px 0px 40px black);
+  } 100% {
+  }
+}
+
+@include keyframes(rocketShake) {
+  0% {
+    @include rotate(0deg);
+  } 25% {
+    @include rotate(0.5deg);
+  } 50% {
+    @include rotate(0deg);
+  } 100% {
+    @include rotate(-0.5deg);
+  }
+}
+
+@include keyframes(starFlicker) {
+  0% {
+    @include rotate(0deg);
+    opacity: 1
+  } 25% {
+    @include rotate(90deg);
+    opacity: 0.5
+  } 50% {
+    @include rotate(180deg);
+    opacity: 1
+  } 100% {
+    @include rotate(360deg);
+    opacity: 0.5
+  }
+}
+
+.slide3DContainer {
+  @include transform-style(preserve-3d);
+  @include perspective(1200);
+
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
+  overflow: hidden;
+
+  div {
+    @include transform-style(preserve-3d);
+  }
+}
+
+@include keyframes(barGraphMover) {
+  0% {
+    height: 200px;
+  } 50% {
+    height: 20px;
+  } 75% {
+    height: 120px;
+  } 85% {
+    height: 80px;
+  } 100% {
+    height: 200px;
+  }
+}
+
+
+// the jquery css vendor prefix addtions gives a result that doesn't work well
+// $var.css(perspective: '400px') gives us:  -webkit-transform: perspective(400px)
+// using the @include below gives us
+// -webkit-perspective: 1200px; that works.
+.somePerspective {
+  @include perspective( 1200px );
+}
+
+
+// --------------------------------------------------------
+// --------------------------------------------------------
+// 3d cube
+
+$cubeSize: 520px;
+$halfCubeSize: $cubeSize / 2;
+$innerCubeSize: $cubeSize - 1;
+$borderRadius: 30px;
+
+.threeDCube {
+  opacity: 0;
+  @include transform-style(preserve-3d);
+  @include transform-origin($halfCubeSize $halfCubeSize 0);
+
+  .threeDCubeSide {
+    position: absolute;
+    opacity: 1;
+    width: $cubeSize;
+    height: $cubeSize;
+    border: 1px solid $amoebaGreenMedium;
+    background: $amoebaGreenMedium;
+    @include border-radius($borderRadius);
+
+    @include backface-visibility(visible); // use 'hidden'/'visible'
+
+    &.fancy {
+      @include box-shadow(inset 0 0 20px rgba(0,0,0,0.2));
+      @include background-image(radial-gradient(center, circle farthest-corner, rgba(255,255,255,.4) 0%, $amoebaGreenMedium 100%));
+    }
+  }
+
+  .innerCubeSide {
+    position: absolute;
+    width: $cubeSize;
+    height: $cubeSize;
+
+    .ics {
+      opacity: 1;
+      position: absolute;
+      height: $innerCubeSize;
+      width: $innerCubeSize;
+
+      left: 50%;
+      top: 50%;
+      margin-left: -($innerCubeSize / 2);
+      margin-top: -($innerCubeSize / 2);
+
+      background: $amoebaGreenMedium;
+      //background: rgba(111,111,111,1);
+      //background: red;
+    }
+  }
+}
+
+// --------------------------------------------------------
+// --------------------------------------------------------
+// Map blips
+// based on https://github.com/filipstefansson/jQuery-BlipBlip
+
+// overlay to add blips to
+div.blipDiv {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+$blipSize: 10px;
+$blipBorderRadius: $blipSize / 2;
+
+.blipblip-dot {
+  position: absolute;
+  width: $blipSize;
+  height: $blipSize;
+  background-color: #8b0000;
+  z-index: 9999;
+  opacity: 0;
+
+  @include border-radius($blipBorderRadius);
+  @include box-shadow(0 6px 6px rgba(0, 0, 0, .6));
+  @include background-image(linear-gradient(#ffaaaa, #aa0000));
+}
+
+#presentationMascot {
+  display: none;
+}
+
+
+#stage {
+  // debugging only
+  // border: solid 1px black;
+}
