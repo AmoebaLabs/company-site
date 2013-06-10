@@ -31,13 +31,6 @@ class AmoebaSite.CubeScene
     @cube3D = undefined
     @rotationController = undefined
 
-  pause: () =>
-    if @rotationController
-      @rotationController.togglePause()
-      return true
-
-    return false
-
   next: () =>
     if @rotationController
       return @rotationController.next()
