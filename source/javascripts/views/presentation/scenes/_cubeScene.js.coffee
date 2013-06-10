@@ -49,7 +49,7 @@ class AmoebaSite.CubeScene
 
     @eyesImage.transition(
       opacity: 1
-      duration: 2000
+      duration: AmoebaSite.utils.dur(2000)
       complete: =>
         @nextOpacity = 0
         this._blinkEyes()
@@ -68,7 +68,7 @@ class AmoebaSite.CubeScene
         @nextOpacity = 1
         this._blinkEyes()
 
-    , 200)
+    , AmoebaSite.utils.dur(200))
 
   _moveCubeToCenter: =>
     setTimeout(=>

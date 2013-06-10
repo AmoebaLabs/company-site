@@ -24,7 +24,7 @@ class AmoebaSite.HomepageRouter extends Amoeba.Router
               setTimeout( =>
                 @presentationView.showView()
                 curtains.tearDown()
-              , 1000)
+              , AmoebaSite.utils.dur(1000))
         )
       else
         curtains = new AmoebaSite.Curtains($("body"), true, (step) =>

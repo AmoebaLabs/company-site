@@ -30,8 +30,7 @@ class AmoebaSite.SpeechBubble
       startTop = 0
 
       css =
-        padding: 10
-        left: 0
+        left: 30
         width: 600 # can't be a percentage
         top: startTop + (height * @typewriterIndex)
         height: height
