@@ -208,7 +208,7 @@ class AmoebaSite.CubeScene
 
     @cube3D.transition(
       transform: "translateY(4000px) translateZ(-5200px) rotateX(0deg) rotateY(720deg) rotate(0deg)"
-      duration: AmoebaSite.utils.dur(6000)
+      duration: AmoebaSite.utils.dur(1000)
       complete: =>
         if @callback?
           @callback()
