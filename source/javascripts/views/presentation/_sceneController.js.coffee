@@ -21,17 +21,25 @@ class AmoebaSite.SceneController
   _runSequence: () =>
     contentDiv = @el.find('#content')
 
+    $('body').trigger('amoeba:incrementProgressBar')
+
     @cube = new AmoebaSite.CubeScene(contentDiv, =>
       @cube.tearDown()
       @cube = undefined
+
+      $('body').trigger('amoeba:incrementProgressBar')
 
       @toolsScene = new AmoebaSite.ToolsScene(contentDiv, =>
         @toolsScene.tearDown()
         @toolsScene = undefined
 
+        $('body').trigger('amoeba:incrementProgressBar')
+
         @cloudScene = new AmoebaSite.CloudScene(contentDiv, =>
           # keep the clouds on for a few seconds
           setTimeout(=>
+            $('body').trigger('amoeba:incrementProgressBar')
+
             this._sequenceDone()
           , 1000)
         )
