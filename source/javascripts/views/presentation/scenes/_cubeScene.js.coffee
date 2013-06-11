@@ -45,30 +45,46 @@ class AmoebaSite.CubeScene
 
   _fadeInEyes: =>
     sideDiv = @cubeFaces[5]
-    @eyesImage = AmoebaSite.utils.createImageDiv('/images/presentation/eyes.svg', 'cube', 300, sideDiv)
+    @eyesImage = AmoebaSite.utils.createImageDiv('/images/presentation/eyes_5.svg', 'cube', 300, sideDiv)
 
     @eyesImage.transition(
       opacity: 1
-      duration: AmoebaSite.utils.dur(2000)
+      duration: AmoebaSite.utils.dur(1000)
       complete: =>
-        @nextOpacity = 0
-        this._blinkEyes()
+        this._blinkEyes(0, 5, true)
     )
 
-  _blinkEyes: =>
+  _blinkEyes: (blinkCount, eyesIndex, closingEyes, timeout=30) =>
     setTimeout( =>
+      # set to 70 between eye blinks, just reset to 30 here
+      timeout=30
 
-      @eyesImage.css(
-        opacity: @nextOpacity
-      )
+      if closingEyes
+        eyesIndex--
 
-      if @nextOpacity == 1
+        if eyesIndex == 0
+          closingEyes = false
+          eyesIndex = 2
+      else
+        eyesIndex++
+
+        if eyesIndex == 6
+          # blink twice, if first time, reverse process
+          if blinkCount == 0
+            blinkCount++
+            closingEyes = true
+            eyesIndex = 5
+            timeout = 70
+
+      if eyesIndex == 6
         this._moveCubeToCenter()
-      else if @nextOpacity == 0
-        @nextOpacity = 1
-        this._blinkEyes()
+      else
+        @eyesImage.css(
+          backgroundImage: 'url("' + "/images/presentation/eyes_#{eyesIndex}.svg" + '")'
+        )
+        this._blinkEyes(blinkCount, eyesIndex, closingEyes, timeout)
 
-    , AmoebaSite.utils.dur(200))
+    , AmoebaSite.utils.dur(timeout))
 
   _moveCubeToCenter: =>
     setTimeout(=>
