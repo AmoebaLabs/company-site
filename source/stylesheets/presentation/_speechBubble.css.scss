@@ -1,56 +1,38 @@
+$bubbleColor: rgba(100,100,100,1);
+$shadowColor: rgba(50,50,50,1);
+$borderRadius: 20px;
 
-// generated here: http://htmlgenerator.weebly.com/css-speech-bubble-generator.html
-
-@mixin bubbleMixin()
+@mixin bubbleMixin($arrowLocation, $borderColorParams)
 {
-  $arrowLocation: 75%;
-  $backColor: rgba(50,50,50,1);
-  $borderColor: rgba(0,0,0,1);
-  $borderRadius: 20px;
+  position: absolute;
+  opacity: 1;
 
   .bubble {
     position: relative;
     width: 100%;
     height: 100%;
-    padding: 0px;
-    background: $backColor;
-    z-index: 1;
+    background: $bubbleColor;
 
-    border: $borderColor solid 4px;
     @include border-radius($borderRadius);
-    @include box-shadow(0px 0px 40px black);
-  }
-
-  .bubble:after {
-    content: "";
-    position: absolute;
-    bottom: -13px;
-    left: $arrowLocation;
-    @include transform(translateX(3px));
-    border-style: solid;
-    border-width: 14px 14px 0;
-    border-color: $backColor transparent;
-    display: block;
-    width: 0;
-    z-index: 2;
+    @include box-shadow(0px 0px 10px $shadowColor);
   }
 
   .bubble:before {
     content: "";
-    position: absolute;
-    bottom: -18px;
-    left: $arrowLocation;
-    border-style: solid;
-    border-width: 17px 17px 0;
-    border-color: $borderColor transparent;
     display: block;
+
+    position: absolute;
+    top: 99%;
+    left: $arrowLocation;
+	border: 25px solid;
+    border-color: $borderColorParams;
     width: 0;
-    z-index: 0;
   }
 }
 
-.bubble-box {
-  position: absolute;
-  opacity: 0;
-  @include bubbleMixin();
+.left-bubble-box {
+  @include bubbleMixin(10%, $bubbleColor transparent transparent $bubbleColor);
+}
+.right-bubble-box {
+  @include bubbleMixin(80%, $bubbleColor $bubbleColor transparent transparent);
 }

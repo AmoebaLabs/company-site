@@ -115,6 +115,7 @@ class AmoebaSite.CubeScene
 
   _typewriter: (conversationIndex) =>
     left = 10
+    arrowStyle = 'left'
 
     if conversationIndex == 1
       messages = [
@@ -129,6 +130,7 @@ class AmoebaSite.CubeScene
       ]
     else
       left = 500
+      arrowStyle = 'right'
 
       messages = [
         'How the fuck is this possible?'
@@ -141,7 +143,7 @@ class AmoebaSite.CubeScene
       height: 100
       width: 400
 
-    @speechBubble = new AmoebaSite.SpeechBubble(@el, messages, positionCSS, conversationIndex, this._speechBubbleCallback)
+    @speechBubble = new AmoebaSite.SpeechBubble(@el, messages, positionCSS, conversationIndex, arrowStyle, this._speechBubbleCallback)
     @speechBubble.start()
 
   _speechBubbleCallback: (conversationIndex) =>

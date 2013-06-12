@@ -1,5 +1,5 @@
 class AmoebaSite.SpeechBubble
-  constructor: (@el, @messages, positionCSS, @conversationIndex, @callback) ->
+  constructor: (@el, @messages, positionCSS, @conversationIndex, @arrowStyle='left', @callback=null) ->
     @typewriterIndex = 0
     this._createBubble(positionCSS)
 
@@ -46,9 +46,13 @@ class AmoebaSite.SpeechBubble
 
   _createBubble: (positionCSS) =>
     @bubbleContainer = $('<div/>')
-      .addClass("bubble-box")
       .css(positionCSS)
       .appendTo(@el)
+
+    if @arrowStyle == 'left'
+      @bubbleContainer.addClass("left-bubble-box")
+    else
+      @bubbleContainer.addClass("right-bubble-box")
 
     @bubble = $('<div/>')
       .addClass("bubble")
