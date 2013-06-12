@@ -50,6 +50,13 @@ class AmoebaSite.Views.Homepage extends Amoeba.View
   hideView: () ->
     @$el.disolveOut(0)
 
+  startPresentationIntro: (callback) =>
+    # fade stuff out
+    # put up speech bubble
+    # tilt in client
+    # call callback to start main presentation
+    callback?()
+
   _transitionCompleteCallback: () =>
     if @delayedTransitionToValue
       delayedTo = @delayedTransitionToValue
