@@ -8,7 +8,7 @@ class AmoebaSite.Views.Homepage.Mascot extends Amoeba.View
     @$el.disolveIn(animationTime)
 
   hide: (animationTime = 0) ->
-    @$el.disolveOut(animationTime, => @$el.removeClass("contactus"))
+    @$el.disolveOut(animationTime, => this._removeClasses())
 
   shrink: (animationTime = 0) ->
     if (animationTime > 0)
@@ -18,13 +18,24 @@ class AmoebaSite.Views.Homepage.Mascot extends Amoeba.View
     else
       @$el.addClass("contactus")
 
+  center: (animationTime = 0) ->
+    if (animationTime > 0)
+      @$el.addClassWithTransition
+        className: "presentation"
+        duration: animationTime
+    else
+      @$el.addClass("presentation")
+
   grow: (animationTime = 0) ->
     if (animationTime > 0)
       @$el.removeClassWithTransition
         className: "contactus",
         duration: animationTime
     else
-      @$el.removeClass("contactus")
+      this._removeClasses()
+
+  _removeClasses: =>
+    @$el.removeClass("contactus presentation")
 
   mascotClick: (e) ->
     Backbone.history.navigate("presentation", trigger: true)

@@ -12,9 +12,9 @@ class AmoebaSite.Views.Homepage.Presentation extends Amoeba.View
 
     @helpers.scrollToTop(animationTime)
     @parent.hideFooter(animationTime)
-    @parent.mascot.hide(animationTime)
+    @parent.mascot.center(animationTime)
 
-    this._openCurtains(true)
+    this._startConversation()
 
     @$el.disolveIn(0)
 
@@ -52,6 +52,8 @@ class AmoebaSite.Views.Homepage.Presentation extends Amoeba.View
 
   _openCurtains: (showPresentation) =>
     if showPresentation
+      @parent.mascot.hide(@parent.animationTime)
+
       curtains = new AmoebaSite.Curtains($("body"), false, (step) =>
         switch step
           when '2'
@@ -78,3 +80,87 @@ class AmoebaSite.Views.Homepage.Presentation extends Amoeba.View
             curtains.tearDown()
       )
 
+  _startConversation: =>
+    this._typewriter(1)
+
+  _typewriter: (conversationIndex) =>
+    left = 10
+    arrowStyle = 'left'
+
+    if conversationIndex == 1
+      messages = [
+        "Hi, I’m Amoeba"
+        "I work with early stage technology companies"
+        "to transform their idea into a minimum viable product"
+      ]
+    else if conversationIndex == 2
+      messages = [
+        "Get it done in weeks, not months"
+        "( or god forbid, years )"
+      ]
+    else
+      left = 500
+      arrowStyle = 'right'
+
+      messages = [
+        'How the hell do you do that?'
+        "Sounds impossible"
+      ]
+
+    positionCSS =
+      top: 10
+      left: left
+      height: 100
+      width: 400
+
+    @speechBubble = new AmoebaSite.SpeechBubble(@el, messages, positionCSS, conversationIndex, arrowStyle, this._speechBubbleCallback)
+    @speechBubble.start()
+
+  _speechBubbleCallback: (conversationIndex) =>
+    if @speechBubble?
+      @speechBubble.tearDown()
+      @speechBubble = undefined
+
+    if conversationIndex == 1
+      this._typewriter(2)
+    else if conversationIndex == 2
+      this._slideInCustomer()
+    else
+      this._slideOutCustomer()
+
+  _slideInCustomer: =>
+    this._createCustomer()
+
+    @customer.transition(
+      transform: 'translateX(0px) translateZ(0px)'
+      opacity: 1
+      duration: AmoebaSite.utils.dur(3000)
+
+      complete: =>
+        this._typewriter(3);
+    )
+
+  _slideOutCustomer: =>
+    @customer.transition(
+      transform: 'translateX(-2000px) translateZ(-2000px)'
+      opacity: 0
+      duration: AmoebaSite.utils.dur(3000)
+
+      complete: =>
+        this._openCurtains(true)
+    )
+
+  _createCustomer: =>
+    if not @customer?
+      @customer = $('<img/>')
+        .attr(src: '/images/presentation/biz_guy.svg')
+        .appendTo(@el)
+        .css(
+          position: 'absolute'
+          top: 250
+          right: 0
+          height: 260
+          width: 260
+          transform: 'translateX(1000px) translateZ(-1000px)'
+          opacity: 0
+        )

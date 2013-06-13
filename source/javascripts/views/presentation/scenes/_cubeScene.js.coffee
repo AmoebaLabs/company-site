@@ -133,8 +133,8 @@ class AmoebaSite.CubeScene
       arrowStyle = 'right'
 
       messages = [
-        'How the fuck is this possible?'
-        "I don't believe it."
+        'How the hell do you do that?'
+        "Sounds impossible"
       ]
 
     positionCSS =
