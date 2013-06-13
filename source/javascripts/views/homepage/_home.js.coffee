@@ -15,7 +15,7 @@ class AmoebaSite.Views.Homepage.Home extends Amoeba.View
     @helpers.scrollToTop(animationTime)
     @_showCapabilities(animationTime)
     @parent.showFooter(animationTime)
-    @parent.mascot.show(animationTime)
+    @parent.mascot.grow(animationTime)
     @_showLogo(animationTime)
 
   transitionOut: (to) ->

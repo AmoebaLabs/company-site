@@ -11,6 +11,9 @@ class AmoebaSite.Views.Homepage.Mascot extends Amoeba.View
     @$el.disolveOut(animationTime, => this._removeClasses())
 
   shrink: (animationTime = 0) ->
+    this.show(animationTime)  # make sure it's shown, on a refresh just calling center wasn't showing it
+    this._removeClasses()
+
     if (animationTime > 0)
       @$el.addClassWithTransition
         className: "contactus"
@@ -19,6 +22,9 @@ class AmoebaSite.Views.Homepage.Mascot extends Amoeba.View
       @$el.addClass("contactus")
 
   center: (animationTime = 0) ->
+    this.show(animationTime)  # make sure it's shown, on a refresh just calling center wasn't showing it
+    this._removeClasses()
+
     if (animationTime > 0)
       @$el.addClassWithTransition
         className: "presentation"
@@ -27,6 +33,8 @@ class AmoebaSite.Views.Homepage.Mascot extends Amoeba.View
       @$el.addClass("presentation")
 
   grow: (animationTime = 0) ->
+    this.show(animationTime)  # make sure it's shown, on a refresh just calling center wasn't showing it
+
     if (animationTime > 0)
       @$el.removeClassWithTransition
         className: "contactus",
