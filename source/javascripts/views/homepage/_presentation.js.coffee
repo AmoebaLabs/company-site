@@ -104,7 +104,7 @@ class AmoebaSite.Views.Homepage.Presentation extends Amoeba.View
 
       messages = [
         'How the hell do you do that?'
-        "Sounds impossible"
+        "Tell me more..."
       ]
 
     positionCSS =
@@ -132,8 +132,7 @@ class AmoebaSite.Views.Homepage.Presentation extends Amoeba.View
     this._createCustomer()
 
     @customer.transition(
-      transform: 'translateX(0px) translateZ(0px)'
-      opacity: 1
+      transform: 'rotate(-40deg)'
       duration: AmoebaSite.utils.dur(3000)
 
       complete: =>
@@ -142,7 +141,7 @@ class AmoebaSite.Views.Homepage.Presentation extends Amoeba.View
 
   _slideOutCustomer: =>
     @customer.transition(
-      transform: 'translateX(-2000px) translateZ(-2000px)'
+      transform: 'rotate(0px) translateX(1000px)'
       opacity: 0
       duration: AmoebaSite.utils.dur(3000)
 
@@ -161,6 +160,4 @@ class AmoebaSite.Views.Homepage.Presentation extends Amoeba.View
           right: 0
           height: 260
           width: 260
-          transform: 'translateX(1000px) translateZ(-1000px)'
-          opacity: 0
         )

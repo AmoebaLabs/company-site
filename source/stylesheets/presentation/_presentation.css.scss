@@ -27,9 +27,10 @@
 }
 
 #mascot.presentation {
-  top: 50%;
+  top: 300px;
   left: 50%;
-  transform: 'translateX(-50%) translateY(-50%)'
+
+  @include transform(translate(-50%, 0px));
 }
 
 #presentationBackground {
