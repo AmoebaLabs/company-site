@@ -1,7 +1,7 @@
 #= require_tree ./scenes
 
 class AmoebaSite.SceneController
-  constructor: (@el) ->
+  constructor: (@el, @callback) ->
     AmoebaSB.layout ?= new AmoebaSB.SlideLayout($("#stage"), $('#stageHolder'))
     @backgroundColorClasses = 'white black blue green none'
 
@@ -54,8 +54,7 @@ class AmoebaSite.SceneController
     #          @cloudScene = undefined
     #          AmoebaSite.presentation.setBackground('black')
     #          AmoebaSite.utils.hideDiv(@mascot, true)
-
-    $("body").trigger("switchToPresentation", [false])
+    @callback?()
 
   setBackgroundColor: (color) =>
     this._setPresentationBackgroundColor(color)

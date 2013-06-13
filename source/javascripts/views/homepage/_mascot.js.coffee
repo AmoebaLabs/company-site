@@ -26,5 +26,9 @@ class AmoebaSite.Views.Homepage.Mascot extends Amoeba.View
     else
       @$el.removeClass("contactus")
 
-  mascotClick: ->
-    $("body").trigger("switchToPresentation", [true])
+  mascotClick: (e) ->
+    Backbone.history.navigate("presentation", trigger: true)
+
+    # normally set to go to the home page, but we are hijacking it, we could fix this later once finalized
+    e.preventDefault()
+    e.stopPropagation()

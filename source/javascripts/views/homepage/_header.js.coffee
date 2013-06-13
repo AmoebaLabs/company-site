@@ -22,7 +22,7 @@ class AmoebaSite.Views.Homepage.Header extends Amoeba.View
       $("#mobile-nav").hide()
 
       switch @parent.currentPageName()
-        when 'home', 'none'   # hides the header on home screen, show otherwise
+        when 'home', 'none', 'presentation'  # hides the header on home screen, show otherwise
           this._hideHeader()
         else
           this._showHeader()

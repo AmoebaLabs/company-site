@@ -14,6 +14,7 @@ class AmoebaSite.Views.Homepage extends Amoeba.View
       home: @_render 'Homepage.Home'
       contactus: @_render 'Homepage.Contactus'
       team: @_render 'Homepage.Team'
+      presentation: @_render 'Homepage.Presentation'
 
     @mascot = @_render 'Homepage.Mascot'
     @header = @_render 'Homepage.Header'
@@ -43,19 +44,6 @@ class AmoebaSite.Views.Homepage extends Amoeba.View
 
   hideFooter: (animationTime = 0) ->
     $("#footer").disolveOut(animationTime)
-
-  showView: () ->
-    @$el.disolveIn(0)
-
-  hideView: () ->
-    @$el.disolveOut(0)
-
-  startPresentationIntro: (callback) =>
-    # fade stuff out
-    # put up speech bubble
-    # tilt in client
-    # call callback to start main presentation
-    callback?()
 
   _transitionCompleteCallback: () =>
     if @delayedTransitionToValue
