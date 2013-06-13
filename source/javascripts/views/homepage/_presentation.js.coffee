@@ -1,7 +1,7 @@
 
 class AmoebaSite.Views.Homepage.Presentation extends Amoeba.View
   name: 'presentation'
-  el: '#presentation'
+  el: '#presentationIntro'
 
   initialize: ->
     this._setupProgressBar()
@@ -58,7 +58,8 @@ class AmoebaSite.Views.Homepage.Presentation extends Amoeba.View
         switch step
           when '2'
             if not AmoebaSite.presentation?
-              AmoebaSite.presentation = new AmoebaSite.SceneController(@$el, =>
+              pres = $('#presentation')
+              AmoebaSite.presentation = new AmoebaSite.SceneController(pres, =>
                 this._openCurtains(false)
               )
               AmoebaSite.presentation.start()

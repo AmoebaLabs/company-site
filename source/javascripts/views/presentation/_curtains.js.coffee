@@ -38,27 +38,31 @@ class AmoebaSite.Curtains
   _step1: =>
     this.callback?('1')
 
-    @left.transition(
-      left: @leftEnd
-      easing: 'ease'
-      transform: @leftEndSkew
+    # timeout was added to give new view time to redraw itself before curtains opened.
+    # worked fine when just swapping views out, but new code uses navigate() which seems slow.
+    setTimeout(=>
+      @left.transition(
+        left: @leftEnd
+        easing: 'ease'
+        transform: @leftEndSkew
 
-      duration: AmoebaSite.utils.dur(2000)
-    )
-    @right.transition(
-      left: @rightEnd
-      easing: 'ease'
-      transform: @rightEndSkew
+        duration: AmoebaSite.utils.dur(2000)
+      )
+      @right.transition(
+        left: @rightEnd
+        easing: 'ease'
+        transform: @rightEndSkew
 
-      duration: AmoebaSite.utils.dur(2000)
-      complete: =>
-        this._step2()
-    )
+        duration: AmoebaSite.utils.dur(2000)
+        complete: =>
+          this._step2()
+      )
 
-    @fader.transition(
-      opacity: @faderEndOpacity
-      duration: AmoebaSite.utils.dur(2000)
-    )
+      @fader.transition(
+        opacity: @faderEndOpacity
+        duration: AmoebaSite.utils.dur(2000)
+      )
+    , 500)
 
   _step2: =>
     this.callback?('2')
