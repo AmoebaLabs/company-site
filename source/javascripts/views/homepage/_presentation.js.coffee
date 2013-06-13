@@ -59,6 +59,7 @@ class AmoebaSite.Views.Homepage.Presentation extends Amoeba.View
           when '2'
             if not AmoebaSite.presentation?
               pres = $('#presentation')
+              pres.disolveIn(0)  # just need class=hidden removed
               AmoebaSite.presentation = new AmoebaSite.SceneController(pres, =>
                 this._openCurtains(false)
               )
@@ -76,6 +77,9 @@ class AmoebaSite.Views.Homepage.Presentation extends Amoeba.View
           when '1'
             # switch to home page
             Backbone.history.navigate("/", trigger: true);
+
+            pres = $('#presentation')
+            pres.disolveOut(0)  # just need class=hidden added back
 
           when 'done'
             curtains.tearDown()
