@@ -142,21 +142,24 @@ class AmoebaSite.Views.Homepage.Presentation extends Amoeba.View
         duration: AmoebaSite.utils.dur(3000)
 
         complete: =>
-          mascot = @parent.mascot.$el
+          setTimeout(=>
+            mascot = @parent.mascot.$el
 
-          # move the mascot x pixels to the right of mascot
-          right = window.innerWidth - mascot.offset().left;
-          right -= mascot.width()
-          right -= 50
-          right -= @customer.width()
+            # move the mascot x pixels to the right of mascot
+            right = window.innerWidth - mascot.offset().left;
+            right -= mascot.width()
+            right -= 50
+            right -= @customer.width()
 
-          @customer.transition(
-            right: right
-            duration: AmoebaSite.utils.dur(3000)
+            @customer.transition(
+              rotate: "0deg"
+              right: right
+              duration: AmoebaSite.utils.dur(3000)
 
-            complete: =>
-              this._typewriter(3);
-          )
+              complete: =>
+                this._typewriter(3);
+            )
+          , 1000)
       )
 
   _slideOutCustomer: =>
@@ -165,8 +168,8 @@ class AmoebaSite.Views.Homepage.Presentation extends Amoeba.View
       duration: AmoebaSite.utils.dur(2000)
 
       complete: =>
-#       Backbone.history.navigate("/", trigger: true)
-        this._openCurtains(true)
+        Backbone.history.navigate("/", trigger: true)
+#        this._openCurtains(true)
     )
 
   _createCustomer: =>
@@ -179,7 +182,7 @@ class AmoebaSite.Views.Homepage.Presentation extends Amoeba.View
       .css(
         position: 'fixed'
         top: offset.top
-        right: 0
+        right: -280
         height: 400
         width: 400
       )
@@ -191,8 +194,8 @@ class AmoebaSite.Views.Homepage.Presentation extends Amoeba.View
     mascot.transition(
       top: 200
       left: 0
-      height: 400
-      width: 400
+      height: 500
+      width: 500
       duration: animationTime
       complete: =>
         this._startConversation()
