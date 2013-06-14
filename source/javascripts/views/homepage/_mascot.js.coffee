@@ -8,11 +8,11 @@ class AmoebaSite.Views.Homepage.Mascot extends Amoeba.View
     @$el.disolveIn(animationTime)
 
   hide: (animationTime = 0) ->
-    @$el.disolveOut(animationTime, => this._removeClasses())
+    @$el.disolveOut(animationTime, => this._resetStyles())
 
   shrink: (animationTime = 0) ->
     this.show(animationTime)  # make sure it's shown, on a refresh just calling center wasn't showing it
-    this._removeClasses()
+    this._resetStyles()
 
     if (animationTime > 0)
       @$el.addClassWithTransition
@@ -21,29 +21,22 @@ class AmoebaSite.Views.Homepage.Mascot extends Amoeba.View
     else
       @$el.addClass("contactus")
 
-  center: (animationTime = 0) ->
-    this.show(animationTime)  # make sure it's shown, on a refresh just calling center wasn't showing it
-    this._removeClasses()
-
-    if (animationTime > 0)
-      @$el.addClassWithTransition
-        className: "presentation"
-        duration: animationTime
-    else
-      @$el.addClass("presentation")
-
   grow: (animationTime = 0) ->
     this.show(animationTime)  # make sure it's shown, on a refresh just calling center wasn't showing it
+    this._resetStyles(false)
 
     if (animationTime > 0)
       @$el.removeClassWithTransition
         className: "contactus",
         duration: animationTime
     else
-      this._removeClasses()
+      this._resetStyles()
 
-  _removeClasses: =>
-    @$el.removeClass("contactus presentation")
+  _resetStyles: (removeClasses=true) =>
+    @el.style.cssText = ""  # remove any custom css styles
+
+    if removeClasses
+      @$el.removeClass("contactus presentation")
 
   mascotClick: (e) ->
     Backbone.history.navigate("presentation", trigger: true)

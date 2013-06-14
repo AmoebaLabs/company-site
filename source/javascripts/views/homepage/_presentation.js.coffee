@@ -12,9 +12,8 @@ class AmoebaSite.Views.Homepage.Presentation extends Amoeba.View
 
     @helpers.scrollToTop(animationTime)
     @parent.hideFooter(animationTime)
-    @parent.mascot.center(animationTime)
 
-    this._startConversation()
+    this._positionMascot(animationTime)
 
     @$el.disolveIn(0)
 
@@ -136,33 +135,66 @@ class AmoebaSite.Views.Homepage.Presentation extends Amoeba.View
   _slideInCustomer: =>
     this._createCustomer()
 
-    @customer.transition(
-      transform: 'rotate(-40deg)'
-      duration: AmoebaSite.utils.dur(3000)
+    @customer
+      .css({ transformOrigin: '50% 100%' })
+      .transition(
+        rotate: "-40deg"
+        duration: AmoebaSite.utils.dur(3000)
 
-      complete: =>
-        this._typewriter(3);
-    )
+        complete: =>
+          mascot = @parent.mascot.$el
+
+          # move the mascot x pixels to the right of mascot
+          right = window.innerWidth - mascot.offset().left;
+          right -= mascot.width()
+          right -= 50
+          right -= @customer.width()
+
+          @customer.transition(
+            right: right
+            duration: AmoebaSite.utils.dur(3000)
+
+            complete: =>
+              this._typewriter(3);
+          )
+      )
 
   _slideOutCustomer: =>
     @customer.transition(
-      transform: 'rotate(0px) translateX(1000px)'
       opacity: 0
-      duration: AmoebaSite.utils.dur(3000)
+      duration: AmoebaSite.utils.dur(2000)
 
       complete: =>
+#       Backbone.history.navigate("/", trigger: true)
         this._openCurtains(true)
     )
 
   _createCustomer: =>
-    if not @customer?
-      @customer = $('<img/>')
-        .attr(src: '/images/presentation/biz_guy.svg')
-        .appendTo(@el)
-        .css(
-          position: 'absolute'
-          top: 250
-          right: 0
-          height: 260
-          width: 260
-        )
+    mascot = @parent.mascot.$el
+    offset = mascot.offset()
+
+    @customer = $('<img/>')
+      .attr(src: '/images/presentation/biz_guy.svg')
+      .appendTo(@el)
+      .css(
+        position: 'fixed'
+        top: offset.top
+        right: 0
+        height: 400
+        width: 400
+      )
+
+  _positionMascot: (animationTime) =>
+    mascot = @parent.mascot.$el
+
+    @parent.mascot.show(animationTime)
+    mascot.transition(
+      top: 200
+      left: 0
+      height: 400
+      width: 400
+      duration: animationTime
+      complete: =>
+        this._startConversation()
+    )
+
