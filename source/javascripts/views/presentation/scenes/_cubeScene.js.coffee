@@ -45,30 +45,46 @@ class AmoebaSite.CubeScene
 
   _fadeInEyes: =>
     sideDiv = @cubeFaces[5]
-    @eyesImage = AmoebaSite.utils.createImageDiv('/images/presentation/eyes.svg', 'cube', 300, sideDiv)
+    @eyesImage = AmoebaSite.utils.createImageDiv('/images/presentation/eyes_5.svg', 'cube', 300, sideDiv)
 
     @eyesImage.transition(
       opacity: 1
-      duration: 2000
+      duration: AmoebaSite.utils.dur(1000)
       complete: =>
-        @nextOpacity = 0
-        this._blinkEyes()
+        this._blinkEyes(0, 5, true)
     )
 
-  _blinkEyes: =>
+  _blinkEyes: (blinkCount, eyesIndex, closingEyes, timeout=30) =>
     setTimeout( =>
+      # set to 70 between eye blinks, just reset to 30 here
+      timeout=30
 
-      @eyesImage.css(
-        opacity: @nextOpacity
-      )
+      if closingEyes
+        eyesIndex--
 
-      if @nextOpacity == 1
+        if eyesIndex == 0
+          closingEyes = false
+          eyesIndex = 2
+      else
+        eyesIndex++
+
+        if eyesIndex == 6
+          # blink twice, if first time, reverse process
+          if blinkCount == 0
+            blinkCount++
+            closingEyes = true
+            eyesIndex = 5
+            timeout = 70
+
+      if eyesIndex == 6
         this._moveCubeToCenter()
-      else if @nextOpacity == 0
-        @nextOpacity = 1
-        this._blinkEyes()
+      else
+        @eyesImage.css(
+          backgroundImage: 'url("' + "/images/presentation/eyes_#{eyesIndex}.svg" + '")'
+        )
+        this._blinkEyes(blinkCount, eyesIndex, closingEyes, timeout)
 
-    , 200)
+    , AmoebaSite.utils.dur(timeout))
 
   _moveCubeToCenter: =>
     setTimeout(=>
@@ -84,107 +100,10 @@ class AmoebaSite.CubeScene
         duration: AmoebaSite.utils.dur(1000)
 
         complete: =>
-          this._tiltLeft()
+          this._fadeInContentScreen()
       )
 
     , AmoebaSite.utils.dur(1500))
-
-  _tiltLeft: =>
-    @cube3D.transition(
-      transform: 'translateZ(-1000px) rotateX(-15deg) rotateY(-15deg) rotate(0deg)'
-      duration: AmoebaSite.utils.dur(1000)
-      complete: =>
-        this._typewriter(1)
-    )
-
-  _typewriter: (conversationIndex) =>
-    left = 10
-
-    if conversationIndex == 1
-      messages = [
-        "Hi, I’m Amoeba"
-        "I work with early stage technology companies"
-        "to transform their idea into a minimum viable product"
-      ]
-    else if conversationIndex == 2
-      messages = [
-        "Get it done in weeks, not months"
-        "( or god forbid, years )"
-      ]
-    else
-      left = 500
-
-      messages = [
-        'How the fuck is this possible?'
-        "I don't believe it."
-      ]
-
-    positionCSS =
-      top: 10
-      left: left
-      height: 100
-      width: 400
-
-    @speechBubble = new AmoebaSite.SpeechBubble(@el, messages, positionCSS, conversationIndex, this._speechBubbleCallback)
-    @speechBubble.start()
-
-  _speechBubbleCallback: (conversationIndex) =>
-    if @speechBubble?
-      @speechBubble.tearDown()
-      @speechBubble = undefined
-
-    if conversationIndex == 1
-      this._tiltRight()
-    else if conversationIndex == 2
-      this._slideInCustomer()
-    else
-      this._slideOutCustomer()
-
-  _tiltRight: =>
-    @cube3D.transition(
-      transform: 'translateZ(-500px) rotateX(-375deg) rotateY(15deg) rotate(0deg)'
-      duration: AmoebaSite.utils.dur(1000)
-      complete: =>
-        conversationIndex = 2
-        this._typewriter(2);
-    )
-
-  _slideInCustomer: =>
-    this._createCustomer()
-
-    @customer.transition(
-      transform: 'translateX(0px) translateZ(0px)'
-      opacity: 1
-      duration: AmoebaSite.utils.dur(3000)
-
-      complete: =>
-        this._typewriter(3);
-    )
-
-  _slideOutCustomer: =>
-    @customer.transition(
-      transform: 'translateX(-2000px) translateZ(-2000px)'
-      opacity: 0
-      duration: AmoebaSite.utils.dur(3000)
-
-      complete: =>
-        this._fadeInContentScreen()
-    )
-
-  _createCustomer: =>
-    if not @customer?
-      @customer = $('<img/>')
-        .attr(src: '/images/presentation/space_mascot.svg')
-        .appendTo(@el)
-        .css(
-          position: 'absolute'
-          top: 250
-          right: 0
-          height: 260
-          width: 260
-          transform: 'translateX(1000px) translateZ(-1000px)'
-          opacity: 0
-        )
 
   _rollRollCubeOut:() =>
     if not @cube3D?
@@ -208,7 +127,7 @@ class AmoebaSite.CubeScene
 
     @cube3D.transition(
       transform: "translateY(4000px) translateZ(-5200px) rotateX(0deg) rotateY(720deg) rotate(0deg)"
-      duration: AmoebaSite.utils.dur(6000)
+      duration: AmoebaSite.utils.dur(1000)
       complete: =>
         if @callback?
           @callback()

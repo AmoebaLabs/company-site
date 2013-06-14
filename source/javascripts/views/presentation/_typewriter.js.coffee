@@ -70,7 +70,7 @@ class AmoebaSite.Typewriter
   _cleanStyleCSS: (styleCSS) =>
     # some defaults in case the user forgets to pass it a value
     defaults =
-      fontSize: "1em"
+      fontSize: ".8em"
       position: "absolute"
       textAlign: 'left'
       top: 0

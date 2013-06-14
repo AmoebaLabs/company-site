@@ -9,8 +9,7 @@ class AmoebaSite.Views.Homepage.Contactus extends Amoeba.View
 
     @helpers.scrollToTop(animationTime)
     @parent.showFooter(animationTime)
-    @parent.mascot.show(animationTime)
-    @parent.mascot.shrink(if from is 'home' then @parent.animationTime else 0)
+    @parent.mascot.shrink(animationTime)
 
     # Show the #contact-questions (sayhi) div
     $('#contact-questions').disolveIn(animationTime)
@@ -34,11 +33,6 @@ class AmoebaSite.Views.Homepage.Contactus extends Amoeba.View
     # hack that will be removed when refactored
     if @parent.mobileMode
       animationTime = 0
-
-    if to is 'home'
-      @parent.mascot.grow(animationTime)
-    else
-      @parent.mascot.hide(animationTime)
 
     # Hide the #contact-questions (sayhi) div
     $('#contact-questions').disolveOut(animationTime)

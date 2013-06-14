@@ -360,8 +360,8 @@ class AmoebaSite.ToolsScene
       .appendTo(@el)
       .css(
         position: 'absolute'
-        height: 160
-        width: 160
+        height: 140
+        width: 140
         zIndex: -1
         opacity: 0
       )
@@ -369,13 +369,13 @@ class AmoebaSite.ToolsScene
   _popoutMascot: =>
     @mascot.css(
       top: @endLocationTop
-      left: @endLocationLeft - 30
+      left: @endLocationLeft - 20
 
       opacity: 1
     )
 
     @mascot.transition(
-      top: @toolTopOffset - 15
+      top: @toolTopOffset + 15
       duration: AmoebaSite.utils.dur(1500)
       easing: 'in'
       complete: =>

@@ -1,7 +1,14 @@
 
-// --------------------------------------------------------
-// --------------------------------------------------------
-// public
+#presentationContent {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  opacity: 0;  // start off hidden
+
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
 
 @mixin blue-print() {
   background-color:#269;
@@ -19,11 +26,17 @@
   position: absolute;
   top: 0px;
   left: 0px;
-  opacity: 0;  // start off hidden
 
   width: 100%;
   height: 100%;
   overflow: hidden;
+}
+
+#mascot.presentation {
+  top: 300px;
+  left: 50%;
+
+  @include transform(translate(-50%, 0px));
 }
 
 #presentationBackground {
@@ -46,7 +59,6 @@
 }
 .none {
   @include background(transparent);
-  @include blue-print();
 }
 
 div#bakgrnd {
@@ -255,7 +267,7 @@ $borderRadius: 30px;
     @include backface-visibility(visible); // use 'hidden'/'visible'
 
     &.fancy {
-      @include box-shadow(inset 0 0 20px rgba(0,0,0,0.2));
+      @include box-shadow(inset 0 0 40px rgba(0,0,0,0.2));
       @include background-image(radial-gradient(center, circle farthest-corner, rgba(255,255,255,.4) 0%, $amoebaGreenMedium 100%));
     }
   }

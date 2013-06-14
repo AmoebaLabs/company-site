@@ -1,5 +1,5 @@
 class AmoebaSite.SpeechBubble
-  constructor: (@el, @messages, positionCSS, @conversationIndex, @callback) ->
+  constructor: (@el, @messages, positionCSS, @conversationIndex, @arrowStyle='left', @callback=null) ->
     @typewriterIndex = 0
     this._createBubble(positionCSS)
 
@@ -29,23 +29,30 @@ class AmoebaSite.SpeechBubble
       height = 20
       startTop = 0
 
+      styleCss =
+        textShadow: ""
+        color: "white"
+
       css =
-        padding: 10
-        left: 0
+        left: 30
         width: 600 # can't be a percentage
         top: startTop + (height * @typewriterIndex)
         height: height
 
-      typewriter = new AmoebaSite.Typewriter(@bubble, message, css)
+      typewriter = new AmoebaSite.Typewriter(@bubble, message, css, styleCss)
       typewriter.write(this._nextTypewriter)
     else if @callback?
       @callback(@conversationIndex)
 
   _createBubble: (positionCSS) =>
     @bubbleContainer = $('<div/>')
-      .addClass("bubble-box")
       .css(positionCSS)
       .appendTo(@el)
+
+    if @arrowStyle == 'left'
+      @bubbleContainer.addClass("left-bubble-box")
+    else
+      @bubbleContainer.addClass("right-bubble-box")
 
     @bubble = $('<div/>')
       .addClass("bubble")

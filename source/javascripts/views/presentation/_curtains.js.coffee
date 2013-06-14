@@ -25,7 +25,7 @@ class AmoebaSite.Curtains
         easing: 'ease'
         top: 0
         opacity: 1
-        duration: 1000
+        duration: AmoebaSite.utils.dur(1000)
         complete: =>
           this._step1()
       )
@@ -38,27 +38,31 @@ class AmoebaSite.Curtains
   _step1: =>
     this.callback?('1')
 
-    @left.transition(
-      left: @leftEnd
-      easing: 'ease'
-      transform: @leftEndSkew
+    # timeout was added to give new view time to redraw itself before curtains opened.
+    # worked fine when just swapping views out, but new code uses navigate() which seems slow.
+    setTimeout(=>
+      @left.transition(
+        left: @leftEnd
+        easing: 'ease'
+        transform: @leftEndSkew
 
-      duration: 2000
-    )
-    @right.transition(
-      left: @rightEnd
-      easing: 'ease'
-      transform: @rightEndSkew
+        duration: AmoebaSite.utils.dur(2000)
+      )
+      @right.transition(
+        left: @rightEnd
+        easing: 'ease'
+        transform: @rightEndSkew
 
-      duration: 2000
-      complete: =>
-        this._step2()
-    )
+        duration: AmoebaSite.utils.dur(2000)
+        complete: =>
+          this._step2()
+      )
 
-    @fader.transition(
-      opacity: @faderEndOpacity
-      duration: 2000
-    )
+      @fader.transition(
+        opacity: @faderEndOpacity
+        duration: AmoebaSite.utils.dur(2000)
+      )
+    , 500)
 
   _step2: =>
     this.callback?('2')
@@ -67,13 +71,13 @@ class AmoebaSite.Curtains
     @left.transition(
       boxShadow: "0px 0px 0px rgba(0, 0, 0, 0)"
       border: "solid 1px transparent"
-      duration: 1000
+      duration: AmoebaSite.utils.dur(1000)
     )
 
     @right.transition(
       boxShadow: "0px 0px 0px rgba(0, 0, 0, 0)"
       border: "solid 1px transparent"
-      duration: 1000
+      duration: AmoebaSite.utils.dur(1000)
 
       complete: =>
         this._step3()

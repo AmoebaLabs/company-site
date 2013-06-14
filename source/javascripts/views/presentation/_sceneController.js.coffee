@@ -1,7 +1,7 @@
 #= require_tree ./scenes
 
 class AmoebaSite.SceneController
-  constructor: (@el) ->
+  constructor: (@el, @callback) ->
     AmoebaSB.layout ?= new AmoebaSB.SlideLayout($("#stage"), $('#stageHolder'))
     @backgroundColorClasses = 'white black blue green none'
 
@@ -21,17 +21,25 @@ class AmoebaSite.SceneController
   _runSequence: () =>
     contentDiv = @el.find('#content')
 
+    $('body').trigger('amoeba:incrementProgressBar')
+
     @cube = new AmoebaSite.CubeScene(contentDiv, =>
       @cube.tearDown()
       @cube = undefined
+
+      $('body').trigger('amoeba:incrementProgressBar')
 
       @toolsScene = new AmoebaSite.ToolsScene(contentDiv, =>
         @toolsScene.tearDown()
         @toolsScene = undefined
 
+        $('body').trigger('amoeba:incrementProgressBar')
+
         @cloudScene = new AmoebaSite.CloudScene(contentDiv, =>
           # keep the clouds on for a few seconds
           setTimeout(=>
+            $('body').trigger('amoeba:incrementProgressBar')
+
             this._sequenceDone()
           , 1000)
         )
@@ -46,8 +54,7 @@ class AmoebaSite.SceneController
     #          @cloudScene = undefined
     #          AmoebaSite.presentation.setBackground('black')
     #          AmoebaSite.utils.hideDiv(@mascot, true)
-
-    $("body").trigger("switchToPresentation", [false])
+    @callback?()
 
   setBackgroundColor: (color) =>
     this._setPresentationBackgroundColor(color)
