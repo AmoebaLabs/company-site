@@ -88,7 +88,10 @@ class AmoebaSite.Views.Homepage.Presentation extends Amoeba.View
     this._typewriter(1)
 
   _typewriter: (conversationIndex) =>
-    left = 10
+    mascot = @parent.mascot.$el
+    offset = mascot.offset()
+
+    left = offset.left
     arrowStyle = 'left'
 
     if conversationIndex == 1
@@ -103,7 +106,9 @@ class AmoebaSite.Views.Homepage.Presentation extends Amoeba.View
         "( or god forbid, years )"
       ]
     else
-      left = 500
+      offset = @customer.offset()
+
+      left = offset.left - 400
       arrowStyle = 'right'
 
       messages = [
@@ -112,9 +117,9 @@ class AmoebaSite.Views.Homepage.Presentation extends Amoeba.View
       ]
 
     positionCSS =
-      top: 10
+      top: -30
       left: left
-      height: 100
+      height: 230
       width: 400
 
     @speechBubble = new AmoebaSite.SpeechBubble(@el, messages, positionCSS, conversationIndex, arrowStyle, this._speechBubbleCallback)

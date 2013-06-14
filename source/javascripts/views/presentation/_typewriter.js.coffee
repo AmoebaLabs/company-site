@@ -54,7 +54,7 @@ class AmoebaSite.Typewriter
       left: 0
       top: 0
       width: 0
-      height: 100
+      height: "1.5em"
       position: "absolute"
 
     result = _.extend(defaults, positionCSS)
@@ -70,7 +70,7 @@ class AmoebaSite.Typewriter
   _cleanStyleCSS: (styleCSS) =>
     # some defaults in case the user forgets to pass it a value
     defaults =
-      fontSize: ".8em"
+      fontSize: "1.5em"
       position: "absolute"
       textAlign: 'left'
       top: 0
