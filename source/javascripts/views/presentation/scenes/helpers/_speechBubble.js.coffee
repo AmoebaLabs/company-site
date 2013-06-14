@@ -27,7 +27,11 @@ class AmoebaSite.SpeechBubble
     interval = setInterval(=>
       if (i == srcText.length)
         clearInterval(interval)
-        @callback?(@conversationIndex)
+
+        # delay at the end a bit so it doesn't disappear so fast
+        setTimeout(=>
+          @callback?(@conversationIndex)
+        , 1000)
       else
         result += srcText[i].replace("\n", "<br />")
         $(".bubbleText").html( result)

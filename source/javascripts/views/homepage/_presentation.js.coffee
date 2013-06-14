@@ -99,9 +99,9 @@ class AmoebaSite.Views.Homepage.Presentation extends Amoeba.View
 
     if conversationIndex == 1
       messages = [
-        "Hi, I’m Amoeba"
+        "Hi, I’m Amoeba."
         "I work with early stage technology companies"
-        "to transform their idea into a minimum viable product"
+        "to transform their idea into a minimum viable product."
       ]
     else if conversationIndex == 2
       messages = [
@@ -116,7 +116,7 @@ class AmoebaSite.Views.Homepage.Presentation extends Amoeba.View
 
       messages = [
         'How the hell do you do that?'
-        "Tell me more..."
+        "Tell me more, Amoeba."
       ]
 
     positionCSS =
@@ -148,7 +148,7 @@ class AmoebaSite.Views.Homepage.Presentation extends Amoeba.View
       .css({ transformOrigin: '50% 100%' })
       .transition(
         rotate: "-40deg"
-        duration: AmoebaSite.utils.dur(3000)
+        duration: AmoebaSite.utils.dur(1000)
 
         complete: =>
           setTimeout(=>
@@ -163,7 +163,7 @@ class AmoebaSite.Views.Homepage.Presentation extends Amoeba.View
             @customer.transition(
               rotate: "0deg"
               right: right
-              duration: AmoebaSite.utils.dur(3000)
+              duration: AmoebaSite.utils.dur(1000)
 
               complete: =>
                 this._typewriter(3);
