@@ -219,23 +219,7 @@ class Customer_StepOne
     this._nextTypewriter()
 
   _nextTypewriter: () =>
-    message = @messages.shift()
-
-    @typewriterIndex += 1
-
-    startTop = 100
-
-    if message
-      css =
-        left: '50%'
-        width: 400 # can't be a percentage
-        top: startTop + (20 * @typewriterIndex)
-        height: 20
-
-      typewriter = new AmoebaSite.Typewriter(@container, message, css)
-      typewriter.write(this._nextTypewriter)
-    else
-      this._typewriterDone()
+    this._typewriterDone()
 
   _typewriterDone: () =>
     if @typewriterMode == 1

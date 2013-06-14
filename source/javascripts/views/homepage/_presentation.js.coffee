@@ -168,7 +168,7 @@ class AmoebaSite.Views.Homepage.Presentation extends Amoeba.View
               complete: =>
                 this._typewriter(3);
             )
-          , 1000)
+          , AmoebaSite.utils.dur(1000))
       )
 
   _createCustomer: =>
@@ -195,7 +195,7 @@ class AmoebaSite.Views.Homepage.Presentation extends Amoeba.View
       left: 0
       height: 500
       width: 500
-      duration: animationTime
+      duration: AmoebaSite.utils.dur(animationTime)
       complete: =>
         this._startConversation()
     )

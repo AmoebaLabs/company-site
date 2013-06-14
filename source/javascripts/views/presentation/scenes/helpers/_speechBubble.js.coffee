@@ -31,13 +31,13 @@ class AmoebaSite.SpeechBubble
         # delay at the end a bit so it doesn't disappear so fast
         setTimeout(=>
           @callback?(@conversationIndex)
-        , 1000)
+        , AmoebaSite.utils.dur(1000))
       else
         result += srcText[i].replace("\n", "<br />")
         $(".bubbleText").html( result)
 
         i++
-    , 30)
+    , AmoebaSite.utils.dur(30))
 
   _createBubble: (positionCSS) =>
     @bubbleContainer = $('<div/>')

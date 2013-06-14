@@ -70,19 +70,4 @@ class AmoebaSite.Presentation.Slide_Team extends AmoebaSB.Slide_Base
     console.log 'typewriter callback'
 
   _typewriterEffect: (message, bottom) =>
-    # fade out current message if any
-    @typewriter?.tearDown(true) # true fades it out before it removes it from the DOM
-
-    positionCSS =
-      position: 'absolute'
-      top: 100
-      left: 300
-      height: 200
-      width: 400
-
-    styleCSS =
-      textAlign: 'center'
-      fontSize: '2em'
-
-    @typewriter = new AmoebaSite.Typewriter(@el, message, positionCSS, styleCSS)
-    @typewriter.write(this._typewriterCallback)
+    this._typewriterCallback?()

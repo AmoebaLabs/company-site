@@ -29,7 +29,7 @@ class AmoebaSite.SceneController
 
       $('body').trigger('amoeba:incrementProgressBar')
 
-      @toolsScene = new AmoebaSite.ToolsScene(contentDiv, =>
+      @toolsScene = new AmoebaSite.ToolsRocketScene(contentDiv, =>
         @toolsScene.tearDown()
         @toolsScene = undefined
 
