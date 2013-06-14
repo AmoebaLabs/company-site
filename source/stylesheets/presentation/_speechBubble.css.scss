@@ -14,7 +14,6 @@ $borderRadius: 20px;
     background: $bubbleColor;
 
     @include border-radius($borderRadius);
-    @include box-shadow(0px 0px 10px $shadowColor);
   }
 
   .bubble:before {
@@ -35,4 +34,10 @@ $borderRadius: 20px;
 }
 .right-bubble-box {
   @include bubbleMixin(80%, $bubbleColor $bubbleColor transparent transparent);
+}
+
+.bubbleText {
+  color: white;
+  padding: 10px;
+  font-size: 24px;
 }

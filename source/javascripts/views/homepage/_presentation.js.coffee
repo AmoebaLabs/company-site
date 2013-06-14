@@ -51,11 +51,14 @@ class AmoebaSite.Views.Homepage.Presentation extends Amoeba.View
 
   _openCurtains: (showPresentation) =>
     if showPresentation
-      @parent.mascot.hide(@parent.animationTime)
-
       curtains = new AmoebaSite.Curtains($("body"), false, (step) =>
         switch step
           when '2'
+
+            @parent.mascot.hide(0)
+            @customer.remove()
+            @customer = null
+
             if not AmoebaSite.presentation?
               pres = $('#presentation')
               pres.disolveIn(0)  # just need class=hidden removed
@@ -91,7 +94,7 @@ class AmoebaSite.Views.Homepage.Presentation extends Amoeba.View
     mascot = @parent.mascot.$el
     offset = mascot.offset()
 
-    left = offset.left
+    left = offset.left + (mascot.width() / 2)
     arrowStyle = 'left'
 
     if conversationIndex == 1
@@ -108,7 +111,7 @@ class AmoebaSite.Views.Homepage.Presentation extends Amoeba.View
     else
       offset = @customer.offset()
 
-      left = offset.left - 400
+      left = offset.left - 100
       arrowStyle = 'right'
 
       messages = [
@@ -117,12 +120,12 @@ class AmoebaSite.Views.Homepage.Presentation extends Amoeba.View
       ]
 
     positionCSS =
-      top: -30
+      top: 10
       left: left
-      height: 230
+      height: 200
       width: 400
 
-    @speechBubble = new AmoebaSite.SpeechBubble(@el, messages, positionCSS, conversationIndex, arrowStyle, this._speechBubbleCallback)
+    @speechBubble = new AmoebaSite.SpeechBubble(@el, messages.join("\n"), positionCSS, conversationIndex, arrowStyle, this._speechBubbleCallback)
     @speechBubble.start()
 
   _speechBubbleCallback: (conversationIndex) =>
@@ -135,7 +138,8 @@ class AmoebaSite.Views.Homepage.Presentation extends Amoeba.View
     else if conversationIndex == 2
       this._slideInCustomer()
     else
-      this._slideOutCustomer()
+#      Backbone.history.navigate("/", trigger: true)
+      this._openCurtains(true)
 
   _slideInCustomer: =>
     this._createCustomer()
@@ -166,16 +170,6 @@ class AmoebaSite.Views.Homepage.Presentation extends Amoeba.View
             )
           , 1000)
       )
-
-  _slideOutCustomer: =>
-    @customer.transition(
-      opacity: 0
-      duration: AmoebaSite.utils.dur(2000)
-
-      complete: =>
-        Backbone.history.navigate("/", trigger: true)
-#        this._openCurtains(true)
-    )
 
   _createCustomer: =>
     mascot = @parent.mascot.$el
