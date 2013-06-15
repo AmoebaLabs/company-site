@@ -2,9 +2,6 @@
 class AmoebaSite.ToolsRocketScene
   constructor:(@el, @callback) ->
     @animationIndex = 0
-    @endLocationTop = 220
-    @endLocationLeft = 154
-    @toolTopOffset = 30
     @rotateTransformOrigin = '28% bottom 0'
 
     this._createRocket()
@@ -12,7 +9,6 @@ class AmoebaSite.ToolsRocketScene
 
   start: =>
     this._showRocket()
-    this._setNextAnimationTimer()
 
   tearDown: =>
     # cancel the animation timers if set to run
@@ -29,11 +25,20 @@ class AmoebaSite.ToolsRocketScene
 
   _showRocket: () =>
     @rocketContainer.css(
-      opacity: 1
+      opacity: 0
+      y: -window.innerHeight  * 1.2
     )
 
-    @rocketContainer.keyframe('bounceInUp', 800, 'ease-out', 0, 1, 'normal', () =>
-      @rocketContainer.css(AmoebaSB.keyframeAnimationPlugin.animationProperty, '')
+    @rocketContainer.transition(
+      opacity: 1
+      duration: AmoebaSite.utils.dur(2000)
+      complete: =>
+        @rocketContainer.transition(
+          y: 0
+          duration: AmoebaSite.utils.dur(8000)
+          complete: =>
+            this._setNextAnimationTimer()
+        )
     )
 
   _blastOffRocket: () =>
@@ -56,9 +61,9 @@ class AmoebaSite.ToolsRocketScene
       .appendTo(@el)
      .css(
         position: 'absolute'
-        top: 50
+        top: 250
         left: 50
-        height: '180%'
+        height: '240%'
         width: AmoebaSB.layout.slideWidth - 100
         opacity: 0
       )
@@ -132,10 +137,14 @@ class AmoebaSite.ToolsRocketScene
         when 0
           this._swingLidOpen()
         when 1
-          this._popoutMascot()
+          this._popoutMascot(true)
         when 2
-          this._swingLidClosed()
+          this._mascotTalks()
         when 3
+          this._popoutMascot(false)
+        when 4
+          this._swingLidClosed()
+        when 5
           this._blastOffRocket()
         else
           this._finalStep()
@@ -155,27 +164,35 @@ class AmoebaSite.ToolsRocketScene
       .appendTo(@el)
       .css(
         position: 'absolute'
-        height: 140
-        width: 140
+        height: 340
+        width: 340
         zIndex: -1
         opacity: 0
       )
 
-  _popoutMascot: =>
-    @mascot.css(
-      top: @endLocationTop
-      left: @endLocationLeft - 20
+  _popoutMascot: (show) =>
+    top = 304
+    left = 300
+    startTop = top + 400
 
-      opacity: 1
-    )
+    if show
+      @mascot.css(
+        top: startTop
+        left: left
+
+        opacity: 1
+      )
+    else
+      # already showing and in the right position, just move down
+      top = startTop
 
     @mascot.transition(
-      top: @toolTopOffset + 15
+      top: top
       duration: AmoebaSite.utils.dur(1500)
       easing: 'in'
       complete: =>
         @mascot.transition(
-          top: @endLocationTop
+          top: top
           duration: AmoebaSite.utils.dur(1000)
           delay: AmoebaSite.utils.dur(500)
           easing: 'in'
@@ -183,3 +200,26 @@ class AmoebaSite.ToolsRocketScene
             this._setNextAnimationTimer(200)
         )
     )
+
+  _mascotTalks: =>
+    left = 420
+    top = 120
+    arrowStyle = 'left'
+
+    positionCSS =
+      position: 'absolute'  # for some reason fixed is not working in this div?
+      top: top
+      left: left
+      height: 100
+      width: 300
+
+    speechBubble = new AmoebaSite.SpeechBubble(@el, "Ready for lift off?", positionCSS, 0, arrowStyle, =>
+      setTimeout(=>
+        speechBubble.tearDown()
+        speechBubble = undefined
+
+        this._setNextAnimationTimer()
+      , AmoebaSite.utils.dur(1000))
+    )
+    speechBubble.start()
+
