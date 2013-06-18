@@ -26,7 +26,7 @@ class AmoebaSite.ToolsRocketScene
   _showRocket: () =>
     @rocketContainer.css(
       opacity: 0
-      y: -window.innerHeight  * 1.2
+      y: -window.innerHeight  * 2
     )
 
     @rocketContainer.transition(

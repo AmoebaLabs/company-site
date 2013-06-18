@@ -180,7 +180,7 @@ class AmoebaSite.Views.Homepage.Presentation extends Amoeba.View
       .appendTo(@el)
       .css(
         position: 'fixed'
-        top: offset.top
+        top: offset.top + 20
         right: -280
         height: 400
         width: 400
