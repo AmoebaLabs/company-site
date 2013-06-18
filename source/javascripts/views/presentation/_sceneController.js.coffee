@@ -98,9 +98,6 @@ class AmoebaSite.SceneController
   _setPresentationBackgroundColor: (backgroundColor, backgroundClass) =>
     theDiv = $("#presentation")
 
-    if backgroundClass == 'default'
-      backgroundClass = 'none'
-
     if backgroundColor?
       theDiv.css(
         backgroundColor: backgroundColor

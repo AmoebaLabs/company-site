@@ -1,5 +1,4 @@
-$bubbleColor: rgba(100,100,100,1);
-$shadowColor: rgba(50,50,50,1);
+$bubbleColor: rgba(100,100,100,.65);
 $borderRadius: 20px;
 
 @mixin bubbleMixin($arrowLocation, $borderColorParams)
@@ -21,7 +20,7 @@ $borderRadius: 20px;
     display: block;
 
     position: absolute;
-    top: 99%;
+    top: 100%;
     left: $arrowLocation;
 	border: 25px solid;
     border-color: $borderColorParams;

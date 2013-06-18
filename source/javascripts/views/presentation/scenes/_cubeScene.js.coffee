@@ -22,7 +22,7 @@ class AmoebaSite.CubeScene
     # fade didn't work unless we had this 0 timeout wrapper.  weird
     setTimeout( =>
       # short curcuit for testing
-#      AmoebaSite.presentation.setBackground('default')
+#      AmoebaSite.presentation.setBackground('none')
 #      @callback?()
 
       this._fadeInEyes()
@@ -92,7 +92,7 @@ class AmoebaSite.CubeScene
 
   _moveCubeToCenter: =>
     setTimeout(=>
-      AmoebaSite.presentation.setBackground('default')
+      AmoebaSite.presentation.setBackground('none')
 
       # make the cube more fancy
       _.each(@cubeFaces, (face, index) =>
