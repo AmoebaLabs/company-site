@@ -27,7 +27,7 @@
 
 body {
   // consider filter-gradient for old IE
-  @include background-image(linear-gradient(color-stops($greyLight 0%, white 50%)));
+  @include default-background();
   height: 573px;
   background-repeat: repeat-x;
 

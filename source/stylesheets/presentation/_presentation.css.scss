@@ -58,7 +58,7 @@
   @include background(transparent radial-gradient(circle cover, rgb(100,100,100) 0%, rgb(0,0,0) 100%));
 }
 .none {
-  @include background(transparent);
+  @include default-background();
 }
 
 div#bakgrnd {

@@ -41,6 +41,11 @@
   @include transition(all $duration ease-in-out);
 }
 
+// default background, used in site and presentation
+@mixin default-background() {
+  @include background-image(linear-gradient(color-stops($greyLight 0%, white 50%)));
+}
+
 //-------- Extensions --------
 %mobileOnly {
   display: none;
