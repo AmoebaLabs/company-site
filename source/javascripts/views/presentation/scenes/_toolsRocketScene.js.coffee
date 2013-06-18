@@ -153,15 +153,15 @@ class AmoebaSite.ToolsRocketScene
       .appendTo(@el)
       .css(
         position: 'absolute'
-        height: 340
-        width: 340
+        height: 240
+        width: 240
         zIndex: -1
         opacity: 0
       )
 
   _popoutMascot: (show) =>
-    top = 304
-    left = 300
+    left = 355
+    top = 282
     startTop = top + 400
 
     if show
