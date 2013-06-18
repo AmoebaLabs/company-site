@@ -2,7 +2,7 @@
 class AmoebaSite.ToolsRocketScene
   constructor:(@el, @callback) ->
     @animationIndex = 0
-    @rotateTransformOrigin = '34% bottom 0'
+    @rotateTransformOrigin = '28% bottom 0'
 
     this._createRocket()
     this._createMascot()
@@ -26,7 +26,7 @@ class AmoebaSite.ToolsRocketScene
   _showRocket: () =>
     @rocketContainer.css(
       opacity: 0
-      y: -window.innerHeight  * 2
+      y: -window.innerHeight * 3
     )
 
     @rocketContainer.transition(
@@ -61,10 +61,10 @@ class AmoebaSite.ToolsRocketScene
       .appendTo(@el)
      .css(
         position: 'absolute'
-        top: 250
-        left: 50
-        height: '240%'
-        width: AmoebaSB.layout.slideWidth - 100
+        top: 100
+        left: 0
+        height: '400%'
+        width: AmoebaSB.layout.slideWidth
         opacity: 0
       )
 
@@ -153,15 +153,15 @@ class AmoebaSite.ToolsRocketScene
       .appendTo(@el)
       .css(
         position: 'absolute'
-        height: 240
-        width: 240
+        height: 340
+        width: 340
         zIndex: -1
         opacity: 0
       )
 
   _popoutMascot: (show) =>
-    left = 355
-    top = 282
+    top = 190
+    left = 308
     startTop = top + 400
 
     if show
@@ -192,7 +192,7 @@ class AmoebaSite.ToolsRocketScene
 
   _mascotTalks: =>
     left = 420
-    top = 120
+    top = 20
     arrowStyle = 'left'
 
     positionCSS =
@@ -212,3 +212,8 @@ class AmoebaSite.ToolsRocketScene
     )
     speechBubble.start()
 
+
+
+#    sentence = "Building great software doesn't have to be rocket science."
+#    theCSS = AmoebaSite.utils.textCSSForSize(2.3, 'left')
+#    title = AmoebaSite.utils.createTextDiv(sentence, theCSS, null, sideDiv)
