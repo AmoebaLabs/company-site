@@ -2,7 +2,7 @@
 class AmoebaSite.ToolsRocketScene
   constructor:(@el, @callback) ->
     @animationIndex = 0
-    @rotateTransformOrigin = '28% bottom 0'
+    @rotateTransformOrigin = '34% bottom 0'
 
     this._createRocket()
     this._createMascot()
@@ -79,31 +79,20 @@ class AmoebaSite.ToolsRocketScene
         # without this, the first rotation is off a bit, not sure why
         transformOrigin: @rotateTransformOrigin
 
-        height: '18%'
+        height: '12%'
         width: '100%'
       )
 
     @rocket = $('<div/>')
       .appendTo(@rocketContainer)
       .css(
-        backgroundImage: 'url("' + "/images/presentation/rocket_body_only.svg" + '")'
+        backgroundImage: 'url("' + "/images/presentation/rocket_logos_no_top.svg" + '")'
         backgroundPosition: 'center top'
         backgroundSize: 'contain'
         backgroundRepeat: 'no-repeat'
-        height: '58%'
+        height: '88%'
         width: '100%'
         transform: 'translateZ(0px)'     # needed for zIndex to work? not sure why
-      )
-
-    @rocketFlame = $('<div/>')
-      .appendTo(@rocketContainer)
-      .css(
-        backgroundImage: 'url("' + "/images/presentation/rocket_flame_only.svg" + '")'
-        backgroundPosition: 'center top'
-        backgroundSize: 'contain'
-        backgroundRepeat: 'no-repeat'
-        height: '24%'
-        width: '100%'
       )
 
   _swingLidOpen: =>
