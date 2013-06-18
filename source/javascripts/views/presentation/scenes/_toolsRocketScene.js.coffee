@@ -11,6 +11,8 @@ class AmoebaSite.ToolsRocketScene
     this._showRocket()
 
   tearDown: =>
+    AmoebaSite.utils.remove(true, true, ['message'], @el)
+
     # cancel the animation timers if set to run
     if @animationTimeout?
       clearTimeout(@animationIndex)
@@ -125,6 +127,7 @@ class AmoebaSite.ToolsRocketScene
       switch @animationIndex
         when 0
           this._swingLidOpen()
+          this._showMessage()
         when 1
           this._popoutMascot(true)
         when 2
@@ -212,8 +215,27 @@ class AmoebaSite.ToolsRocketScene
     )
     speechBubble.start()
 
+  _showMessage: =>
+#    sentence = "How it's built is as important as what is built."
 
+    theCSS = AmoebaSite.utils.textCSSForSize(2.3)
 
-#    sentence = "Building great software doesn't have to be rocket science."
-#    theCSS = AmoebaSite.utils.textCSSForSize(2.3, 'left')
-#    title = AmoebaSite.utils.createTextDiv(sentence, theCSS, null, sideDiv)
+    theCSS.top = 100
+    sentence = "We know this technology is mission critical to you."
+    message = AmoebaSite.utils.createTextDiv(sentence, theCSS, "message", @el)
+
+    message.transition(
+      opacity: 1
+      duration: AmoebaSite.utils.dur(1000)
+      complete: =>
+        sentence = "That’s why we use the latest tools and frameworks."
+
+        theCSS.top = 150
+        message = AmoebaSite.utils.createTextDiv(sentence, theCSS, "message", @el)
+
+        message.transition(
+          opacity: 1
+          duration: AmoebaSite.utils.dur(1000)
+        )
+    )
+
