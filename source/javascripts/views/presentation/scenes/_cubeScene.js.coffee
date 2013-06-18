@@ -22,10 +22,10 @@ class AmoebaSite.CubeScene
     # fade didn't work unless we had this 0 timeout wrapper.  weird
     setTimeout( =>
       # short curcuit for testing
-      AmoebaSite.presentation.setBackground('default')
-      @callback?()
+#      AmoebaSite.presentation.setBackground('default')
+#      @callback?()
 
-#      this._fadeInEyes()
+      this._fadeInEyes()
     ,0)
 
   tearDown: () =>
