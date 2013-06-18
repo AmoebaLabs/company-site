@@ -39,7 +39,7 @@ class AmoebaSite.Views.Homepage extends Amoeba.View
     @currentSubView.transitionIn?(from)
 
     # show or hide header depending on state
-    @header.adjustHeader()
+    @header.adjustHeader(if from == 'none' then 0 else @animationTime)
 
   currentPageName: ->
     return if @currentSubView then @currentSubView.name else 'none'

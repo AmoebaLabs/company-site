@@ -13,25 +13,27 @@ class AmoebaSite.Views.Homepage.Header extends Amoeba.View
   _toggleMobileNav: ->
    this._css3SlideToggle($("#mobile-nav"))
 
-  adjustHeader: () =>
+  adjustHeader: (animationTime=0) =>
     # header always shows the header
     if @parent.mobileMode
-      this._showHeader()
+      # don't show for presentation
+      if @parent.currentPageName() != 'presentation'
+        this._showHeader(animationTime)
     else
       # make sure the mobile nav is hidden when not mobile. show the nav in mobile then resize window size to see it disappear
       $("#mobile-nav").hide()
 
       switch @parent.currentPageName()
         when 'home', 'none', 'presentation'  # hides the header on home screen, show otherwise
-          this._hideHeader()
+          this._hideHeader(animationTime)
         else
-          this._showHeader()
+          this._showHeader(animationTime)
 
-  _showHeader: () ->
-    $("#header").slideDown(@parent.animationTime)
+  _showHeader: (animationTime=0) ->
+    $("#header").slideDown(animationTime)
 
-  _hideHeader: () ->
-    $("#header").slideUp(@parent.animationTime)
+  _hideHeader: (animationTime=0) ->
+    $("#header").slideUp(animationTime)
 
   _setupMobileNavClickHandler: () ->
     # closes menu on click
