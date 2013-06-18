@@ -1,6 +1,7 @@
 #= require jquery-1.8.2
 #= require jquery.transit
 #= require enquire
+#= require cookie
 #= require amoeba-js
 #= require raphaeljs
 #= require amoeba-storybook

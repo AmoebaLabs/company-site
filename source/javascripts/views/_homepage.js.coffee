@@ -19,6 +19,11 @@ class AmoebaSite.Views.Homepage extends Amoeba.View
     @mascot = @_render 'Homepage.Mascot'
     @header = @_render 'Homepage.Header'
 
+    # cookie to start presentation on first visit
+    if not this._cookieOK()
+      console.log 'first time to site'
+      this._updateCookie()
+
   transition: (to) ->
     # don't do anything if busy
     if @callbackHelper.busy()
@@ -63,4 +68,12 @@ class AmoebaSite.Views.Homepage extends Amoeba.View
     unmatch: =>
       @mobileMode = false
       $('body').trigger('amoeba:mobileModeUpdated')
+    )
+
+  _cookieOK: () =>
+    return cookie('cookie') == 'yes'
+
+  _updateCookie: () =>
+    cookie.set(
+      cookie: 'yes'
     )
