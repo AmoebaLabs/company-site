@@ -30,17 +30,17 @@ class AmoebaSite.CloudsController
   _showMessage: (messageIndex) =>
     switch (messageIndex)
       when 0
-        theText = "Light-up your Start-up"
+        theText = "We fuel your team<br/>with the experience,"
       when 1
-        theText = "and Blast off!"
+        theText = "ability and process"
       when 2
-        theText = "Leap ahead of the pack"
+        theText = "to take your idea<br/>into the next level."
       when 3
-        theText = "Preparing you for growth"
+        theText = "Together<br/>we can slay the dragons"
       when 4
-        theText = "Rule the universe"
+        theText = "challenge the giants"
       when 5
-        theText = "Don't be a douche"
+        theText = "and journey<br/>to new lands."
 
     if theText?
       theCSS = _.extend({}, AmoebaSite.utils.deepTextShadowCSS())
