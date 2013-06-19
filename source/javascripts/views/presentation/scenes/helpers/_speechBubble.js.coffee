@@ -37,7 +37,7 @@ class AmoebaSite.SpeechBubble
         $(".bubbleText").html( result)
 
         i++
-    , AmoebaSite.utils.dur(30))
+    , AmoebaSite.utils.dur(20))
 
   _createBubble: (positionCSS) =>
     @bubbleContainer = $('<div/>')
