@@ -80,7 +80,7 @@ AmoebaSite.utils =
       theCSS = _.extend(theCSS, css)
 
     result = $('<div/>')
-      .text(text)
+      .html(text)
       .css(theCSS)
 
     # set the font

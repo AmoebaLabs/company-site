@@ -118,7 +118,6 @@ class AmoebaSite.CubeScene
     )
 
     @cube3D.transition(
-      opacity:.3
       transform: "translateZ(-5200px) rotateX(0deg) rotateY(0deg) rotate(0deg)"
       duration: AmoebaSite.utils.dur(2000)
       complete: =>
@@ -391,7 +390,6 @@ class AmoebaSite.CubeScene
       return
 
     @cube3D.css(
-      opacity:.3
       transform: 'translateY(4000px) translateZ(-5200px) rotateX(460deg) rotateY(760deg)'
     )
 
