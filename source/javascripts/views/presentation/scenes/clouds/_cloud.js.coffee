@@ -51,7 +51,7 @@ class AmoebaSite.Cloud
 
     x = 256 - (Math.random() * 512)
     y = 256 - (Math.random() * 512)
-    z = 256 - (Math.random() * 512)
+    z = 0 - (Math.random() * 512)
     t = "translateX(#{x}px) translateY(#{y}px) translateZ(#{z}px)"
     @cloudBase.css(transform: t)
 

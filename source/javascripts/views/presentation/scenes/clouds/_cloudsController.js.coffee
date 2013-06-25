@@ -44,7 +44,7 @@ class AmoebaSite.CloudsController
 
     if theText?
       theCSS = _.extend({}, AmoebaSite.utils.deepTextShadowCSS())
-      theCSS = _.extend(theCSS, AmoebaSite.utils.textCSSForSize(3))
+      theCSS = _.extend(theCSS, AmoebaSite.utils.textCSSForSize(4))
       message = AmoebaSite.utils.createTextDiv(theText, theCSS, 'message', @contentDiv)
 
       message.css(
@@ -55,7 +55,7 @@ class AmoebaSite.CloudsController
       message.transition(
         duration: AmoebaSite.utils.dur(2000)
         opacity: 1
-        transform: 'translateZ(260px) rotateY(0deg)' # clouds go from 256 to -256
+        transform: 'translateZ(50px) rotateY(0deg)' # clouds go from 256 to -256
 
         complete: =>
           message.transition(
