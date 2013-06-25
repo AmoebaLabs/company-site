@@ -6,6 +6,9 @@ class AmoebaSite.CubeScene
   constructor: (@el, @callback) ->
     AmoebaSite.presentation.setBackgroundColor(AmoebaSite.Colors.amoebaGreenMedium)
 
+    @normalBlinkTimeout = 40
+    @slowBlinkTimeout = @normalBlinkTimeout * 2
+
     @container = $('<div/>')
       .appendTo(@el)
 
@@ -49,19 +52,21 @@ class AmoebaSite.CubeScene
 
   _fadeInEyes: =>
     sideDiv = @cubeFaces[5]
-    @eyesImage = AmoebaSite.utils.createImageDiv('/images/presentation/eyes_5.svg', 'cube', 300, sideDiv)
+    @eyesImage = AmoebaSite.utils.createImageDiv('/images/presentation/eyes_5.svg', null, 300, sideDiv)
 
     @eyesImage.transition(
       opacity: 1
       duration: AmoebaSite.utils.dur(1000)
       complete: =>
-        this._blinkEyes(0, 5, true)
+        setTimeout(=>
+          this._blinkEyes(0, 5, true)
+        , 2000)
     )
 
-  _blinkEyes: (blinkCount, eyesIndex, closingEyes, timeout=30) =>
+  _blinkEyes: (blinkCount, eyesIndex, closingEyes, timeout=@normalBlinkTimeout) =>
     setTimeout( =>
       # set to 70 between eye blinks, just reset to 30 here
-      timeout=30
+      timeout=@normalBlinkTimeout
 
       if closingEyes
         eyesIndex--
@@ -78,7 +83,7 @@ class AmoebaSite.CubeScene
             blinkCount++
             closingEyes = true
             eyesIndex = 5
-            timeout = 70
+            timeout = @slowBlinkTimeout
 
       if eyesIndex == 6
         this._moveCubeToCenter()
@@ -336,7 +341,7 @@ class AmoebaSite.CubeScene
     )
 
     # image at bottom
-    scaleImage = AmoebaSite.utils.createImageDiv('/images/presentation/rocket.svg', 'cube', 200, sideDiv)
+    scaleImage = AmoebaSite.utils.createImageDiv('/images/presentation/rocket.svg', null, 200, sideDiv)
     scaleImage.transition(
       top: 'auto' # unset top set in createImageDiv
       bottom: 0

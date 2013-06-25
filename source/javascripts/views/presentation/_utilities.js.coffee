@@ -19,10 +19,10 @@ AmoebaSite.utils =
         opacity: 0
       )
 
-    if divClass
+    if divClass?
       result.addClass(divClass)
 
-    if parentDiv
+    if parentDiv?
       # center if we have a parent, some code uses this
       result.css(
         top: (parentDiv.height() - imageSize) / 2
