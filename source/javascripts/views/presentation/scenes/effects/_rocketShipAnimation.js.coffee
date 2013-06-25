@@ -9,8 +9,8 @@ class AmoebaSite.RocketShipAnimation extends AmoebaSite.EffectsBase
     @shipHeight = 1200
 
     # should make rocket go between some clouds
-    @rocketZ = '1px'
-    @rocketZInFront = '200px'
+    @rocketZ = '-50px'
+    @rocketZInFront = '50px'
     fragment = document.createDocumentFragment();
 
     @rocketShip = new AmoebaSite.RocketShip(fragment, @shipWidth, @shipHeight)
