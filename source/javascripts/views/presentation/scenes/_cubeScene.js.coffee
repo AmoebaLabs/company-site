@@ -23,6 +23,7 @@ class AmoebaSite.CubeScene
 #      transform: "translateZ(100px)"
     )
 
+  start: =>
     # short curcuit for testing
 #    AmoebaSite.presentation.setBackground('none')
 #    @callback?()
@@ -58,7 +59,7 @@ class AmoebaSite.CubeScene
       complete: =>
         setTimeout(=>
           this._blinkEyes(0, 5, true)
-        , 2000)
+        , 1000)
     )
 
   _blinkEyes: (blinkCount, eyesIndex, closingEyes, timeout=@normalBlinkTimeout) =>

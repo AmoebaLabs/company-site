@@ -5,6 +5,10 @@ class AmoebaSite.SceneController
     AmoebaSB.layout ?= new AmoebaSB.SlideLayout($("#stage"), $('#stageHolder'))
     @backgroundColorClasses = 'white black blue green none'
 
+  setup: =>
+    @contentDiv = @el.find('#content')
+    @cube = new AmoebaSite.CubeScene(@contentDiv)
+
   start: =>
     this._runSequence()
 
@@ -19,23 +23,21 @@ class AmoebaSite.SceneController
     @cloudScene = undefined
 
   _runSequence: () =>
-    contentDiv = @el.find('#content')
-
     $('body').trigger('amoeba:incrementProgressBar')
 
-    @cube = new AmoebaSite.CubeScene(contentDiv, =>
+    @cube.start(=>
       @cube.tearDown()
       @cube = undefined
 
       $('body').trigger('amoeba:incrementProgressBar')
 
-      @toolsScene = new AmoebaSite.ToolsRocketScene(contentDiv, =>
+      @toolsScene = new AmoebaSite.ToolsRocketScene(@contentDiv, =>
         @toolsScene.tearDown()
         @toolsScene = undefined
 
         $('body').trigger('amoeba:incrementProgressBar')
 
-        @cloudScene = new AmoebaSite.CloudScene(contentDiv, =>
+        @cloudScene = new AmoebaSite.CloudScene(@contentDiv, =>
           # keep the clouds on for a few seconds
           setTimeout(=>
             $('body').trigger('amoeba:incrementProgressBar')

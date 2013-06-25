@@ -62,15 +62,17 @@ class AmoebaSite.Views.Homepage.Presentation extends Amoeba.View
             if not AmoebaSite.presentation?
               pres = $('#presentation')
               pres.disolveIn(0)  # just need class=hidden removed
-              AmoebaSite.presentation = new AmoebaSite.SceneController(pres, =>
+              AmoebaSite.presentation = new AmoebaSite.SceneController(pres)
+
+              AmoebaSite.presentation.setup(=>
                 this._openCurtains(false)
               )
-              AmoebaSite.presentation.start()
 
           when 'done'
             # delay a bit so it's not so fast a transition
             setTimeout( =>
               curtains.tearDown()
+              AmoebaSite.presentation.start()
             , AmoebaSite.utils.dur(1000))
       )
     else
