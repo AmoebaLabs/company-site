@@ -19,17 +19,15 @@ class AmoebaSite.CubeScene
 
     @cube3D.css(
       opacity: 1
-      scale: 1.3
+      scale: 1
+#      transform: "translateZ(100px)"
     )
 
-    # fade didn't work unless we had this 0 timeout wrapper.  weird
-    setTimeout( =>
-      # short curcuit for testing
-#      AmoebaSite.presentation.setBackground('none')
-#      @callback?()
+    # short curcuit for testing
+#    AmoebaSite.presentation.setBackground('none')
+#    @callback?()
 
-      this._fadeInEyes()
-    ,0)
+    this._fadeInEyes()
 
   tearDown: () =>
     @container?.remove()
@@ -105,7 +103,7 @@ class AmoebaSite.CubeScene
       )
 
       @cube3D.transition(
-        scale: 1
+        transform: "translateZ(-200px) rotateX(0deg) rotateY(0deg) rotate(0deg)"
         duration: AmoebaSite.utils.dur(1000)
 
         complete: =>
@@ -187,8 +185,8 @@ class AmoebaSite.CubeScene
     )
 
   _addContentToCube: () =>
-    this._buildCubeSize0(@cubeFaces[0])
-    this._buildCubeSize4(@cubeFaces[1])
+    this._buildCubeSide0(@cubeFaces[0])
+    this._buildCubeSide4(@cubeFaces[1])
 
   _buildInnerCube: () =>
     transforms = this._girderTransform()
@@ -325,7 +323,7 @@ class AmoebaSite.CubeScene
       when 'cubeTransformDone'
         @callback()
 
-  _buildCubeSize0: (sideDiv) =>
+  _buildCubeSide0: (sideDiv) =>
     sentence = "Building great software doesn't have to be rocket science."
     theCSS = AmoebaSite.utils.textCSSForSize(2.3, 'left')
     title = AmoebaSite.utils.createTextDiv(sentence, theCSS, null, sideDiv)
@@ -349,7 +347,7 @@ class AmoebaSite.CubeScene
       duration: AmoebaSite.utils.dur(400)
     )
 
-  _buildCubeSize4: (sideDiv) =>
+  _buildCubeSide4: (sideDiv) =>
     $('<div/>')
       .html('Amoeba<sup style="vertical-align: super; font-size: 0.2em;">\u2120</sup>')   # vertical-align: super is the magic that makes this work
       .appendTo(sideDiv)
@@ -390,38 +388,4 @@ class AmoebaSite.CubeScene
         color: 'black'
       )
 
-  _cubeDownToScreen:() =>
-    if not @cube3D?
-      return
-
-    @cube3D.css(
-      transform: 'translateY(4000px) translateZ(-5200px) rotateX(460deg) rotateY(760deg)'
-    )
-
-    @cube3D.transition(
-      opacity: 1
-      transform: 'translateY(0px) translateZ(-5200px) rotateX(360deg) rotateY(60deg)'
-      duration: AmoebaSite.utils.dur(3000)
-      complete: =>
-        this._rollDiceToScreen()
-    )
-
-  _rollDiceToScreen:() =>
-    if not @cube3D?
-      return
-
-    @cube3D.css(
-      opacity:1
-      transform: 'translateZ(-5200px) rotateX(360deg) rotateY(60deg)'
-    )
-
-    @cube3D.transition(
-      opacity: 1
-      transform: 'translateZ(0px) rotateX(0deg) rotateY(0deg)'
-      duration: AmoebaSite.utils.dur(2000)
-      complete: =>
-        setTimeout( =>
-          this._fadeInContentScreen()
-        , AmoebaSite.utils.dur(100))
-    )
 
