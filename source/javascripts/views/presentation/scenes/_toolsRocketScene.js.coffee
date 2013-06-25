@@ -206,7 +206,7 @@ class AmoebaSite.ToolsRocketScene
       height: 100
       width: 300
 
-    speechBubble = new AmoebaSite.SpeechBubble(@el, "Ready for lift off?", positionCSS, 0, arrowStyle, =>
+    speechBubble = new AmoebaSite.SpeechBubble(@el, ["Ready for lift off?"], positionCSS, 0, arrowStyle, =>
       setTimeout(=>
         speechBubble.tearDown()
         speechBubble = undefined

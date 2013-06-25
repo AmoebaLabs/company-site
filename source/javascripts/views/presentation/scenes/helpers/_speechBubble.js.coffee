@@ -1,11 +1,9 @@
 class AmoebaSite.SpeechBubble
-  constructor: (@el, @message, positionCSS, @conversationIndex, @arrowStyle='left', @callback=null) ->
-    @typewriterIndex = 0
+  constructor: (@el, @messages, positionCSS, @conversationIndex, @arrowStyle='left', @callback=null) ->
     this._createBubble(positionCSS)
 
   tearDown: =>
     if @bubble?
-      AmoebaSite.utils.remove(true, true, ['typewriter'], @bubble)
       @bubble = undefined
 
     if @bubbleContainer?
@@ -17,11 +15,18 @@ class AmoebaSite.SpeechBubble
       opacity: 1
       duration: AmoebaSite.utils.dur(1000)
       complete: =>
-        this._typeText()
+        this._typeText(0)
     )
 
-  _typeText: =>
-    srcText = @message
+  _typeText: (duration=1000)=>
+    setTimeout(=>
+      if @messages.length
+        this._typeSentence(@messages.shift())
+      else
+        @callback?(@conversationIndex)
+    , AmoebaSite.utils.dur(duration))
+
+  _typeSentence: (srcText) =>
     i = 0
     result = ""
     interval = setInterval(=>
@@ -29,9 +34,7 @@ class AmoebaSite.SpeechBubble
         clearInterval(interval)
 
         # delay at the end a bit so it doesn't disappear so fast
-        setTimeout(=>
-          @callback?(@conversationIndex)
-        , AmoebaSite.utils.dur(1000))
+        this._typeText();
       else
         result += srcText[i].replace("\n", "<br />")
         $(".bubbleText").html( result)

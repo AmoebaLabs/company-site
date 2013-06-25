@@ -100,8 +100,7 @@ class AmoebaSite.Views.Homepage.Presentation extends Amoeba.View
     if conversationIndex == 1
       messages = [
         "Hi, I’m Amoeba."
-        "I work with early stage technology companies"
-        "to transform their idea into a minimum viable product."
+        "I work with early stage technology companies to transform their idea into a minimum viable product."
       ]
     else if conversationIndex == 2
       messages = [
@@ -125,7 +124,7 @@ class AmoebaSite.Views.Homepage.Presentation extends Amoeba.View
       height: 200
       width: 400
 
-    @speechBubble = new AmoebaSite.SpeechBubble(@el, messages.join("\n"), positionCSS, conversationIndex, arrowStyle, this._speechBubbleCallback)
+    @speechBubble = new AmoebaSite.SpeechBubble(@el, messages, positionCSS, conversationIndex, arrowStyle, this._speechBubbleCallback)
     @speechBubble.start()
 
   _speechBubbleCallback: (conversationIndex) =>
