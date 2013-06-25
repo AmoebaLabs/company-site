@@ -147,7 +147,7 @@ class AmoebaSite.Views.Homepage.Presentation extends Amoeba.View
       .css({ transformOrigin: '50% 100%' })
       .transition(
         rotate: "-40deg"
-        duration: AmoebaSite.utils.dur(1000)
+        duration: AmoebaSite.utils.dur(500)
 
         complete: =>
           setTimeout(=>
@@ -162,12 +162,12 @@ class AmoebaSite.Views.Homepage.Presentation extends Amoeba.View
             @customer.transition(
               rotate: "0deg"
               right: right
-              duration: AmoebaSite.utils.dur(1000)
+              duration: AmoebaSite.utils.dur(500)
 
               complete: =>
                 this._typewriter(3);
             )
-          , AmoebaSite.utils.dur(1000))
+          , AmoebaSite.utils.dur(500))
       )
 
   _createCustomer: =>
