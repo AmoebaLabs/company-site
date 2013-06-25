@@ -11,8 +11,6 @@ class AmoebaSite.ToolsRocketScene
     this._showRocket()
 
   tearDown: =>
-    AmoebaSite.utils.remove(true, true, ['message'], @el)
-
     # cancel the animation timers if set to run
     if @animationTimeout?
       clearTimeout(@animationIndex)
@@ -131,6 +129,9 @@ class AmoebaSite.ToolsRocketScene
         when 1
           this._popoutMascot(true)
         when 2
+          # fade out message
+          AmoebaSite.utils.remove(true, true, ['message'], @el)
+
           this._mascotTalks()
         when 3
           this._popoutMascot(false)
