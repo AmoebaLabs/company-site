@@ -13,7 +13,6 @@ class AmoebaSite.Views.Homepage.Home extends Amoeba.View
     animationTime = if from is 'none' then 0 else @parent.animationTime
 
     @helpers.scrollToTop(animationTime)
-    @_showCapabilities(animationTime)
     @parent.showFooter(animationTime)
     @parent.mascot.show(animationTime)
     @_showLogo(animationTime)
@@ -25,14 +24,7 @@ class AmoebaSite.Views.Homepage.Home extends Amoeba.View
     if @parent.mobileMode
       animationTime = 0
 
-    @_hideCapabilities(animationTime)
     @_hideLogo(animationTime)
-
-  _showCapabilities: (animationTime = 0) ->
-    @$(".capabilities").disolveIn(animationTime)
-
-  _hideCapabilities: (animationTime = 0) ->
-    @$(".capabilities").disolveOut(animationTime)
 
   _showLogo: (animationTime) ->
     @$("#logo").disolveIn(animationTime, @parent.callbackHelper.callback())
