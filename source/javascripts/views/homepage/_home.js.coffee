@@ -2,17 +2,12 @@ class AmoebaSite.Views.Homepage.Home extends Amoeba.View
   name: 'home'
   el: '#homepage'
 
-  initialize: ->
-    @$('.capability-box').hover (e) =>
-      $(this).find('.rollover').fadeOut(@parent.animationTime)
-    ,(e) =>
-      $(this).find('.rollover').fadeIn(@parent.animationTime)
-
   transitionIn: (from) ->
     # When from is 'none' this is an initial page load, so animate instantly
     animationTime = if from is 'none' then 0 else @parent.animationTime
 
     @helpers.scrollToTop(animationTime)
+    @_showTicker(animationTime)
     @parent.showFooter(animationTime)
     @parent.mascot.show(animationTime)
     @_showLogo(animationTime)
@@ -24,7 +19,14 @@ class AmoebaSite.Views.Homepage.Home extends Amoeba.View
     if @parent.mobileMode
       animationTime = 0
 
+    @_hideTicker(animationTime)
     @_hideLogo(animationTime)
+
+  _showTicker: (animationTime = 0) ->
+    @$("#ticker").disolveIn(animationTime)
+
+  _hideTicker: (animationTime = 0) ->
+    @$("#ticker").disolveOut(animationTime)
 
   _showLogo: (animationTime) ->
     @$("#logo").disolveIn(animationTime, @parent.callbackHelper.callback())
