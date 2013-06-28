@@ -1,7 +1,7 @@
 #footer {
   width: $pageWidth;
   position: absolute;
-  top: 775px;
+  top: 780px;
   text-align: right;
   font-size: 12px;
 
@@ -16,6 +16,25 @@
     right: 5px;
     top: 100%;
     margin-top: 25px;
+  }
+
+  .tag {
+    @extend %amoebaFontMedium;
+    font-weight: bold;
+    color: $amoebaGreenMedium;
+    font-size: 21px;
+    float: left;
+    position: relative;
+    top: 0px;
+
+    small {
+      font-family: helvetica;
+      font-weight: normal;
+      color: gray;
+      font-size: 10px;
+      position: relative;
+      top: -7px;
+    }
   }
 
   i {
