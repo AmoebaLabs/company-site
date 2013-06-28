@@ -1,0 +1,40 @@
+#ticker {
+  background-color: #ccc;
+  width: 100%;
+  position: absolute;
+  top: 670px;
+  padding: 10px 50% 15px 50%;
+  margin-left: -50%;
+  @extend %amoebaFontMedium;
+  border-top: 1px solid darken(#ccc, 10%);
+  border-bottom: 1px solid darken(#ccc, 10%);
+
+  .text {
+    position: relative;
+    bottom: 7px;
+    font-weight: bold;
+    color: darken(#ccc, 30%);
+    font-size: 18px;
+    margin-right: 20px;
+    text-transform: uppercase;
+
+    a {
+      color: darken(#ccc, 30%);
+      margin-right: 0;
+      margin-left: 20px;
+      font-size: 16px;
+    }
+  }
+
+  img {
+    height: 25px;
+    margin: 0px 25px 0 25px;
+
+    &.mozilla {
+      height: 37px;
+      position: relative;
+      bottom: -4px;
+    }
+  }
+
+}
