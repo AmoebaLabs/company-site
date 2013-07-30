@@ -7,13 +7,13 @@
 
   position: relative;
 
-  @include breakpoint(tablet) { 
+  @include breakpoint(tablet) {
     width: 100%;
     left: 0;
     margin-left: 0;
     margin-top: 0px;
   }
-  @include breakpoint(mobile) { 
+  @include breakpoint(mobile) {
     width: 100%;
     left: 0;
     margin-left: 0;
@@ -21,8 +21,8 @@
   }
 
   @import "homepage/nav";
-  @import "homepage/capabilities";
   @import "homepage/team";
+  @import "homepage/ticker";
   @import "homepage/footer";
 }
 
@@ -30,29 +30,47 @@
   @include pie-clearfix;
 
   text-align: right;
-  position: relative;
+  position: absolute;
+  top: 373px;
+  left: 110px;
+
+  @include breakpoint(tablet) {
+    top: 365px;
+    left: 150px;
+    text-align: center;
+  }
+
+  @include breakpoint(mobile) {
+    left: 20px;
+    position: relative;
+    text-align: center;
+    top: 0;
+  }
 
   h1 {
     @include text-shadow($amoebaGrey 0px 0px 8px);
 
     @extend %amoebaFontSemiBold;
-    font-size: 153px;
+    font-size: 180px;
     line-height: 130px;
     padding: 69px 0px 5px 0px;
     margin: 0 -7px 0 0;
     color: $amoebaGreen;
 
     @include breakpoint(tablet) {
-      font-size: 145px;
+      font-size: 165px;
       padding: 0px 20px 0px 0px;
       margin-top: 20px;
+      width: 450px;
+      text-align: center;
     }
+
     @include breakpoint(mobile) {
-      width: 100%;
       font-size: 82px;
       padding: 0px 0px 0px 0px;
       text-align: center;
-      margin-top: -30px;
+      margin: 0;
+      width: 95%;
     }
 
     a {
@@ -72,6 +90,7 @@
         top: -70px;
         left: 0;
       }
+
       @include breakpoint(mobile){
         font-size: 11px;
         position: relative;
@@ -80,47 +99,24 @@
       }
     }
   }
-
-  h2 {
-    @extend %amoebaFontMedium;
-    line-height: 28px;
-    font-size: 28px;
-    margin: 0;
-    color: $amoebaGreenDark;
-
-    @include breakpoint(tablet){
-       font-size: 32px;
-       padding-right: 30px;
-
-    }
-    @include breakpoint(mobile){
-      text-align: center;
-      font-size: 18px;
-      margin-top: -30px;
-      margin-left: -10px;
-      padding-right: 0;
-    }
-  }
 }
 
 #mascot {
   z-index: 10;
-  width: 357px;
-  height: 339px;
+  width: 450px;
   position: absolute;
   top: 0px;
-  left: 9px;
+  left: 200px;
 
   @include breakpoint(tablet) {
-    width: 300px;
-    height: 285px;
+    width: 400px;
+    left: 240px;
   }
 
   @include breakpoint(mobile) {
-    width: 200px;
-    height: auto;
+    width: 350px;
     position: relative;
-    margin-top: 25px;
+    margin-top: 50px;
 
     @include center(200px);
   }
