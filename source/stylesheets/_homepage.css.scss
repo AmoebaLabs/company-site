@@ -34,6 +34,19 @@
   top: 373px;
   left: 110px;
 
+  @include breakpoint(tablet) {
+    top: 365px;
+    left: 150px;
+    text-align: center;
+  }
+
+  @include breakpoint(mobile) {
+    left: 20px;
+    position: relative;
+    text-align: center;
+    top: 0;
+  }
+
   h1 {
     @include text-shadow($amoebaGrey 0px 0px 8px);
 
@@ -45,16 +58,19 @@
     color: $amoebaGreen;
 
     @include breakpoint(tablet) {
-      font-size: 145px;
+      font-size: 165px;
       padding: 0px 20px 0px 0px;
       margin-top: 20px;
+      width: 450px;
+      text-align: center;
     }
+
     @include breakpoint(mobile) {
-      width: 100%;
       font-size: 82px;
       padding: 0px 0px 0px 0px;
       text-align: center;
-      margin-top: -30px;
+      margin: 0;
+      width: 95%;
     }
 
     a {
@@ -74,6 +90,7 @@
         top: -70px;
         left: 0;
       }
+
       @include breakpoint(mobile){
         font-size: 11px;
         position: relative;
@@ -92,13 +109,14 @@
   left: 200px;
 
   @include breakpoint(tablet) {
-    width: 300px;
+    width: 400px;
+    left: 240px;
   }
 
   @include breakpoint(mobile) {
-    width: 200px;
+    width: 350px;
     position: relative;
-    margin-top: 25px;
+    margin-top: 50px;
 
     @include center(200px);
   }

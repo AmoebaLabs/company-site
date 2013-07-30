@@ -9,6 +9,21 @@
   border-top: 1px solid darken(#ccc, 10%);
   border-bottom: 1px solid darken(#ccc, 10%);
 
+  @include breakpoint(tablet) {
+    width: 100%;
+    margin: 0;
+    padding: 10px 2.5%;
+    top: 620px;
+  }
+
+  @include breakpoint(mobile) {
+    width: 95%;
+    padding: 10px 2.5%;
+    margin: 0;
+    top: 320px;
+    text-align: center;
+  }
+
   .text {
     position: relative;
     bottom: 7px;
@@ -17,12 +32,25 @@
     font-size: 18px;
     margin-right: 20px;
     text-transform: uppercase;
+    text-align: center;
+
+    @include breakpoint(mobile) {
+      display: block;
+      margin: 0;
+    }
 
     a {
       color: darken(#ccc, 30%);
       margin-right: 0;
       margin-left: 20px;
       font-size: 16px;
+
+      @include breakpoint(mobile) {
+        display: block;
+        margin: 0;
+        bottom: 0;
+        line-height: 5px;
+      }
     }
   }
 
@@ -30,10 +58,23 @@
     height: 25px;
     margin: 0px 25px 0 25px;
 
+    @include breakpoint(tablet) {
+      margin: 0px 10px;
+    }
+
+    @include breakpoint(mobile) {
+      height: 20px;
+      margin: 0px 5px 25px 5px;
+    }
+
     &.mozilla {
       height: 37px;
       position: relative;
       bottom: -4px;
+
+      @include breakpoint(mobile) {
+        height: 30px;
+      }
     }
   }
 }

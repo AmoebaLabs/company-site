@@ -7,15 +7,16 @@
 
   @include breakpoint(tablet) {
     width: 95%;
-    top: 100%;
-    padding: 10px 0;
+    padding: 10px 2.5%;
+    top: 700px;
   }
 
   @include breakpoint(mobile) {
-    width: 100%;
-    right: 5px;
-    top: 100%;
-    margin-top: 25px;
+    width: 95%;
+    margin: 2.5%;
+    margin-top: 50px;
+    padding: 0;
+    top: 400px;
   }
 
   .tag {
@@ -34,6 +35,11 @@
       font-size: 10px;
       position: relative;
       top: -3px;
+
+      @include breakpoint(mobile) {
+        display: block;
+        text-align: left;
+      }
     }
   }
 
