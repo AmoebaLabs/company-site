@@ -36,43 +36,21 @@ title: Amoeba Consulting | Web and Mobile Application Development
 
   <div id="logo" class="hidden">
     <h1><a href="/">Amoeba</a><sup>SM</sup></h1>
-    <h2>Remarkable Development and Design</h2>
     <nav>
       <ul>
         <li><a href="/blog">Blog</a></li>
-        <li><a href="/contactus">Get In Touch</a></li>
-        <li><a href="/team">Our Team</a></li>
+        <li><a href="/contactus">Get In Touch</a><%= image_tag 'spacer_3.svg', :alt => "Amoeblet"%></li>
+        <li><a href="/team">Our Team</a><%= image_tag 'spacer_1.svg', :alt => "Amoeblet"%></li>
       </ul>
     </nav>
   </div>
 
-  <div class="capabilities hidden">
-    <div class="capability-box web">
-      <%= image_tag 'web_icon_b.svg', :alt => "Web Device", :class => "image-web-ignore" %>
-      <%= image_tag 'web_icon.svg', :alt => "Web Device", :class => "img-web rollover" %>
-      <h2>Web Applications</h2>
-
-      <p>Agile tools like <a href="http://rubyonrails.org">Ruby on Rails</a> (RoR),
-        <a href="http://backbonejs.org">Backbone.js</a>, <a href="http://emberjs.com">Ember.js</a>,
-        and others allow us to deliver powerful web applications fast, for desktop and mobile.
-      </p>
-    </div>
-    <div class="capability-box mobile">
-      <%= image_tag 'mobile_icon_b.svg', :alt => "Mobile Device", :class => "image-mobile-ignore" %>
-      <%= image_tag 'mobile_icon.svg', :alt => "Mobile Device", :class => "img-mobile rollover" %>
-      <h2>Mobile Apps</h2>
-
-      <p>We build native mobile apps for iOS and Android, as well as cross-platform mobile-web based apps.</p>
-    </div>
-    <div class="capability-box gap">
-      <%= image_tag 'gap_icon_b.svg', :alt => "Person", :class => "image-gap-ignore" %>
-      <%= image_tag 'gap_icon.svg', :alt => "Person", :class => "img-gap rollover" %>
-
-      <h2>Filling The Gap</h2>
-
-      <p>While we usually work with early stage projects, sometimes you need additional design and
-        engineering rockstars to help move faster. Let's talk.</p>
-    </div>
+  <div id="ticker" class="hidden">
+    <span class="text">Our Clients</span>
+    <%= image_tag 'clients/vulume.svg', :alt => "Vulume"%>
+    <%= image_tag 'clients/mozilla.svg', class: "mozilla", :alt => "Mozilla"%>
+    <%= image_tag 'clients/change.svg', :alt => "Change"%>
+    <span class="text"><a href="http://www.linkedin.com/company/amoeba-consulting-llc" target="_blank">See More</a></span>
   </div>
 
   <div id="contact-questions" class="hidden">
@@ -81,7 +59,7 @@ title: Amoeba Consulting | Web and Mobile Application Development
     <h2>Interesting Projects? Suggestions? Questions?</h2>
 
     <div id="sayhi">
-      <span class="geo-medium know">Let Us Know</span> - 
+      <span class="geo-medium know">Let Us Know</span> -
       <a href="mailto:sayhi@amoe.ba">sayhi@amoe.ba</a> <br>
       or <a href="tel:4153669900">(415)366-9900</a>
     </div>
@@ -114,12 +92,12 @@ title: Amoeba Consulting | Web and Mobile Application Development
   <%= partial "homepage/team" %>
 
   <div id="footer" class="hidden">
+    <span class="tag">Software Evolved. <small>&copy;  <%= Time.now.year %> Amoeba Consulting, LLC</small></span>
+
     <a href="http://facebook.com/AmoebaConsulting" target="_blank"><i class="icon-facebook-sign"></i></a>
     <a href="http://plus.google.com/107440881665995164447/" target="_blank"><i class="icon-google-plus-sign"></i></a>
     <a href="http://twitter.com/AmoebaSoft" target="_blank"><i class="icon-twitter-sign"></i></a>
     <a href="http://linkedin.com/company/amoeba-consulting-llc" target="_blank"><i class="icon-linkedin-sign"></i></a>
     <a href="https://github.com/AmoebaConsulting" target="_blank"><i class="icon-github-sign"></i></a>
-
-    &copy;  <%= Time.now.year %> Amoeba Consulting, LLC
   </div>
 </div>
