@@ -4,6 +4,14 @@ module AmoebaHelpers
     Dir["#{image_path}.{jpeg,jpg,png,gif,svg}"].present?
   end
 
+  def article_preview_image_path(article)
+    if article.data.image.present?
+      "/#{images_dir}/blog/#{article.data.image}"
+    else
+      "/#{images_dir}/external/mascot-square-200px.png"
+    end
+  end
+
   # The following helper was shamelessly stolen from Rails in the module
   # ActionView::Helpers::TextHelper
   #

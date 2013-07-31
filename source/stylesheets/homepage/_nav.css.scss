@@ -2,17 +2,15 @@
 @import "compass/css3";
 
 nav {
-  background-color: $amoebaGreen;
-  margin-top: 32px;
+  margin-top: 10px;
   height: 42px;
   width: 530px;
-
-  // Align it right under our subheading
   display: block;
-  @include float-right;
 
   @include breakpoint(tablet) {
-    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
   }
   @include breakpoint(mobile) {
     display: none;
@@ -22,15 +20,12 @@ nav {
     margin: 0;
     padding: 0;
     list-style: none;
-    
+
     li {
       display: block;
       position: relative;
       @include float-right;
       height: 30px;
-      
-      // Setup the borders between the navigation elements:
-      border-left: 1px solid $amoebaGreenMedium;
       margin-top: 6px;
       margin-bottom: 6px;
 
@@ -44,22 +39,29 @@ nav {
         display: block;
         text-decoration: none;
         height: 42px; // Height is full size of nav bar so hover fills it
-        padding: 0px 40px 0px 40px; //40px spacing between elements
+        padding: 0px 15px 0px 15px; //30px spacing between elements
+        margin: 0px 15px 0px 15px;
         white-space: nowrap;
-
-        // Compensate for the border between elements
-        margin: -6px -1px -6px -1px;
 
         // Typography settings:
         @extend %amoebaFontMedium;
+        font-weight: bold;
         color: $amoebaGreenDark;
-        font-size: 21px;
+        font-size: 24px;
         line-height: 42px; //Center in the middle of the bar, 42px high
         text-align: center;
 
         &:hover {
-          background: $amoebaGreenMedium;
+          background: $amoebaGreen;
+          border-radius: 6px;
         }
+      }
+
+      img {
+        width: 20px;
+        position: absolute;
+        right: -10px;
+        top: 12px;
       }
     }
   }

@@ -41,8 +41,8 @@ page "/index.html"
 page "/contactus/index.html", :proxy => "/index.html"
 page "/team/index.html", :proxy => "/index.html"
 
-# 404 page, has no layout to avoid the JS router and such
-page "/404.html", :layout => false
+# Other routes
+page "/404.html"
 
 ###
 # Helpers
@@ -67,6 +67,36 @@ set :images_dir, 'images'
 after_configuration do
   sprockets.append_path "vendor"
 end
+
+###
+# Blog settings
+###
+
+Time.zone = "Pacific Time (US & Canada)"
+
+activate :blog do |blog|
+  blog.prefix = "blog"
+  blog.permalink = ":year/:month/:title/index.html"
+  blog.sources = ":year-:month-:day-:title.html"
+  blog.taglink = "category/:tag"
+  blog.layout = "article"
+  blog.summary_separator = /(READMORE)/
+  # blog.summary_length = 250
+  # blog.year_link = ":year.html"
+  # blog.month_link = ":year/:month.html"
+  # blog.day_link = ":year/:month/:day.html"
+  # blog.default_extension = ".markdown"
+
+  blog.tag_template = "blog/tag.html"
+  blog.calendar_template = "blog/calendar.html"
+
+  # blog.paginate = true
+  # blog.per_page = 10
+  # blog.page_link = "page/:num"
+end
+
+page "/feed.xml", :layout => false
+
 
 ###
 # Other modules

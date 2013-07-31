@@ -1,31 +1,57 @@
 #footer {
   width: $pageWidth;
   position: absolute;
-  top: 600px;
+  top: 780px;
   text-align: right;
   font-size: 12px;
 
   @include breakpoint(tablet) {
     width: 95%;
-    top: 100%;
-    padding: 10px 0;
+    padding: 10px 2.5%;
+    top: 700px;
   }
+
   @include breakpoint(mobile) {
-    width: 100%;
-    right: 5px;
-    top: 100%;
-    margin-top: 25px;
+    width: 95%;
+    margin: 2.5%;
+    margin-top: 50px;
+    padding: 0;
+    top: 400px;
+  }
+
+  .tag {
+    @extend %amoebaFontMedium;
+    font-weight: bold;
+    color: $amoebaGreenMedium;
+    font-size: 21px;
+    float: left;
+    position: relative;
+    top: 0px;
+
+    small {
+      font-family: helvetica;
+      font-weight: normal;
+      color: gray;
+      font-size: 10px;
+      position: relative;
+      top: -3px;
+
+      @include breakpoint(mobile) {
+        display: block;
+        text-align: left;
+      }
+    }
   }
 
   i {
-    @include socialHover; 
+    @include socialHover;
     color: $amoebaGreen;
     font-size: 30px;
     line-height: 30px;
-    padding-right: 15px;
+    padding-right: 10px;
     text-decoration: none;
 
-    @include breakpoint(mobile) { 
+    @include breakpoint(mobile) {
       padding-right: 3px;
       font-size: 27px;
     }

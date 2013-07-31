@@ -1,0 +1,37 @@
+<!--
+     Hey there Hackers! Thanks for looking at our source code. If you'd like to see how we built
+     the site, there's an easier way than looking at "view source" in your browser- you can check
+     out our GitHub project! Head on over to: https://github.com/AmoebaConsulting/company-site
+     have a look, send us a comment, or fork it and create your own awesome Middleman built,
+     HTML5, CSS3, Compass/SASS driven site.
+-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+
+<!-- Standby old school ico favicon, works in every browser -->
+<%= favicon_tag "/favicon.ico" %>
+<!-- Supported since iOS 1 (and some Android devices), this icon will be rounded, dropshadowed, and reflective shined -->
+<%= favicon_tag "/apple-touch-icon.png", :rel => "apple-touch-icon", :type => "image/png" %>
+<!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+<%= favicon_tag "/apple-touch-icon-precomposed.png", :rel => "apple-touch-icon-precomposed", :type => "image/png" %>
+<!-- For non-Retina iPhone and iPod Touch: -->
+<%= favicon_tag "/apple-touch-icon-57x57-precomposed.png", :rel => "apple-touch-icon-precomposed", :sizes => "57x57", :type => "image/png" %>
+<!-- For first- and second-generation iPad: -->
+<%= favicon_tag "/apple-touch-icon-72x72-precomposed.png", :rel => "apple-touch-icon-precomposed", :sizes => "72x72", :type => "image/png" %>
+<!-- For iPhone with high-resolution Retina display: -->
+<%= favicon_tag "/apple-touch-icon-114x114-precomposed.png", :rel => "apple-touch-icon-precomposed", :sizes => "114x114", :type => "image/png" %>
+<!-- 144x144 missing For iPad 3+ (with Retina Display) -->
+
+<%= stylesheet_link_tag "screen", :media => "screen" %>
+<%= stylesheet_link_tag "print", :media => "print" %>
+
+<!-- For now we only handle IE 10+. 9 is possible if we stop requiring pushstate -->
+<!--[if lt IE 10]>
+<%= stylesheet_link_tag "ie", :media => "screen, projection" %>
+<![endif]-->
+
+<%= javascript_include_tag "all" %>
+
+<!--Setting Alternate Device Viewing Settings-->
+<meta name="viewport" content="user-scalable=no,width=device-width,initial-scale=1">

@@ -46,7 +46,9 @@ class AmoebaSite.Views.Homepage.Contactus extends Amoeba.View
     # Hide the #contactus div
     @$el.disolveOut(animationTime)
 
-  submitForm: ->
+  submitForm: (e) ->
+    e.preventDefault()
+
     $name = $("input#contact-name")
     $company = $("input#contact-company")
     $email = $("input#contact-email")
