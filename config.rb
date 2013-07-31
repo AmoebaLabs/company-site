@@ -76,11 +76,11 @@ Time.zone = "Pacific Time (US & Canada)"
 
 activate :blog do |blog|
   blog.prefix = "blog"
-  blog.permalink = "blog/:year/:month/:title.html"
-  blog.sources = "blog/:year-:month-:day-:title.html"
-  blog.taglink = "blog/category/:tag"
+  blog.permalink = ":year/:month/:title/index.html"
+  blog.sources = ":year-:month-:day-:title.html"
+  blog.taglink = "category/:tag"
   blog.layout = "article"
-  # blog.summary_separator = /(READMORE)/
+  blog.summary_separator = /(READMORE)/
   # blog.summary_length = 250
   # blog.year_link = ":year.html"
   # blog.month_link = ":year/:month.html"

@@ -3,34 +3,95 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv='X-UA-Compatible' content='IE=edge;chrome=1' />
+
+    <title><%= data.page.seo_title || data.page.title %> - Amoeba Consulting | Web and Mobile Application Development</title>
+
+    <!-- SEO Tags -->
+    <meta name="description" content="<%= data.page.seo_description || data.page.summary || Nokogiri::HTML(current_article.summary).text.gsub(/\n+/, ' ') %>"/>
+    <link rel="canonical" href="http://amoe.ba<%=current_article.url %>" />
+
+    <meta property='og:locale' content='en_US'/>
+    <meta property='og:type' content='article'/>
+    <meta property='og:title' content='<%= data.page.fb_title || data.page.seo_title || data.page.title %>'/>
+    <meta property='og:description' content='<%= data.page.fb_description || data.page.summary || Nokogiri::HTML(current_article.summary).text.gsub(/\n+/, ' ') %>'/>
+    <meta property='og:url' content='http://amoe.ba<%=current_article.url %>'/>
+    <meta property='og:site_name' content='Amoeba Consulting Blog'/>
+    <meta property='og:image' content='http://amoe.ba<%= article_preview_image_path(current_article) %>'/>
+    <meta property='fb:app_id' content='336052043168831'/>
+    <meta property="fb:admins" content="47700427" />
+
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:url" content="http://amoe.ba<%=current_article.url %>"/>
+    <meta name="twitter:site" content="@AmoebaSoft"/>
+    <meta name='twitter:image' content='http://amoe.ba<%= article_preview_image_path(current_article) %>'/>
+    <meta name="twitter:title" content="<%= data.page.seo_title || data.page.title %>"/>
+    <meta name="twitter:description" content="<%= data.page.twitter_description || data.page.summary || Nokogiri::HTML(current_article.summary).text.gsub(/\n+/, ' ') %>"/>
+
+    <% if data.team[data.page.author].gplus.present? %>
+    <link rel="author" href="http://plus.google.com/<%= data.team[data.page.author].gplus %>"/>
+    <% end %>
+    <% if data.team[data.page.author].twitter.present? %>
+    <meta name="twitter:creator" content="@<%= data.team[data.page.author].twitter %>"/>
+    <% end %>
+
+    <link rel=”publisher” href=”https://plus.google.com/u/0/107440881665995164447“/>
+    <!-- / SEO Tags -->
+
   </head>
   <body>
     
     <div id="main" role="main">
-      <%= yield %>
+      <article>
+        <header>
+          <h1 class="title"><%= current_article.title %></h1>
+          <div class="article-info">
+            By <%= data.page.author.capitalize %> On <%= current_article.date.strftime('%b %e %Y') %>
+            In <%= link_to current_article.tags.first, tag_path(current_article.tags.first) %>
+          </div>
+        </header>
+        <%= yield %>
+        <footer>
+          <div class="article-author">
+            <h4>About Author</h4>
+            <% if image_exists?("team/#{data.page.author}") %>
+              <%= image_tag "team/#{data.page.author}.png", :alt => "#{data.page.author.capitalize}'s picture" %>
+            <% end %>
+            <h5><%= data.team[data.page.author].name %> (<%= link_to "@#{data.team[data.page.author].twitter}", "http://twitter.com/#{data.team[data.page.author].twitter}" %>)</h5>
+
+            <% data.team[data.page.author].bio.each do |pgraph| %>
+              <p><%= pgraph %></p>
+            <% end %>
+          </div>
+          <div class="article-comments">
+
+          </div>
+        </footer>
+      </article>
     </div>
     
     <aside>
       <h2>Recent Articles</h2>
-      <ol>
+      <ul>
         <% blog.articles[0...10].each do |article| %>
           <li><%= link_to article.title, article %> <span><%= article.date.strftime('%b %e') %></span></li>
         <% end %>
-      </ol>
+      </ul>
 
-      <h2>Tags</h2>
-      <ol>
+      <h2>Categories</h2>
+      <ul>
         <% blog.tags.each do |tag, articles| %>
           <li><%= link_to tag, tag_path(tag) %> (<%= articles.size %>)</a></li>
         <% end %>
-      </ol>
+      </ul>
 
-      <h2>By Year</h2>
-      <ol>
-        <% blog.articles.group_by {|a| a.date.year }.each do |year, articles| %>
-          <li><%= link_to year, blog_year_path(year) %> (<%= articles.size %>)</a></li>
+      <h2>Archives</h2>
+      <ul>
+        <% blog.articles.find_all {|a| a.date >= Date.today-365 }
+                        .group_by {|a| Date.new(a.date.year, a.date.month) }
+                        .each do |date, articles| %>
+          <li><%= link_to date.strftime("%B %Y"), blog_month_path(date.year, date.month) %> (<%= articles.size %>)</a></li>
         <% end %>
-      </ol>
+      </ul>
     </aside>
   </body>
 </html>
