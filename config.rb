@@ -105,5 +105,5 @@ configure :build do
   activate :favicon_maker
 
   # create thumbnails for the middleman-image-gallery gem
-  activate :image-gallery
+  activate :image_gallery
 end

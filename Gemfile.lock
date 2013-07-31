@@ -6,9 +6,11 @@ GIT
 
 GIT
   remote: git://github.com/AmoebaConsulting/middleman-image-gallery.git
-  revision: dca882f0418884a85aef4ab57f849c89babd024d
+  revision: 1914c4bef064c4a802ea5ca19f5354175c7e630a
   specs:
-    middleman-image-gallery (0.0.1)
+    middleman-image-gallery (0.0.8)
+      middleman-core (>= 3.0.0)
+      middleman-more (>= 3.0.0)
 
 GIT
   remote: git://github.com/ericam/compass-animation.git
