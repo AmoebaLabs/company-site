@@ -103,4 +103,7 @@ configure :build do
 
   # Generate favicons of various sizes from favicon_base.png (114px sq)
   activate :favicon_maker
+
+  # create thumbnails for the middleman-image-gallery gem
+  activate :image-gallery
 end
