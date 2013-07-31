@@ -11,6 +11,9 @@ gem "middleman-favicon-maker", "~> 3.0.0"
 # compass-animation is basically a package of animate.css
 gem "animation", :github => "ericam/compass-animation"
 
+# a cool image gallery gem
+gem "middleman-image-gallery", :github => "AmoebaConsulting/middleman-image-gallery"
+
 # Steering gem for Handlebars compilation
 gem "steering", "~> 1.2.0"
 
@@ -20,3 +23,4 @@ gem "sass", "~> 3.2.5"
 
 # AmoebaJS
 gem "amoeba-js-rails", :github => "AmoebaConsulting/amoeba-js"
+
