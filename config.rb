@@ -41,8 +41,8 @@ page "/index.html"
 page "/contactus/index.html", :proxy => "/index.html"
 page "/team/index.html", :proxy => "/index.html"
 
-# 404 page, has no layout to avoid the JS router and such
-page "/404.html", :layout => false
+# Other routes
+page "/404.html"
 
 ###
 # Helpers
