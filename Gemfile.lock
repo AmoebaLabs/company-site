@@ -6,9 +6,9 @@ GIT
 
 GIT
   remote: git://github.com/AmoebaConsulting/middleman-image-gallery.git
-  revision: 1914c4bef064c4a802ea5ca19f5354175c7e630a
+  revision: f4da7d4601370f6f5837015729cfee4c9ed7a766
   specs:
-    middleman-image-gallery (0.0.8)
+    middleman-image-gallery (0.0.11)
       middleman-core (>= 3.0.0)
       middleman-more (>= 3.0.0)
 
