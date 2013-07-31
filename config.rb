@@ -69,6 +69,36 @@ after_configuration do
 end
 
 ###
+# Blog settings
+###
+
+Time.zone = "Pacific Time (US & Canada)"
+
+activate :blog do |blog|
+  blog.prefix = "blog"
+  blog.permalink = "blog/:year/:month/:title.html"
+  blog.sources = "blog/:year-:month-:day-:title.html"
+  blog.taglink = "blog/category/:tag"
+  blog.layout = "article"
+  # blog.summary_separator = /(READMORE)/
+  # blog.summary_length = 250
+  # blog.year_link = ":year.html"
+  # blog.month_link = ":year/:month.html"
+  # blog.day_link = ":year/:month/:day.html"
+  # blog.default_extension = ".markdown"
+
+  blog.tag_template = "blog/tag.html"
+  blog.calendar_template = "blog/calendar.html"
+
+  # blog.paginate = true
+  # blog.per_page = 10
+  # blog.page_link = "page/:num"
+end
+
+page "/feed.xml", :layout => false
+
+
+###
 # Other modules
 ###
 
