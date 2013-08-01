@@ -37,7 +37,7 @@
     <!-- / SEO / Sharing Tags -->
   </head>
 
-  <body>
+  <body class="blog-wrapper">
     <div id="blog" role="main">
       <article>
         <header>
@@ -50,26 +50,24 @@
         <%= yield %>
 
       </article>
-
+      <%= partial "partials/social_bar" %>
       <footer>
-          <%= partial "partials/social_bar" %>
+        <div class="article-author">
+          <% if image_exists?("team/#{data.page.author}") %>
+            <%= image_tag "team/#{data.page.author}.png", :alt => "#{data.page.author.capitalize}'s picture" %>
+          <% end %>
+            <h1>About Author</h1>
+            <h2><%= data.team[data.page.author].name %> (<%= link_to "@#{data.team[data.page.author].twitter}", "http://twitter.com/#{data.team[data.page.author].twitter}" %>)</h2>
 
-          <div class="article-author">
-            <% if image_exists?("team/#{data.page.author}") %>
-              <%= image_tag "team/#{data.page.author}.png", :alt => "#{data.page.author.capitalize}'s picture" %>
+            <% data.team[data.page.author].bio.each do |pgraph| %>
+              <p><%= pgraph %></p>
             <% end %>
-              <h1>About Author</h1>
-              <h2><%= data.team[data.page.author].name %> (<%= link_to "@#{data.team[data.page.author].twitter}", "http://twitter.com/#{data.team[data.page.author].twitter}" %>)</h2>
+        </div>
 
-              <% data.team[data.page.author].bio.each do |pgraph| %>
-                <p><%= pgraph %></p>
-              <% end %>
-          </div>
-
-          <div class="article-comments">
-            <%= partial "partials/disqus" %>
-          </div>
-        </footer>
+        <div class="article-comments">
+          <%= partial "partials/disqus" %>
+        </div>
+      </footer>
       <section class="sidebar">
         <div class="article-list">
           <h2>Recent Articles</h2>

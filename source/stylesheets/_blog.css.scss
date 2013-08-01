@@ -1,5 +1,10 @@
 @import "blog/*";
 
+.blog-wrapper {
+  height: auto;
+  margin-bottom: 50px;
+}
+
 .tags {
   padding: 0;
   list-style: none;
@@ -61,4 +66,9 @@
       box-shadow: -1px -1px 2px #004977;
     }
   }
+}
+
+.social-bar {
+  border: 0;
+  background-color: rgba(16,48,68,.1);
 }

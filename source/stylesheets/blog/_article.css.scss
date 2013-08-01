@@ -26,6 +26,7 @@
 
     .article-author {
       background-color: rgba(16,48,68,.1);
+      background-color: #F0F4F9;
       padding: 38px;
       display: block;
 
@@ -48,7 +49,7 @@
     }
 
     .article-comments {
-      background-color: rgba(16,48,68,.2);
+      background-color: rgba(16,48,68,.1);
       padding: 38px;
     }
   }
@@ -82,8 +83,15 @@
 
         li {
           margin-bottom: 10px;
+          padding: 5px;
+          border-radius: 5px;
+
+          &:hover {
+            background-color: lighten($amoebaGreen, 30%);
+          }
           a {
-            font-size: 14px;
+            font-size: 16px;
+            font-family: "HelveticaNeue-Light";
             text-decoration: none;
           }
         }
