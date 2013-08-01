@@ -12,7 +12,8 @@ gem "middleman-favicon-maker", "~> 3.2"
 gem "animation", :github => "ericam/compass-animation"
 
 # a cool image gallery gem
-gem "middleman-image-gallery", :github => "AmoebaConsulting/middleman-image-gallery"
+# gem "middleman-image-gallery", :github => "AmoebaConsulting/middleman-image-gallery"
+gem "middleman-image-gallery", :path => "/Users/sgehrman/GitHub/middleman-image-gallery"
 
 # Steering gem for Handlebars compilation
 gem "steering", "~> 1.2.0"
