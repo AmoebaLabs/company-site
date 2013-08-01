@@ -1,3 +1,5 @@
+# The name is matched with the image's file name to associate the caption
+
 staff:
   daniel:
     caption: Daniel Jabbour

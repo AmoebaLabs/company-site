@@ -29,3 +29,7 @@ gem "amoeba-js-rails", :github => "AmoebaConsulting/amoeba-js"
 
 # Nokogiri for article summaries
 gem "nokogiri", "~> 1.6.0"
+
+gem "middleman-livereload", "~> 3.1.0"
+
+

@@ -110,6 +110,9 @@ activate :handlebars
 # also provides a gallery_images helper to create html
 activate :image_gallery
 
+# http://middlemanapp.com/livereload/
+activate :livereload
+
 # Build-specific configuration
 configure :build do
   # For example, change the Compass output style for deployment
