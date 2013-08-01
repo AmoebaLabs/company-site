@@ -38,7 +38,7 @@
   </head>
 
   <body>
-    <div id="main" role="main">
+    <div id="blog" role="main">
       <article>
         <header>
           <h1 class="title"><%= current_article.title %></h1>
@@ -68,32 +68,35 @@
           </div>
         </footer>
       </article>
+      <section class="sidebar">
+        <div class="article-list">
+          <h2>Recent Articles</h2>
+          <ul>
+            <% blog.articles[0...10].each do |article| %>
+              <li><%= link_to article.title, article %> <span><%= article.date.strftime('%b %e') %></span></li>
+            <% end %>
+          </ul>
+        </div>
+        <div class="category-list">
+          <h2>Categories</h2>
+          <ul>
+            <% blog.tags.each do |tag, articles| %>
+              <li><%= link_to tag, tag_path(tag) %> (<%= articles.size %>)</li>
+            <% end %>
+          </ul>
+        </div>
+        <div class="archive-list">
+          <h2>Archives</h2>
+          <ul>
+            <% blog.articles.find_all {|a| a.date >= Date.today-365 }
+               .group_by {|a| Date.new(a.date.year, a.date.month) }
+               .each do |date, articles| %>
+              <li><%= link_to date.strftime("%B %Y"), blog_month_path(date.year, date.month) %> (<%= articles.size %>)</li>
+            <% end %>
+          </ul>
+        </div>
+      </section>
     </div>
-    
-    <aside>
-      <h2>Recent Articles</h2>
-      <ul>
-        <% blog.articles[0...10].each do |article| %>
-          <li><%= link_to article.title, article %> <span><%= article.date.strftime('%b %e') %></span></li>
-        <% end %>
-      </ul>
-
-      <h2>Categories</h2>
-      <ul>
-        <% blog.tags.each do |tag, articles| %>
-          <li><%= link_to tag, tag_path(tag) %> (<%= articles.size %>)</li>
-        <% end %>
-      </ul>
-
-      <h2>Archives</h2>
-      <ul>
-        <% blog.articles.find_all {|a| a.date >= Date.today-365 }
-                        .group_by {|a| Date.new(a.date.year, a.date.month) }
-                        .each do |date, articles| %>
-          <li><%= link_to date.strftime("%B %Y"), blog_month_path(date.year, date.month) %> (<%= articles.size %>)</li>
-        <% end %>
-      </ul>
-    </aside>
 
     <%= partial "partials/ga" %>
     <script type='text/javascript' src='http://platform.twitter.com/widgets.js?ver=3.5.1'></script>
