@@ -106,6 +106,10 @@ page "/feed.xml", :layout => false
 require './lib/handlebars'
 activate :handlebars
 
+# create thumbnails for the middleman-image-gallery gem
+# also provides a gallery_images helper to create html
+activate :image_gallery
+
 # Build-specific configuration
 configure :build do
   # For example, change the Compass output style for deployment
@@ -133,7 +137,4 @@ configure :build do
 
   # Generate favicons of various sizes from favicon_base.png (114px sq)
   activate :favicon_maker
-
-  # create thumbnails for the middleman-image-gallery gem
-  activate :image_gallery
 end
