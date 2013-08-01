@@ -48,26 +48,28 @@
           </div>
         </header>
         <%= yield %>
-        <footer>
+
+      </article>
+
+      <footer>
           <%= partial "partials/social_bar" %>
 
           <div class="article-author">
-            <h4>About Author</h4>
             <% if image_exists?("team/#{data.page.author}") %>
               <%= image_tag "team/#{data.page.author}.png", :alt => "#{data.page.author.capitalize}'s picture" %>
             <% end %>
-            <h5><%= data.team[data.page.author].name %> (<%= link_to "@#{data.team[data.page.author].twitter}", "http://twitter.com/#{data.team[data.page.author].twitter}" %>)</h5>
+              <h1>About Author</h1>
+              <h2><%= data.team[data.page.author].name %> (<%= link_to "@#{data.team[data.page.author].twitter}", "http://twitter.com/#{data.team[data.page.author].twitter}" %>)</h2>
 
-            <% data.team[data.page.author].bio.each do |pgraph| %>
-              <p><%= pgraph %></p>
-            <% end %>
+              <% data.team[data.page.author].bio.each do |pgraph| %>
+                <p><%= pgraph %></p>
+              <% end %>
           </div>
 
           <div class="article-comments">
             <%= partial "partials/disqus" %>
           </div>
         </footer>
-      </article>
       <section class="sidebar">
         <div class="article-list">
           <h2>Recent Articles</h2>
