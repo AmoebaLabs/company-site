@@ -93,6 +93,8 @@
           <li><%= link_to date.strftime("%B %Y"), blog_month_path(date.year, date.month) %> (<%= articles.size %>)</li>
         <% end %>
       </ul>
+
+      <%= partial "partials/mailchimp_signup" %>
     </aside>
 
     <%= partial "partials/ga" %>
