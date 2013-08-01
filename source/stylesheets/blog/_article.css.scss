@@ -68,17 +68,24 @@
       margin-bottom: 10px;
     }
 
-    ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      margin-bottom: 35px;
+    .category-list, .article-list  {
+      padding-bottom: 15px;
+      margin-bottom: 10px;
+      border-bottom: 1px solid #4d4d4d;
+    }
 
-      li {
-        margin-bottom: 5px;
-        a {
-          font-size: 14px;
-          text-decoration: none;
+    .article-list {
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+          margin-bottom: 10px;
+          a {
+            font-size: 14px;
+            text-decoration: none;
+          }
         }
       }
     }
