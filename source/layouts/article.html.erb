@@ -49,6 +49,8 @@
         </header>
         <%= yield %>
         <footer>
+          <%= partial "partials/social_bar" %>
+
           <div class="article-author">
             <h4>About Author</h4>
             <% if image_exists?("team/#{data.page.author}") %>
@@ -60,8 +62,9 @@
               <p><%= pgraph %></p>
             <% end %>
           </div>
-          <div class="article-comments">
 
+          <div class="article-comments">
+            <%= partial "partials/disqus" %>
           </div>
         </footer>
       </article>
@@ -78,7 +81,7 @@
       <h2>Categories</h2>
       <ul>
         <% blog.tags.each do |tag, articles| %>
-          <li><%= link_to tag, tag_path(tag) %> (<%= articles.size %>)</a></li>
+          <li><%= link_to tag, tag_path(tag) %> (<%= articles.size %>)</li>
         <% end %>
       </ul>
 
@@ -87,9 +90,15 @@
         <% blog.articles.find_all {|a| a.date >= Date.today-365 }
                         .group_by {|a| Date.new(a.date.year, a.date.month) }
                         .each do |date, articles| %>
-          <li><%= link_to date.strftime("%B %Y"), blog_month_path(date.year, date.month) %> (<%= articles.size %>)</a></li>
+          <li><%= link_to date.strftime("%B %Y"), blog_month_path(date.year, date.month) %> (<%= articles.size %>)</li>
         <% end %>
       </ul>
     </aside>
+
+    <%= partial "partials/ga" %>
+    <script type='text/javascript' src='http://platform.twitter.com/widgets.js?ver=3.5.1'></script>
+    <script type='text/javascript' src='http://apis.google.com/js/plusone.js?ver=3.5.1'></script>
+    <script type='text/javascript' src='http://platform.linkedin.com/in.js?ver=3.5.1'></script>
+    <script type='text/javascript' src='http://assets.pinterest.com/js/pinit.js?ver=3.5.1'></script>
   </body>
 </html>
