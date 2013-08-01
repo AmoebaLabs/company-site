@@ -1,3 +1,22 @@
 #mc_embed_signup {
+  input {
+    color: #a0a0a0;
+    font-size: 14px;
+    padding-left: 10px;
+    height: 25px;
+    width: 200px;
+    margin-bottom: 10px;
+  }
+  #mc-embedded-subscribe {
+    font-size: 18px;
+    padding: 10px 10px;
+    height: auto;
+    color: #4d4d4d;
+    width: 150px;
 
+    &:hover {
+      background-color: #e8e8e8;
+      border: 0;
+    }
+  }
 }

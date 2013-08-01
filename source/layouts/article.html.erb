@@ -75,7 +75,9 @@
           <h2>Recent Articles</h2>
           <ul>
             <% blog.articles[0...10].each do |article| %>
-              <li><%= link_to article.title, article %> <span><%= article.date.strftime('%b %e') %></span></li>
+              <li><%= link_to article.title, article %>
+                <!--<span><#%= article.date.strftime('%b %e') %></span>-->
+              </li>
             <% end %>
           </ul>
         </div>
@@ -87,16 +89,16 @@
             <% end %>
           </ul>
         </div>
-        <div class="archive-list">
-          <h2>Archives</h2>
-          <ul>
-            <% blog.articles.find_all {|a| a.date >= Date.today-365 }
-               .group_by {|a| Date.new(a.date.year, a.date.month) }
+        <!--<div class="archive-list">-->
+          <!--<h2>Archives</h2>-->
+          <!--<ul>-->
+            <%# blog.articles.find_all {|a| a.date >= Date.today-365 }
+#               .group_by {|a| Date.new(a.date.year, a.date.month) }
                .each do |date, articles| %>
-              <li><%= link_to date.strftime("%B %Y"), blog_month_path(date.year, date.month) %> (<%= articles.size %>)</li>
-            <% end %>
-          </ul>
-        </div>
+              <!--<li><%#= link_to date.strftime("%B %Y"), blog_month_path(date.year, date.month) %> (<#%= articles.size %>)</li>-->
+            <!--<%# end %>-->
+          <!--</ul>-->
+        <!--</div>-->
         <div class="promo-email">
           <h2>Sign up for email</h2>
             <%= partial "partials/mailchimp_signup" %>
