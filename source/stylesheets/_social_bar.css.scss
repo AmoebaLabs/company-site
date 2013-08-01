@@ -1,0 +1,32 @@
+.social-bar {
+  border:1px solid #808080;
+  background-color:#F0F4F9;
+  height:30px;
+
+  > div {
+    float:left;
+    padding-right:10px;
+    margin:4px 4px -4px 4px;
+    height:30px;
+  }
+
+  .fb-share {
+    width:85px;
+  }
+
+  .gp-share {
+    width:80px;
+  }
+
+  .tw-share {
+    width:95px;
+  }
+
+  .in-share {
+    width:105px;
+  }
+
+  .pin-share {
+    width:105px;
+  }
+}
