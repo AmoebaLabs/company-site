@@ -49,7 +49,6 @@
         </header>
         <%= yield %>
         <footer>
-
           <%= partial "partials/social_bar" %>
 
           <div class="article-author">
@@ -63,6 +62,7 @@
               <p><%= pgraph %></p>
             <% end %>
           </div>
+
           <div class="article-comments">
             <%= partial "partials/disqus" %>
           </div>
@@ -81,7 +81,7 @@
       <h2>Categories</h2>
       <ul>
         <% blog.tags.each do |tag, articles| %>
-          <li><%= link_to tag, tag_path(tag) %> (<%= articles.size %>)</a></li>
+          <li><%= link_to tag, tag_path(tag) %> (<%= articles.size %>)</li>
         <% end %>
       </ul>
 
@@ -90,7 +90,7 @@
         <% blog.articles.find_all {|a| a.date >= Date.today-365 }
                         .group_by {|a| Date.new(a.date.year, a.date.month) }
                         .each do |date, articles| %>
-          <li><%= link_to date.strftime("%B %Y"), blog_month_path(date.year, date.month) %> (<%= articles.size %>)</a></li>
+          <li><%= link_to date.strftime("%B %Y"), blog_month_path(date.year, date.month) %> (<%= articles.size %>)</li>
         <% end %>
       </ul>
     </aside>
