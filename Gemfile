@@ -25,3 +25,6 @@ gem "amoeba-js-rails", :github => "AmoebaConsulting/amoeba-js"
 
 # Nokogiri for article summaries
 gem "nokogiri", "~> 1.6.0"
+
+# Coderay for code highlighting
+gem "coderay", "~> 1.0.9"

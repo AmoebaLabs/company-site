@@ -16,10 +16,11 @@ module AmoebaHelpers
     # Default Options
     options.reverse_merge! width: 160, align: :right
 
-    concat("<div class='caption align-#{options[:align].to_s}' style='width: #{options[:width]}px;'>")
-    concat(options[:image]) if options[:image]
-    concat("<p class='caption-text'>#{options[:caption]}</p>") if options[:caption]
-    concat("</div>")
+    content_tag(:div, class: "caption align-#{options[:align].to_s}", style: "width: #{options[:width]}px;") do
+      html = options[:image] || ""
+      html << content_tag(:p, options[:caption], class: "caption-text") if options[:caption]
+      html
+    end
   end
 
   # The following helper was shamelessly stolen from Rails in the module

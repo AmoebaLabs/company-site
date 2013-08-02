@@ -106,6 +106,14 @@ page "/feed.xml", :layout => false
 require './lib/handlebars'
 activate :handlebars
 
+# Markdown Configuration
+set :markdown_engine, :kramdown
+set :markdown, :enable_coderay => true,
+               :coderay_wrap => :div,
+               :coderay_tab_width => 2,
+               :coderay_line_numbers => :inline, # :inline, :table or nil
+               :coderay_css => :class
+
 # Build-specific configuration
 configure :build do
   # For example, change the Compass output style for deployment

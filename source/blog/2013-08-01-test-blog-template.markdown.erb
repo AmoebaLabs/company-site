@@ -1,0 +1,138 @@
+---
+title: Test blog template
+author: daniel
+date: 2013-08-01 18:00
+tags: Announcements
+
+# Image is optional, and defaults to the Amoeba logo. Should be square.
+image:
+
+# Article summary is used for previews (if set) or defaults to text until READMORE (limit 250-chars)
+summary: "This is a test article, created to show off all the possible styles."
+
+# Limited to 155-chars, the seo_description is used in search results (defaults to summary)
+seo_description:
+
+# If set, changes the page's <title> attribute (defaults to title), limit 70ish-chars
+seo_title:
+
+# If set, the following are used in Facebook's Open Graph tag for article previews
+# Title is limited to 95-chars, description 297-chars. Both will default to values above.
+fb_title:
+fb_description:
+
+# Twitter description (limit 200-chars), defaults to summary
+twitter_description:
+---
+<% caption_box(width: 160, align: :right,
+               image: image_tag("blog/htf6-sq.jpg", alt: "Young Hacker", class: "align-center"),
+               caption: "Hack the Future 6 official t-shirts designed by our very own, Richard Enlow") %>
+The first paragraph.
+
+Another paragraph.
+
+# H1 header
+
+## H2 header
+
+### H3 header
+
+#### H4 header
+
+##### H5 header
+
+###### H6 header
+
+> A sample blockquote.
+>
+> >Nested blockquotes are
+> >also possible.
+>
+> ## Headers work too
+> This is the outer quote again.
+
+~~~ ruby
+def what?
+  42
+end
+~~~
+
+This is a linebreak:
+
+* * *
+
+And more...
+
+1.  This is a list item
+
+    > with a blockquote
+
+    # And a header
+
+2.  Followed by another item
+
+# The following are "definition lists"
+
+term
+: definition
+: another definition
+
+another term
+and another term
+: and a definition for the term
+
+This *is* a term
+
+: This will be a para
+
+  > a blockquote
+
+  # A header
+
+# Tables
+
+A simple table:
+
+| A simple | table |
+| with multiple | lines|
+
+Something with headers now:
+
+| Header1 | Header2 | Header3 |
+|:--------|:-------:|--------:|
+| cell1   | cell2   | cell3   |
+| cell4   | cell5   | cell6   |
+|----
+| cell1   | cell2   | cell3   |
+| cell4   | cell5   | cell6   |
+|=====
+| Foot1   | Foot2   | Foot3
+{: rules="groups"}
+
+More stuff...
+
+> A nice blockquote
+{: title="Blockquote title"}
+
+This is **strong**,
+__this__ too!
+
+A [link](http://kramdown.rubyforge.org)
+to the kramdown homepage.
+
+A [link](http://kramdown.rubyforge.org "hp")
+to the homepage.
+
+Use `Kramdown::Document.new(text).to_html`
+to convert the `text` in kramdown
+syntax to HTML.
+
+This is a text with a
+footnote[^1].
+
+[^1]: And here is the definition.
+
+This is an HTML
+example.
+
+*[HTML]: Hyper Text Markup Language
