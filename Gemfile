@@ -32,4 +32,5 @@ gem "nokogiri", "~> 1.6.0"
 
 gem "middleman-livereload", "~> 3.1.0"
 
-
+# Coderay for code highlighting
+gem "coderay", "~> 1.0.9"
