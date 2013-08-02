@@ -71,3 +71,68 @@ And more...
 
 2.  Followed by another item
 
+# The following are "definition lists"
+
+term
+: definition
+: another definition
+
+another term
+and another term
+: and a definition for the term
+
+This *is* a term
+
+: This will be a para
+
+  > a blockquote
+
+  # A header
+
+# Tables
+
+A simple table:
+
+| A simple | table |
+| with multiple | lines|
+
+Something with headers now:
+
+| Header1 | Header2 | Header3 |
+|:--------|:-------:|--------:|
+| cell1   | cell2   | cell3   |
+| cell4   | cell5   | cell6   |
+|----
+| cell1   | cell2   | cell3   |
+| cell4   | cell5   | cell6   |
+|=====
+| Foot1   | Foot2   | Foot3
+{: rules="groups"}
+
+More stuff...
+
+> A nice blockquote
+{: title="Blockquote title"}
+
+This is **strong**,
+__this__ too!
+
+A [link](http://kramdown.rubyforge.org)
+to the kramdown homepage.
+
+A [link](http://kramdown.rubyforge.org "hp")
+to the homepage.
+
+Use `Kramdown::Document.new(text).to_html`
+to convert the `text` in kramdown
+syntax to HTML.
+
+This is a text with a
+footnote[^1].
+
+[^1]: And here is the definition.
+
+This is an HTML
+example.
+
+*[HTML]: Hyper Text Markup Language
