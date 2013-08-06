@@ -6,7 +6,7 @@
 }
 
 #blog-index {
-  max-width: 1250px;
+  max-width: 1200px;
   margin: 0 auto 5% auto;
   z-index: 102;
   position: relative;
@@ -15,12 +15,39 @@
     -webkit-box-shadow: 0px 0px 8px 2px rgba(0,0,0,0.1);
     box-shadow: 0px 0px 8px 2px rgba(0,0,0,0.1);
     background-color: #ffffff;
-    margin: 20px 7px;
     width: 400px;
     float: left;
   }
-}
 
+  .article-list {
+    width: 75%;
+    float: left;
+
+    article {
+      margin: 15px;
+      min-height: 657px;
+    }
+  }
+
+  .article-info {
+    padding: 15px;
+
+    h2 {
+      margin-top: 0;
+    }
+  }
+
+  .image-container {
+    width: 400px;
+    height: 400px;
+    background-color: $amoebaGreen;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
 
 .tags {
   padding: 0;

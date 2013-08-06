@@ -4,31 +4,40 @@ per_page: 10
 ---
 
 <section id="blog-index">
-  <% page_articles.each_with_index do |article, i| %>
-    <article>
-      <% if article.data.image %>
-        <%= image_tag "blog/#{article.data.image}", :alt => "preview" %>
-      <% end %>
-      <h2><%= article.title %></h2>
-      <h3>By <%= data.team[article.data.author].name %></h3>
-      <p><%= article.data.summary || article.summary %></p>
-      <%= link_to "More...", article %>
-    </article>
-  <% end %>
+  <div class="article-list">
+    <% page_articles.each_with_index do |article, i| %>
+      <article>
+          <div class="image-container">
+            <% if article.data.image %>
+              <%= image_tag "blog/#{article.data.image}", :alt => "preview" %>
+            <% end %>
+          </div>
+        <div class="article-info">
+          <h2><%= link_to article.title, article %></h2>
+          <!--<h3>By <#%= data.team[article.data.author].name %></h3>-->
+          <p><%= link_to article.data.summary || article.summary, article %></p>
+          <%= link_to "More...", article %>
+        </div>
+      </article>
+    <% end %>
+  </div>
 
-  <article>
+  <div class="sidebar">
+    <div class="category-list">
       <h2>Categories</h2>
-      <ul>
+      <ul class="tags">
         <% blog.tags.each do |tag, articles| %>
-          <li><%= link_to tag, tag_path(tag) %> (<%= articles.size %>)</li>
+          <li class="tag"><%= link_to tag, tag_path(tag) %>
+          </li>
         <% end %>
       </ul>
-  </article>
+    </div>
 
-  <article>
+    <div class="promo-email">
+      <h2>Sign up for email</h2>
       <%= partial "partials/mailchimp_signup" %>
-  </article>
-
+    </div>
+  </div>
 </section>
 
 <% if paginate %>
