@@ -1,4 +1,4 @@
-#blog {
+#blog-article {
   max-width: 1100px;
   margin: 0 auto 5% auto;
   z-index: 102;
@@ -7,8 +7,18 @@
   -webkit-box-shadow: 0px 0px 8px 2px rgba(0,0,0,0.1);
   box-shadow: 0px 0px 8px 2px rgba(0,0,0,0.1);
 
+  .article-content {
+    position: relative;
+  }
+
   .sidebar {
     top: 0;
+    padding: 0 20px;
+    height: 100%;
+
+    .article-list {
+      margin-top: 50px;
+    }
   }
 
   article {
