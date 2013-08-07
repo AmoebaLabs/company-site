@@ -2,24 +2,75 @@
 pageable: true
 per_page: 12
 ---
-<h1>Articles tagged '<%= tagname %>'</h1>
 
-<% if paginate %>
-  <p>Page <%= page_number %> of <%= num_pages %></p>
+<body class="blog-wrapper">
+<div id="blog-article" role="main">
+  <div class="article-content">
+    <article>
+      <header>
+        <h1 class="title">Articles tagged '<%= tagname %>'</h1>
+        <div class="article-info">
+          <% if paginate %>
+            <p>Page <%= page_number %> of <%= num_pages %></p>
 
-  <% if prev_page %>
-    <p><%= link_to 'Previous page', prev_page %></p>
-  <% end %>
-<% end %>
+            <% if prev_page %>
+              <p><%= link_to 'Previous page', prev_page %></p>
+            <% end %>
+          <% end %>
+        </div>
+      </header>
 
-<ul>
-  <% page_articles.each_with_index do |article, i| %>
-    <li><%= link_to article.title, article %> <span><%= article.date.strftime('%b %e') %></span></li>
-  <% end %>
-</ul>
+      <ul>
+        <% page_articles.each_with_index do |article, i| %>
+          <li><%= link_to article.title, article %> <span>
+            <!--<#%= article.date.strftime('%b %e') %>-->
+          </span></li>
+        <% end %>
+      </ul>
 
-<% if paginate %>
-  <% if next_page %>
-    <p><%= link_to 'Next page', next_page %></p>
-  <% end %>
-<% end %>
+      <% if paginate %>
+        <% if next_page %>
+          <p><%= link_to 'Next page', next_page %></p>
+        <% end %>
+      <% end %>
+
+    </article>
+
+    <section class="sidebar">
+      <div class="article-list">
+        <h2>Recent Articles</h2>
+        <ul>
+          <% blog.articles[0...10].each do |article| %>
+            <li><%= link_to article.title, article %>
+              <!--<span><#%= article.date.strftime('%b %e') %></span>-->
+            </li>
+          <% end %>
+        </ul>
+      </div>
+      <div class="category-list">
+        <h2>Categories</h2>
+        <ul class="tags">
+          <% blog.tags.each do |tag, articles| %>
+            <li class="tag"><%= link_to tag, tag_path(tag) %>
+              <!--(<%#= articles.size %>)-->
+            </li>
+          <% end %>
+        </ul>
+      </div>
+
+      <div class="promo-email">
+        <h2>Sign up for email</h2>
+        <%= partial "partials/mailchimp_signup" %>
+      </div>
+    </section>
+  </div>
+  <%= partial "partials/social_bar" %>
+</div>
+
+<%= partial "partials/ga" %>
+<script type='text/javascript' src='http://platform.twitter.com/widgets.js?ver=3.5.1'></script>
+<script type='text/javascript' src='http://apis.google.com/js/plusone.js?ver=3.5.1'></script>
+<script type='text/javascript' src='http://platform.linkedin.com/in.js?ver=3.5.1'></script>
+<script type='text/javascript' src='http://assets.pinterest.com/js/pinit.js?ver=3.5.1'></script>
+</body>
+</html>
