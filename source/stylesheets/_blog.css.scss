@@ -1,2 +1,119 @@
-// Blog styles go in this file. Or, if it gets too big, split them out into
-// a folder called "blog" and @import them here.
+@import "blog/*";
+
+.blog-wrapper {
+  height: auto;
+  margin-bottom: 50px;
+}
+
+#blog-index {
+  max-width: 1200px;
+  margin: 0 auto 5% auto;
+  z-index: 102;
+  position: relative;
+
+  article {
+    -webkit-box-shadow: 0px 0px 8px 2px rgba(0,0,0,0.1);
+    box-shadow: 0px 0px 8px 2px rgba(0,0,0,0.1);
+    background-color: #ffffff;
+    width: 400px;
+    float: left;
+    border-radius: 3px;
+  }
+
+  .article-list {
+    width: 75%;
+    float: left;
+
+    article {
+      margin: 15px;
+      min-height: 657px;
+    }
+  }
+
+  .article-info {
+    padding: 15px;
+
+    h2 {
+      margin-top: 0;
+    }
+  }
+
+  .image-container {
+    width: 400px;
+    height: 400px;
+    background-color: $amoebaGreen;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+.tags {
+  padding: 0;
+  list-style: none;
+  height: auto;
+
+  li, .tag {
+    display: inline-block;
+    height: 35px;
+    line-height: 24px;
+    position: relative;
+    font-size: 21px;
+    margin-top: 15px;
+
+    a {
+      color: #fff;
+      font-size: 16px;
+      text-decoration: none;
+    }
+  }
+
+  .tag {
+    margin-left: 20px;
+    padding: 0 10px 0 12px;
+    background: rgba(0, 0, 0, 0.75);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 0 4px 4px 0;
+    line-height: 1.4;
+    margin-top: 0;
+    margin-bottom: 10px;
+
+    &:before{
+      content: "";
+      float: left;
+      position: absolute;
+      top: 0;
+      left: -12px;
+      width: 0;
+      height: 0;
+      border-color: transparent rgba(0, 0, 0, 0.75) transparent transparent;
+      border-style: solid;
+      border-width: 17px 12px 18px 0;
+    }
+
+    &:after{
+      content: "";
+      position: absolute;
+      top: 15px;
+      left: 0;
+      float: left;
+      width: 4px;
+      height: 4px;
+      -moz-border-radius: 2px;
+      -webkit-border-radius: 2px;
+      border-radius: 2px;
+      background: #fff;
+      -moz-box-shadow: -1px -1px 2px #004977;
+      -webkit-box-shadow: -1px -1px 2px #004977;
+      box-shadow: -1px -1px 2px #004977;
+    }
+  }
+}
+
+.social-bar {
+  border: 0;
+  background-color: rgba(16,48,68,.1);
+}

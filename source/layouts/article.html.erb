@@ -37,65 +37,77 @@
     <!-- / SEO / Sharing Tags -->
   </head>
 
-  <body>
-    <div id="main" role="main">
-      <article>
-        <header>
-          <h1 class="title"><%= current_article.title %></h1>
-          <div class="article-info">
-            By <%= data.page.author.capitalize %> On <%= current_article.date.strftime('%b %e %Y') %>
-            In <%= link_to current_article.tags.first, tag_path(current_article.tags.first) %>
-          </div>
-        </header>
-        <%= yield %>
-        <footer>
-          <%= partial "partials/social_bar" %>
+  <body class="blog-wrapper">
+    <div id="blog-article" role="main">
+      <div class="article-content">
+        <article>
+          <header>
+            <h1 class="title"><%= current_article.title %></h1>
+            <div class="article-info">
+              By <%= data.page.author.capitalize %> On <%= current_article.date.strftime('%b %e %Y') %>
+              In <%= link_to current_article.tags.first, tag_path(current_article.tags.first) %>
+            </div>
+          </header>
+          <%= yield %>
 
-          <div class="article-author">
-            <h4>About Author</h4>
-            <% if image_exists?("team/#{data.page.author}") %>
-              <%= image_tag "team/#{data.page.author}.png", :alt => "#{data.page.author.capitalize}'s picture" %>
-            <% end %>
-            <h5><%= data.team[data.page.author].name %> (<%= link_to "@#{data.team[data.page.author].twitter}", "http://twitter.com/#{data.team[data.page.author].twitter}" %>)</h5>
+        </article>
+
+        <section class="sidebar">
+          <div class="article-list">
+            <h2>Recent Articles</h2>
+            <ul>
+              <% blog.articles[0...10].each do |article| %>
+                <li><%= link_to article.title, article %>
+                  <!--<span><#%= article.date.strftime('%b %e') %></span>-->
+                </li>
+              <% end %>
+            </ul>
+          </div>
+          <div class="category-list">
+            <h2>Categories</h2>
+            <ul class="tags">
+              <% blog.tags.each do |tag, articles| %>
+                <li class="tag"><%= link_to tag, tag_path(tag) %>
+                  <!--(<%#= articles.size %>)-->
+                </li>
+              <% end %>
+            </ul>
+          </div>
+          <!--<div class="archive-list">-->
+          <!--<h2>Archives</h2>-->
+          <!--<ul>-->
+          <%# blog.articles.find_all {|a| a.date >= Date.today-365 }
+#               .group_by {|a| Date.new(a.date.year, a.date.month) }
+               .each do |date, articles| %>
+          <!--<li><%#= link_to date.strftime("%B %Y"), blog_month_path(date.year, date.month) %> (<#%= articles.size %>)</li>-->
+          <!--<%# end %>-->
+          <!--</ul>-->
+          <!--</div>-->
+          <div class="promo-email">
+            <h2>Sign up for email</h2>
+            <%= partial "partials/mailchimp_signup" %>
+          </div>
+        </section>
+      </div>
+      <%= partial "partials/social_bar" %>
+      <footer>
+        <div class="article-author">
+          <% if image_exists?("team/#{data.page.author}") %>
+            <%= image_tag "team/#{data.page.author}.png", :alt => "#{data.page.author.capitalize}'s picture" %>
+          <% end %>
+            <h1>About Author</h1>
+            <h2><%= data.team[data.page.author].name %> (<%= link_to "@#{data.team[data.page.author].twitter}", "http://twitter.com/#{data.team[data.page.author].twitter}" %>)</h2>
 
             <% data.team[data.page.author].bio.each do |pgraph| %>
               <p><%= pgraph %></p>
             <% end %>
-          </div>
+        </div>
 
-          <div class="article-comments">
-            <%= partial "partials/disqus" %>
-          </div>
-        </footer>
-      </article>
+        <div class="article-comments">
+          <%= partial "partials/disqus" %>
+        </div>
+      </footer>
     </div>
-    
-    <aside>
-      <h2>Recent Articles</h2>
-      <ul>
-        <% blog.articles[0...10].each do |article| %>
-          <li><%= link_to article.title, article %> <span><%= article.date.strftime('%b %e') %></span></li>
-        <% end %>
-      </ul>
-
-      <h2>Categories</h2>
-      <ul>
-        <% blog.tags.each do |tag, articles| %>
-          <li><%= link_to tag, tag_path(tag) %> (<%= articles.size %>)</li>
-        <% end %>
-      </ul>
-
-      <h2>Archives</h2>
-      <ul>
-        <% blog.articles.find_all {|a| a.date >= Date.today-365 }
-                        .group_by {|a| Date.new(a.date.year, a.date.month) }
-                        .each do |date, articles| %>
-          <li><%= link_to date.strftime("%B %Y"), blog_month_path(date.year, date.month) %> (<%= articles.size %>)</li>
-        <% end %>
-      </ul>
-
-      <%= partial "partials/mailchimp_signup" %>
-    </aside>
 
     <%= partial "partials/ga" %>
     <script type='text/javascript' src='http://platform.twitter.com/widgets.js?ver=3.5.1'></script>

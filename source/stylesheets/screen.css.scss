@@ -11,8 +11,8 @@
 @import "animations";
 @import "header";
 @import "homepage";
-@import "blog";
 @import "404";
+@import "blog";
 
 body {
   // consider filter-gradient for old IE
@@ -32,6 +32,7 @@ body {
 
   a {
     color: $greenUltraDark;
+    text-decoration: none;
   }
 
   // Some more sensible defaults for our icon links
