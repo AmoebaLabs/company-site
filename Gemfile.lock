@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/AmoebaConsulting/amoeba-js.git
+  remote: git://github.com/AmoebaLabs/amoeba-js.git
   revision: be588b5cd38aaccfc4ad306a3d858425d210eee7
   specs:
     amoeba-js-rails (0.2.0)

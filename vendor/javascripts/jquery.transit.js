@@ -6,8 +6,8 @@
  * http://ricostacruz.com/jquery.transit
  * http://github.com/rstacruz/jquery.transit
  *
- * This is a fork created by Amoeba Consulting (http://amoe.ba)
- * See: http://github.com/AmoebaConsulting/jquery.transit
+ * This is a fork created by Amoeba Labs (http://amoe.ba)
+ * See: http://github.com/AmoebaLabs/jquery.transit
  * Modifications by Daniel Jabbour <daniel@amoe.ba>
  *
  */

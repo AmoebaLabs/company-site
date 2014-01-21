@@ -19,4 +19,4 @@ gem "sass", "~> 3.2.5"
 
 
 # AmoebaJS
-gem "amoeba-js-rails", :github => "AmoebaConsulting/amoeba-js"
+gem "amoeba-js-rails", :github => "AmoebaLabs/amoeba-js"
