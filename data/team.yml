@@ -17,7 +17,7 @@
 
 daniel:
   name: Daniel Jabbour
-  title: The Mastermind
+  title: Founder
   facebook: bitgangsta
   linkedin: bitgangsta
   twitter: bitgangsta
@@ -32,67 +32,3 @@ daniel:
     - "When he isn't building software, Daniel works on several non-profit projects including
      <a href='http://hackthefuture.org' target='blank'>Hack the Future</a>, a quarterly Hackathon
      that teaches and inspires kids to code, solder, and build things."
-
-steve:
-  name: Steve Gehrman
-  title: The Luminary
-  facebook: steve.gehrman
-  linkedin: sgehrman
-  twitter: sgehrman
-  github: sgehrman
-  extra_image_style: "margin-top: 25px;"
-  bio:
-    - "When Steve started writing software, it was literally put in a box and shipped out of the
-    office. He’s a (reluctantly) famous indie Mac OS Developer, and has written titles such as
-    <a href='http://www.finaldraft.com'>Final Draft</a>, the industry standard in screenwriting
-    software, <a href='http://www.cocoatech.com/'>Path Finder</a>, the most popular OS X
-    alternative file manager, as well as the <a href='http://en.wikipedia.org/wiki/ILike'>iLike</a>
-    sidebar (which was bought up by MySpace in 2009). Recently he’s transitioned to writing cross-platform web
-    apps as well as mobile apps. When he isn’t writing code, Steve can be found riding around San
-    Francisco on his fixie, wearing ironic t-shirts, or watching some obscure youtube video you've
-    never heard of. Or at home with his wife and kids."
-
-richard:
-  name: Richard Enlow
-  title: The Creative
-  facebook: #
-  linkedin: richardenlow
-  twitter: startexploding
-  github: #
-  extra_image_style: "margin-top: 45px;"
-  bio:
-    - "Richard specializes in Visual Design and User Experience Design. He possesses a 
-    particularly broad skill set and specializes in design direction, creative concepting, 
-    and the design of desktop and mobile web sites."
-    - "Richard puts people at the heart of the design process – from brief to execution. 
-    By recognizing user goals, and measuring against those goals, he delivers top notch 
-    design which not only looks great, but delivers task completion with ease."
-    - "In his spare time, Richard goes to shows (he’s a huge music fan), chaperones his dog 
-    (she's a party animal), and explores an ever-growing collection of interests."
-chrisb:
-   name: Chris Barton
-   title: The Wizard of Web
-   facebook: cbarton.a
-   linkedin: bartonchris
-   twitter: #
-   github: cbarton
-   extra_image_style: "margin-top: 20px;"
-   bio:
-     - "Chris Barton is one of those rare engineers that knows every line of code of the
-     frameworks he works with by heart. He’s our web framework expert and is an active
-     contributor to Rails, Errbit, and several popular Ruby gems."
-     - "When he isn’t hacking on code, Chris enjoys listening to whompy electronic music,
-     and playing Words With Friends. You might want to watch out though, rumor has it he
-     hacked his client to allow him to play any word (so much for server-side validation).
-     Chris studied both Computer Science and Electrical Engineering at the University of Iowa."
-ohia:
-  name: Ohia
-  title: The Dog
-  facebook: ohiathedog
-  linkedin: #
-  twitter: #
-  github: #
-  bio:
-    - "Ohia is Amoeba’s official office dog. Before her current position she served as the office dog for a number of Fortune 500 companies. She loves people and seems to have a deep need to be petted."
-    - "Ohia just celebrated her 5th birthday and is now working on a bucket list which includes learning how to skateboard and learning how to \"sit\" in multiple languages. "
-
